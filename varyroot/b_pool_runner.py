@@ -131,8 +131,12 @@ def run_pool(config_path):
                                 "ast": ast_status, "cfg": cfg_status}))
         return ast, cfg
 
-    parents = {side: (source, compile_variant(source)[0], config["target_lines"][side])
-               for side, source in (("before", before), ("after", after))}
+    parents = {}
+    for side, source in (("before", before), ("after", after)):
+        ast, cfg = compile_variant(source)
+        if ast is None or cfg is None:
+            raise ValueError("parent_static_compile_unavailable:" + side)
+        parents[side] = (source, ast, config["target_lines"][side])
     if family == "nullable_output":
         inspect = make_nullable_inspector(packet, config["static_config"], parents, compile_variant)
     else:
