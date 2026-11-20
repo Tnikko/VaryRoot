@@ -3,6 +3,7 @@ import copy
 import difflib
 import hashlib
 import json
+from itertools import combinations
 import re
 from collections import Counter
 from pathlib import Path
@@ -44,10 +45,30 @@ def code_change(before,after,factor):
     compact=lambda s:re.sub(r'\s+','',s)
     old,new=compact(old),compact(new)
     if factor=='path_block_scope':
+        goto_to_return=False
+        if len(changes)==2:
+            additions=[c for c in changes if c['kind']=='insert' and not c['old']]
+            returns=[c for c in changes if c['kind']=='replace']
+            if len(additions)==len(returns)==1:
+                guard=compact('\n'.join(additions[0]['new']))
+                old_return=compact('\n'.join(returns[0]['old']))
+                new_return=compact('\n'.join(returns[0]['new']))
+                match=re.fullmatch(r'if\(bvals==NULL\)goto([A-Za-z_][A-Za-z0-9_]*);',guard)
+                goto_to_return=(match is not None and old_return=='return0;' and
+                                new_return==match.group(1)+':return0;')
+            elif len(additions)==2 and not returns:
+                snippets=[compact('\n'.join(c['new'])) for c in additions]
+                for guard in snippets:
+                    match=re.fullmatch(r'if\(bvals==NULL\)goto([A-Za-z_][A-Za-z0-9_]*);',guard)
+                    if match and match.group(1)+':' in snippets:
+                        label=match.group(1)
+                        goto_to_return=bool(re.search(
+                            r'(?m)^\s*'+re.escape(label)+r':\s*\n\s*return\s+0\s*;',after))
         valid=(len(changes)==1 and
                (('if(bvals==NULL)' in new or 'if(bvals!=NULL)' in new or
                  ('if(!p)return;' in new and not old))
-                or ('if(bv.bv_val==NULL)' in old and 'if(bv.bv_val==NULL)' in new)))
+                or ('if(bv.bv_val==NULL)' in old and 'if(bv.bv_val==NULL)' in new))
+               or goto_to_return)
     elif factor=='guard_contract':
         valid=len(changes)==1 and ('bvals' in new)
     elif factor=='invalid_source':
@@ -118,6 +139,17 @@ def divergence(got):
     hard='report' in values and 'quiet' in values
     coverage='uncovered' in values and bool(values & {'report','quiet'})
     return {'hard':hard,'coverage':coverage}
+
+
+def pairwise_divergence(predictions):
+    rows = []
+    for left, right in combinations(sorted(predictions), 2):
+        values = {predictions[left], predictions[right]}
+        if values == {'report', 'quiet'}:
+            rows.append(dict(models=[left, right], kind='hard_divergent'))
+        elif values in ({'report', 'uncovered'}, {'quiet', 'uncovered'}):
+            rows.append(dict(models=[left, right], kind='coverage_divergent'))
+    return rows
 
 
 def freeze_pools(rows):

@@ -103,8 +103,10 @@ def collect_openldap(project, db, run, *, historical_handoff=None, historical_ba
             'results': results, 'fact_refs': bundle['manifest']['fact_refs'],
             'receipt': receipt})
 
-    all_cases = {case['case_id']: case for name in
-                 ('model-01', 'model-02', 'model-03', 'offline-baseline')
+    selected_pool = payload['replay'].get('pool')
+    names = ((selected_pool,) if selected_pool else
+             ('model-01', 'model-02', 'model-03', 'offline-baseline'))
+    all_cases = {case['case_id']: case for name in names
                  for case in load_frozen_pool(project, db, name)}
     pool = {}
     rows = {row['case']: row for row in payload['rows']}

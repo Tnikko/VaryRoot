@@ -17,10 +17,11 @@ from .verdict import classify
 
 def load_frozen_pool(project, db, pool):
     """Replay locked Clang facts and interpreter predictions before B registration."""
-    if pool not in ('model-01', 'model-02', 'model-03', 'offline-baseline'):
+    if pool not in ('model-01', 'model-02', 'model-03', 'offline-baseline',
+                    'directed-v2', 'directed-v3'):
         raise ValueError('unknown frozen pool')
     root = Path(project)
-    out = root / 'runs/step3-model-intake/out'
+    out = _pool_output(root, pool)
     frozen = json.loads((out / 'freeze.json').read_bytes())
     for name, expected in frozen['file_sha256'].items():
         if digest((out / name).read_bytes()) != expected:
@@ -28,7 +29,7 @@ def load_frozen_pool(project, db, pool):
     seed = db.seed_package(RUN)
     if db.run(RUN)['state'] != 'seed_accepted' or frozen['seed_run'] != RUN:
         raise LedgerError('frozen pool has no accepted seed')
-    proposal = json.loads((out / 'proposal-input.json').read_bytes())
+    proposal = json.loads((root / 'runs/step3-model-intake/out/proposal-input.json').read_bytes())
     if proposal['seed_package_sha256'] != seed['packet_sha']:
         raise ValueError('model input differs from accepted seed')
     accepted = {ref(model['spec']): model for model in
@@ -78,6 +79,18 @@ def load_frozen_pool(project, db, pool):
                            domain_ref=domain_ref, factor=row['factor'], parent=row['parent'],
                            predictions=predictions, frozen_predictions=row['predictions']))
     return result
+
+
+def _pool_output(root, pool):
+    if pool.startswith('directed-v'):
+        return root / ('runs/step4d-' + pool + '/model-client/runs/step3-model-intake/out')
+    return root / 'runs/step3-model-intake/out'
+
+
+def _build_output(root, pool):
+    if pool.startswith('directed-v'):
+        return root / ('runs/step4d-' + pool + '/buildability')
+    return root / 'runs/step4-paired'
 
 
 def build_case_bundle(seed, case):
@@ -135,7 +148,8 @@ def candidate_inputs(project, seed, case, image):
     """Bind one candidate to its independently rebuilt observer binary."""
     root = Path(project)
     case_id = case['case_id']
-    build = json.loads((root / 'runs/step4-paired/out/buildability.json').read_bytes())
+    build_root = _build_output(root, case['pool'])
+    build = json.loads((build_root / 'out/buildability.json').read_bytes())
     record, = (item for item in build['results'] if item['id'] == case_id)
     if (build['production_verdicts_issued'] is not False
             or record['status'] != 'compiled' or record['verdict_issued'] is not False
@@ -143,7 +157,7 @@ def candidate_inputs(project, seed, case, image):
             or record['ast_sha256'] != case['ast_sha256']
             or record['target_span'] != case['target_span']):
         raise ValueError('candidate buildability binding changed')
-    attempt = root / 'runs/step4-paired/attempts' / case_id
+    attempt = build_root / 'attempts' / case_id
     lock = json.loads((attempt / 'output/build-lock.json').read_bytes())['sides'][case_id]
     observer = (attempt / 'output' / (case_id + '.so')).read_bytes()
     if digest(observer) != lock['so_sha256'] or lock['target'] != {
@@ -248,11 +262,18 @@ def check_candidate_receipt(receipt, expected):
     return verdict['label']
 
 
-def register_pair(project, db, parent_run, pool, prefix, *, k, rng_seed):
+def register_pair(project, db, parent_run, pool, prefix, *, k, rng_seed,
+                  preregistered_subset=None):
     """Register both arms on one frozen pool before either can reveal evidence."""
     if parent_run != RUN or type(k) is not int or k < 0 or type(rng_seed) is not int:
         raise ValueError('invalid paired experiment lock')
     cases = load_frozen_pool(project, db, pool)
+    if preregistered_subset is not None:
+        selected = set(preregistered_subset)
+        if (len(selected) != len(preregistered_subset) or
+                not selected <= {case['case_id'] for case in cases}):
+            raise ValueError('invalid pre-oracle candidate subset')
+        cases = [case for case in cases if case['case_id'] in selected]
     seed = db.seed_package(parent_run)
     image = _locked_verifier_image(db, parent_run)
     rows, matrix, replay_cases, equivalents = [], {}, [], []
@@ -270,8 +291,9 @@ def register_pair(project, db, parent_run, pool, prefix, *, k, rng_seed):
               [artifact(seed, 'baseline_spec'), artifact(seed, 'active_model'),
                *artifact(seed, 'hypothesis_set')['specs']]}
     replay = dict(adapter='openldap-four-mode-candidate@1', cases=replay_cases,
-                  models=models, source_freeze_sha256=digest((Path(project) /
-                  'runs/step3-model-intake/out/freeze.json').read_bytes()))
+                  models=models, pool=pool, source_freeze_sha256=digest((
+                  _pool_output(Path(project), pool) / 'freeze.json').read_bytes()),
+                  preregistered_subset=sorted(preregistered_subset) if preregistered_subset else None)
     runs = {}
     for group in ('random', 'divergence'):
         run = prefix + '.' + group
@@ -364,7 +386,10 @@ def run_selected(project, db, run, batch='b1'):
         raise ValueError('wrong verifier adapter')
     # The pool identity is fixed by the registered case IDs, not by caller input.
     candidates = {}
-    for name in ('model-01', 'model-02', 'model-03', 'offline-baseline'):
+    for name in ('model-01', 'model-02', 'model-03', 'offline-baseline',
+                 'directed-v2', 'directed-v3'):
+        if not (_pool_output(Path(project), name) / 'freeze.json').exists():
+            continue
         for case in load_frozen_pool(project, db, name):
             candidates[case['case_id']] = case
     pool = {row['case']: candidates[row['case']] for row in registered['rows']}

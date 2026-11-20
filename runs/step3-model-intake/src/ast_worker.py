@@ -22,6 +22,21 @@ def local_text(source,node):
     a,b=local_span(node)
     return source[a:b].decode()
 
+
+def goto_exits(walk, children, branch):
+    # Only a branch consisting of one unconditional jump to a return is proved here.
+    if branch.get('kind') == 'CompoundStmt' and len(children(branch)) == 1:
+        branch = children(branch)[0]
+    target_id = branch.get('targetLabelDeclId')
+    if branch.get('kind') != 'GotoStmt' or not target_id:
+        return False
+    labels = [node for node, _, _ in walk if node.get('kind') == 'LabelStmt' and node.get('declId') == target_id]
+    if len(labels) != 1 or len(children(labels[0])) != 1:
+        return False
+    destination = children(labels[0])[0]
+    return destination.get('kind') == 'ReturnStmt' and all(
+        node.get('kind') == 'IntegerLiteral' for node in children(destination))
+
 rows={}
 for case in json.loads((I/'cases.json').read_bytes())['cases']:
     name=case['id'];path=I/case['path'];source=path.read_bytes()
@@ -42,7 +57,8 @@ for case in json.loads((I/'cases.json').read_bytes())['cases']:
         before=[]
         base=tuple(analysis['outer_for_path'])
         target_start=analysis['target_span'][0]
-        for node,node_path,_ in role.walk(tree):
+        tree_nodes=list(role.walk(tree))
+        for node,node_path,_ in tree_nodes:
             if (node.get('kind')!='IfStmt' or tuple(node_path[:len(base)])!=base
                     or local_span(node)[0]>=target_start):
                 continue
@@ -52,6 +68,7 @@ for case in json.loads((I/'cases.json').read_bytes())['cases']:
             before.append({'path':list(node_path),'condition':local_text(source,cond),
                            'condition_span':local_span(cond),'span':local_span(node),
                            'then_kinds':[n.get('kind') for n,_,_ in role.walk(kids[1])],
+                           'goto_exits':goto_exits(tree_nodes,role.children,kids[1]),
                            'contains_target':tuple(analysis['inner_for_path'][:len(node_path)])==tuple(node_path),
                            'direct_child':tuple(node_path[:-1])==base+(4,)})
         item.update(status='valid',analysis=analysis,outer_condition=outer_condition,

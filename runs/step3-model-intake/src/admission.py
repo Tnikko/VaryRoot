@@ -14,18 +14,19 @@ IMAGE='varyroot-agent-a:step04'
 def sha(data): return hashlib.sha256(data).hexdigest()
 
 
-def analyze_batch(project,cases,batch,audit_path=None):
-    project=Path(project);run=project/'runs/step3-model-intake';out=run/'out'
-    if os.environ.get('VARYROOT_ROLE_BACKEND')!='namespace':
-        raise ValueError('explicit namespace backend required')
+def analyze_batch(project,cases,batch,audit_path=None,*,run_output=None):
+    project=Path(project);run=project/'runs/step3-model-intake'
+    out=Path(run_output) if run_output is not None else run/'out'
+    if os.environ.get('VARYROOT_ROLE_BACKEND') not in ('namespace', 'docker'):
+        raise ValueError('explicit isolated backend required')
     request=uuid.uuid4().hex
     source=out/'admission-catalog'/request
     source.mkdir(parents=True)
     files={
         'openldap_role.py':(project/'varyroot/openldap_role.py').read_bytes(),
         'ast_worker.py':(run/'src/ast_worker.py').read_bytes(),
-        'openldap-include.tar.gz':(project/'runs/interface3-static/openldap-include.tar.gz').read_bytes(),
-        'ubuntu24-libc-headers.tar.gz':(project/'runs/interface3-static/ubuntu24-libc-headers.tar.gz').read_bytes(),
+        'openldap-include.tar.gz':(project/'runs/interface3-static/catalog/openldap-include.tar.gz').read_bytes(),
+        'ubuntu24-libc-headers.tar.gz':(project/'runs/interface3-static/catalog/ubuntu24-libc-headers.tar.gz').read_bytes(),
     }
     index=[]
     for name,code in cases.items():
@@ -89,7 +90,9 @@ def derive_facts(ast):
             if any(k in kinds for k in ('BreakStmt','ReturnStmt')):
                 blocked=True
             elif 'GotoStmt' in kinds:
-                raise ValueError('goto_requires_cfg_proof')
+                if not item.get('goto_exits'):
+                    raise ValueError('goto_requires_cfg_proof')
+                blocked=True
         elif condition in ('bvals!=NULL','(bvals!=NULL)') and item['contains_target']:
             check=True;blocked=True
         elif 'bvals' in condition or 'bvp' in condition:
