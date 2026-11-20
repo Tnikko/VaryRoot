@@ -1,0 +1,41 @@
+{
+  "schema": "nullable-output-contracts@1",
+  "contracts": {
+    "openldap.reference.2.4.45@1": {
+      "family": "success_may_have_null_values",
+      "subject": "bvals_output",
+      "call": {
+        "name": "ldap_get_attribute_ber",
+        "output_argument": 4,
+        "success_value": "LDAP_SUCCESS",
+        "success_numeric": 0,
+        "output_alias": "initializer_address_of"
+      },
+      "sink": {
+        "kind": "array_element_member",
+        "member": "bv_val"
+      },
+      "status": {
+        "kind": "assigned_call_result_loop_condition"
+      }
+    },
+    "test.reference.decoder@1": {
+      "family": "success_may_have_null_values",
+      "subject": "decoded_records",
+      "call": {
+        "name": "decode_records",
+        "output_argument": 2,
+        "success_value": "DECODE_OK",
+        "success_numeric": 7,
+        "output_alias": "direct_address_of"
+      },
+      "sink": {
+        "kind": "array_element_member",
+        "member": "payload"
+      },
+      "status": {
+        "kind": "assigned_call_result_loop_condition"
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@
 from collections import Counter
 import csv
 import json
+import re
 from pathlib import Path
 
 from .artifacts import load_bundle, validate_bundle
@@ -42,6 +43,9 @@ def compile_manifest(directory, capability="registered"):
     contracts = {records[v]["contract_ref"] for v in decision["verdict_refs"]}
     require(len(contracts)==1, "one registered access contract required")
     contract = records[contracts.pop()]
+    if contract["mode"] == "success_may_have_null_values":
+        return compile_nullable_manifest(bundle, records, handoff, decision, contract, lanes,
+                                         capability)
     require(contract["mode"] in ("logical_read_prefix", "live_read"),
             "unsupported_contract_mode:" + contract["mode"])
     authority, = [records[r]["description"]["contract"] for r in contract["basis_refs"]
@@ -87,6 +91,149 @@ def compile_manifest(directory, capability="registered"):
                 default="no_alert")
 
 
+def load_nullable_contract(contract_ref):
+    registry = json.loads((Path(__file__).parent / 'ql07/nullable_contracts.json').read_bytes())
+    require(registry['schema'] == 'nullable-output-contracts@1', 'unknown nullable registry')
+    require(contract_ref in registry['contracts'], 'unsupported nullable contract authority')
+    entry = registry['contracts'][contract_ref]
+    require(entry['family'] == 'success_may_have_null_values', 'wrong nullable family')
+    call = entry['call']
+    for value in (call['name'], call['success_value'], entry['sink']['member']):
+        require(isinstance(value, str) and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', value),
+                'unsafe nullable contract identifier')
+    require(type(call['output_argument']) is int and 0 <= call['output_argument'] <= 31,
+            'invalid output slot')
+    require(type(call['success_numeric']) is int and 0 <= call['success_numeric'] <= 65535,
+            'invalid success value')
+    require(call['output_alias'] in ('initializer_address_of', 'direct_address_of'),
+            'unsupported output alias mode')
+    require(entry['sink']['kind'] == 'array_element_member' and
+            entry['status']['kind'] == 'assigned_call_result_loop_condition',
+            'unsupported nullable contract shape')
+    return entry
+
+
+def _nullable_guard(clause):
+    require(clause['field'] == 'Guard' and clause['direction'] == 'iff' and
+            clause['applicability'] is True and not clause['basis_refs'] == [],
+            'unsupported nullable guard clause')
+    tree = clause['antecedent']
+    require(tree.get('op') == 'or' and len(tree.get('args', [])) == 2,
+            'unsupported nullable guard form')
+    first, second = tree['args']
+    require(second == {'op': 'not', 'args': [{'op': 'is_null',
+            'args': [{'var': 'operand'}]}]}, 'unsupported nullable guard operand')
+    guard = first.get('var')
+    require(guard in ('check_seen', 'blocked', 'loop_direct'),
+            'unsupported nullable guard semantics')
+    return guard
+
+
+def compile_nullable_manifest(bundle, records, handoff, decision, authority, lanes, capability):
+    require(authority['approval_status'] == 'approved' and
+            authority['mode'] == 'success_may_have_null_values',
+            'unapproved nullable authority')
+    contract_ref = authority['id'] + '@' + str(authority['version'])
+    params = load_nullable_contract(contract_ref)
+    require(params['subject'] == authority['subject'], 'nullable subject mismatch')
+    evidence = decision.get('explanation_evidence', {})
+    require(decision.get('alignment_policy') == 'unique_fully_aligned@1' and
+            [key for key, value in evidence.items() if value['status'] == 'aligned'] ==
+            [lanes['Qstar']], 'B6 unique alignment proof missing')
+    if decision['action'] == 'revise':
+        require(lanes['Q0'] != lanes['Qstar'] and
+                evidence[lanes['Q0']]['hard_contradictions'],
+                'revise lacks baseline contradiction')
+    guard_lanes = {}
+    common = {'Source': {'var': 'source'}, 'Sink': {'var': 'sink'},
+              'Propagation': {'op': 'same_object',
+                              'args': [{'var': 'call_output_slot'}, {'var': 'sink_base'}]}}
+    for lane, spec_ref in lanes.items():
+        spec = records[spec_ref]
+        require(not spec['complete_guard_refs'], 'unsupported completeness declaration')
+        clauses = {records[c]['field']: records[c] for c in spec['clause_refs']}
+        require(set(clauses) == {'Source', 'Sink', 'Propagation', 'Guard'},
+                'incomplete nullable spec')
+        for field, tree in common.items():
+            require(clauses[field]['antecedent'] == tree and
+                    clauses[field]['direction'] == 'iff',
+                    'unsupported nullable premise')
+        guard_lanes[lane] = {'guard': _nullable_guard(clauses['Guard'])}
+    targets = []
+    for verdict_ref in decision['verdict_refs']:
+        verdict = records[verdict_ref]
+        require(verdict['contract_ref'] == contract_ref and
+                verdict['label'] in ('positive', 'negative'), 'unqualified nullable verdict')
+        target = records[verdict['target_ref']]
+        snapshot = records[target['snapshot_ref']]
+        raw = snapshot['files'][target['file']].encode()
+        lo, hi = target['expr_span']
+        mapping_ok = (target['scope_kind'] == 'original_source' and target['mapping_status'] == 'origin'
+                      or target['scope_kind'] == 'counterfactual_case' and
+                      target['mapping_status'] == 'exact_1to1')
+        require(target['operation'] == 'read' and target['subject'] == params['subject'] and
+                mapping_ok and digest(raw) == target['file_digest'] and
+                0 <= lo < hi <= len(raw), 'nullable target binding differs')
+        text = raw[lo:hi].decode()
+        expression_supported = bool(re.fullmatch(
+            r'[A-Za-z_][A-Za-z0-9_]*\s*\[\s*[A-Za-z_][A-Za-z0-9_]*\s*\]\s*\.\s*' +
+            re.escape(params['sink']['member']), text))
+        predictions = {}
+        for lane, spec_ref in lanes.items():
+            matches = [records[p] for p in decision['prediction_refs']
+                       if records[p]['target_ref'] == verdict['target_ref'] and
+                       records[p]['hypothesis_ref'] == spec_ref and
+                       records[p]['domain_ref'] == verdict['domain_ref'] and
+                       records[p]['contract_ref'] == contract_ref]
+            require(len(matches) == 1, 'nullable prediction binding differs')
+            predictions[lane] = matches[0]['outcome']
+        targets.append(dict(target, target_ref=verdict['target_ref'], label=verdict['label'],
+                            predictions=predictions, verdict_ref=verdict_ref,
+                            declared_backend_gap=None if expression_supported else
+                            'unsupported_sink_expression'))
+    require(sorted(t['target_ref'] for t in targets) ==
+            sorted(bundle.manifest['target_refs']), 'nullable target denominator differs')
+    return dict(capability=capability, family='nullable_output', contract=params,
+                contract_ref=contract_ref, action=decision['action'],
+                initial_spec_ref=lanes['Q0'], final_spec_ref=lanes['Qstar'],
+                revision_ref=handoff['revision_ref'], decision_ref=handoff['decision_ref'],
+                lanes=guard_lanes, targets=sorted(targets, key=lambda t: t['target_ref']),
+                target_refs=sorted(bundle.manifest['target_refs']), default='no_alert')
+
+
+def emit_nullable_queries(c1):
+    contract = c1['contract']
+    call, sink = contract['call'], contract['sink']
+    parameters = '\n'.join((
+        f'string apiName() {{ result = "{call["name"]}" }}',
+        f'int outputArgument() {{ result = {call["output_argument"]} }}',
+        f'string successValue() {{ result = "{call["success_value"]}" }}',
+        f'int successNumber() {{ result = {call["success_numeric"]} }}',
+        f'string sinkMember() {{ result = "{sink["member"]}" }}',
+        f'string aliasMode() {{ result = "{call["output_alias"]}" }}',
+    )) + '\n'
+    shared = (Path(__file__).parent / 'ql07/nullable_output.qll').read_bytes()
+    results = {'contract.qll': parameters.encode(), 'nullable_output.qll': shared,
+               'qlpack.yml': b'name: varyroot/nullable-output\nversion: 0.0.1\ndependencies:\n  codeql/cpp-all: 12.2.0\n'}
+    guards = {'check_seen': 'checkSeen', 'blocked': 'blocked',
+              'loop_direct': 'loopDirect'}
+    for lane, info in c1['lanes'].items():
+        require(lane in LANES and info['guard'] in guards, 'unknown nullable guard')
+        name = guards[info['guard']]
+        reported = ('not loopDirect(e) and not blocked(e)' if info['guard'] == 'loop_direct'
+                    else 'not '+name+'(e)')
+        results[lane + '.ql'] = f'''import cpp
+import nullable_output
+from Expr e, string kind
+where site(e) and (kind = "site" or kind = "alert" and {reported})
+select e.getFile().getBaseName() as filename, e.(FieldAccess).getQualifier().getLocation().getStartLine() as sl,
+  e.(FieldAccess).getQualifier().getLocation().getStartColumn() as sc, e.getLocation().getEndLine() as el,
+  e.getLocation().getEndColumn() as ec, kind,
+  count(Expr other | site(other) and other.getLocation() = e.getLocation()) as multiplicity
+'''.encode()
+    return results
+
+
 def expression(node,capacity):
     if isinstance(node,bool):
         return "site(e)" if node else "none()"
@@ -113,6 +260,8 @@ def expression(node,capacity):
 
 
 def emit_queries(c1):
+    if c1['family'] == 'nullable_output':
+        return emit_nullable_queries(c1)
     shared=(Path(__file__).parent/"ql07/shared.qll").read_text()
     predicates={}
     for key,c in sorted(c1["predicates"].items()):
@@ -232,8 +381,22 @@ def verify_outputs(root,c1,*,historical_counts=False):
         alignment=align_locations(targets,locations,sources,complete=complete)
         mapped=alignment["by_target"]
         position={t["target_ref"]:(t["snapshot_ref"],t["variant_id"],t["expr_span"]) for t in targets}
-        outputs[lane]={key:dict(actual_output={True:"alert",False:"no_alert",None:"unavailable"}[v["actual_output"]],
-                                alignment_basis=[tr for tr in alignment.get("transformations",[]) if (tr["snapshot_ref"],tr["variant_id"],tr["byte_span"])==position[key]],
-                                mapping_status=v["mapping_status"],backend_gap="external_body_missing" if v["backend_gap"] else None)
-                       for key,v in mapped.items()}
+        outputs[lane]={}
+        for key,v in mapped.items():
+            gap = "external_body_missing" if v["backend_gap"] else None
+            if c1['family'] == 'nullable_output':
+                declared = next(t.get('declared_backend_gap') for t in targets
+                                if t['target_ref'] == key)
+                if declared:
+                    v = dict(v, actual_output=None, mapping_status='unavailable')
+                    gap = declared
+            if c1['family'] == 'nullable_output' and v['mapping_status'] != 'exact_1to1':
+                gap = gap or ('query_execution_failed' if not complete else
+                              'target_alignment_ambiguous' if v['mapping_status'] == 'ambiguous' else
+                              'output_slot_or_success_binding_unproved')
+            outputs[lane][key] = dict(
+                actual_output={True:"alert",False:"no_alert",None:"unavailable"}[v["actual_output"]],
+                alignment_basis=[tr for tr in alignment.get("transformations",[]) if
+                                 (tr["snapshot_ref"],tr["variant_id"],tr["byte_span"])==position[key]],
+                mapping_status=v["mapping_status"],backend_gap=gap)
     return outputs

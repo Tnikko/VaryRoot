@@ -7,6 +7,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import tarfile
 import zipfile
 
 from varyroot.agent_c import LANES, compile_manifest, emit_queries, regression, verify_outputs
@@ -56,7 +57,8 @@ class Engine:
         cmd=list(map(str,[self.cli,*args]))
         env=dict(os.environ,HOME=str(self.home),XDG_CONFIG_HOME=str(self.home/"config"),
                  XDG_CACHE_HOME=str(self.home/"cache"),LC_ALL="C.UTF-8")
-        p=subprocess.run(cmd,cwd=self.work,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+        p=subprocess.run(cmd,cwd=self.work,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,
+                         text=True,timeout=600 if args[:2]==('query','run') else None)
         self.commands.append(dict(argv=cmd,exit_code=p.returncode,output=p.stdout))
         save(self.work/"commands.json",self.commands)
         if fatal and p.returncode:
@@ -64,6 +66,8 @@ class Engine:
         return p
 
     def extract(self,handoff,root,c1,image):
+        if c1['family'] == 'nullable_output':
+            return self.extract_nullable(handoff, root, c1, image)
         src=self.work/"src"
         src.mkdir()
         db=self.work/"db"
@@ -88,19 +92,94 @@ class Engine:
                     sources={p.name:file_sha(p) for p in src.iterdir() if p.suffix in (".c",".h",".sh")},
                     database_sha256=file_sha(root/"database.zip"))
 
+    def extract_nullable(self,handoff,root,c1,image):
+        src=self.work/'src'
+        src.mkdir()
+        db=self.work/'db'
+        bundle=load_bundle(handoff/'manifest.json')
+        index=bundle.index()
+        project=Path(__file__).resolve().parents[2]
+        catalog=project/'runs/interface3-static/catalog'
+        ldap_archive=catalog/'openldap-include.tar.gz'
+        ldap=self.work/'ldap-headers'
+        ldap.mkdir()
+        with tarfile.open(ldap_archive) as archive:
+            archive.extractall(ldap,filter='data')
+        config=catalog/'curl_config_openldap.h'
+        trees={}
+        archives={}
+        for side in ('before','after'):
+            source=catalog/(side+'-canonical.tar.gz')
+            tree=self.work/('curl-'+side)
+            tree.mkdir()
+            with tarfile.open(source) as archive:
+                archive.extractall(tree,filter='data')
+            (tree/'lib/curl_config.h').write_bytes(config.read_bytes())
+            trees[side]=tree
+            archives[side]=file_sha(source)
+        commands=['set -eu']
+        observed=[]
+        for target in c1['targets']:
+            raw=index[target['snapshot_ref']]['files'][target['file']].encode()
+            digest_name=target['file_digest']+'.c'
+            if digest(raw)!=target['file_digest']:
+                raise ValueError('nullable source snapshot digest differs')
+            path=src/digest_name
+            if path.exists() and path.read_bytes()!=raw:
+                raise ValueError('nullable source name collision')
+            path.write_bytes(raw)
+            if target['scope_kind']=='original_source':
+                matched=[side for side,tree in trees.items()
+                         if (tree/target['file']).is_file() and
+                         (tree/target['file']).read_bytes()==raw]
+                if len(matched)!=1:
+                    raise ValueError('original curl TU differs from canonical archive')
+                tree=trees[matched[0]]
+                include=f'-I{tree}/lib -I{tree}/include -DHAVE_CONFIG_H'
+                observed.append(dict(source=digest_name,archive_side=matched[0],
+                                     canonical_sha256=archives[matched[0]]))
+            else:
+                if target['scope_kind']!='counterfactual_case':
+                    raise ValueError('unapproved nullable source scope')
+                include=''
+                observed.append(dict(source=digest_name,archive_side=None))
+            commands.append(f'/usr/bin/clang-18 -std=gnu17 -O0 {include} '
+                            f'-I{ldap}/include -c {digest_name} -o {digest_name}.o')
+        (src/'build.sh').write_text('\n'.join(commands)+'\n')
+        self.command('database','create',db,'--language=cpp','--threads=1',
+                     f'--ram={RAM}','--source-root='+str(src),
+                     '--command=/bin/sh build.sh')
+        self.command('database','bundle',db,'--output='+str(root/'database.zip'))
+        version=json.loads(self.command('version','--format=json').stdout)
+        packs=self.command('resolve','qlpacks','--additional-packs='+str(self.tools/'packages')).stdout
+        if version['version']!='2.27.2' or str(self.tools/'packages/codeql/cpp-all/12.2.0') not in packs:
+            raise RuntimeError('offline pack or CLI version differs')
+        return dict(cli_version=version['version'],cli_commit=version['sha'],cpp_all='12.2.0',
+                    tool_tree_sha256=tree_sha(self.tools),runtime_image=image,ram=RAM,
+                    query_ram=4096,threads=THREADS,
+                    pack_cache='packages',extractor='codeql/cpp',build_command='sh build.sh',
+                    compiler=subprocess.check_output(['/usr/bin/clang-18','--version'],
+                                                     text=True).splitlines()[0],
+                    sources={p.name:file_sha(p) for p in src.iterdir() if p.suffix in ('.c','.sh')},
+                    extraction_inputs=dict(ldap_archive_sha256=file_sha(ldap_archive),
+                                           config_sha256=file_sha(config),targets=observed),
+                    database_sha256=file_sha(root/'database.zip'))
+
     def execute(self,root,db,lock):
         queries=root/"queries"
         results=root/"results"
         results.mkdir(exist_ok=True)
-        pack = {name:file_sha(queries/name) for name in ("Q0.ql","Qstar.ql","shared.qll","qlpack.yml")}
+        library = ('nullable_output.qll','contract.qll') if (queries/'nullable_output.qll').exists() else ('shared.qll',)
+        pack = {name:file_sha(queries/name) for name in ('Q0.ql','Qstar.ql','qlpack.yml',*library)}
         pack_sha = digest(encode(pack))
         lock_sha = digest(encode(lock))
+        query_ram = lock.get('query_ram', 4096) if library[0] == 'nullable_output.qll' else RAM
         for lane in LANES:
             q=queries/(lane+".ql")
             bqrs=results/(lane+".bqrs")
             cmd=self.command("query","run",q,"--database="+str(db),"--output="+str(bqrs),
                  "--search-path="+str(self.tools/"packages"),"--additional-packs="+str(self.tools/"packages"),
-                 "--common-caches="+str(self.cache),f"--ram={RAM}","--threads=1",fatal=False)
+                 "--common-caches="+str(self.cache),f"--ram={query_ram}","--threads=1",fatal=False)
             dst=results/(lane+".csv")
             query_exit = cmd.returncode
             decode_exit = None
@@ -109,6 +188,7 @@ class Engine:
                 decode_exit = cmd.returncode
             save(results/(lane+".status.json"),dict(completed=cmd.returncode==0,exit_code=cmd.returncode,
                  query_exit_code=query_exit,decode_exit_code=decode_exit,
+                 query_ram=query_ram,
                  database_sha256=lock["database_sha256"],query_sha256=pack[q.name],
                  query_pack_sha256=pack_sha,toolchain_sha256=lock_sha,
                  bqrs_sha256=file_sha(bqrs) if query_exit==0 else None,

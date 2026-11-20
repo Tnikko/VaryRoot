@@ -57,7 +57,11 @@ def verified_files(root, expected):
         check(sha(root / name) == expected_file, f"archive digest mismatch: {name}")
     required = set(replay_files(Path("."))) | {"database.zip", "toolchain.json", "c1.json", "c4.json",
              "c5.json", "handoff/b6.json", "handoff/manifest.json", "handoff/records.json",
-             "queries/shared.qll", "queries/qlpack.yml", "budget.json"}
+             "queries/qlpack.yml", "budget.json"}
+    if "queries/nullable_output.qll" in actual:
+        required.update(("queries/nullable_output.qll", "queries/contract.qll"))
+    else:
+        required.add("queries/shared.qll")
     for lane in LANES:
         required.update((f"queries/{lane}.ql", f"results/{lane}.status.json",
                          f"results/{lane}.csv", f"results/{lane}.bqrs"))
