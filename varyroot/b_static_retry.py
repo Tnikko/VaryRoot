@@ -1,9 +1,10 @@
 """Pre-oracle generation with deterministic static feedback."""
 
 import hashlib
+import json
 
 from .b_factor_gate import classify
-from .b_prompt import build_request
+from .b_prompt import build_request, hypothesis_pair
 
 
 def source_sha256(source):
@@ -19,7 +20,11 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
     target = policy.get("divergence_target", "hard")
     if type(retries) is not int or retries < 0 or type(minimum) is not int or minimum < 1:
         raise ValueError("invalid_generation_budget")
-    if target not in ("hard", "coverage") or target == "coverage" and policy.get("coverage_eligible") is not True:
+    pair_digest = hashlib.sha256(json.dumps(hypothesis_pair(first, second), sort_keys=True).encode()).hexdigest()
+    if target not in ("hard", "coverage") or target == "coverage" and (
+            policy.get("coverage_pair_sha256") != pair_digest or
+            not isinstance(policy.get("coverage_evidence_ref"), str) or
+            not policy["coverage_evidence_ref"].strip()):
         raise ValueError("unregistered_divergence_target")
     seen = {source_sha256(before), source_sha256(after)}
     rows, feedback, response_failures = [], [], 0
@@ -79,6 +84,7 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
             "hard_divergent": sum(row["hard_divergent"] for row in rows),
             "coverage_divergent": sum(row["coverage_divergent"] for row in rows),
             "retry_rounds": attempt, "response_failures": response_failures,
-            "divergence_target": target,
+            "divergence_target": target, "hypothesis_pair_sha256": pair_digest,
+            "coverage_evidence_ref": policy.get("coverage_evidence_ref") if target == "coverage" else None,
             "unresolved": sum(row[target + "_divergent"] for row in rows) < minimum,
             "backend_gap": sum(row["reason"] == "static_prediction_unavailable" for row in rows)}

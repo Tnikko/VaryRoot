@@ -1,7 +1,8 @@
 import json
+import hashlib
 import unittest
 
-from varyroot.b_prompt import render_messages
+from varyroot.b_prompt import render_messages, hypothesis_pair
 from varyroot.b_factor_gate import classify
 from varyroot.b_static_retry import run
 
@@ -79,7 +80,9 @@ class BGenerationCoreTest(unittest.TestCase):
                     "target_binding": "exact_1to1", "edit_groups": [{"roles": ["guard"]}]},
                     "predictions": ["report", "uncovered"]}
         policy = {"max_retries": 1, "min_divergent": 2, "divergence_target": "coverage",
-                  "coverage_eligible": True, "model": "fixture-model", "max_tokens": 1024,
+                  "coverage_evidence_ref": "prereg-entry-1",
+                  "coverage_pair_sha256": hashlib.sha256(json.dumps(hypothesis_pair(spec("and"), spec("or")), sort_keys=True).encode()).hexdigest(),
+                  "model": "fixture-model", "max_tokens": 1024,
                   "max_proposals_per_round": 4}
         result = run("before", "after", CONTRACT, spec("and"), spec("or"), policy, invoke, inspect)
         self.assertEqual((result["raw"], result["admitted"], result["confounded"],
@@ -90,7 +93,7 @@ class BGenerationCoreTest(unittest.TestCase):
         self.assertEqual(result["rows"][3]["reason"], "duplicate_or_unchanged_source")
         with self.assertRaisesRegex(ValueError, "unregistered_divergence_target"):
             run("before", "after", CONTRACT, spec("and"), spec("or"),
-                dict(policy, coverage_eligible=False), invoke, inspect)
+                dict(policy, coverage_pair_sha256="0" * 64), invoke, inspect)
 
     def test_four_role_projection_and_contract_families(self):
         first, second = spec("and"), spec("or")
@@ -109,6 +112,28 @@ class BGenerationCoreTest(unittest.TestCase):
                              {"Source", "Propagation", "Guard", "Sink"})
             self.assertTrue(payload["hypotheses"]["difference"]["Sink"]["second_only"])
             self.assertIn("at most 6", payload["instructions"])
+
+    def test_retry_feedback_names_protected_role_and_enforces_limit(self):
+        requests = []
+        def invoke(request):
+            requests.append(request)
+            if len(requests) == 1:
+                return {"proposals": [
+                    {"parent": "before", "factor": "guard", "intent": "touch call", "source": "variant-1"},
+                    {"parent": "after", "factor": "guard", "intent": "extra", "source": "variant-2"}]}
+            return {"proposals": []}
+        def inspect(source, parent):
+            return {"clang_receipt": {"producer": "clang_ast", "compile_ok": True,
+                    "target_binding": "exact_1to1", "edit_groups": [{"roles": ["contract_call"]}]},
+                    "predictions": ["report", "quiet"]}
+        result = run("before", "after", CONTRACT, spec("and"), spec("or"),
+                     {"max_retries": 1, "min_divergent": 1, "model": "fixture-model",
+                      "max_tokens": 128, "max_proposals_per_round": 1}, invoke, inspect)
+        self.assertEqual((result["raw"], result["confounded"], result["unresolved"]), (2, 2, True))
+        feedback = json.loads(requests[1]["messages"][1]["content"])["static_feedback"]
+        self.assertEqual(feedback[0]["touched_roles"], ["contract_call"])
+        self.assertEqual(feedback[0]["reason"], "protected_semantics_changed")
+        self.assertEqual(feedback[1]["reason"], "proposal_limit_exceeded")
 
 
 if __name__ == "__main__":
