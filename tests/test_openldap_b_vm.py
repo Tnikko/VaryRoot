@@ -6,12 +6,17 @@ import importlib
 import importlib.util
 import json
 import copy
+import os
 from pathlib import Path
 from unittest import TestCase
 
 from varyroot.ledger import Ledger, LedgerError
 from varyroot.artifacts import Bundle, validate_bundle
+from varyroot.calibration_decision import effective_label
+from varyroot.c_ledger import _qualified
+from varyroot.openldap_b6 import finalize_openldap
 from varyroot.openldap_qualification import RUN
+from varyroot.publication import digest, encode
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -120,3 +125,43 @@ class OpenldapBForkTests(TestCase):
             changed['rows'][1]['actual_reads'] = 0
             with self.assertRaises(ValueError):
                 module.check_candidate_receipt(changed, expected)
+
+    def test_uniform_receipt_replays_original_and_observed_target(self):
+        source = os.environ.get('VARYROOT_STEP4D_HISTORY')
+        if not source:
+            self.skipTest('requires isolated Step 4 production ledger copy')
+        store = Ledger(Path(source))
+        run = 'openldap-step4-clean.model03.random'
+        old = finalize_openldap(ROOT, store, run, commit=False)
+        corrected = finalize_openldap(ROOT, store, run, commit=False, recompute=True)
+        self.assertEqual(old['action'], 'keep')
+        self.assertEqual(corrected['action'], 'unresolved')
+        records = Bundle(corrected['manifest'], corrected['records']).index()
+        for position in corrected['positions']:
+            manifest = dict(target_refs=[position['target_ref']], contract_ref=position['contract_ref'],
+                            domain_ref=position['domain_ref'], fact_refs=position['fact_refs'])
+            receipt = position['receipt']
+            self.assertEqual(position['receipt_sha'], digest(encode(receipt)))
+            self.assertEqual(receipt['publication_sha256'], digest(encode(receipt['publication'])))
+            self.assertEqual(effective_label(receipt, manifest, records), position['label'])
+            self.assertEqual(receipt['verdict']['normal_witnesses'], [1])
+            if position['stage'] == 'A4':
+                self.assertNotEqual(receipt['observed_target_ref'], position['target_ref'])
+                with self.assertRaises(LedgerError):
+                    effective_label(receipt | {'observed_target_ref': position['target_ref']}, manifest, records)
+            with self.assertRaises(LedgerError):
+                effective_label(receipt | {'publication_sha256': '0' * 64}, manifest, records)
+        self.assertEqual(finalize_openldap(ROOT, store, run, commit=False), old)
+
+        # Exercise the unchanged C verifier without admitting or publishing the historical handoff.
+        qualified_input = corrected | {'final_spec_ref': corrected['initial_spec_ref']}
+        c1 = {k: qualified_input[k] for k in ('action', 'decision_ref', 'initial_spec_ref',
+                                              'final_spec_ref', 'revision_ref')}
+        c1['targets'] = [dict(target_ref=p['target_ref'], label=p['label'],
+                              predictions={'Q0': p['registered'][c1['initial_spec_ref']],
+                                           'Qstar': p['registered'][c1['final_spec_ref']]})
+                         for p in qualified_input['positions']]
+        _qualified(qualified_input, c1)
+        with self.assertRaises(LedgerError):
+            _qualified(qualified_input | {'positions': [dict(qualified_input['positions'][0],
+                                                            receipt_sha='0' * 64)]}, c1)

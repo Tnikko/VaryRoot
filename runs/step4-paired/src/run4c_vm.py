@@ -47,7 +47,7 @@ def main():
                 'revision_ref': result.get('revision_ref'),
                 'changed_judgments': result.get('changed_judgments', []),
                 'preserved_judgments': result.get('preserved_judgments', []),
-                'positions': result.get('positions', []),
+                'positions': result.get('position_summaries', result.get('positions', [])),
                 'remaining': result.get('remaining_disagreements', result.get('remaining', [])),
                 'correction': result.get('correction'),
                 'result_sha256': digest(encode(result))}

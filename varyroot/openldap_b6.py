@@ -1,9 +1,10 @@
 """B6 reconciliation for the locked four-mode OpenLDAP observer."""
 import json
+from pathlib import Path
 
 from .artifacts import Bundle, validate_bundle
 from .b_batch import registration, read_object, save_object
-from .calibration_decision import choose, merge, package_handoff
+from .calibration_decision import choose, effective_label, merge, package_handoff, project_observations
 from .inference import evaluate, ref
 from .ledger import LedgerError
 from .openldap_b import candidate_inputs, check_candidate_receipt, load_frozen_pool
@@ -16,13 +17,13 @@ def _assert(ok, message):
         raise LedgerError(message)
 
 
-def _static_observations(raw):
-    """Project physical four-mode evidence onto the two successful static paths."""
-    cells = {row['cell']: row for row in raw['rows']}
-    _assert(set(cells) == {1, 2, 3, 4}, 'four-mode receipt incomplete')
-    return [dict(input_id=index, event=cells[cell]['classification_input']['event'],
-                 physical_cell=cell, raw_events=cells[cell]['events'])
-            for index, cell in enumerate((1, 2))]
+def _finite_receipt(raw, sha, manifest, observed, projection, records, profile):
+    observations, verdict = project_observations(raw, projection['description'], records[manifest['domain_ref']])
+    receipt = dict(receipt_version=2, target_ref=manifest['target_refs'][0], observed_target_ref=observed,
+                   binding_profile=profile, projection_ref=ref(projection), publication=raw,
+                   publication_sha256=sha, completion=raw['completion'], observations=observations, verdict=verdict)
+    effective_label(receipt, manifest, records)
+    return receipt
 
 
 def collect_openldap(project, db, run, *, historical_handoff=None, historical_batch=None):
@@ -61,6 +62,16 @@ def collect_openldap(project, db, run, *, historical_handoff=None, historical_ba
         merge(records, seed['packet']['bundles'][side]['records'])
     for model in model_records:
         merge(records, [model['spec'], *model['clauses']])
+    authority = Path(project) / 'runs/interface3c-complete/out'
+    policy = dict(format='finite-domain-projection@1', physical_inputs=[1, 2, 3, 4], normal_inputs=[2],
+                  path_cells={'success_empty': 1, 'success_nonempty': 2},
+                  publication_contract_sha256=digest((authority / 'contract.json').read_bytes()),
+                  publication_domain_sha256=digest((authority / 'domain.json').read_bytes()),
+                  binding_keys={'A4': dict(ref='target', digest='sha256', span='span'),
+                                'B': dict(ref='target_ref', digest='source_sha256', span='span')})
+    projection = dict(kind='Evidence', id='B6.receipt-projection', version=1, schema_version=1,
+                      run_ref=run, producer='openldap_b6', depends_on=[contract_ref, domain_ref], description=policy)
+    merge(records, [projection])
     pub = Publication(db)
     positions = []
     for side, label in (('before', 'positive'), ('after', 'negative')):
@@ -76,19 +87,21 @@ def collect_openldap(project, db, run, *, historical_handoff=None, historical_ba
                 and raw['verdict']['coverage_basis'] == 'exhaustive_finite_domain',
                 'B6 parent A4 proof differs')
         bundle = seed['packet']['bundles'][side]
+        observed, = (r for r in bundle['records'] if r['kind'] == 'TargetRef'
+                     and r['scope_kind'] == 'seed_skeleton')
+        receipt = _finite_receipt(raw, sha, bundle['manifest'], ref(observed), projection, records, 'A4')
         target = artifact(seed, side + '_sources')['views'][0]['target']
         t = {'id': target['target_ref'], 'version': 1, 'subject': 'bvals_output'}
         results = {name: evaluate(model, t, contract, domain,
                     artifact(seed, side + '_facts')) for name, model in models.items()}
         positions.append({'case_id': side, 'stage': 'A4', 'request_id': rid,
-            'receipt_sha': sha, 'label': label, 'batch': None,
+            'receipt_sha': digest(encode(receipt)), 'publication_sha256': sha, 'label': label, 'batch': None,
             'target_ref': bundle['manifest']['target_refs'][0],
             'contract_ref': contract_ref, 'domain_ref': domain_ref,
             'registration': 'A6:' + seed['packet_sha'],
             'registered': {k: v['outcome'] for k, v in results.items()},
             'results': results, 'fact_refs': bundle['manifest']['fact_refs'],
-            'receipt': {'completion': raw['completion'], 'verdict': raw['verdict'],
-                        'observations': _static_observations(raw)}})
+            'receipt': receipt})
 
     all_cases = {case['case_id']: case for name in
                  ('model-01', 'model-02', 'model-03', 'offline-baseline')
@@ -151,16 +164,17 @@ def collect_openldap(project, db, run, *, historical_handoff=None, historical_ba
             excluded.append({'case_id': case_id, 'request_id': rid, 'reason': label})
             continue
         manifest, results = pool[case_id]
+        receipt = _finite_receipt(raw, publication['digest'], manifest, manifest['target_refs'][0],
+                                  projection, records, 'B')
         positions.append({'case_id': case_id, 'stage': 'B', 'request_id': rid,
-            'receipt_sha': publication['digest'], 'label': label,
+            'receipt_sha': digest(encode(receipt)), 'publication_sha256': publication['digest'], 'label': label,
             'batch': state['batch'], 'target_ref': manifest['target_refs'][0],
             'contract_ref': manifest['contract_ref'],
             'domain_ref': manifest['domain_ref'],
             'registration': registration(db, run, state['batch'])[0]['payload_sha'],
             'registered': payload['matrix'][case_id], 'results': results,
             'fact_refs': manifest['fact_refs'],
-            'receipt': {'completion': raw['completion'], 'verdict': raw['verdict'],
-                        'observations': _static_observations(raw)}})
+            'receipt': receipt})
     return state, snap, seed, records, sorted(models), baseline, pool, positions, excluded
 
 
@@ -203,9 +217,11 @@ def finalize_openldap(project, db, run, *, commit=True, recompute=False):
                                     watermark=snap['watermark'], publication_event=event['commit_seq'])
     result.update(run=run, group=snap['group'], snapshot=snap['digest'],
                   watermark=snap['watermark'], package_version=seed['version'],
-                  positions=[{'case_id': p['case_id'], 'stage': p['stage'],
+                  positions=positions,
+                  position_summaries=[{'case_id': p['case_id'], 'stage': p['stage'],
                               'target_ref': p['target_ref'], 'label': p['label'],
-                              'receipt_sha': p['receipt_sha']} for p in positions],
+                              'receipt_sha': p['receipt_sha'],
+                              'publication_sha256': p['publication_sha256']} for p in positions],
                   excluded=excluded, remaining_disagreements=remaining)
     if not commit:
         return result

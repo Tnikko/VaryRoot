@@ -32,6 +32,8 @@ def replay(manifest, records, models):
 
 def effective_label(receipt, manifest, records):
     """Recheck identity, authority, finite coverage and observation-derived label."""
+    if receipt.get("receipt_version") == 2:
+        return finite_receipt_label(receipt, manifest, records)
     if receipt["completion"] == "case_exec_failure":
         return "case_exec_failure"
     check(receipt["completion"] == "completed", "ineligible publication")
@@ -59,6 +61,59 @@ def effective_label(receipt, manifest, records):
           classify(expected, receipt["observations"], normal_inputs=v["normal_inputs"]) == v,
           "A2 observation coverage mismatch")
     return v["label"]
+
+
+def project_observations(publication, policy, domain):
+    physical = [row["classification_input"] for row in publication["rows"]]
+    declared, normal = policy["physical_inputs"], policy["normal_inputs"]
+    check(publication["completion"] == "completed" and
+          [row["cell"] for row in publication["rows"]] == [row["input_id"] for row in physical],
+          "finite receipt inputs do not match cells")
+    actual = classify(declared, physical, normal_inputs=normal)
+    check(actual == publication["verdict"] and actual["label"] == publication["label"] and
+          not actual["missing"] and actual["normal_witnesses"], "invalid physical domain evidence")
+    cells = [policy["path_cells"][path] for path in domain["paths"]]
+    check(len(cells) == len(set(cells)) and set(cells) <= set(declared), "invalid finite projection")
+    by_input = {row["input_id"]: row for row in physical}
+    observations = [dict(by_input[cell], input_id=index, physical_cell=cell)
+                    for index, cell in enumerate(cells)]
+    outcome = classify(list(range(len(cells))), observations,
+                       normal_inputs=[index for index, cell in enumerate(cells) if cell in normal])
+    check(outcome["label"] == actual["label"] and outcome["normal_witnesses"],
+          "projected domain lacks the original judgment or a normal witness")
+    return observations, outcome
+
+
+def finite_receipt_label(receipt, manifest, records):
+    target_ref, = manifest["target_refs"]
+    contract_ref, domain_ref = manifest["contract_ref"], manifest["domain_ref"]
+    target = records[target_ref]
+    observed = records[receipt["observed_target_ref"]]
+    projection = records[receipt["projection_ref"]]
+    policy, publication = projection["description"], receipt["publication"]
+    check(projection["kind"] == "Evidence" and projection["depends_on"] == [contract_ref, domain_ref] and
+          policy["format"] == "finite-domain-projection@1" and records[contract_ref]["approval_status"] == "approved" and
+          records[domain_ref]["coverage"] == "exhaustive" and receipt["target_ref"] == target_ref and
+          receipt["completion"] == publication["completion"] == "completed" and
+          policy["publication_domain_sha256"] == publication["domain_sha256"] and
+          policy["publication_contract_sha256"] == publication["binding"]["contract_sha256"] and
+          receipt["publication_sha256"] == digest(encode(publication)), "unbound finite receipt")
+    check(target["subject"] == observed["subject"] == records[contract_ref]["subject"] and
+          target["operation"] == observed["operation"], "finite receipt object differs")
+    if ref(observed) != target_ref:
+        mapping = records[observed["mapping_ref"]]
+        check(mapping["kind"] == "Mapping" and mapping["status"] == observed["mapping_status"] == "exact_1to1" and
+              {target["snapshot_ref"], observed["snapshot_ref"]} <= set(mapping["basis_refs"]),
+              "finite receipt target mapping differs")
+    binding_keys = policy["binding_keys"][receipt["binding_profile"]]
+    binding = publication["binding"]["target"]
+    check(binding[binding_keys["ref"]] in (target_ref, target["id"]) and
+          binding[binding_keys["digest"]] == observed["file_digest"] and
+          binding[binding_keys["span"]] == observed["expr_span"], "finite receipt source binding differs")
+    observations, verdict = project_observations(publication, policy, records[domain_ref])
+    check(receipt["observations"] == observations and receipt["verdict"] == verdict,
+          "finite receipt differs from its approved projection")
+    return verdict["label"]
 
 
 def collect(db, run, state, snap, package, events):
@@ -264,7 +319,8 @@ def package_handoff(run, snap, records, baseline, final, action, positions, rema
         seen[identity] = p
         rid = p["request_id"]
         observation_refs = []
-        request = add("Evidence", "receipt."+rid, description=dict(request_id=rid, sha256=p["receipt_sha"],
+        request = add("Evidence", "receipt."+rid, description=dict(request_id=rid,
+                      sha256=p.get("publication_sha256", p["receipt_sha"]), receipt_sha256=p["receipt_sha"],
                       case_id=p["case_id"], batch=p["batch"], stage=p["stage"]))
         for row in p["receipt"]["observations"]:
             key = rid+"."+str(row["input_id"])
