@@ -52,12 +52,14 @@ def _verify_manifest(path, project):
     return manifest
 
 
-def run_pool(config_path):
+def run_pool(config_path, *, preflight_only=False):
     """Run one seed with shared prompt, gate, retry and immutable recording."""
     config_path = Path(config_path).resolve(strict=True)
     config = json.loads(config_path.read_bytes())
     project = Path(config["project_root"]).resolve(strict=True)
-    _verify_manifest(config["lock_manifest"], project)
+    manifest = _verify_manifest(config["lock_manifest"], project)
+    if str(config_path) not in manifest["files"]:
+        raise ValueError("config_not_in_prereg_lock")
     lock = json.loads(Path(config["seed_lock"]).read_bytes())
     seed = config["seed"]
     policy = dict(lock["policy"][seed])
@@ -90,6 +92,11 @@ def run_pool(config_path):
     actual = build_request(policy, before, after, config["contract"], first, second)
     if actual != expected:
         raise ValueError("request_sample_lock_mismatch")
+    if preflight_only:
+        return {"seed": seed, "code_revision": manifest["code_revision"],
+                "request_sample_sha256": _sha(config["request_sample"]),
+                "exclusions_sha256": lock["exclusions_sha256"],
+                "policy": lock["policy"][seed]}
     output = Path(config["output_dir"])
     if output.exists() and any(output.iterdir()):
         raise FileExistsError("blind_pool_output_already_started")
@@ -168,8 +175,9 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("config", type=Path)
+    parser.add_argument("--preflight", action="store_true")
     args = parser.parse_args()
-    print(json.dumps(run_pool(args.config), sort_keys=True))
+    print(json.dumps(run_pool(args.config, preflight_only=args.preflight), sort_keys=True))
 
 
 if __name__ == "__main__":

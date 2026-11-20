@@ -81,6 +81,17 @@ class PoolRunnerTest(unittest.TestCase):
             config_path = save("config.json", config)
             files = {str(path): digest(path.read_bytes()) for path in root.iterdir() if path.is_file()}
             manifest = save("manifest.json", {"code_revision": revision, "files": files})
+            with patch("varyroot.b_pool_runner.post_once") as call:
+                preflight = run_pool(config_path, preflight_only=True)
+                self.assertEqual(preflight["seed"], "fixture")
+                self.assertFalse((root / "out").exists())
+                call.assert_not_called()
+            clone = root / "unlisted-config.json"
+            clone.write_bytes(config_path.read_bytes())
+            with patch("varyroot.b_pool_runner.post_once") as call:
+                with self.assertRaisesRegex(ValueError, "config_not_in_prereg_lock"):
+                    run_pool(clone, preflight_only=True)
+                call.assert_not_called()
             with patch("varyroot.b_pool_runner.post_once", return_value={"proposals": []}) as call:
                 result = run_pool(config_path)
                 self.assertTrue(result["unresolved"])
