@@ -42,6 +42,8 @@ def compile_manifest(directory, capability="registered"):
     contracts = {records[v]["contract_ref"] for v in decision["verdict_refs"]}
     require(len(contracts)==1, "one registered access contract required")
     contract = records[contracts.pop()]
+    require(contract["mode"] in ("logical_read_prefix", "live_read"),
+            "unsupported_contract_mode:" + contract["mode"])
     authority, = [records[r]["description"]["contract"] for r in contract["basis_refs"]
                   if "contract" in records[r].get("description",{})]
     require(authority["approval"] == "approved" and authority["extent"]["unit"]=="bytes","invalid extent")

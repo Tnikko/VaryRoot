@@ -1,7 +1,7 @@
 """Buildability only: never execute a candidate or issue an Observation/Verdict."""
 import hashlib,json,os
 from pathlib import Path
-from varyroot.sandbox import Input,Scope,materialize,run_role
+from varyroot.sandbox import Input,Scope,materialize,run_role,selected_backend
 from varyroot.openldap_qualification import RUN
 
 ROOT=Path(__file__).resolve().parents[3]
@@ -9,22 +9,33 @@ PREV=ROOT/'runs/step3-model-intake/out'
 R=ROOT/'runs/step4-paired'
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def canonical(v):return (json.dumps(v,sort_keys=True,ensure_ascii=False,separators=(',',':'))+'\n').encode()
+def execution_backend():
+    return selected_backend()
+
+def locked_dependencies():
+    lock=json.loads((ROOT/'runs/interface3c-complete/out/build-lock.json').read_bytes())
+    files={
+      'build.py':ROOT/'runs/interface3c-complete/src/build.py',
+      'observer.inc':ROOT/'runs/interface3c-complete/src/observer.inc',
+      'api.inc':ROOT/'runs/interface3c-complete/src/api.inc',
+      'ld.gold':ROOT/'runs/interface3c-complete/out/ld.gold',
+      'openldap-include.tar.gz':ROOT/'runs/interface3-static/catalog/openldap-include.tar.gz',
+      'ubuntu24-libc-headers.tar.gz':ROOT/'runs/interface3-static/catalog/ubuntu24-libc-headers.tar.gz',
+    }
+    for name,path in files.items():
+        if sha(path.read_bytes())!=lock['inputs'][name]:
+            raise ValueError('locked build input changed: '+name)
+    return files
+
 def run():
-    if os.environ.get('VARYROOT_ROLE_BACKEND')!='namespace':
-        raise ValueError('namespace backend required')
+    backend=execution_backend()
+    (R/'out').mkdir(parents=True,exist_ok=True)
     frozen=json.loads((PREV/'freeze.json').read_bytes())
     for name,digest in frozen['file_sha256'].items():
         if sha((PREV/name).read_bytes())!=digest: raise ValueError('frozen input changed: '+name)
     admission=json.loads((PREV/'admission.json').read_bytes())
     rows={r['id']:r for r in admission['rows']}
-    deps={
-      'build.py':ROOT/'runs/interface3c-complete/src/build.py',
-      'observer.inc':ROOT/'runs/interface3c-complete/src/observer.inc',
-      'api.inc':ROOT/'runs/interface3c-complete/src/api.inc',
-      'ld.gold':ROOT/'runs/interface3c-complete/out/ld.gold',
-      'openldap-include.tar.gz':ROOT/'runs/interface3-static/openldap-include.tar.gz',
-      'ubuntu24-libc-headers.tar.gz':ROOT/'runs/interface3-static/ubuntu24-libc-headers.tar.gz',
-    }
+    deps=locked_dependencies()
     results=[]
     for pool in ('model-01','model-02','model-03','offline-baseline'):
       ids=admission['frozen'][pool]
@@ -65,6 +76,7 @@ def run():
           record['status']='build_failure';record['diagnostic']=proc.stderr[-1200:]
         results.append(record)
     output={'schema':1,'source_freeze_sha256':sha((PREV/'freeze.json').read_bytes()),
+            'execution_backend':backend,
             'production_verdicts_issued':False,'models':8,'offline_unique':1,'results':results,
             'residual_pools':frozen['pool_sizes'],
             'full_independent_memberships':{'model-01':2,'model-02':4,'model-03':4}}

@@ -134,6 +134,10 @@ def docker_command():
     return ["sudo", "-n", "docker"] if os.environ.get("VARYROOT_DOCKER_SUDO") == "1" else ["docker"]
 
 
+def docker_run_options():
+    return ["--tmpfs", "/tmp:rw,exec,nosuid,nodev,mode=1777"]
+
+
 def selected_backend():
     backend = os.environ.get("VARYROOT_ROLE_BACKEND")
     if backend is None:
@@ -298,11 +302,15 @@ def run_role(attempt_dir, argv, *, image=ROLE_IMAGE, timeout=60, output_dir=None
         entry, rootfs = namespace_image(image)
     name = "varyroot-" + uuid.uuid4().hex
     uid, gid = role_identity()
+    if os.geteuid() == 0:
+        # The coordinator may run as root to reach a local Docker daemon,
+        # while the role deliberately drops to an unprivileged UID.
+        os.chown(out, uid, gid)
     docker_cmd = [
         *docker_command(), "run", "--rm", "--pull", "never", "--name", name, "--network", "none",
         "--read-only", "--user", f"{uid}:{gid}", "--cap-drop", "ALL",
         "--security-opt", "no-new-privileges", "--ipc", "none", "--pids-limit", "64",
-        "--memory", "256m", "--workdir", "/input", "--mount",
+        "--memory", "256m", *docker_run_options(), "--workdir", "/input", "--mount",
         f"type=bind,src={view},dst=/input,readonly", "--mount", f"type=bind,src={out},dst=/output",
         image, *argv,
     ]
