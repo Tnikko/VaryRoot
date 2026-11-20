@@ -15,3 +15,9 @@
 ## 后续门禁
 
 真实盲池必须先锁假设对、区分目标、重试次数、候选池及预算。每条模型提案经同一三态门禁自动处理；池大小大于验证预算 `K` 后才可登记 Random vs Divergence 消融。历史 OpenLDAP `directed-v3` 只作为下游工程验收样本。
+
+## 双种子离线预登记接线
+
+`b_static_retry` 支持外部规范化源码摘要排除表，历史命中计入 `protocol_rejected.historical_excluded`。早停同时要求 `min_admitted`、`min_divergent`，可要求池内兼有硬分歧与非硬分歧。`b_prompt` 在请求视图中以通用词法规则去除 C/C++ 注释，保留字符串字面量；不支持的原始字符串形式显式拒绝。
+
+`b_interval_ir` 定义通用逻辑区间的 `H_total` 与 `H_remaining` 四角色条款，从已声明编译命令的 Clang AST/CFG 回执抽取目标处的直接 Guard 和正向指针位移，并调用原 `inference.py`。A6 结构门禁核对锁定源码、独立容量来源摘要及完整 IR Bundle。其接受范围仅为 `L=W` 的局部符号路径；路径可满足性及全程序安全仍需独立证据，不得把该静态投影当成动态验证标签。Ettercap 的这套 A5 候选来自补丁结构，不计作 LLM 自主 A5。

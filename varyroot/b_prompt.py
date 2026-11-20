@@ -7,6 +7,48 @@ import re
 _AUDIT = re.compile(r"source_lock|sha256|https?://|[0-9a-f]{64}", re.I)
 
 
+def strip_source_comments(source):
+    """Remove C/C++ comments while preserving strings, chars and line breaks."""
+    out, index, state = [], 0, "code"
+    while index < len(source):
+        char = source[index]
+        next_char = source[index + 1] if index + 1 < len(source) else ""
+        if state == "code" and char == 'R' and next_char == '"':
+            raise ValueError("raw_string_source_unsupported")
+        if state == "code" and char == "/" and next_char in ("/", "*"):
+            state = "line" if next_char == "/" else "block"
+            out.extend((" ", " "))
+            index += 2
+            continue
+        if state in ("line", "block"):
+            if state == "block" and char == "*" and next_char == "/":
+                out.extend((" ", " "))
+                index += 2
+                state = "code"
+                continue
+            if char == "\n":
+                out.append(char)
+                if state == "line":
+                    state = "code"
+            else:
+                out.append(" ")
+            index += 1
+            continue
+        out.append(char)
+        if char in ('"', "'") and state == "code":
+            state = char
+        elif char == "\\" and state in ('"', "'") and next_char:
+            out.append(next_char)
+            index += 2
+            continue
+        elif char == state and state in ('"', "'"):
+            state = "code"
+        index += 1
+    if state == "block":
+        raise ValueError("unterminated_source_comment")
+    return "".join(out)
+
+
 def _term(value):
     if type(value) is bool:
         return value
@@ -63,7 +105,8 @@ def render_messages(before, after, contract, first, second, feedback=None, max_p
     if feedback is not None and not isinstance(feedback, list):
         raise ValueError("invalid_feedback")
     task = {
-        "before": before, "after": after, "contract": semantics,
+        "before": strip_source_comments(before), "after": strip_source_comments(after),
+        "contract": semantics,
         "hypotheses": hypothesis_pair(first, second),
         "instructions": (
             "Propose local single-factor source variants that distinguish the two hypotheses. "

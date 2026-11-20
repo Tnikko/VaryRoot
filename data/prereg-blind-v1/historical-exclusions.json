@@ -1,0 +1,209 @@
+{
+  "entries": [
+    {
+      "origins": [
+        "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d3p4.c"
+      ],
+      "source_sha256": "0ab2354a2369bf17a58169eb71c541387fce623e44247d07cc53f98276696599"
+    },
+    {
+      "origins": [
+        "step4f:source/parent/src/dissectors/ec_vnc.c"
+      ],
+      "source_sha256": "10e8719dff9a18d1bebbbda1fac9afe9f67f6f0851c5ee8f862d2bb00942b435"
+    },
+    {
+      "origins": [
+        "step4d:model-02.response.json:proposal:4"
+      ],
+      "source_sha256": "24a345b32c410f443a1a65e8c25f96e7cc1e70d46a39adf1d2034757bc2d0fcf"
+    },
+    {
+      "origins": [
+        "step4f:source/parent/src/dissectors/ec_vnc.c:comment_stripped_view"
+      ],
+      "source_sha256": "2adda9edee0b37fd848e27b3beb75ce4206d95cb1e5dc8861e637afc017acd37"
+    },
+    {
+      "origins": [
+        "step4d:model-01.response.json:proposal:0"
+      ],
+      "source_sha256": "312a510d41cbd8962d15a7252954a762102a7b1eb81d5904c7f51f2598ec4319"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d1p6/d1p6.c",
+        "step4d:model-01.response.json:proposal:5",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/7bca8d3ede0046bba71e22a41d01ac49/candidate-d1p6.c"
+      ],
+      "source_sha256": "347773a36903d2fe88d1e732b45c44fc2467f5f9c30b537e2b88be58c3d7befc"
+    },
+    {
+      "origins": [
+        "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d1p1.c"
+      ],
+      "source_sha256": "3855f99ca5ffca8e12cb9e8ccacf7bb1e22f35a1cb625647d506cc043d48d2d7"
+    },
+    {
+      "origins": [
+        "step4f:codeql/unrelated/source/oob_unrelated_parser.c"
+      ],
+      "source_sha256": "46082568cd08014e012b8c59de164f8e8d8f12b2c586dfeed9d33ae527d15771"
+    },
+    {
+      "origins": [
+        "step4d:model-03.response.json:proposal:0",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p1.c"
+      ],
+      "source_sha256": "547fbe61d9ef9c516bcd6b6fe18515d9141006068a27f90963b4d893c7780b6e"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d2p1/d2p1.c",
+        "step4d:codeql-full-trial-v2/build/src/5be11201b44b540d1a486b7b92198b1f0610ac622983560b2e9ea3d134dc0b82.c",
+        "step4d:codeql-trial/d2p1.c",
+        "step4d:model-02.response.json:proposal:0",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p1.c"
+      ],
+      "source_sha256": "5be11201b44b540d1a486b7b92198b1f0610ac622983560b2e9ea3d134dc0b82"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d2p3/d2p3.c",
+        "step4d:model-02.response.json:proposal:2",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p3.c"
+      ],
+      "source_sha256": "5e51e1f3f81dde33db45dfdd5e712cced4c37f81259e41c7c06fc6996ca0ddc8"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d3p5/d3p5.c",
+        "step4d:model-03.response.json:proposal:4",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p5.c"
+      ],
+      "source_sha256": "64dc4c14fae63753b901b8656370c63fc62ce4931c4b8d26c7bdf970cb7b0255"
+    },
+    {
+      "origins": [
+        "step4d:goto-test/admission-catalog/4e0b09b03eda44d9bf1ce03fed78a866/candidate-gotoexit.c"
+      ],
+      "source_sha256": "672842e2a0c97077e13d37fb82e3168c0902da218b9d1cbef96fe047cde73a2d"
+    },
+    {
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/6e272b5bdf807550bb1270a73e032bdcda661f0670616cd76eb71722363fd6e0.c"
+      ],
+      "source_sha256": "6e272b5bdf807550bb1270a73e032bdcda661f0670616cd76eb71722363fd6e0"
+    },
+    {
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/6e272b5bdf807550bb1270a73e032bdcda661f0670616cd76eb71722363fd6e0.c:comment_stripped_view"
+      ],
+      "source_sha256": "75cb5b49205d629cfe960ed782062aeb533faca625c22bd1ff4f5f68a7b26a12"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d1p5/d1p5.c",
+        "step4d:model-01.response.json:proposal:4",
+        "step4d:model-03.response.json:proposal:1",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/7bca8d3ede0046bba71e22a41d01ac49/candidate-d1p5.c",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p2.c"
+      ],
+      "source_sha256": "797b2f2ea0cee8e5a4d2351e4dc7e5debae42a6c47a871906273c9fa63b2be97"
+    },
+    {
+      "origins": [
+        "step4d:model-02.response.json:proposal:3"
+      ],
+      "source_sha256": "85ece26ba06a02d74a57db84c44979482f214b91304bffc1884ed2c28401e5c9"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d2p6/d2p6.c",
+        "step4d:model-02.response.json:proposal:5",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p6.c"
+      ],
+      "source_sha256": "8a071223fb2cbcce77f2dc668f25b309f216af1d41ac60b133cab45e2cc049a4"
+    },
+    {
+      "origins": [
+        "step4d:model-02.response.json:proposal:1",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p2.c"
+      ],
+      "source_sha256": "8dbf54b313caeeb4e30338131219b0f2696c118fcdeb90263d84bbb8880cdaac"
+    },
+    {
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/90a0753679d24e80d7e55749c17fa6febe3b07b834e60c66a15a5df2afb88353.c"
+      ],
+      "source_sha256": "90a0753679d24e80d7e55749c17fa6febe3b07b834e60c66a15a5df2afb88353"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d3p4/d3p4.c",
+        "step4d:codeql-full-trial-v2/build/src/9689198976dcbef3abe69b8ff9b007c5c481b63e09a104bd813e986c0568baa1.c",
+        "step4d:codeql-trial/d3p4.c",
+        "step4d:model-03.response.json:proposal:3",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p4.c"
+      ],
+      "source_sha256": "9689198976dcbef3abe69b8ff9b007c5c481b63e09a104bd813e986c0568baa1"
+    },
+    {
+      "origins": [
+        "step4f:source/fixed/src/dissectors/ec_vnc.c"
+      ],
+      "source_sha256": "9a4ca6686b51bd703ee2581f261c34f8b894fdeec3bb9adba4dc70fbd7d11721"
+    },
+    {
+      "origins": [
+        "step4d:model-01.response.json:proposal:3"
+      ],
+      "source_sha256": "b4181386099d7aef4ea9683da72c761e25a5f3bfc8452782604710e1714327f3"
+    },
+    {
+      "origins": [
+        "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d2p4.c"
+      ],
+      "source_sha256": "b53a4949fac6c44617a53f61686b97385bf97830bca1d5aafe82dea42bde312d"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d3p3/d3p3.c",
+        "step4d:model-03.response.json:proposal:2",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p3.c"
+      ],
+      "source_sha256": "c330055252cd78006c74afc427ad220d28d008804de2d7574c5da4eb9f5edbd2"
+    },
+    {
+      "origins": [
+        "step4d:model-01.response.json:proposal:2"
+      ],
+      "source_sha256": "c498746278b4cd7cae8f64bb8bc936ade3f977edff19a8ee07bd7e8b272a32a7"
+    },
+    {
+      "origins": [
+        "step4f:source/fixed/src/dissectors/ec_vnc.c:comment_stripped_view"
+      ],
+      "source_sha256": "cc5c3034b61ebb9f4a46a18e4d652758b3875b44f226aa79b2ab567d527c2415"
+    },
+    {
+      "origins": [
+        "step4d:model-01.response.json:proposal:1"
+      ],
+      "source_sha256": "f5a9c0c3a943896058cf0c3d8a7828b416d614404fa75b87090609f8bf18ad83"
+    },
+    {
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/90a0753679d24e80d7e55749c17fa6febe3b07b834e60c66a15a5df2afb88353.c:comment_stripped_view"
+      ],
+      "source_sha256": "fd14d44243f3270d6c12370857b62ce79391f8aa4846658b5129ec7be198231b"
+    }
+  ],
+  "normalization": "varyroot.b_static_retry.source_sha256",
+  "schema_version": 1,
+  "sources": {
+    "observed_source_rows": 53,
+    "step4d_raw_model_responses": 3,
+    "unique_source_hashes": 29
+  }
+}

@@ -95,7 +95,8 @@ def _walk(node):
 
 def _line(node):
     location = node.get("range", {}).get("begin", {})
-    return location.get("line") or location.get("spellingLoc", {}).get("line") or node.get("loc", {}).get("line")
+    return (location.get("line") or location.get("expansionLoc", {}).get("line") or
+            location.get("spellingLoc", {}).get("line") or node.get("loc", {}).get("line"))
 
 
 def _node_line(node, source):
@@ -110,6 +111,8 @@ def _node_line(node, source):
 def _node_source(node, source):
     bounds = node.get("range", {})
     start, end = bounds.get("begin", {}), bounds.get("end", {})
+    start = start.get("expansionLoc", start)
+    end = end.get("expansionLoc", end)
     begin, finish, width = start.get("offset"), end.get("offset"), end.get("tokLen")
     raw = source.encode("utf-8")
     if not all(isinstance(value, int) for value in (begin, finish, width)) or not 0 <= begin < finish + width <= len(raw):

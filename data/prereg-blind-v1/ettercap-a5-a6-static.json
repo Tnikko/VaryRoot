@@ -1,0 +1,71 @@
+{
+  "a5_origin": "patch_guard_differential; no LLM and no dynamic labels",
+  "config": {
+    "contract_basis_sha256": "15b24d1d64e4ea08d08619e4caee2e75945d1f808aa5a183360b96f2d5a815b9",
+    "pointer_expr": "ptr",
+    "remaining_expr": "end - ptr",
+    "target_call": "memcpy",
+    "target_expression": "memcpy(buffer, ptr, 16)",
+    "total_expr": "PACKET->DATA.len",
+    "width": 16
+  },
+  "receipts": {
+    "fixed": {
+      "a5_origin": "patch_guard_differential",
+      "a6_status": "accepted_for_symbolic_scope",
+      "facts": {
+        "capacity": 16,
+        "fact_origin": "clang_ast_symbolic_boundary",
+        "guard_sources": [
+          "FROM_SERVER",
+          "!session_get(&s, ident, DISSECT_IDENT_LEN) == -E_NOTFOUND",
+          "(conn_status->status == WAIT_CHALLENGE) && (ptr < end)",
+          "end - ptr >= 16"
+        ],
+        "offset": 4,
+        "reaches": false,
+        "remaining_guard": true,
+        "total_guard": false,
+        "width": 16
+      },
+      "predictions": {
+        "H_remaining": "quiet",
+        "H_total": "quiet"
+      },
+      "source_sha256": "09badcd225c13ec32888f6c4432f1f597d175afacd73a6338a05bfc3996e6cf5",
+      "target_span": [
+        6040,
+        6063
+      ]
+    },
+    "parent": {
+      "a5_origin": "patch_guard_differential",
+      "a6_status": "accepted_for_symbolic_scope",
+      "facts": {
+        "capacity": 16,
+        "fact_origin": "clang_ast_symbolic_boundary",
+        "guard_sources": [
+          "FROM_SERVER",
+          "!session_get(&s, ident, DISSECT_IDENT_LEN) == -E_NOTFOUND",
+          "(conn_status->status == WAIT_CHALLENGE) && (ptr < end)",
+          "PACKET->DATA.len >= 16"
+        ],
+        "offset": 4,
+        "reaches": true,
+        "remaining_guard": false,
+        "total_guard": true,
+        "width": 16
+      },
+      "predictions": {
+        "H_remaining": "report",
+        "H_total": "quiet"
+      },
+      "source_sha256": "b048760c742dc82fd28567d22bd092e4ccc7cc02edb09fd158d0586f5fcf9e78",
+      "target_span": [
+        5897,
+        5920
+      ]
+    }
+  },
+  "scope": "local symbolic boundary path, capacity equals target width"
+}

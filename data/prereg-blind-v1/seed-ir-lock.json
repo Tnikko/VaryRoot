@@ -1,0 +1,38 @@
+{
+  "ettercap_contract_basis_sha256": "15b24d1d64e4ea08d08619e4caee2e75945d1f808aa5a183360b96f2d5a815b9",
+  "exclusions_sha256": "be6f2e3295bc54c605857f7c915545d861d1ebf0f3ec583763369b3adcae4355",
+  "hypotheses": {
+    "ettercap": {
+      "names": [
+        "H_total",
+        "H_remaining"
+      ],
+      "projection_sha256": "ed445b15eda7e552a9e3d75859d51f405e09fe588bb58a5d42d7ac8503f2a180"
+    },
+    "openldap": {
+      "names": [
+        "H_check",
+        "H_path"
+      ],
+      "projection_sha256": "47022c891256e49d9e02c9c2110ed000c43f14bfb105f3462d86a468ab5c201d"
+    }
+  },
+  "policy": {
+    "max_proposals_per_round": 6,
+    "max_retries": 2,
+    "max_tokens": 16384,
+    "min_admitted": 5,
+    "min_divergent": 2,
+    "model": "deepseek-flash",
+    "require_mixed_scores": true,
+    "temperature": 0.7,
+    "top_p": 1.0
+  },
+  "schema_version": 1,
+  "source_sha256": {
+    "ettercap_fixed": "09badcd225c13ec32888f6c4432f1f597d175afacd73a6338a05bfc3996e6cf5",
+    "ettercap_parent": "b048760c742dc82fd28567d22bd092e4ccc7cc02edb09fd158d0586f5fcf9e78",
+    "openldap_after": "940b7735f8b0836d31ca4858e4bb116bf9d8ce86c5139c92acc84bd42e2bb396",
+    "openldap_before": "51359d43cf7b18cff6d896ad7f0fd2c00cae7c956e70187874a55d7fb1d8e3dc"
+  }
+}

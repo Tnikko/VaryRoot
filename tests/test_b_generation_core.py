@@ -4,7 +4,7 @@ import unittest
 
 from varyroot.b_prompt import render_messages, hypothesis_pair
 from varyroot.b_factor_gate import classify
-from varyroot.b_static_retry import run
+from varyroot.b_static_retry import run, source_sha256
 
 
 def spec(op):
@@ -20,6 +20,13 @@ CONTRACT = {"object": "output slot", "extent": "declared bound",
 
 
 class BGenerationCoreTest(unittest.TestCase):
+    def test_source_comments_are_removed_without_changing_literals(self):
+        source = 'int f(void) { /* advisory https://audit.invalid */ return "/* value */"[0]; }\n'
+        payload = json.loads(render_messages(source, source, CONTRACT,
+                                             spec("and"), spec("or"))[1]["content"])
+        self.assertNotIn("https://audit.invalid", json.dumps(payload))
+        self.assertIn('"/* value */"', payload["before"])
+
     def test_prompt_uses_only_reasoning_view(self):
         messages = render_messages("int before(void) { return 0; }",
                                    "int after(void) { return 1; }", CONTRACT,
@@ -156,6 +163,45 @@ class BGenerationCoreTest(unittest.TestCase):
         self.assertEqual(result["semantic_confounded"], 1)
         self.assertEqual([row["status"] for row in result["rows"]],
                          ["rejected", "rejected", "confounded", "rejected"])
+
+    def test_early_stop_requires_admitted_count_and_mixed_scores(self):
+        calls = []
+        def invoke(request):
+            calls.append(request)
+            index = len(calls)
+            return {"proposals": [{"parent": "before", "factor": "guard",
+                                   "intent": "static", "source": f"candidate-{index}-{j}"}
+                                  for j in range(3 if index == 1 else 2)]}
+        def inspect(source, parent):
+            return {"clang_receipt": {"producer": "clang_ast", "compile_ok": True,
+                    "target_binding": "exact_1to1", "edit_groups": [{"roles": ["guard"]}]},
+                    "predictions": ("report", "quiet") if source.endswith(("-0", "-1")) and
+                    source.startswith("candidate-1") else ("quiet", "quiet")}
+        result = run("before", "after", CONTRACT, spec("and"), spec("or"),
+                     {"max_retries": 2, "min_divergent": 2, "min_admitted": 5,
+                      "require_mixed_scores": True, "model": "fixture-model",
+                      "max_tokens": 128, "max_proposals_per_round": 3}, invoke, inspect)
+        self.assertEqual((result["raw"], result["admitted"], result["hard_divergent"],
+                          result["retry_rounds"], result["unresolved"]), (5, 5, 2, 1, False))
+
+    def test_historical_hash_exclusion_is_protocol_rejection(self):
+        calls = []
+        def invoke(request):
+            calls.append(request)
+            return {"proposals": [{"parent": "after", "factor": "guard",
+                                   "intent": "historical", "source": "old variant\r\n"}]}
+        def inspect(source, parent):
+            self.fail("historical variant must not enter Clang admission")
+        result = run("before", "after", CONTRACT, spec("and"), spec("or"),
+                     {"max_retries": 0, "min_divergent": 1, "min_admitted": 1,
+                      "model": "fixture-model", "max_tokens": 128,
+                      "max_proposals_per_round": 3,
+                      "excluded_source_sha256": [source_sha256("old variant\n")]},
+                     invoke, inspect)
+        self.assertEqual((result["raw"], result["protocol_rejected"],
+                          result["rejection_reasons"]["historical_excluded"]), (1, 1, 1))
+        self.assertEqual(result["rows"][0]["reason"], "historical_excluded")
+        self.assertTrue(result["unresolved"])
 
 
 if __name__ == "__main__":
