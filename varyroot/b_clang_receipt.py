@@ -98,6 +98,33 @@ def _line(node):
     return location.get("line") or location.get("spellingLoc", {}).get("line") or node.get("loc", {}).get("line")
 
 
+def _node_line(node, source):
+    explicit = _line(node)
+    if explicit is not None:
+        return explicit
+    offset = node.get("range", {}).get("begin", {}).get("offset")
+    raw = source.encode("utf-8")
+    return raw.count(b"\n", 0, offset) + 1 if isinstance(offset, int) and 0 <= offset < len(raw) else None
+
+
+def _node_source(node, source):
+    bounds = node.get("range", {})
+    start, end = bounds.get("begin", {}), bounds.get("end", {})
+    begin, finish, width = start.get("offset"), end.get("offset"), end.get("tokLen")
+    raw = source.encode("utf-8")
+    if not all(isinstance(value, int) for value in (begin, finish, width)) or not 0 <= begin < finish + width <= len(raw):
+        return None
+    return raw[begin:finish + width].decode("utf-8", errors="replace")
+
+
+def _after_line(before, after, before_line):
+    matcher = difflib.SequenceMatcher(None, before.splitlines(), after.splitlines(), autojunk=False)
+    for tag, old_start, old_end, new_start, _ in matcher.get_opcodes():
+        if old_start <= before_line - 1 < old_end:
+            return new_start + before_line - old_start if tag == "equal" else None
+    return None
+
+
 def _changed_regions(before, after):
     old, new = before.splitlines(), after.splitlines()
     matcher = difflib.SequenceMatcher(None, old, new, autojunk=False)
@@ -108,7 +135,7 @@ def _changed_regions(before, after):
 
 
 def _matches_target(source, tree, line, expression):
-    if not isinstance(expression, str) or not expression or line < 1:
+    if not isinstance(expression, str) or not expression or not isinstance(line, int) or line < 1:
         return False
     lines = source.splitlines()
     if line > len(lines) or expression not in lines[line - 1]:
@@ -119,16 +146,12 @@ def _matches_target(source, tree, line, expression):
         if node.get("kind") not in {"CallExpr", "MemberExpr", "ReturnStmt",
                                     "ArraySubscriptExpr", "UnaryOperator", "BinaryOperator"}:
             continue
-        bounds = node.get("range", {})
-        start, end = bounds.get("begin", {}), bounds.get("end", {})
-        if not all(isinstance(value, int) for value in (start.get("offset"), end.get("offset"), end.get("tokLen"))):
+        if _node_line(node, source) != line:
             continue
-        begin, finish = start["offset"], end["offset"] + end["tokLen"]
-        if not 0 <= begin < finish <= len(source):
+        snippet = _node_source(node, source)
+        if snippet is None:
             continue
-        if source.count("\n", 0, begin) + 1 != line:
-            continue
-        actual = re.sub(r"\s+", "", source[begin:finish]).rstrip(";")
+        actual = re.sub(r"\s+", "", snippet).rstrip(";")
         if actual == expected:
             matches.append(node)
     return len(matches) == 1
@@ -137,7 +160,9 @@ def _matches_target(source, tree, line, expression):
 def make_receipt(before, after, before_ast, after_ast, target_lines, target_expression,
                  contract_calls=(), cfg=None):
     """Group source edits using actual Clang node kinds and declared target anchors."""
-    if not isinstance(target_lines, (tuple, list)) or len(target_lines) != 2 or not all(
+    if isinstance(target_lines, int) and target_lines > 0:
+        target_lines = (target_lines, _after_line(before, after, target_lines))
+    elif not isinstance(target_lines, (tuple, list)) or len(target_lines) != 2 or not all(
             isinstance(line, int) and line > 0 for line in target_lines):
         raise ValueError("target_lines_required")
     if before_ast is None or after_ast is None:
@@ -145,8 +170,9 @@ def make_receipt(before, after, before_ast, after_ast, target_lines, target_expr
     regions = _changed_regions(before, after)
     nodes = ((list(_walk(before_ast)), list(_walk(after_ast))))
     for region in regions:
-        selected = [node for tree, lines in zip(nodes, (region["before_lines"], region["after_lines"]))
-                    for node in tree if _line(node) in lines]
+        selected = [node for tree, lines, source in zip(nodes, (region["before_lines"], region["after_lines"]), (before, after))
+                    for node in tree if _node_line(node, source) in lines]
+        after_selected = [node for node in nodes[1] if _node_line(node, after) in region["after_lines"]]
         kinds = {node.get("kind") for node in selected}
         text = region["before_text"] + "\n" + region["after_text"]
         roles = set()
@@ -160,6 +186,17 @@ def make_receipt(before, after, before_ast, after_ast, target_lines, target_expr
             roles.add("guard")
         if re.search(r"\b(for|while|do)\b|\+\+|--", text) and kinds & {"ForStmt", "WhileStmt", "DoStmt", "UnaryOperator"}:
             roles.add("loop_state")
+        side_effect = any(
+            node.get("kind") == "CompoundAssignOperator" or
+            node.get("kind") == "BinaryOperator" and node.get("opcode") in
+                {"=", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>="} or
+            node.get("kind") == "VarDecl" and node.get("init") is not None or
+            node.get("kind") == "CallExpr" and not any(
+                re.search(r"\b" + re.escape(name) + r"\s*\(", _node_source(node, after) or "")
+                for name in contract_calls)
+            for node in after_selected)
+        if side_effect:
+            roles.add("unrelated")
         if not roles:
             roles.add("unrelated")
         region["roles"] = sorted(roles)
@@ -181,4 +218,4 @@ def make_receipt(before, after, before_ast, after_ast, target_lines, target_expr
                 for source, tree, line in zip((before, after), nodes, target_lines))
     return {"producer": "clang_ast", "compile_ok": True,
             "target_binding": "exact_1to1" if bound else "unproven",
-            "edit_groups": regions, "cfg": cfg}
+            "target_lines": list(target_lines), "edit_groups": regions, "cfg": cfg}

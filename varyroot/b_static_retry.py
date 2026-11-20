@@ -38,7 +38,7 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
         for index, proposal in enumerate(proposals):
             row = {"round": attempt, "index": index, "parent": None, "factor": None,
                    "intent": None, "source": None, "source_sha256": None,
-                   "status": "undetermined", "reason": "invalid_proposal_schema",
+                   "status": "rejected", "reason": "invalid_proposal_schema",
                    "touched_roles": [], "predictions": None,
                    "hard_divergent": False, "coverage_divergent": False}
             if isinstance(proposal, dict):
@@ -50,11 +50,11 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
             if valid:
                 row["source_sha256"] = source_sha256(proposal["source"])
                 if index >= policy["max_proposals_per_round"]:
-                    row.update(status="confounded", reason="proposal_limit_exceeded")
+                    row.update(status="rejected", reason="proposal_limit_exceeded")
                 elif proposal["parent"] not in ("before", "after"):
-                    row.update(status="confounded", reason="invalid_parent")
+                    row.update(status="rejected", reason="invalid_parent")
                 elif row["source_sha256"] in seen:
-                    row.update(status="confounded", reason="duplicate_or_unchanged_source")
+                    row.update(status="rejected", reason="duplicate_or_unchanged_source")
                 else:
                     seen.add(row["source_sha256"])
                     static = inspect(proposal["source"], proposal["parent"])
@@ -79,8 +79,10 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
             break
         feedback = round_feedback
     counts = {state: sum(row["status"] == state for row in rows)
-              for state in ("admitted", "confounded", "undetermined")}
+              for state in ("admitted", "confounded", "undetermined", "rejected")}
     return {"rows": rows, "raw": len(rows), **counts,
+            "protocol_rejected": counts["rejected"],
+            "semantic_confounded": counts["confounded"],
             "hard_divergent": sum(row["hard_divergent"] for row in rows),
             "coverage_divergent": sum(row["coverage_divergent"] for row in rows),
             "retry_rounds": attempt, "response_failures": response_failures,

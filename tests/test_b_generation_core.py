@@ -85,8 +85,8 @@ class BGenerationCoreTest(unittest.TestCase):
                   "model": "fixture-model", "max_tokens": 1024,
                   "max_proposals_per_round": 4}
         result = run("before", "after", CONTRACT, spec("and"), spec("or"), policy, invoke, inspect)
-        self.assertEqual((result["raw"], result["admitted"], result["confounded"],
-                          result["coverage_divergent"], result["hard_divergent"]), (4, 1, 3, 1, 0))
+        self.assertEqual((result["raw"], result["admitted"], result["rejected"], result["confounded"],
+                          result["coverage_divergent"], result["hard_divergent"]), (4, 1, 3, 0, 1, 0))
         self.assertTrue(result["unresolved"])
         self.assertEqual(result["rows"][2]["source"], "unique\r\n")
         self.assertEqual(result["rows"][2]["source_sha256"], result["rows"][3]["source_sha256"])
@@ -129,11 +129,33 @@ class BGenerationCoreTest(unittest.TestCase):
         result = run("before", "after", CONTRACT, spec("and"), spec("or"),
                      {"max_retries": 1, "min_divergent": 1, "model": "fixture-model",
                       "max_tokens": 128, "max_proposals_per_round": 1}, invoke, inspect)
-        self.assertEqual((result["raw"], result["confounded"], result["unresolved"]), (2, 2, True))
+        self.assertEqual((result["raw"], result["rejected"], result["confounded"],
+                          result["unresolved"]), (2, 1, 1, True))
         feedback = json.loads(requests[1]["messages"][1]["content"])["static_feedback"]
         self.assertEqual(feedback[0]["touched_roles"], ["contract_call"])
         self.assertEqual(feedback[0]["reason"], "protected_semantics_changed")
         self.assertEqual(feedback[1]["reason"], "proposal_limit_exceeded")
+
+    def test_protocol_rejections_and_semantic_confounding_are_disjoint(self):
+        proposals = [
+            {"parent": "before", "factor": "guard", "intent": "same", "source": "before"},
+            {"parent": "other", "factor": "guard", "intent": "invalid", "source": "variant-a"},
+            {"parent": "after", "factor": "guard", "intent": "effect", "source": "variant-b"},
+            {"parent": "after", "factor": "guard", "intent": "excess", "source": "variant-c"},
+        ]
+        def inspect(source, parent):
+            return {"clang_receipt": {"producer": "clang_ast", "compile_ok": True,
+                    "target_binding": "exact_1to1", "edit_groups": [{"roles": ["unrelated"]}]}}
+        result = run("before", "after", CONTRACT, spec("and"), spec("or"),
+                     {"max_retries": 0, "min_divergent": 1, "model": "fixture-model",
+                      "max_tokens": 128, "max_proposals_per_round": 3},
+                     lambda request: {"proposals": proposals}, inspect)
+        self.assertEqual((result["raw"], result["rejected"], result["confounded"],
+                          result["admitted"], result["undetermined"]), (4, 3, 1, 0, 0))
+        self.assertEqual(result["protocol_rejected"], 3)
+        self.assertEqual(result["semantic_confounded"], 1)
+        self.assertEqual([row["status"] for row in result["rows"]],
+                         ["rejected", "rejected", "confounded", "rejected"])
 
 
 if __name__ == "__main__":

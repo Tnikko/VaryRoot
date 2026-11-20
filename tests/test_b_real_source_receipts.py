@@ -30,7 +30,8 @@ class RealSourceReceiptTest(unittest.TestCase):
             self.assertTrue(cfg["blocks"], cfg_status)
             trees.append(tree)
             texts.append(path.read_text())
-        receipt = make_receipt(*texts, *trees, (184, 187), "memcpy(buffer, ptr, 16)")
+        receipt = make_receipt(*texts, *trees, 184, "memcpy(buffer, ptr, 16)")
+        self.assertEqual(receipt["target_lines"], [184, 187])
         self.assertEqual(receipt["target_binding"], "exact_1to1", receipt)
         self.assertEqual(len(receipt["edit_groups"]), 1, receipt)
         self.assertEqual(receipt["edit_groups"][0]["roles"], ["guard"])
@@ -55,7 +56,7 @@ class RealSourceReceiptTest(unittest.TestCase):
             self.assertTrue(cfg["blocks"], cfg_status)
             trees.append(tree)
             texts.append(path.read_text())
-        receipt = make_receipt(*texts, *trees, (550, 550), "bvals[i].bv_val",
+        receipt = make_receipt(*texts, *trees, 550, "bvals[i].bv_val",
                                contract_calls=("ldap_get_attribute_ber",))
         self.assertEqual(receipt["target_binding"], "exact_1to1", receipt)
         self.assertGreaterEqual(len(receipt["edit_groups"]), 1)

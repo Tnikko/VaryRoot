@@ -13,9 +13,12 @@ def classify(receipt):
     """
     if receipt.get("producer") != "clang_ast" or not receipt.get("compile_ok"):
         return {"status": "undetermined", "reason": "compile_or_ast_unavailable"}
+    groups = receipt.get("edit_groups")
+    if isinstance(groups, list) and any("target" in group.get("roles", []) for group in groups):
+        return {"status": "confounded", "reason": "protected_semantics_changed",
+                "touched_roles": ["target"]}
     if receipt.get("target_binding") != "exact_1to1":
         return {"status": "undetermined", "reason": "target_binding_unproven"}
-    groups = receipt.get("edit_groups")
     if not isinstance(groups, list) or not groups:
         return {"status": "undetermined", "reason": "missing_ast_difference"}
     if len(groups) != 1:
