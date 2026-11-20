@@ -48,11 +48,18 @@ predicate site(Expr access) {
 }
 
 predicate nullCheck(IfStmt statement, Variable value) {
-  exists(BinaryOperation test |
+  exists(EQExpr test |
     statement.getCondition() = test and
-    test.getLeftOperand().(VariableAccess).getTarget() = value and
-    test.getRightOperand().getValue().toInt() = 0
+    (
+      test.getLeftOperand().(VariableAccess).getTarget() = value and
+      test.getRightOperand().getValue().toInt() = 0
+      or
+      test.getRightOperand().(VariableAccess).getTarget() = value and
+      test.getLeftOperand().getValue().toInt() = 0
+    )
   )
+  or
+  statement.getCondition().(NotExpr).getOperand().(VariableAccess).getTarget() = value
 }
 
 predicate checkSeen(Expr access) {
@@ -76,8 +83,28 @@ predicate noExplicitReassignment(FunctionCall call, Variable value) {
   )
 }
 
+pragma[noinline]
 predicate reaches(ControlFlowNode source, ControlFlowNode target) {
-  source = target or source.getASuccessor+() = target
+  source = target
+  or
+  exists(BasicBlock fromBlock, BasicBlock toBlock |
+    fromBlock = source.getBasicBlock() and
+    toBlock = target.getBasicBlock() and
+    (
+      fromBlock != toBlock and fromBlock.getASuccessor+() = toBlock
+      or
+      fromBlock = toBlock and
+      (
+        exists(int sourceIndex, int targetIndex |
+          fromBlock.getNode(sourceIndex) = source and
+          fromBlock.getNode(targetIndex) = target and
+          sourceIndex <= targetIndex
+        )
+        or
+        fromBlock.getASuccessor+() = fromBlock
+      )
+    )
+  )
 }
 
 predicate blocked(Expr access) {
@@ -101,14 +128,16 @@ predicate blocked(Expr access) {
 
 predicate loopDirect(Expr access) {
   exists(ForStmt loop, LogicalAndExpr condition, Variable value,
-         FunctionCall call, ControlFlowNode falseBranch |
+         FunctionCall call |
     value = sinkBase(access) and
     loop.getCondition() = condition and
     condition.getRightOperand().(VariableAccess).getTarget() = value and
     outputDefinition(call, value) and
+    // A false condition exits this loop evaluation. Later outer-loop iterations
+    // may call the API again, so unrestricted CFG reachability is too broad here.
+    access.getEnclosingStmt().getParentStmt*() = loop.getStmt() and
     reaches(call, condition.getRightOperand()) and
     reaches(condition.getRightOperand(), access) and
-    falseBranch = condition.getRightOperand().getAFalseSuccessor() and
     reaches(condition.getRightOperand().getATrueSuccessor(), access)
   )
 }
