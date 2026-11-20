@@ -30,7 +30,8 @@ class NullableOutputFamilyTests(unittest.TestCase):
         self.assertIn('blocked(e)', result['Qstar.ql'].decode())
         loop = emit_nullable_queries(dict(contract=contract,
             lanes={'Q0': {'guard': 'loop_direct'}, 'Qstar': {'guard': 'blocked'}}))
-        self.assertIn('loopDirect(e)', loop['Q0.ql'].decode())
+        self.assertIn('not blocked(e)', loop['Q0.ql'].decode())
+        self.assertEqual(loop['Q0.ql'], loop['Qstar.ql'])
 
 
 if __name__ == '__main__':

@@ -220,7 +220,8 @@ def emit_nullable_queries(c1):
     for lane, info in c1['lanes'].items():
         require(lane in LANES and info['guard'] in guards, 'unknown nullable guard')
         name = guards[info['guard']]
-        reported = ('not loopDirect(e) and not blocked(e)' if info['guard'] == 'loop_direct'
+        # blocked includes loopDirect; uncovered loop-only cases use the quiet default.
+        reported = ('not blocked(e)' if info['guard'] == 'loop_direct'
                     else 'not '+name+'(e)')
         results[lane + '.ql'] = f'''import cpp
 import nullable_output
