@@ -1,0 +1,33 @@
+Measurement workspace: /tmp/tmp.3F8kpqtqpS
+Initializing database at /tmp/tmp.3F8kpqtqpS/db.
+Running build command: [sh, -c, gcc -c reviewed.c && g++ -c accesses.cpp]
+Running command in /tmp/tmp.3F8kpqtqpS/src: [sh, -c, gcc -c reviewed.c && g++ -c accesses.cpp]
+Finalizing database at /tmp/tmp.3F8kpqtqpS/db.
+Running pre-finalize script /home/tq/varyroot/toolchains/codeql-2.27.2/codeql/cpp/tools/pre-finalize.sh in /tmp/tmp.3F8kpqtqpS/src.
+Running command in /tmp/tmp.3F8kpqtqpS/src: [/home/tq/varyroot/toolchains/codeql-2.27.2/codeql/cpp/tools/pre-finalize.sh]
+Pre-finalize script /home/tq/varyroot/toolchains/codeql-2.27.2/codeql/cpp/tools/pre-finalize.sh completed in 30 ms.
+Running TRAP import for CodeQL database at /tmp/tmp.3F8kpqtqpS/db...
+Importing TRAP files
+Merging relations
+Finished writing database (relations: 5.33 KiB; string pool: 2.05 MiB).
+TRAP import complete (15.4s).
+Finished zipping source archive (680.00 B).
+Successfully created database at /tmp/tmp.3F8kpqtqpS/db.
+Resolving data extensions.
+Finished resolving data extensions.
+Loading data extensions.
+Finished loading data extensions.
+WARNING: Not caching stages during query-loading, since max heap size is only 1254 MB.
+Compiling query plan for /tmp/tmp.3F8kpqtqpS/ql/sites.ql.
+[1/1 comp 3m19s] Compiled /tmp/tmp.3F8kpqtqpS/ql/sites.ql.
+Starting evaluation of varyroot/alignment-07/sites.ql.
+[1/1 eval 914ms] Evaluation done; writing results to /tmp/tmp.3F8kpqtqpS/sites.bqrs.
+Shutting down query evaluator.
+"path","col1","col2","col3","col4","col5","col6"
+"reviewed.c",5,21,5,33,"read",1
+"accesses.cpp",3,74,3,79,"read",1
+"accesses.cpp",6,21,6,26,"read",1
+"accesses.cpp",6,30,6,35,"read",1
+"accesses.cpp",7,27,7,32,"read",2
+"accesses.cpp",8,5,8,10,"write",1
+"accesses.cpp",9,5,9,10,"read_write",1

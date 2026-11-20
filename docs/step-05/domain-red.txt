@@ -1,0 +1,18 @@
+test_zero_and_unseen_fault_mode (test_domain05.Domains.test_zero_and_unseen_fault_mode) ... ERROR
+
+======================================================================
+ERROR: test_zero_and_unseen_fault_mode (test_domain05.Domains.test_zero_and_unseen_fault_mode)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_domain05.py", line 13, in test_zero_and_unseen_fault_mode
+    rows=[probe.observe("npd_modes",i,4) for i in (0,1)]
+          ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/tq/varyroot/varyroot/probe.py", line 23, in observe
+    desc=self.registry[name]
+         ~~~~~~~~~~~~~^^^^^^
+KeyError: 'npd_modes'
+
+----------------------------------------------------------------------
+Ran 1 test in 1.333s
+
+FAILED (errors=1)

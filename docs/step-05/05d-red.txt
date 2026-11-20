@@ -1,0 +1,21 @@
+test_seed05 (unittest.loader._FailedTest.test_seed05) ... ERROR
+
+======================================================================
+ERROR: test_seed05 (unittest.loader._FailedTest.test_seed05)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_seed05
+Traceback (most recent call last):
+  File "/home/tq/.local/opt/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/home/tq/.local/opt/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/home/tq/varyroot/tests/test_seed05.py", line 6, in <module>
+    from varyroot.qualification import qualify
+ModuleNotFoundError: No module named 'varyroot.qualification'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

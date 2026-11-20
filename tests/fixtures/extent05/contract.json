@@ -1,0 +1,1 @@
+{"id":"byte-buffer","version":1,"subject":"buffer","approval":"approved","extent":{"value":8,"unit":"bytes"},"provenance":"Eight live unsigned bytes; a zero-width slice at the end is a permitted no-op."}

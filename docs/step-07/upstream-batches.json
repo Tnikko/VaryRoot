@@ -1,0 +1,179 @@
+[
+  {
+    "case": "test_a2_replaced_repair",
+    "trace": "/home/tq/varyroot/runs/step07-upstream-03/test_a2_replaced_repair",
+    "action": "revise",
+    "initial": "check_seen@1",
+    "final": "nonnull_or_exit@1",
+    "handoff": "336b114b100087d4f9bf34880c13a51d72d15d0d29dfcbe7ba5d490ee2e5f8cf",
+    "manifest_sha": "7120dbb69224fd9162623a8f5205fc11e69a81b8198107df0438af9e7f2319d1",
+    "records_sha": "417dde1942a1bc0e4dfd2dc0e19a8d8747f6f708acb9cd096132bafa4734d73f",
+    "batches": {
+      "b1": {
+        "package_version": 1,
+        "payload_sha": "b17fd351a029c250417ebad37ed49be4e2f701c8d700312b56d7c671cc8615aa",
+        "input_watermark": 0,
+        "selected": [
+          "949e41274c3443ab9fd8f4294003789d",
+          "933433f9d3d142428dd44ee320fc87d3",
+          "9e2aa3a6eafd4a5c9094ab355b5cebd5",
+          "214d8f689b734360a3e0fdb62aef4590"
+        ],
+        "source_kind": "initial_registration"
+      },
+      "b2": {
+        "package_version": 2,
+        "payload_sha": "f966ba51a1fce5fceec3cb7c534b4904ae7a36ca93a6a9f4c4e4caaebc7e170b",
+        "input_watermark": 42,
+        "selected": [
+          "408a34f792b4460aa64a9bfab92026ef",
+          "933433f9d3d142428dd44ee320fc87d3",
+          "c64b86c0ea5e45da90e02cc6d752e15e",
+          "949e41274c3443ab9fd8f4294003789d"
+        ],
+        "source_kind": "post_remodel"
+      }
+    },
+    "receipts": [
+      {
+        "case_id": "3678430ac4b9eebad89578f62e6708c196992c112f38c213437fdae81d5e52b4",
+        "batch": "b1",
+        "request_id": "949e41274c3443ab9fd8f4294003789d",
+        "receipt_sha": "4a99759b3ef029ba40a33728acfd46a9a5cb047988127332f5f1adf535f9759c",
+        "registration": "b17fd351a029c250417ebad37ed49be4e2f701c8d700312b56d7c671cc8615aa",
+        "label": "positive",
+        "target_ref": "b.3678430ac4b9eebad89578f62e6708c196992c112f38c213437fdae81d5e52b4.read@1",
+        "current_registration": "f966ba51a1fce5fceec3cb7c534b4904ae7a36ca93a6a9f4c4e4caaebc7e170b"
+      },
+      {
+        "case_id": "d0ab62b45acc167f9e4366b8706e43a3d0863e5b02695e772a53e64245469f32",
+        "batch": "b1",
+        "request_id": "933433f9d3d142428dd44ee320fc87d3",
+        "receipt_sha": "1cca826385b292b2b0908a594db5e3a1ad255631c5e983bb314564de8b659510",
+        "registration": "b17fd351a029c250417ebad37ed49be4e2f701c8d700312b56d7c671cc8615aa",
+        "label": "positive",
+        "target_ref": "b.d0ab62b45acc167f9e4366b8706e43a3d0863e5b02695e772a53e64245469f32.read@1",
+        "current_registration": "f966ba51a1fce5fceec3cb7c534b4904ae7a36ca93a6a9f4c4e4caaebc7e170b"
+      },
+      {
+        "case_id": "b2dfeb656bc13356120bfdcc3b39dbbf4a96ec332667f3c7a35f67d9a76fa999",
+        "batch": "b2",
+        "request_id": "408a34f792b4460aa64a9bfab92026ef",
+        "receipt_sha": "e360155c54704ca59b7040e095a5413c703da65e06a252ba740687889367bde1",
+        "registration": "f966ba51a1fce5fceec3cb7c534b4904ae7a36ca93a6a9f4c4e4caaebc7e170b",
+        "label": "negative",
+        "target_ref": "b.b2dfeb656bc13356120bfdcc3b39dbbf4a96ec332667f3c7a35f67d9a76fa999.read@1"
+      },
+      {
+        "case_id": "02b78fe3b121fe7cbd587baff836cc2f1b9f462f8b10169edc73e93720fafc75",
+        "batch": "b2",
+        "request_id": "c64b86c0ea5e45da90e02cc6d752e15e",
+        "receipt_sha": "fe17c78d46d2f388fddeca15060f714800af7009a43c783be1a1be5613244716",
+        "registration": "f966ba51a1fce5fceec3cb7c534b4904ae7a36ca93a6a9f4c4e4caaebc7e170b",
+        "label": "negative",
+        "target_ref": "b.02b78fe3b121fe7cbd587baff836cc2f1b9f462f8b10169edc73e93720fafc75.read@1"
+      }
+    ],
+    "excluded": [
+      {
+        "batch": "b1",
+        "case_id": "263424c942a10520e3bc07a82f19b74c7e40714d391ef95a6615aeb6b9658f23",
+        "reason": "obsolete_registration_scope",
+        "receipt_sha": "6f1d73eebb05cfe4dc9f9aa4af419dcdc7db4b4330c1464b210946eb8a22f740",
+        "registration": "b17fd351a029c250417ebad37ed49be4e2f701c8d700312b56d7c671cc8615aa",
+        "request_id": "9e2aa3a6eafd4a5c9094ab355b5cebd5"
+      },
+      {
+        "batch": "b1",
+        "case_id": "2c7e2059a395e3b52fdb032a0f4e51a3ba52202f8451f36f28accc9c6ab490d0",
+        "reason": "obsolete_registration_scope",
+        "receipt_sha": "777c6aeb47c426cb96273e913adf52d5bebe0efae006179dae5d7265270327ec",
+        "registration": "b17fd351a029c250417ebad37ed49be4e2f701c8d700312b56d7c671cc8615aa",
+        "request_id": "214d8f689b734360a3e0fdb62aef4590"
+      }
+    ],
+    "charged": 6,
+    "A4": 2,
+    "changed": 1,
+    "preserved": 5
+  },
+  {
+    "case": "test_a5_revised_explanation",
+    "trace": "/home/tq/varyroot/runs/step07-upstream-03/test_a5_revised_explanation",
+    "action": "revise",
+    "initial": "check_seen@1",
+    "final": "nonnull_or_exit@2",
+    "handoff": "f73b3e0a682b009c723999aae2f197355256ddc69de26e14eb28ca353b1c83b6",
+    "manifest_sha": "0479d774e145ac9480a3d38fceaf0b6a1c86d996fbbc1cc4b8db579ec57fff69",
+    "records_sha": "f4db4aa270fd03f1de73411f0f6a214c8903c7528040432e9bd4573756accfa4",
+    "batches": {
+      "b1": {
+        "package_version": 1,
+        "payload_sha": "ae6df92d9d24607f0c282e9a2e9adc85a860adff6580a9140b8b543a7967be6a",
+        "input_watermark": 0,
+        "selected": [
+          "39c9f248318f41a2b66b204982b7d746",
+          "ecea962a4cc54aed9588c7b3a039cfc3"
+        ],
+        "source_kind": "initial_registration"
+      },
+      "b2": {
+        "package_version": 2,
+        "payload_sha": "72e159b73bab8c812a5cf5714c3186c1d29d870d99b737a70af9520ac41e9e10",
+        "input_watermark": 30,
+        "selected": [
+          "39c9f248318f41a2b66b204982b7d746",
+          "ecea962a4cc54aed9588c7b3a039cfc3",
+          "62eedc0ac2014b30a045f14f8cb05981",
+          "6b90530847bc4d1c89eac9fd54e05fb3"
+        ],
+        "source_kind": "post_remodel"
+      }
+    },
+    "receipts": [
+      {
+        "case_id": "3678430ac4b9eebad89578f62e6708c196992c112f38c213437fdae81d5e52b4",
+        "batch": "b1",
+        "request_id": "39c9f248318f41a2b66b204982b7d746",
+        "receipt_sha": "9bb36a8bbfd6feb079808595240c0de62fdef6b00faab730817d9cef896e6a94",
+        "registration": "ae6df92d9d24607f0c282e9a2e9adc85a860adff6580a9140b8b543a7967be6a",
+        "label": "positive",
+        "target_ref": "b.3678430ac4b9eebad89578f62e6708c196992c112f38c213437fdae81d5e52b4.read@1",
+        "current_registration": "72e159b73bab8c812a5cf5714c3186c1d29d870d99b737a70af9520ac41e9e10"
+      },
+      {
+        "case_id": "d0ab62b45acc167f9e4366b8706e43a3d0863e5b02695e772a53e64245469f32",
+        "batch": "b1",
+        "request_id": "ecea962a4cc54aed9588c7b3a039cfc3",
+        "receipt_sha": "81ade6757adb44f72fd6523209e4d57d9b6d969ceb5b405353fb13484cc1f438",
+        "registration": "ae6df92d9d24607f0c282e9a2e9adc85a860adff6580a9140b8b543a7967be6a",
+        "label": "positive",
+        "target_ref": "b.d0ab62b45acc167f9e4366b8706e43a3d0863e5b02695e772a53e64245469f32.read@1",
+        "current_registration": "72e159b73bab8c812a5cf5714c3186c1d29d870d99b737a70af9520ac41e9e10"
+      },
+      {
+        "case_id": "263424c942a10520e3bc07a82f19b74c7e40714d391ef95a6615aeb6b9658f23",
+        "batch": "b2",
+        "request_id": "62eedc0ac2014b30a045f14f8cb05981",
+        "receipt_sha": "222331dc9d707056aea3d8847346da594940d31b7f26ebb03e61fd8e7f0206fd",
+        "registration": "72e159b73bab8c812a5cf5714c3186c1d29d870d99b737a70af9520ac41e9e10",
+        "label": "negative",
+        "target_ref": "b.263424c942a10520e3bc07a82f19b74c7e40714d391ef95a6615aeb6b9658f23.read@1"
+      },
+      {
+        "case_id": "2c7e2059a395e3b52fdb032a0f4e51a3ba52202f8451f36f28accc9c6ab490d0",
+        "batch": "b2",
+        "request_id": "6b90530847bc4d1c89eac9fd54e05fb3",
+        "receipt_sha": "b2744cd7f99fe2a9a73d3026e8bc6a990fb6e1afb0321d83f8e04af7ba7b2d67",
+        "registration": "72e159b73bab8c812a5cf5714c3186c1d29d870d99b737a70af9520ac41e9e10",
+        "label": "negative",
+        "target_ref": "b.2c7e2059a395e3b52fdb032a0f4e51a3ba52202f8451f36f28accc9c6ab490d0.read@1"
+      }
+    ],
+    "excluded": [],
+    "charged": 4,
+    "A4": 2,
+    "changed": 1,
+    "preserved": 5
+  }
+]

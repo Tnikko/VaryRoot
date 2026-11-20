@@ -1,0 +1,183 @@
+{
+  "fixture": "test:ledger-proof",
+  "store": "SQLite",
+  "branches": {
+    "A2": {
+      "parent_version": 1,
+      "child_version": 2,
+      "parent_packet_sha": "a9dcdc77a4e1a608c988382d7f0c591f03f286313686349efd79b88a8dd5d2fb",
+      "child_packet_sha": "f6e9d91c0733790522c01ffe179e2ce7f824d6e2f20b136401012596d8d277b4",
+      "parent_decision": 14,
+      "changed_roles": [
+        "before_basis",
+        "facts",
+        "mapping",
+        "skeleton"
+      ],
+      "artifact_refs_before": {
+        "active_model": "9f7cac1218df9d9d8c26a444085e378758e90ee86c0d98a5d601d447cdc3a868",
+        "after_basis": "8b4cd854b4980f918b7db4f0787bbe0f04d0c3f183028c7e4bd5b8a42c6dd13f",
+        "baseline_query": "47bcf136ab1b8a9434e2736635f67182196b85f7338db7168b1ca62325406f79",
+        "baseline_spec": "9cccd26b94c9d5ca6db3350e0d21a24db190d933acbd4260be9dc06bfb5d9e93",
+        "before_basis": "074a975632d7f3aa160b6267d7d1c7a7e8431652a10935ba3f95d041b3c54243",
+        "contracts": "a693b958b9b724a39406680ecc20f8e87009d3199edf9e66fad1a2681e24f22a",
+        "domain": "d603ad502f50bd13076f0f949bdbd87fa29c181470978d874009064b6da99819",
+        "facts": "ead93612cff077eafa7f5c5738f75fa2af4e74dfb187a6cfc1ed3089ac788b3f",
+        "hypothesis_set": "00ec99f69c6eac76f75ec31457d5b04b4d16f24a72372f601731957e9fb8f6b1",
+        "mapping": "532857311171e2836e0f5f759c939153c7e0054aa72f09adfb12c5e4310cee51",
+        "skeleton": "7435a4dde8b0a140dd4d4474b8bad6422e1acea0e2794878474c52df73ffc031"
+      },
+      "artifact_refs_after": {
+        "active_model": "9f7cac1218df9d9d8c26a444085e378758e90ee86c0d98a5d601d447cdc3a868",
+        "after_basis": "8b4cd854b4980f918b7db4f0787bbe0f04d0c3f183028c7e4bd5b8a42c6dd13f",
+        "baseline_query": "47bcf136ab1b8a9434e2736635f67182196b85f7338db7168b1ca62325406f79",
+        "baseline_spec": "9cccd26b94c9d5ca6db3350e0d21a24db190d933acbd4260be9dc06bfb5d9e93",
+        "before_basis": "de16bc146b0e427415d686904cbba610673f23db818f38758eb47a4e4c4455f0",
+        "contracts": "a693b958b9b724a39406680ecc20f8e87009d3199edf9e66fad1a2681e24f22a",
+        "domain": "d603ad502f50bd13076f0f949bdbd87fa29c181470978d874009064b6da99819",
+        "facts": "6632b8e6e7b5e6900aab2058b845eed360fd99ee80d9368c4cf889aa53251243",
+        "hypothesis_set": "00ec99f69c6eac76f75ec31457d5b04b4d16f24a72372f601731957e9fb8f6b1",
+        "mapping": "e1a97110ea6a071855d0d40da63fc84163172fa38d91a833f5e1c1baadfda78d",
+        "skeleton": "451168d685e5a87d01c362085a706f7a9912bae9483171ecaf23e96beac069e7"
+      },
+      "inherited_snapshot": {
+        "run_id": "test:A2",
+        "group": "ledger-fixture",
+        "seed": "test:ledger-proof",
+        "repeat": 0,
+        "watermark": 12,
+        "members": [
+          {
+            "seq": 12,
+            "request_id": "3461a70916dc42af8fc7b09d151f48d5",
+            "digest": "de2591acb740ab69307c2ef1cb4d892042fdd42efa90920123bb2d0ef28c1c71",
+            "intent": {
+              "case": "document",
+              "contract": "text",
+              "domain": "short",
+              "target": "title",
+              "verifier": "fixture"
+            }
+          }
+        ],
+        "digest": "c95507be847d13071e6c978064ffc740e4130c17ea0187e3568dc0dae5f080e7"
+      },
+      "remaining_budgets": {
+        "B.verify": 1,
+        "C.repair.Q0": 1,
+        "C.repair.Qstar": 1
+      },
+      "gate_before_recheck": {
+        "package_version": 2,
+        "evidence": {
+          "contracts_ok": "test:contracts_ok:5b47005091d54f5fa326cd55eeebfba1d56c911bc3c438eacbe99558a881ea3c",
+          "after_ok": "test:after_ok:fa5568d187fd3755f56e27acaa1d56e493d0222a02f9942daca70327aba3b929"
+        },
+        "blockers": [
+          "before_ok",
+          "candidates_ok",
+          "mapping_ok",
+          "versions_ok"
+        ]
+      }
+    },
+    "A5": {
+      "parent_version": 1,
+      "child_version": 2,
+      "parent_packet_sha": "f6645083b59c8c1292401c2e2381764e62f7c98a7a67fd8fb5e9e5d97b60eff7",
+      "child_packet_sha": "c302917b85d93cd57775b4cd2d05de58f16886d678f8fc2a2df8e42c2901d311",
+      "parent_decision": 31,
+      "changed_roles": [
+        "active_model",
+        "hypothesis_set"
+      ],
+      "artifact_refs_before": {
+        "active_model": "9f7cac1218df9d9d8c26a444085e378758e90ee86c0d98a5d601d447cdc3a868",
+        "after_basis": "8b4cd854b4980f918b7db4f0787bbe0f04d0c3f183028c7e4bd5b8a42c6dd13f",
+        "baseline_query": "47bcf136ab1b8a9434e2736635f67182196b85f7338db7168b1ca62325406f79",
+        "baseline_spec": "9cccd26b94c9d5ca6db3350e0d21a24db190d933acbd4260be9dc06bfb5d9e93",
+        "before_basis": "074a975632d7f3aa160b6267d7d1c7a7e8431652a10935ba3f95d041b3c54243",
+        "contracts": "a693b958b9b724a39406680ecc20f8e87009d3199edf9e66fad1a2681e24f22a",
+        "domain": "d603ad502f50bd13076f0f949bdbd87fa29c181470978d874009064b6da99819",
+        "facts": "ead93612cff077eafa7f5c5738f75fa2af4e74dfb187a6cfc1ed3089ac788b3f",
+        "hypothesis_set": "00ec99f69c6eac76f75ec31457d5b04b4d16f24a72372f601731957e9fb8f6b1",
+        "mapping": "532857311171e2836e0f5f759c939153c7e0054aa72f09adfb12c5e4310cee51",
+        "skeleton": "7435a4dde8b0a140dd4d4474b8bad6422e1acea0e2794878474c52df73ffc031"
+      },
+      "artifact_refs_after": {
+        "active_model": "35e7b22ad5eb8dfc3c98568962b9c09d2f5309c8f0cee72132d422aacbe6d9e4",
+        "after_basis": "8b4cd854b4980f918b7db4f0787bbe0f04d0c3f183028c7e4bd5b8a42c6dd13f",
+        "baseline_query": "47bcf136ab1b8a9434e2736635f67182196b85f7338db7168b1ca62325406f79",
+        "baseline_spec": "9cccd26b94c9d5ca6db3350e0d21a24db190d933acbd4260be9dc06bfb5d9e93",
+        "before_basis": "074a975632d7f3aa160b6267d7d1c7a7e8431652a10935ba3f95d041b3c54243",
+        "contracts": "a693b958b9b724a39406680ecc20f8e87009d3199edf9e66fad1a2681e24f22a",
+        "domain": "d603ad502f50bd13076f0f949bdbd87fa29c181470978d874009064b6da99819",
+        "facts": "ead93612cff077eafa7f5c5738f75fa2af4e74dfb187a6cfc1ed3089ac788b3f",
+        "hypothesis_set": "f59968c76d9357ac60f4d93974408005b1fd53a08093f30f440fdce1aaead723",
+        "mapping": "532857311171e2836e0f5f759c939153c7e0054aa72f09adfb12c5e4310cee51",
+        "skeleton": "7435a4dde8b0a140dd4d4474b8bad6422e1acea0e2794878474c52df73ffc031"
+      },
+      "inherited_snapshot": {
+        "run_id": "test:A5",
+        "group": "ledger-fixture",
+        "seed": "test:ledger-proof",
+        "repeat": 0,
+        "watermark": 29,
+        "members": [
+          {
+            "seq": 29,
+            "request_id": "beed4afb3bc54f74a0424d390eca34e7",
+            "digest": "de2591acb740ab69307c2ef1cb4d892042fdd42efa90920123bb2d0ef28c1c71",
+            "intent": {
+              "case": "document",
+              "contract": "text",
+              "domain": "short",
+              "target": "title",
+              "verifier": "fixture"
+            }
+          }
+        ],
+        "digest": "010359e111f372df5bcd5121f4c9ae3f3d0508e2739033cb90039051a0d63064"
+      },
+      "remaining_budgets": {
+        "B.verify": 1,
+        "C.repair.Q0": 1,
+        "C.repair.Qstar": 1
+      },
+      "gate_before_recheck": {
+        "package_version": 2,
+        "evidence": {
+          "mapping_ok": "test:mapping_ok:8af17fb1e8682c28fabc663b2535effac171de381cfd5121b16356189d505222",
+          "contracts_ok": "test:contracts_ok:5b47005091d54f5fa326cd55eeebfba1d56c911bc3c438eacbe99558a881ea3c",
+          "before_ok": "test:before_ok:e56afa0dcdaa1695ec93601848c235e51423365973c5f3ee0f3b50bce70a0c07",
+          "after_ok": "test:after_ok:fa5568d187fd3755f56e27acaa1d56e493d0222a02f9942daca70327aba3b929"
+        },
+        "blockers": [
+          "candidates_ok",
+          "versions_ok"
+        ]
+      },
+      "registration": {
+        "commit_seq": 35,
+        "run_id": "test:A5",
+        "kind": "prediction",
+        "detail": {
+          "balances": {
+            "B.verify": 1,
+            "C.repair.Q0": 1,
+            "C.repair.Qstar": 1
+          },
+          "batch": "b2",
+          "context_snapshot": "010359e111f372df5bcd5121f4c9ae3f3d0508e2739033cb90039051a0d63064",
+          "package_version": 2,
+          "parent_decision": 31,
+          "payload_sha": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+          "pool_digest": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+          "source_kind": "post_remodel",
+          "supersedes": null,
+          "watermark": 29
+        }
+      }
+    }
+  }
+}

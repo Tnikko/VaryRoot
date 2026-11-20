@@ -1,0 +1,105 @@
+{
+  "design": "single_batch_v1",
+  "budget": 4,
+  "predictions_sha256": "d2f3153dc9adc75b94205678f0703b888bd59726addfcd1705f7dbfec30c9ae8",
+  "pool_sha256": "3dfe71608270d7b2d78427231ba1dfff17026920deef8c83cadfd6e75f874bd2",
+  "runs": [
+    {
+      "family": "N",
+      "strategy": "disagreement",
+      "ids": [
+        "N03",
+        "N07",
+        "N04",
+        "N05"
+      ],
+      "fallback": [
+        "N04",
+        "N05"
+      ]
+    },
+    {
+      "family": "N",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 11,
+      "ids": [
+        "N10",
+        "N11",
+        "N12",
+        "N06"
+      ]
+    },
+    {
+      "family": "N",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 23,
+      "ids": [
+        "N07",
+        "N04",
+        "N03",
+        "N12"
+      ]
+    },
+    {
+      "family": "N",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 47,
+      "ids": [
+        "N08",
+        "N04",
+        "N09",
+        "N07"
+      ]
+    },
+    {
+      "family": "O",
+      "strategy": "disagreement",
+      "ids": [
+        "O04",
+        "O05",
+        "O07",
+        "O12"
+      ],
+      "fallback": []
+    },
+    {
+      "family": "O",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 11,
+      "ids": [
+        "O10",
+        "O11",
+        "O12",
+        "O06"
+      ]
+    },
+    {
+      "family": "O",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 23,
+      "ids": [
+        "O07",
+        "O04",
+        "O03",
+        "O12"
+      ]
+    },
+    {
+      "family": "O",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 47,
+      "ids": [
+        "O08",
+        "O04",
+        "O09",
+        "O07"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+﻿category,id,mechanism,mechanism_name,description_anchor,scope_note,source_review,patch_url
+null_pointer_dereference,CVE-2025-60469,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/gpac/gpac/commit/e02d1fd24cdc26acb1b236ab38b3832cffcae21b
+null_pointer_dereference,CVE-2025-60479,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/gpac/gpac/commit/75786eb61b7cc838b57c3d4f8004b4f13b5b724c
+null_pointer_dereference,CVE-2025-60489,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/gpac/gpac/commit/4860a1a6f128ccc9ae37b4b738d22029f9672457
+null_pointer_dereference,CVE-2026-100082,N0,描述不足，需读补丁,以并发 UAF 为主，空指针为伴随结果,排除：并发 UAF 是主因,not_done,https://git.kernel.org/stable/c/253cff0526781e28b1b0f9fdacd74ecdc23d3ab7
+null_pointer_dereference,CVE-2026-104114,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/illumos/illumos-gate/commit/0f1064d97f1a43778ddf87d4e438b99872aed1a0
+null_pointer_dereference,CVE-2026-107778,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/krb5/krb5/commit/48afa9abb89ab2176bb20624d87d010b9984fc08
+null_pointer_dereference,CVE-2026-109272,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/ImageMagick/ImageMagick/commit/d98509b23a547d9ccd0a8af8650d03c5c01c3722
+null_pointer_dereference,CVE-2026-117610,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/libexpat/libexpat/commit/7b0d50e4b1d16fafd55876260701e04279a7489d
+null_pointer_dereference,CVE-2026-12233,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/29581d586f3d68ec8bb1448b522e5470d4a06aa9
+null_pointer_dereference,CVE-2026-125064,N2,错误返回约定用错,ignores init_get_bits() failure,待源码核验,patch_checked,https://github.com/FFmpeg/FFmpeg/commit/ec887b13a88afbaf44fb28c3045bda5d434da8dc
+null_pointer_dereference,CVE-2026-125065,N2,错误返回约定用错,ignores init_get_bits() failure,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/9691e4fde64e14de73c298562c4e475f9412b5ad
+null_pointer_dereference,CVE-2026-125066,N2,错误返回约定用错,ignores init_get_bits() failure,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/d40c1b12811814fc6c2d0816527b003d8510ea06
+null_pointer_dereference,CVE-2026-125067,N2,错误返回约定用错,ignores init_get_bits() failure,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/1206df65e54b6e9c01459c7cd9a95f9bde2736d7
+null_pointer_dereference,CVE-2026-125068,N2,错误返回约定用错,ignores init_get_bits() failure,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/5195d6f9729ad00b93e4d0f0bea309416fb4713e
+null_pointer_dereference,CVE-2026-125069,N2,错误返回约定用错,ignores init_get_bits() failure,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/26b4c37526fe0ecf1095b45daac08050f25f7659
+null_pointer_dereference,CVE-2026-125070,N2,错误返回约定用错,ignores init_get_bits() failure,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/5d7b743bdfb724df21fd43a3d7f3258382eb578c
+null_pointer_dereference,CVE-2026-125071,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/839c93f261cd3e1719edfac4244a2d0055ce8841
+null_pointer_dereference,CVE-2026-125072,N2,错误返回约定用错,failure is ignored,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/0b007e0634de5b4424b9993c95a6c1c50de0115b
+null_pointer_dereference,CVE-2026-125174,N1,分配失败后仍访问,allocation fail,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/f8c4c6400e835bf65e8b9cc12aba9e5c4d1c818c
+null_pointer_dereference,CVE-2026-13217,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/4d8a9eb1448061ccee557ef20a2a58aec91d9cad
+null_pointer_dereference,CVE-2026-14457,N4,可选字段、配置或状态缺席,no certificate need to upgrade to an updated release as noted below,待源码核验,not_done,https://github.com/openssl/openssl/commit/1e8c398db67404babd3e5af999bb6bd86f720c76
+null_pointer_dereference,CVE-2026-50126,N0,描述不足，需读补丁,,混合：空指针和越界路径需分离,not_done,https://github.com/KNMI/adaguc-server/commit/30dffde1a1776b994d60026f41ca620f7cad72e9
+null_pointer_dereference,CVE-2026-64229,N0,描述不足，需读补丁,硬件 #GP，日志中的 NULL dereference 不是指针根因,排除：硬件指令 #GP，不是 C/C++ 空指针访问,not_done,https://git.kernel.org/stable/c/44126343d58c68adaa8343fbf1c07dd20078c35e
+null_pointer_dereference,CVE-2026-64234,N1,分配失败后仍访问,dma_alloc_coherent() Add a check for dma_alloc_coherent() fail,待源码核验,not_done,https://git.kernel.org/stable/c/5f2e2a240dc1846e049bc67e9c3cdf5b031d08bf
+null_pointer_dereference,CVE-2026-64288,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/4be6cbeb93d26994bd1827ddbce391e3c4395c8f
+null_pointer_dereference,CVE-2026-64295,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/377b1cd6bbcf327338cd951cc2fd74bc75540235
+null_pointer_dereference,CVE-2026-64325,N4,可选字段、配置或状态缺席,"is NULL there is no pending channel switch to process, so returning immediately is",待源码核验,not_done,https://git.kernel.org/stable/c/351dd7d2c80d23e56dcce6faa4e62bea5b0877c7
+null_pointer_dereference,CVE-2026-64405,N4,可选字段、配置或状态缺席,"can be NULL while req_status is still HCI_REQ_PEND, leading to a NULL pointer derefere",待源码核验,not_done,https://git.kernel.org/stable/c/12917f591cea1af36087dba5b9ec888652f0b42a
+null_pointer_dereference,CVE-2026-64417,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/006467ab932698612398f853344a7405164541f4
+null_pointer_dereference,CVE-2026-64427,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/1215febd644c3e16f77e0f1799d89544dd57a754
+null_pointer_dereference,CVE-2026-64451,N4,可选字段、配置或状态缺席,"can be NULL, leading to a NULL pointer dereference and kernel crash",待源码核验,not_done,https://git.kernel.org/stable/c/69f17ac132a38974cf1defb480cef6b79d1ab768
+null_pointer_dereference,CVE-2026-64457,N5,初始化、拆卸或清理次序,unbind triggers a NULL pointer dereferenc,待源码核验,not_done,https://git.kernel.org/stable/c/075bc3c779e1ea7294afabdcb7e0a49536959b28
+null_pointer_dereference,CVE-2026-64480,N1,分配失败后仍访问,snd_ctl_new1() return value snd_ctl_new1() can return NULL when memory allocation fail,待源码核验,not_done,https://git.kernel.org/stable/c/2b929b91b0f3bc6de8a844370049cd99ee8e31ff
+null_pointer_dereference,CVE-2026-64484,N1,分配失败后仍访问,snd_ctl_new1() return value snd_ctl_new1() can return NULL when memory allocation fail,待源码核验,not_done,https://git.kernel.org/stable/c/1949163dee39e0e4a1468f37dd7302962f6af45a
+null_pointer_dereference,CVE-2026-64488,N1,分配失败后仍访问,snd_ctl_new1() return value snd_ctl_new1() can return NULL when memory allocation fail,待源码核验,not_done,https://git.kernel.org/stable/c/2ee9c46fd2dcd529cef18e37636ee12f5c3dbedd
+null_pointer_dereference,CVE-2026-64511,N5,初始化、拆卸或清理次序,"before getting NFIT table""), acpi_nfit_probe",待源码核验,not_done,https://git.kernel.org/stable/c/027e128abb82788189d6d45b68e3e8e7329b67be
+null_pointer_dereference,CVE-2026-64569,N4,可选字段、配置或状态缺席,"CONFIG_INET=n On CONFIG_INET=n builds, mpls_valid_fib_dump_req() walks the parsed attrib",待源码核验,not_done,https://git.kernel.org/stable/c/03b5a2c29afc8e634924c75d6ee94140e70de88d
+null_pointer_dereference,CVE-2026-64593,N4,可选字段、配置或状态缺席,"is NULL, and the dev_state is BTRFS_DEV_STATE_IN_FS_METADATA | BTRFS_DEV_STATE_ITE",待源码核验,not_done,https://git.kernel.org/stable/c/02c903fc6fc7e16c5d1f22d18784f1208acf43e3
+null_pointer_dereference,CVE-2026-67288,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/FreeRDP/FreeRDP/commit/5370fb26fbf034ecd11d3026b6ad639b5fff493f
+null_pointer_dereference,CVE-2026-67304,N7,解析失败或畸形输入未传播,truncated reader-state data to crash the process via null pointer,待源码核验,not_done,https://github.com/FreeRDP/FreeRDP/commit/1cc783d4c78bd2f66d3a8582dfe70a663d141444
+null_pointer_dereference,CVE-2026-68105,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/5bc93f907bad7e076d814664dfab8fc230efca3d
+null_pointer_dereference,CVE-2026-68139,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/40f9a124ebbe0d60fe165fb3f87515c35b2d72f5
+null_pointer_dereference,CVE-2026-68176,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/0d5aaf91a3d05f7f993401af27872a5fc0f26edc
+null_pointer_dereference,CVE-2026-68191,N5,初始化、拆卸或清理次序,"unbinding the ath12k driver, kernel NULL pointer dereferenc",待源码核验,not_done,https://git.kernel.org/stable/c/17a4298f7794843af0094035723dc5e7311c7453
+null_pointer_dereference,CVE-2026-68193,N4,可选字段、配置或状态缺席,"is NULL, so a TXRX_NOTIFY there calls a NULL pointer in the RX worker: BUG: kernel",待源码核验,not_done,https://git.kernel.org/stable/c/0c8c4cd0ca60b45c4b05a39e3769b8473d6836eb
+null_pointer_dereference,CVE-2026-68194,N4,可选字段、配置或状态缺席,"is NULL, so a TXRX_NOTIFY there calls a NULL pointer in the RX worker: BUG: kernel",待源码核验,not_done,https://git.kernel.org/stable/c/24475d2ddc8d8dfd82f4d2be0d951401f86911a6
+null_pointer_dereference,CVE-2026-68197,N6,判空位置或对象错误,different pointer,待源码核验,not_done,https://git.kernel.org/stable/c/45011e4d9ba3f2182e5df64be65888044fa20771
+null_pointer_dereference,CVE-2026-68226,N1,分配失败后仍访问,"fails, release the already allocated",待源码核验,not_done,https://git.kernel.org/stable/c/6a7636e3d5204fb18fdf1c3f909a3d9d9e24064c
+null_pointer_dereference,CVE-2026-68239,N3,查找或获取结果未判空,resolved: drm/ttm: Account for NULL and handle pages in ttm_pool_backup Pages in ttm_pool_backup can be NULL,待源码核验,not_done,https://git.kernel.org/stable/c/22aa7fb4e7d0b3ab41d1240ed743167980912970
+null_pointer_dereference,CVE-2026-68261,N2,错误返回约定用错,IS_ERR(,待源码核验,not_done,https://git.kernel.org/stable/c/401fbe3b6bbb6c94c24ee8843b7beed5111491ac
+null_pointer_dereference,CVE-2026-68275,N3,查找或获取结果未判空,"find(), but uses the returned pointer without check",待源码核验,not_done,https://git.kernel.org/stable/c/93475c34111916df71c63e510fc52db01351f809
+null_pointer_dereference,CVE-2026-68282,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/45895f4d4d5f222d07412f90664f88b059627859
+null_pointer_dereference,CVE-2026-68291,N1,分配失败后仍访问,failed allocation,待源码核验,not_done,https://git.kernel.org/stable/c/08fffd2881e2804d55bc74f178e2843e8832b396
+null_pointer_dereference,CVE-2026-68303,N5,初始化、拆卸或清理次序,unbind functions try to get drvdata of its master and fails with a null dereferenc,待源码核验,not_done,https://git.kernel.org/stable/c/261f0a3f0ac03248284f5116d3258f89c9642215
+null_pointer_dereference,CVE-2026-68322,N4,可选字段、配置或状态缺席,IPv6 is disabled When booting with the 'ipv6,待源码核验,not_done,https://git.kernel.org/stable/c/00d5707217b5972554898ff734ae7b71bce704e6
+null_pointer_dereference,CVE-2026-68327,N1,分配失败后仍访问,"failures then unwind through wanxl_pci_remove_one(), including failure to allocate",待源码核验,not_done,https://git.kernel.org/stable/c/2fe22d58b3797d741570f9873b26653fd511576c
+null_pointer_dereference,CVE-2026-68336,N4,可选字段、配置或状态缺席,IPv6 is disabled When booting with the 'ipv6,待源码核验,not_done,https://git.kernel.org/stable/c/1c975de3343cdef506f2eecc833cc1f14b0401c4
+null_pointer_dereference,CVE-2026-68362,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/4abb4e284d8897176e91d7a3168ee29ed876bb41
+null_pointer_dereference,CVE-2026-68378,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/4b3e6b9fdaeb40c6a2f7c41db3888b6ee628bdd2
+null_pointer_dereference,CVE-2026-68441,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/06629ed4d0ecba55bc425eaea79974484fe0b414
+null_pointer_dereference,CVE-2026-68444,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/12a42c610e4432e7708cc48d607e5903fffe0aad
+null_pointer_dereference,CVE-2026-70639,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/ggml-org/llama.cpp/commit/5c0d18881e0e9794c96b2602736b758bac9d9388
+null_pointer_dereference,CVE-2026-72013,N4,可选字段、配置或状态缺席,"is NULL, then it is copied without a check in machine_kexec_prepare(): kexec_file_",待源码核验,not_done,https://git.kernel.org/stable/c/606cc45e871e34b80a2f63874f069387a5b44176
+null_pointer_dereference,CVE-2026-72091,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/241cf3b7455bebbe492b9df4912b48e3260061d4
+null_pointer_dereference,CVE-2026-72094,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/035219a760edb35ae9a9e96beba7f122e26a997b
+null_pointer_dereference,CVE-2026-72097,N4,可选字段、配置或状态缺席,no table,待源码核验,not_done,https://git.kernel.org/stable/c/1f04b390add2e14c5b36829a0a1529c4eb65a2e1
+null_pointer_dereference,CVE-2026-72147,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/043acb00e4edd4b9ffb9dd0e357482dcd9086486
+null_pointer_dereference,CVE-2026-72161,N4,可选字段、配置或状态缺席,"is NULL, it has already been fully flushed and destroyed during shutdown, so there",待源码核验,not_done,https://git.kernel.org/stable/c/24daf13422e8328fd588c34a017bdef1949910e8
+null_pointer_dereference,CVE-2026-72254,N4,可选字段、配置或状态缺席,no device flag to both,待源码核验,not_done,https://git.kernel.org/stable/c/1258a6da042c0c283dcf5c581acb318db29c760a
+null_pointer_dereference,CVE-2026-72257,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/214af790e3a33ab73587de4c925c60a550eae9c6
+null_pointer_dereference,CVE-2026-72316,N2,错误返回约定用错,NULL 与 ERR_PTR 返回约定不一致,待源码核验,not_done,https://git.kernel.org/stable/c/01c49eae7c6256f2d8cc08210a2bac3ee070e43a
+null_pointer_dereference,CVE-2026-74684,N4,可选字段、配置或状态缺席,"is null"") fixed a crash in tap_get_user() by assigning skb->dev before calling tun",待源码核验,not_done,https://git.kernel.org/stable/c/15583b07fd691a844fbf7b3ad612cdc9e9a657c0
+null_pointer_dereference,CVE-2026-74706,N1,分配失败后仍访问,NULL pointer dereference in aux device release If allocation,待源码核验,not_done,https://git.kernel.org/stable/c/1cb4298810e27e037d3ca07286ecbb97e89ba58d
+null_pointer_dereference,CVE-2026-74734,N4,可选字段、配置或状态缺席,"is NULL, it indicates that the context was never successfully initialized and ther",待源码核验,not_done,https://git.kernel.org/stable/c/3770a4794a14331c8ca6a674e49c021827521c2c
+null_pointer_dereference,CVE-2026-74741,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/0ab482b2195edc000262f0eae1cdcb416b8f335d
+null_pointer_dereference,CVE-2026-80520,N4,可选字段、配置或状态缺席,not present,待源码核验,not_done,https://git.kernel.org/stable/c/41d44ac7a61e2f74453af40d4fe1b82af9ea0ada
+null_pointer_dereference,CVE-2026-80524,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/0977a6f23439616701282fc4cb38eca40f36fec6
+null_pointer_dereference,CVE-2026-80542,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/4a6bc92fac30070511d66bcce4ed9b7dac983180
+null_pointer_dereference,CVE-2026-80564,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/3992ced109c70b771efad9e51ae68e5c7a04dea3
+null_pointer_dereference,CVE-2026-80577,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/25556a46ae6ecf2a9f1c1c5096828eecd4596b91
+null_pointer_dereference,CVE-2026-80597,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/0db62da830ec57ad3efe24337763c8bf5442c6be
+null_pointer_dereference,CVE-2026-80614,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/44068b6863fbda78fc810921ddf61642c377b3ca
+null_pointer_dereference,CVE-2026-80621,N5,初始化、拆卸或清理次序,"teardown path still calls dwc_pcie_rasdes_debugfs_deinit(), which dereferenc",待源码核验,not_done,https://git.kernel.org/stable/c/26b67fa10ef84ea667942491b50e6261a45f098d
+null_pointer_dereference,CVE-2026-80632,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/6794edb55b5f5ef834e03b0b241b1a8b725f82c0
+null_pointer_dereference,CVE-2026-80657,N5,初始化、拆卸或清理次序,cleanup against NULL,待源码核验,not_done,https://git.kernel.org/stable/c/506255d46bdb93a281cf39e72abbca124f5c7a1b
+null_pointer_dereference,CVE-2026-80658,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/33bc9fba3ae05863fabe3436ddca2ca4f4939c5e
+null_pointer_dereference,CVE-2026-80664,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/0afc9ad987c0faa80ab5f8d6e7815085ac8dbb82
+null_pointer_dereference,CVE-2026-80679,N4,可选字段、配置或状态缺席,is NULL,待源码核验,not_done,https://git.kernel.org/stable/c/3000367a512b1283ca52230bf21f8c91dfbec45b
+null_pointer_dereference,CVE-2026-80684,N1,分配失败后仍访问,NULL dereference on AIBV allocation,待源码核验,not_done,https://git.kernel.org/stable/c/0a95abe964400771ad82b027d7b84a0d183cd0db
+null_pointer_dereference,CVE-2026-80689,N4,可选字段、配置或状态缺席,is NULL (e,待源码核验,not_done,https://git.kernel.org/stable/c/12b80cdbc54cf615b4717a4e8180063408091ea2
+null_pointer_dereference,CVE-2026-80691,N6,判空位置或对象错误,wrong PR ops NULL check,待源码核验,not_done,https://git.kernel.org/stable/c/3c60a8b4037dc35e365658fcbcb349a5d742ff49
+null_pointer_dereference,CVE-2026-80697,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/3879657c4ffd81b9a42cf575fc6cb60201032587
+null_pointer_dereference,CVE-2026-88384,N0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/AcademySoftwareFoundation/openexr/pull/2615
+null_pointer_dereference,CVE-2026-89484,N1,分配失败后仍访问,NULL dereference on lockowner allocation,待源码核验,not_done,https://git.kernel.org/stable/c/07adfbb3de7529f58ca708a97ead7fa4fdb71056
+null_pointer_dereference,CVE-2026-91781,N0,描述不足，需读补丁,,待源码核验,not_done,https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=7322e9bc30cb282575a701c307851fd3d66fee68
+null_pointer_dereference,CVE-2026-98059,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/3c03a1b8ded858685a73c1ba4080adef99db4544
+null_pointer_dereference,CVE-2026-98098,N0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/246a4b4aace490664927042e93400a6f940d197f
+null_pointer_dereference,CVE-2026-98121,N3,查找或获取结果未判空,dev_get_drvdata() in msc313e_wdt_suspend() and msc313e_wdt_resume() will return NULL,待源码核验,not_done,https://git.kernel.org/stable/c/6495dc16e635356fd2b7535dcbf9b6779de4e753
+null_pointer_dereference,CVE-2026-98129,N1,分配失败后仍访问,NULL on memory allocation,待源码核验,not_done,https://git.kernel.org/stable/c/2f69ed909de9e3d46af9db7dd24b9b80dc31b5ec
+null_pointer_dereference,CVE-2026-98134,N6,判空位置或对象错误,验证器错误地推断另一指针非空,待源码核验,not_done,https://git.kernel.org/stable/c/9bf96b4347f541604b3caadeabda0773d9ceaf2a
+buffer_out_of_bounds,CVE-2024-58399,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/ggml-org/llama.cpp/commit/0ead1f1072fdc70720f92e008a294dc74a826b1d
+buffer_out_of_bounds,CVE-2024-58400,B3,索引或计数未受目标数组约束,unvalidated token ID,待源码核验,not_done,https://github.com/ggml-org/llama.cpp/commit/eae597182cb61bbde0b26e7cec5999d28b9327fe
+buffer_out_of_bounds,CVE-2025-71438,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/gpac/gpac/commit/13eb5b76560aaf7813b865a2ad433258478e2695
+buffer_out_of_bounds,CVE-2025-71439,B3,索引或计数未受目标数组约束,oversized special token ID,待源码核验,not_done,https://github.com/ggml-org/llama.cpp/commit/c33fe8b8c4427202706b1434e9fc8ab5752c9cac
+buffer_out_of_bounds,CVE-2026-104061,B3,索引或计数未受目标数组约束,unchecked PSD file values as lookup array index,待源码核验,not_done,https://github.com/scribusproject/scribus/commit/cca3e4991dd199c103edb4a3bc5351f5cb88d62b
+buffer_out_of_bounds,CVE-2026-104062,B6,协议或文件字段直接决定访问范围,unchecked bytesPerLine value,待源码核验,not_done,https://github.com/scribusproject/scribus/commit/544a179241362eb254cb69a5cc68ef24388b265f
+buffer_out_of_bounds,CVE-2026-104063,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/scribusproject/scribus/commit/544a179241362eb254cb69a5cc68ef24388b265f
+buffer_out_of_bounds,CVE-2026-104065,B3,索引或计数未受目标数组约束,unvalidated y offset,待源码核验,not_done,https://github.com/scribusproject/scribus/commit/69f52b53c78542b0a5d377fa0b058fb2773799dc
+buffer_out_of_bounds,CVE-2026-104066,B3,索引或计数未受目标数组约束,"idth and row data that, when placed or imported, writes out of bounds",待源码核验,not_done,https://github.com/scribusproject/scribus/commit/544a179241362eb254cb69a5cc68ef24388b265f
+buffer_out_of_bounds,CVE-2026-106115,B5,字符串终止符或编码宽度漏算,12-bit end-of-facsimile,排除：ImageSharp 为 .NET/C# 项目,not_done,https://github.com/SixLabors/ImageSharp/commit/a9498c6db3642ef92c712ebc81e706914ac16a95
+buffer_out_of_bounds,CVE-2026-106118,B0,描述不足，需读补丁,,排除：ImageSharp 为 .NET/C# 项目,not_done,https://github.com/SixLabors/ImageSharp/commit/9ee7d1dd5b62d8c9f16cc755e76828386bc2191f
+buffer_out_of_bounds,CVE-2026-107817,B3,索引或计数未受目标数组约束,id JSON data could cause out-of-bounds,待源码核验,not_done,https://github.com/MariaDB/server/commit/851f52470d470a96a66e0b7e5599f3b6c2e45907
+buffer_out_of_bounds,CVE-2026-107821,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/MariaDB/server/commit/3b1c2e58abab5571bec4ff52773ddc75b1738da9
+buffer_out_of_bounds,CVE-2026-108102,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/open5gs/open5gs/commit/88e64fc1f87e0d321364b3bb710ef6a8f274e568
+buffer_out_of_bounds,CVE-2026-109249,B2,偏移、长度与剩余范围未联动,cursor without reducing the remaining,待源码核验,not_done,https://github.com/FreeRDP/FreeRDP/commit/2a737ce14dfee036a12d2d3e87473ace3e20349b
+buffer_out_of_bounds,CVE-2026-109265,B5,字符串终止符或编码宽度漏算,incorrect string termination,待源码核验,not_done,https://github.com/ImageMagick/ImageMagick/commit/7605c7619da77a5ff1ccf4ec159f3ec782c6bda7
+buffer_out_of_bounds,CVE-2026-109281,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/ImageMagick/ImageMagick/commit/0e82a4d0b294581186ed7b3e1dce59c858a73dba
+buffer_out_of_bounds,CVE-2026-109677,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/FreeRDP/FreeRDP/commit/ececc5cbd0646ef012ca178322e6ef922a11f0c1
+buffer_out_of_bounds,CVE-2026-114550,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/warmcat/libwebsockets/commit/c9e8e1834d7f13038c82963086b90e2ee9c5b44c
+buffer_out_of_bounds,CVE-2026-115473,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/cesanta/mongoose/commit/b55de8b151d1466a3e41d1f854f22eeb6faa23dc
+buffer_out_of_bounds,CVE-2026-115504,B6,协议或文件字段直接决定访问范围,trusts attacker-controlled heap descriptor lengths for variable-length,待源码核验,not_done,https://github.com/HEASARC/cfitsio/commit/579792e0f85bff0c6733ad5ebdf54c3b5c188686
+buffer_out_of_bounds,CVE-2026-116732,B2,偏移、长度与剩余范围未联动,omits the table starting offset,待源码核验,not_done,https://github.com/davea42/libdwarf-code/commit/71f04013ddc2a3c88b9e25a4162ee2824741b593
+buffer_out_of_bounds,CVE-2026-116776,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/n-romanovich/usb-test/commit/5b6caac844461024520b02337d3a541fbe128f89
+buffer_out_of_bounds,CVE-2026-116816,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/ggml-org/llama.cpp/commit/cf06ad7dfe79e7bf2934150d4fefe1ce8db05490
+buffer_out_of_bounds,CVE-2026-117557,B3,索引或计数未受目标数组约束,bitplanes to read past the colormap stack array,待源码核验,not_done,https://github.com/libsdl-org/SDL_image/commit/5cfbe85f3a783417eec4d5aa0660b40c2cff5292
+buffer_out_of_bounds,CVE-2026-118375,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/ggml-org/llama.cpp/commit/9a0fde9967fa1a35b6e5dd1f47e1a3648b6fecc1
+buffer_out_of_bounds,CVE-2026-118673,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/keepassxreboot/keepassxc/commit/80e68bb4e8b89e383dd96b1bf5de169ca61367aa
+buffer_out_of_bounds,CVE-2026-119373,B1,容量计算与写入量不一致,undersizes the output buffer,待源码核验,not_done,https://github.com/sqlite/sqlite/commit/e1c9934f9f11a499029abb020ea715a08970da80
+buffer_out_of_bounds,CVE-2026-119374,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/sqlite/sqlite/commit/d9de6eedbe918c074c7556400fa21df5960704d9
+buffer_out_of_bounds,CVE-2026-119379,B1,容量计算与写入量不一致,undersized aUpdateMask allocat,待源码核验,not_done,https://github.com/sqlite/sqlite/commit/64459c87cc702d600704fb77ee40ca1782398a52
+buffer_out_of_bounds,CVE-2026-120452,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/gphoto/libgphoto2/commit/30bf7ace6d47cfe1232ea73bde2aceb95aba4bfb
+buffer_out_of_bounds,CVE-2026-120457,B4,整数溢出或有符号转换破坏边界检查,signed bounds check,待源码核验,not_done,https://github.com/Deutsches-Klimarechenzentrum/libaec/pull/66
+buffer_out_of_bounds,CVE-2026-121625,B5,字符串终止符或编码宽度漏算,NUL byte,待源码核验,not_done,https://github.com/willamowius/gnugk/commit/e8939d03b0b2ef46e356f3144a6ee14f2920b777
+buffer_out_of_bounds,CVE-2026-121941,B5,字符串终止符或编码宽度漏算,unterminated,待源码核验,not_done,https://github.com/munt/munt/commit/1749f7fed5cdb3a9015acce076a1512b1615dc3b
+buffer_out_of_bounds,CVE-2026-121968,B3,索引或计数未受目标数组约束,unchecked m_recpt index,待源码核验,not_done,https://github.com/quozl/netrek-client-cow/commit/fb322e74abee3b0b76a9c5a31df6aab5585d3127
+buffer_out_of_bounds,CVE-2026-123199,B5,字符串终止符或编码宽度漏算,unbounded strcpy,待源码核验,not_done,https://github.com/book-readers/ebook-speaker/commit/23b5c86585d7e3c27c932b112f4e36858e70f210
+buffer_out_of_bounds,CVE-2026-124317,B5,字符串终止符或编码宽度漏算,truncated multibyte,待源码核验,not_done,https://github.com/libexpat/libexpat/pull/1492
+buffer_out_of_bounds,CVE-2026-125171,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/5d59b7c45d7142bddd13ddc8891e72c5c7dc991b
+buffer_out_of_bounds,CVE-2026-125172,B2,偏移、长度与剩余范围未联动,against remaining,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/e06b3953d4253f8b56271628ba4083fde96aeadb
+buffer_out_of_bounds,CVE-2026-125181,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/c0d308a9a616f4abcc4e0a4d86f7de92ecdef9f6
+buffer_out_of_bounds,CVE-2026-125182,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/FFmpeg/FFmpeg/commit/7145d13201c9f9c5253f40295714faa4f4ada1a0
+buffer_out_of_bounds,CVE-2026-125742,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/ip7z/7zip/commit/d3296e39e1f1f92c7b41c0c3848e65640428d42d
+buffer_out_of_bounds,CVE-2026-126970,B0,描述不足，需读补丁,,待源码核验,not_done,https://gitlab.com/kicad/code/kicad/-/commit/b2f51d113425cf12398eb44dd97dfc30309beccf
+buffer_out_of_bounds,CVE-2026-129431,B6,协议或文件字段直接决定访问范围,unchecked SOCKS5 username/password length,待源码核验,not_done,https://github.com/Ettercap/ettercap/pull/1340
+buffer_out_of_bounds,CVE-2026-129432,B2,偏移、长度与剩余范围未联动,lengths independently rather than against,待源码核验,not_done,https://github.com/Ettercap/ettercap/pull/1341
+buffer_out_of_bounds,CVE-2026-131853,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/Ettercap/ettercap/commit/c4c8a969c2eedb205976b07e130760f37157337b
+buffer_out_of_bounds,CVE-2026-131854,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/Ettercap/ettercap/commit/56101d9ebae0179a53fea6778759ed60c970dbed
+buffer_out_of_bounds,CVE-2026-131855,B2,偏移、长度与剩余范围未联动,total packet length instead of remaining,待源码核验,patch_checked,https://github.com/Ettercap/ettercap/commit/63d1a8498472cb37f76e12ac49e8c09531933e7b
+buffer_out_of_bounds,CVE-2026-14368,B5,字符串终止符或编码宽度漏算,NUL-terminat,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/ba38f4b94337cc2c2446277ac181bdb5fec8f2b2
+buffer_out_of_bounds,CVE-2026-14986,B6,协议或文件字段直接决定访问范围,host-supplied write data into the fixed-size,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/eac92173cf13bba4e6c6eea3460ee6085513d86d
+buffer_out_of_bounds,CVE-2026-16512,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/84eaf32c9301e911ad038a057f447a7836a2a2f8
+buffer_out_of_bounds,CVE-2026-16514,B6,协议或文件字段直接决定访问范围,attacker-controlled wire field,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/a2c882db7a57cf08a06b4d27bead22b07a9c3c61
+buffer_out_of_bounds,CVE-2026-17051,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/74c7d27925055e8c3c8aef7a9f16cae6a8c64b70
+buffer_out_of_bounds,CVE-2026-18415,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/3d4c6177d2dbd77d12d9b14cd75a00cdbd826227
+buffer_out_of_bounds,CVE-2026-18748,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/c5f649f4714e625362fbaa93ffd7419f9c27342b
+buffer_out_of_bounds,CVE-2026-19029,B6,协议或文件字段直接决定访问范围,attacker-controlled scale-offset,待源码核验,not_done,https://github.com/HDFGroup/hdf5/pull/6718
+buffer_out_of_bounds,CVE-2026-19576,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/42b52d571eb2113012c135276693042fd372fdea
+buffer_out_of_bounds,CVE-2026-19577,B3,索引或计数未受目标数组约束,index past the neighbor link-layer address array,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/b0b0e8973d1967114adbb9ed1611d448b5a46519
+buffer_out_of_bounds,CVE-2026-19669,B3,索引或计数未受目标数组约束,ide copies entirely and validates the caller's array,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/0d65ce46dda0626164503c50f37e6e1f59d310a9
+buffer_out_of_bounds,CVE-2026-19673,B6,协议或文件字段直接决定访问范围,host-supplied frames of any non-zero length,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/fd3c6fedf6b639977a80e52b680b15672c31f3ef
+buffer_out_of_bounds,CVE-2026-19773,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/warmcat/libwebsockets/commit/824151862f37bc72f46d9a3e01d5b9408d313a0b
+buffer_out_of_bounds,CVE-2026-35190,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/openssl/openssl/commit/9491b0d9cc7950af1f3dc89499bd5433b9cd4f43
+buffer_out_of_bounds,CVE-2026-44034,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/DCMTK/dcmtk/commit/45469f3c30037e9c7159290e4bb74cd7b3b9ef1d
+buffer_out_of_bounds,CVE-2026-44038,B3,索引或计数未受目标数组约束,offset[] table,待源码核验,not_done,https://github.com/DCMTK/dcmtk/commit/d6ae1bc8d5b9ae9c7300013c8c85cc2ea0fd8cf5
+buffer_out_of_bounds,CVE-2026-54559,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/cmusphinx/pocketsphinx/commit/2a3c03788a9973eff548664334fb781e9f4ad4a5
+buffer_out_of_bounds,CVE-2026-54633,B3,索引或计数未受目标数组约束,Indexed color-space image can cause a heap out-of-bounds,待源码核验,not_done,https://github.com/podofo/podofo/commit/999c519d285c4a65eba48409d9cd2da9d4743cca
+buffer_out_of_bounds,CVE-2026-59986,B4,整数溢出或有符号转换破坏边界检查,SIZE_MAX,待源码核验,not_done,https://github.com/alanxz/rabbitmq-c/pull/888
+buffer_out_of_bounds,CVE-2026-62958,B4,整数溢出或有符号转换破坏边界检查,integer overflow,待源码核验,not_done,https://github.com/libriscv/libriscv/commit/61ef9ca82c8876dd80b33780893ba512af780e93
+buffer_out_of_bounds,CVE-2026-71971,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/u-boot/u-boot/commit/04ca915d5bf39dda5d1bce62d04d2b59d293c5b9
+buffer_out_of_bounds,CVE-2026-71972,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/u-boot/u-boot/commit/5201e83342d64c2f438ea35158575f28225e752e
+buffer_out_of_bounds,CVE-2026-77214,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/libexpat/libexpat/commit/13c5f63a7f1c52c2feee3b16a1134d4fb68e9ea0
+buffer_out_of_bounds,CVE-2026-78119,B1,容量计算与写入量不一致,fixed-size stack buffer in taf_npcx_completion_handler() was overflow,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/1a8a0839c557a4aaa7572eb5d4948abde307b39f
+buffer_out_of_bounds,CVE-2026-79978,B3,索引或计数未受目标数组约束,offset that pushes the next batch's writes out of bounds,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/3451bb1e1e9165844060551164adb8a756e7b6b7
+buffer_out_of_bounds,CVE-2026-80431,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/kovidgoyal/kitty/commit/7d2fbaadcc2b1eeeef89bd875ec622b42362574b
+buffer_out_of_bounds,CVE-2026-80638,B0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/1ec3cca2d8b6b9ff6584ca626d4c8918bbf48d44
+buffer_out_of_bounds,CVE-2026-80693,B1,容量计算与写入量不一致,allocated_vectors but chunks summing higher write,待源码核验,not_done,https://git.kernel.org/stable/c/41bb8748124d0d8ee5d8e1eace9dfbc874bc9564
+buffer_out_of_bounds,CVE-2026-80725,B3,索引或计数未受目标数组约束,"ide""), making this fix relevant only for older stable",待源码核验,not_done,https://git.kernel.org/stable/c/03cb8cc2961f5f781d12e903782cb3815ed84b1c
+buffer_out_of_bounds,CVE-2026-81507,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/espressif/esp-idf/commit/14c99559b4337cabcf0f09c21d16b93c4cd7a6fe
+buffer_out_of_bounds,CVE-2026-82961,B3,索引或计数未受目标数组约束,count and as an array,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/020e83e06b35e98a4a3c2354f67e5eee3f163363
+buffer_out_of_bounds,CVE-2026-84383,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/strukturag/libheif/commit/f4fb8bde4704ebb46e46ff9fb94407c9774153b2
+buffer_out_of_bounds,CVE-2026-85034,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/64b1e7447856f635ee8bce9eab7c615da78133b8
+buffer_out_of_bounds,CVE-2026-85279,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/notepad-plus-plus/notepad-plus-plus/commit/70b88f95311d88523cde6be1b1ec938aa48c24bc
+buffer_out_of_bounds,CVE-2026-86054,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/notepad-plus-plus/notepad-plus-plus/commit/046af3f626be7715886412313fc18f58b30dfcaf
+buffer_out_of_bounds,CVE-2026-87040,B6,协议或文件字段直接决定访问范围,unchecked length,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/8ca41216e8e47a018e52044992789b5011ac99aa
+buffer_out_of_bounds,CVE-2026-89470,B3,索引或计数未受目标数组约束,count (up to 255) resulting in an out of bounds,待源码核验,not_done,https://git.kernel.org/stable/c/304a29ac55ba3ee6eceaf7d83d09cd9709f3bf60
+buffer_out_of_bounds,CVE-2026-89471,B3,索引或计数未受目标数组约束,"count against EC_USB_PD_MAX_PORTS, the size of the ports[] array",待源码核验,not_done,https://git.kernel.org/stable/c/0b5096f6804161b61451b1cec0e38678630be849
+buffer_out_of_bounds,CVE-2026-90587,B3,索引或计数未受目标数组约束,"identified, so the impact is availability plus a bounded out-of-bounds",待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/04e4284b4c3d3cd41791d44d7c39361e268b4d02
+buffer_out_of_bounds,CVE-2026-90588,B5,字符串终止符或编码宽度漏算,%s conversion,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/0b2d0c2609cb0a4cd5cd82d2471e9ce8e3a14a8d
+buffer_out_of_bounds,CVE-2026-90832,B6,协议或文件字段直接决定访问范围,controller-declared Data_Length,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/e9c3252c244b094b9caf6f426ffb77c509e58a9f
+buffer_out_of_bounds,CVE-2026-90833,B2,偏移、长度与剩余范围未联动,offset + len,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/ce2ec9b3a34d71f52f5d1d7491b91393e334713e
+buffer_out_of_bounds,CVE-2026-92824,B3,索引或计数未受目标数组约束,incorrectly uses the count,待源码核验,not_done,https://github.com/fedora-modularity/libmodulemd/pull/643
+buffer_out_of_bounds,CVE-2026-93671,B5,字符串终止符或编码宽度漏算,NUL terminat,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/221b72b32060e613ee5f2416b270073d7be79277
+buffer_out_of_bounds,CVE-2026-95125,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/libming/libming/pull/450
+buffer_out_of_bounds,CVE-2026-97692,B0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/bacnet-stack/bacnet-stack/pull/1435
+buffer_out_of_bounds,CVE-2026-98053,B3,索引或计数未受目标数组约束,indexes that are part of ->config_ids array,待源码核验,not_done,https://git.kernel.org/stable/c/681e91035dc794896a904852040837190e5041f5
+buffer_out_of_bounds,CVE-2026-98107,B3,索引或计数未受目标数组约束,id array,待源码核验,not_done,https://git.kernel.org/stable/c/56c2b5831d39dc84aad2573dc3e197af1a872a05
+buffer_out_of_bounds,CVE-2026-98111,B0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/5ec43df2830b73e004147303bf7914ca884d6770
+buffer_out_of_bounds,CVE-2026-98149,B3,索引或计数未受目标数组约束,indexing with sparse CPU IDs Per-CPU array,待源码核验,not_done,https://git.kernel.org/stable/c/75b0a6db4300e4c2c9e97a0848deaa7acfb42fb7
+buffer_out_of_bounds,CVE-2026-98155,B0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/12deeade460d47031267256ba07add51cc7eabd0
+buffer_out_of_bounds,CVE-2026-98158,B0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/0c53eb14975f029abd6b26896a460f0d2aaefe6b
+use_after_free,CVE-2025-60476,U6,容器替换或遍历期间元素失效,free in the gf_odf_ac4_cfg_clean_list,待源码核验,not_done,https://github.com/gpac/gpac/commit/e02d1fd24cdc26acb1b236ab38b3832cffcae21b
+use_after_free,CVE-2025-60478,U0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/gpac/gpac/commit/c592a144bbe339ee581ca88aaa3247362795b742
+use_after_free,CVE-2025-60490,U0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/gpac/gpac/commit/d0793f92e04fe284a25c2a9335cc5edc68deb6d4
+use_after_free,CVE-2025-60491,U0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/gpac/gpac/commit/f6128214feb69cd689e4b9944a2621bc4ad8faf0
+use_after_free,CVE-2026-107493,U3,引用计数或所有权转移错误,错误路径释放调用者原有的栈元素，所有权边界错误,待源码核验,patch_checked,https://github.com/openssl/openssl/commit/0486dfadfec558e1808f59d35a8d79e541c4e7d7
+use_after_free,CVE-2026-109268,U0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/ImageMagick/ImageMagick/commit/3285d692ebf200e9cbeff59d1ccc00caab99ad54
+use_after_free,CVE-2026-109271,U4,错误路径提前释放或重复清理,"allocation failure conditions, causes freed memory to be reuse",待源码核验,not_done,https://github.com/ImageMagick/ImageMagick/commit/2ed1b96b9bc71434f0c4e82e3c63fec029c684c6
+use_after_free,CVE-2026-109280,U0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/ImageMagick/ImageMagick/commit/fb743d60700c9bc350c3d2a0b48b998bdabc466c
+use_after_free,CVE-2026-116540,U6,容器替换或遍历期间元素失效,frees the shared key array,待源码核验,not_done,https://github.com/netty/netty-tcnative/commit/59662a8b07a9a7623ae1bc472f5751f31c81a118
+use_after_free,CVE-2026-11893,U5,异步回调或拆卸时序,destroy callback,有异步/并发线索：单线程准入待核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/76d92d502b30218aaf11cbbe1be180a317627bb9
+use_after_free,CVE-2026-119372,U2,释放后未清除别名或缓存,dangling cached position-list pointer,待源码核验,not_done,https://github.com/sqlite/sqlite/commit/a87bd2471a9c0606e78d3c3678bcd9cecaa0e731
+use_after_free,CVE-2026-119378,U6,容器替换或遍历期间元素失效,free vulnerability in the R-Tree,待源码核验,not_done,https://github.com/sqlite/sqlite/commit/d21bd37c7cfc1b85b17a6703555f0926b6236e04
+use_after_free,CVE-2026-125394,U2,释放后未清除别名或缓存,retain stale brush cache pointer,待源码核验,not_done,https://github.com/FreeRDP/FreeRDP/commit/ffc6b976e3589b768e8e279bc61dfb7b5896e832
+use_after_free,CVE-2026-53175,U5,异步回调或拆卸时序,free caused by the fqdir_pre_exit() flush On netns teardown,待源码核验,not_done,https://git.kernel.org/stable/c/010c3313a4d178dc2d3ce958d2e5cb055e2864c1
+use_after_free,CVE-2026-53212,U2,释放后未清除别名或缓存,dangling pointer,待源码核验,not_done,https://git.kernel.org/stable/c/349df61526d2e39decc685d246202e3e284cfe05
+use_after_free,CVE-2026-53234,U5,异步回调或拆卸时序,free during device removal The driver was using devm_register_netdev() which causes unregister,待源码核验,not_done,https://git.kernel.org/stable/c/a0130d682222ae21afc395aead7cd2d87e1a8358
+use_after_free,CVE-2026-53275,U0,描述不足，需读补丁,,有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/087dbacf897c020f438f780f0a4a8aa73b6d7c5a
+use_after_free,CVE-2026-53290,U3,引用计数或所有权转移错误,"drm_dev_put called before stream disable in close In xe_eu_stall_stream_close(), drm_dev_put() is called before",待源码核验,not_done,https://git.kernel.org/stable/c/84f2bfbe6e38f8b9815ca00826e53b7f51420402
+use_after_free,CVE-2026-53359,U6,容器替换或遍历期间元素失效,map_remove,待源码核验,not_done,https://git.kernel.org/stable/c/0b5e8ead71e683bcf6232db16234cf7e6d553a23
+use_after_free,CVE-2026-53384,U5,异步回调或拆卸时序,freed while the port still references it (via the saved private_data and serial_in/serial_out callback,待源码核验,not_done,https://git.kernel.org/stable/c/07ffe414a708ae60551401cec5d727ed156b8caf
+use_after_free,CVE-2026-53388,U6,容器替换或遍历期间元素失效,replace_page_cache,待源码核验,not_done,https://git.kernel.org/stable/c/0223f452532d9cd8a5e87c45de828fd93c99bd25
+use_after_free,CVE-2026-63381,U2,释放后未清除别名或缓存,references the dangling,待源码核验,not_done,https://github.com/libevent/libevent/commit/5cb95ba2f804f8aff46f88d58391c71e1251cd1c
+use_after_free,CVE-2026-63793,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/acd744019460bad22e43d4569a502f9c88d331ae
+use_after_free,CVE-2026-63795,U3,引用计数或所有权转移错误,drops a reference to oldfid even though owner,待源码核验,not_done,https://git.kernel.org/stable/c/1a3860d46e3eb47dbd60339783cdad7904486b9f
+use_after_free,CVE-2026-63797,U2,释放后未清除别名或缓存,stale priv pointer,待源码核验,not_done,https://git.kernel.org/stable/c/104d100212396801f1d9d388282f746e23e2bfd6
+use_after_free,CVE-2026-63800,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/13e198a90ca4050f4bee8a3f23680389a6563ccc
+use_after_free,CVE-2026-63826,U2,释放后未清除别名或缓存,stale pointer,待源码核验,not_done,https://git.kernel.org/stable/c/0d35f9f194a858567a21017d69318a51e3a822b9
+use_after_free,CVE-2026-63906,U3,引用计数或所有权转移错误,"of_node_put(np) is called prematurely before the last access to np, leading to a use-after-free",待源码核验,not_done,https://git.kernel.org/stable/c/27e62532228dc42367bb43ebbcd7bf49d8db2b0d
+use_after_free,CVE-2026-63927,U7,同一函数内先释放后访问,"free in debug code We're not allowed to dereference ""urb"" after call",待源码核验,not_done,https://git.kernel.org/stable/c/0584af4fe40fa5e254a05d69ce658746de641708
+use_after_free,CVE-2026-63930,U3,引用计数或所有权转移错误,free the current buffer if refcount,待源码核验,not_done,https://git.kernel.org/stable/c/29783e6b6ec0b7152a15e53a063f17537e81177d
+use_after_free,CVE-2026-64011,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/2dfdaaf7d933b676124aadec6698825e95f94fe9
+use_after_free,CVE-2026-64017,U6,容器替换或遍历期间元素失效,"free_plug_rqs, freeing the cache",待源码核验,not_done,https://git.kernel.org/stable/c/23d8ea1e303b5f32d883757a4a707e791dbc9808
+use_after_free,CVE-2026-64033,U4,错误路径提前释放或重复清理,free in path file creation cleanup In the error path,有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/00904a73272b9f3ef3952fe69a833909dccad1ef
+use_after_free,CVE-2026-64050,U5,异步回调或拆卸时序,free on msm driver teardown,待源码核验,not_done,https://git.kernel.org/stable/c/95048a12f48c627bc2ccc4d84f87640630ba2bdb
+use_after_free,CVE-2026-64071,U2,释放后未清除别名或缓存,never clears the pointer,待源码核验,not_done,https://git.kernel.org/stable/c/7c89f474005d8377525d2991930b7432ee193a52
+use_after_free,CVE-2026-64099,U3,引用计数或所有权转移错误,"kref destructor, mirroring v3d_render_job_free",有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/0f8efc45740b0628a787d1b0be8a0ddabd700625
+use_after_free,CVE-2026-64113,U5,异步回调或拆卸时序,free in VEPA multicast source pruning ixgbevf_clean_rx_irq,待源码核验,not_done,https://git.kernel.org/stable/c/3d931ac62411a7e43b85dba5fe45e1a4a91bd5cb
+use_after_free,CVE-2026-64117,U6,容器替换或遍历期间元素失效,free_skb()'s it (no-route) before returning RX_QUEUE,待源码核验,not_done,https://git.kernel.org/stable/c/0cd37e746e98ab0baa6d8b812955220775b080d6
+use_after_free,CVE-2026-64122,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/152295aa7dc2c5e046606f7dadc84fce41136446
+use_after_free,CVE-2026-64221,U4,错误路径提前释放或重复清理,allocation fails to avoid passing a pointer to the released channel to the DMA engine (or trying to free,待源码核验,not_done,https://git.kernel.org/stable/c/178b9b570c0f75fa7e691490520328b20d19138e
+use_after_free,CVE-2026-64239,U5,异步回调或拆卸时序,release callback,有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/0ba6c05156d9ff9fc6ca22b7690e2eec9eca66f7
+use_after_free,CVE-2026-64245,U7,同一函数内先释放后访问,freed before name is no longer use,待源码核验,not_done,https://git.kernel.org/stable/c/13b6f0cdd5cd5e60f682ec43134ab0e2024bd356
+use_after_free,CVE-2026-64246,U3,引用计数或所有权转移错误,of_node_put(dn) after,待源码核验,not_done,https://git.kernel.org/stable/c/2205275be9be981e70ff29610b0117d8853fac70
+use_after_free,CVE-2026-64249,U3,引用计数或所有权转移错误,of_node_put(child_region) after the error print to avoid accessing free,待源码核验,not_done,https://git.kernel.org/stable/c/070b0ce947b18fa3dec0729695147f7e19599649
+use_after_free,CVE-2026-64251,U3,引用计数或所有权转移错误,put_device(curr) to release,待源码核验,not_done,https://git.kernel.org/stable/c/257595adf9dac15ae1edd9d07753fbc576a7583d
+use_after_free,CVE-2026-64259,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/1efd3d474fc0ba74dfd984249bca78807d739812
+use_after_free,CVE-2026-64261,U5,异步回调或拆卸时序,free in fuse_uring_async_stop_queues fuse_uring_async,有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/23a356e0bd96c8d5fb3ddff069f692bf10cab5c1
+use_after_free,CVE-2026-64265,U2,释放后未清除别名或缓存,stale intr_entry,待源码核验,not_done,https://git.kernel.org/stable/c/1d8ecd0cd696a5df0b2f72046a4ccee5d2a8ec2c
+use_after_free,CVE-2026-64266,U5,异步回调或拆卸时序,async end callback (eg fuse_writepage_free()) can free,有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/0e4a5a000123d81234e27a2f8187688cf608f755
+use_after_free,CVE-2026-64303,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/01980b5da56e573d62798d0ff6c86bcaa2b22cbe
+use_after_free,CVE-2026-64311,U5,异步回调或拆卸时序,free bug due to the use of wait_for_completion_interrupt,待源码核验,not_done,https://git.kernel.org/stable/c/037ec8353711c79353b12d5634e0c9ff363a9efa
+use_after_free,CVE-2026-64329,U4,错误路径提前释放或重复清理,error path already orders free_irq() before ucsi_destroy,有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/1a160076d3d0dcd4a98a4599ad96eec0790b099b
+use_after_free,CVE-2026-64342,U5,异步回调或拆卸时序,free on disconnect,待源码核验,not_done,https://git.kernel.org/stable/c/164398601a7f160bc3df1efa454f983302cef03f
+use_after_free,CVE-2026-64372,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/0e3c739a2f6fc1de5b19a8839ab80696b9cb2a29
+use_after_free,CVE-2026-64401,U5,异步回调或拆卸时序,unregisters and is free,待源码核验,not_done,https://git.kernel.org/stable/c/0700f946659d0ab2352ec8a9b1c6fc74b13a27d7
+use_after_free,CVE-2026-64421,U7,同一函数内先释放后访问,free on remove KASAN reports a slab-use-after-free in __media_entity_remove_link() during rmmod of imx8_isi: BUG: KASAN: slab-use,待源码核验,not_done,https://git.kernel.org/stable/c/b670bf89824ede5d07d20bb9bfbafb754846081d
+use_after_free,CVE-2026-64453,U5,异步回调或拆卸时序,disconnect UAF,待源码核验,not_done,https://git.kernel.org/stable/c/0bfeec21984fedd32987f4e4c0cde34b445af404
+use_after_free,CVE-2026-64455,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/2a52d55c86a429dac47886b8424e67f90b001e67
+use_after_free,CVE-2026-64470,U4,错误路径提前释放或重复清理,free on marvell probe fail,有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/0ccb1cb0a464dab78284c34196cd3e8e18bab4c4
+use_after_free,CVE-2026-64471,U5,异步回调或拆卸时序,free and double-free when they are eventually disconnect,待源码核验,not_done,https://git.kernel.org/stable/c/14e02f1449ba425a44dedbec9a21efafb056e09f
+use_after_free,CVE-2026-64601,U5,异步回调或拆卸时序,"disconnect, the corrupted list leads to use-after-free",有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/16f14f55141d4c55c3f321f93c328fff7cd6860a
+use_after_free,CVE-2026-67299,U2,释放后未清除别名或缓存,retains and later dispatches that stale pointer,有异步/并发线索：单线程准入待核验,not_done,https://github.com/FreeRDP/FreeRDP/commit/5370fb26fbf034ecd11d3026b6ad639b5fff493f
+use_after_free,CVE-2026-67300,U2,释放后未清除别名或缓存,stale pointer,有异步/并发线索：单线程准入待核验,not_done,https://github.com/FreeRDP/FreeRDP/commit/5370fb26fbf034ecd11d3026b6ad639b5fff493f
+use_after_free,CVE-2026-68147,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/4462ac3d90e897dda52ce4b6af2d526ddae835a8
+use_after_free,CVE-2026-68263,U4,错误路径提前释放或重复清理,double call to drm_sched_entity_fini() Call sequence of double call: pvr_context_destroy,有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/4af24c27a39ba147a613a09e10b9e0f7294524c0
+use_after_free,CVE-2026-68302,U1,重分配后沿用旧内部指针,reallocate that head before the cached pointer,待源码核验,not_done,https://git.kernel.org/stable/c/3656a79f94c471827a08f2cacce5f94ad5e52c24
+use_after_free,CVE-2026-68341,U6,容器替换或遍历期间元素失效,free in unlock_ovpn() unlock_ovpn() iterates over the release_list using llist_for_each_entry,待源码核验,not_done,https://git.kernel.org/stable/c/4cdb209f12a89c5faf9be0c45edb90ccdf65db0c
+use_after_free,CVE-2026-68357,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/0ca252720f0e38411cfec3431db9bb1aed0a412c
+use_after_free,CVE-2026-68423,U7,同一函数内先释放后访问,frees item->concat so calling mtd_virt_concat_put_mtd_devices(item->concat) after that leads to a use,待源码核验,not_done,https://git.kernel.org/stable/c/4b45d7836b9526b8776af5f29219615be9417230
+use_after_free,CVE-2026-68424,U0,描述不足，需读补丁,,待源码核验,not_done,https://git.kernel.org/stable/c/4d91d783f93430c0efa834daff6640c07d87ebbc
+use_after_free,CVE-2026-68428,U2,释放后未清除别名或缓存,pointers unchanged,待源码核验,not_done,https://git.kernel.org/stable/c/034b7fa1f5846d69eb51f12ce6d1c71871e83c2d
+use_after_free,CVE-2026-69150,U2,释放后未清除别名或缓存,retains raw Entry pointers in m_entry,待源码核验,not_done,https://github.com/keepassxreboot/keepassxc/commit/6a534f38c61295d60b0e937739a12511e76dbfeb
+use_after_free,CVE-2026-72070,U4,错误路径提前释放或重复清理,"free_hw() frees priv, both in lbtf_remove_card() and in the probe error path",有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/066b59e84f90d270cc15f0370166155aca507630
+use_after_free,CVE-2026-72093,U4,错误路径提前释放或重复清理,"free in amdxdna_gem_dmabuf_mmap() When vm_insert_pages() fails, the error path",待源码核验,not_done,https://git.kernel.org/stable/c/4e370b5289624f46a356dcc94f9f87025eaa6036
+use_after_free,CVE-2026-72112,U6,容器替换或遍历期间元素失效,freed once the map,待源码核验,not_done,https://git.kernel.org/stable/c/0639ea767fe04c288a8d6cb826100fe3d95d4936
+use_after_free,CVE-2026-72140,U6,容器替换或遍历期间元素失效,free in mlxbf_i2c_init_resource() If devm_platform_get_and_ioremap,待源码核验,not_done,https://git.kernel.org/stable/c/5290a52533e09c38374963f4bb0b35121fe555c7
+use_after_free,CVE-2026-72233,U1,重分配后沿用旧内部指针,pskb_may_pull() called by batadv_bla_is_backbone_gw() could reallocate the buffer,待源码核验,not_done,https://git.kernel.org/stable/c/41819c5467b6eb8ab4567f0ac98702ce9b6abbb1
+use_after_free,CVE-2026-72234,U1,重分配后沿用旧内部指针,pskb_may_pull() called by batadv_get_vid() could reallocate the buffer,待源码核验,not_done,https://git.kernel.org/stable/c/7141990add3f75436f2933cb310654cad3b1e3e9
+use_after_free,CVE-2026-72235,U1,重分配后沿用旧内部指针,pskb_may_pull() in batadv_interface_rx() could reallocate the buffer,待源码核验,not_done,https://git.kernel.org/stable/c/035e1fed892d3d06002a73ff73668f618a514644
+use_after_free,CVE-2026-72283,U2,释放后未清除别名或缓存,dangling pointer,待源码核验,not_done,https://git.kernel.org/stable/c/d1379888cc4230bac647ec24ab83306afbd03e88
+use_after_free,CVE-2026-74677,U5,异步回调或拆卸时序,"unregister_netdev() does not call ipheth_close()): 15 of 15 unpatched boots report a slab-use-after-free in __run_timers(), free",待源码核验,not_done,https://git.kernel.org/stable/c/2c7496124e94c7f9c3daa5c5b1fb563ca9d62c45
+use_after_free,CVE-2026-74705,U1,重分配后沿用旧内部指针,"reallocates skb->head, the saved UDP header pointer",待源码核验,not_done,https://git.kernel.org/stable/c/19d89b13a43640b2da2f277ee462d919d988cb6f
+use_after_free,CVE-2026-74730,U3,引用计数或所有权转移错误,refcount of the 'struct nfs_server' object for the duration of the FREE,待源码核验,not_done,https://git.kernel.org/stable/c/80ed3d762628b36c9e4b22fac7c65b72ef3b13dd
+use_after_free,CVE-2026-74743,U1,重分配后沿用旧内部指针,"reallocation overhead, skb headroom underflows, or KASAN slab-use-after-free crashes when dev_hard_header() / macvlan_hard_header",待源码核验,not_done,https://git.kernel.org/stable/c/28afc87bd8da0b3348bbbd834c8a89e83712cf5e
+use_after_free,CVE-2026-74744,U1,重分配后沿用旧内部指针,"reallocation overhead, skb headroom underflows, or KASAN slab-use-after-free crashes when dev_hard_header() / ipvlan_hard_header",待源码核验,not_done,https://git.kernel.org/stable/c/5c2ca77212eb38559b0353b8363b7a84f4b019dd
+use_after_free,CVE-2026-76957,U0,描述不足，需读补丁,,待源码核验,not_done,https://github.com/libexpat/libexpat/pull/1322
+use_after_free,CVE-2026-77358,U7,同一函数内先释放后访问,TLS 会话先释放，随后 WebSocket close 帧仍使用它,待源码核验,patch_checked,https://github.com/yhirose/cpp-httplib/commit/2f986fd5e56e7c5f686d965174516360930f371d
+use_after_free,CVE-2026-80600,U1,重分配后沿用旧内部指针,pskb_may_pull() called by batadv_get_vid() could reallocate the buffer,待源码核验,not_done,https://git.kernel.org/stable/c/01678c53a7717a748aee388b6839e7b9761d641c
+use_after_free,CVE-2026-80601,U1,重分配后沿用旧内部指针,pskb_may_pull() called by batadv_get_vid() could reallocate the buffer,待源码核验,not_done,https://git.kernel.org/stable/c/2760b38222c8828b075802342fe3b91eb823d542
+use_after_free,CVE-2026-80642,U3,引用计数或所有权转移错误,refcount in liveupdate_flb_get_incoming() so that the FLB structure cannot be free,待源码核验,not_done,https://git.kernel.org/stable/c/725ada0273a0f48a67fd59cc518d7f8055fe3d5c
+use_after_free,CVE-2026-80650,U4,错误路径提前释放或重复清理,"free(), but these are not initialized at every error path",待源码核验,not_done,https://git.kernel.org/stable/c/51b8dc5163d2ff2bf04019f8bf7e3bd0e75bb654
+use_after_free,CVE-2026-80654,U0,描述不足，需读补丁,,有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/059522f4df86198f0df10dbc53d7ac04cf36a0b8
+use_after_free,CVE-2026-80681,U6,容器替换或遍历期间元素失效,cached eth pointer pointing to freed,待源码核验,not_done,https://git.kernel.org/stable/c/1235e017aa11cf01e91b613c4c5ed6aa28934fff
+use_after_free,CVE-2026-85033,U2,释放后未清除别名或缓存,stale buffer,待源码核验,not_done,https://github.com/zephyrproject-rtos/zephyr/commit/47728746bb52863607f06072c13a0a524ad6b654
+use_after_free,CVE-2026-85748,U1,重分配后沿用旧内部指针,reallocation can leave stale,待源码核验,not_done,https://github.com/MariaDB/server/commit/91156c3de58762196605150ab3f756fe952592d1
+use_after_free,CVE-2026-89469,U5,异步回调或拆卸时序,"free in lp8727_release_irq() lp8727_isr_func(), the threaded IRQ",有异步/并发线索：单线程准入待核验,not_done,https://git.kernel.org/stable/c/035cc6bc4d412dd4302862e8f859b784fcd4653b
+use_after_free,CVE-2026-95691,U2,释放后未清除别名或缓存,retains a direct pointer,待源码核验,not_done,https://github.com/openssl/openssl/commit/dd90ceb99a3c2ddba336bb4a00be9ebabd84c2a1
+use_after_free,CVE-2026-95834,U2,释放后未清除别名或缓存,"never cleared, so clearing the owning structure's own pointer",待源码核验,not_done,https://github.com/kovidgoyal/kitty/commit/b54bfbb4f85f992edca9b04f5c0c2612454eec23
+use_after_free,CVE-2026-98083,U7,同一函数内先释放后访问,"free the transaction before the caller's second abort accesses the handle and transaction, resulting in use",待源码核验,not_done,https://git.kernel.org/stable/c/089d9c45ea49ffffe55a8fe08d0ce2536626e90a
+use_after_free,CVE-2026-98122,U6,容器替换或遍历期间元素失效,removes the forwarding entry of a source before freeing the source entry,待源码核验,not_done,https://git.kernel.org/stable/c/069d5527bb0f229e528fa88c6b72f15060c373f2

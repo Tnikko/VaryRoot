@@ -1,0 +1,25 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  392.7kB
+Step 1/6 : FROM sha256:48d884813cf44e927cf64c5529dd630dd3b18338c6dc727991eef9b71e934a20
+ ---> 48d884813cf4
+Step 2/6 : COPY native /opt/native
+ ---> 4e3086323108
+Step 3/6 : COPY varyroot /opt/role/varyroot
+ ---> 146c4fc0dd67
+Step 4/6 : ENV PYTHONPATH=/opt/role PYTHONDONTWRITEBYTECODE=1
+ ---> Running in 54a0f205e05b
+ ---> Removed intermediate container 54a0f205e05b
+ ---> c0807bfd617f
+Step 5/6 : USER 65534:65534
+ ---> Running in ac2ff27b7a75
+ ---> Removed intermediate container ac2ff27b7a75
+ ---> e7b26ede31a6
+Step 6/6 : WORKDIR /input
+ ---> Running in ed24d82f13a5
+ ---> Removed intermediate container ed24d82f13a5
+ ---> 34eff3595848
+Successfully built 34eff3595848
+Successfully tagged varyroot-verifier:step05

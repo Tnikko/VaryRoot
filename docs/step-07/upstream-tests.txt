@@ -1,0 +1,8 @@
+test_a2_replaced_repair (test_multibatch07.Multibatch.test_a2_replaced_repair) ... ok
+test_a5_revised_explanation (test_multibatch07.Multibatch.test_a5_revised_explanation) ... ok
+test_real_oob_revise (test_multibatch07.Multibatch.test_real_oob_revise) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 113.797s
+
+OK

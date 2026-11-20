@@ -1,0 +1,27 @@
+test_known_target_programs (test_probe05.NativeTests.test_known_target_programs) ... ok
+test_observed_transition_and_reference_bytes (test_probe05.NativeTests.test_observed_transition_and_reference_bytes) ... ERROR
+test_order_and_interception (test_probe05.NativeTests.test_order_and_interception) ... ok
+test_undefined_source_addition_has_no_post_value (test_probe05.NativeTests.test_undefined_source_addition_has_no_post_value) ... ERROR
+
+======================================================================
+ERROR: test_observed_transition_and_reference_bytes (test_probe05.NativeTests.test_observed_transition_and_reference_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_probe05.py", line 52, in test_observed_transition_and_reference_bytes
+    self.assertTrue(rebound["initial_is_null"])
+                    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'initial_is_null'
+
+======================================================================
+ERROR: test_undefined_source_addition_has_no_post_value (test_probe05.NativeTests.test_undefined_source_addition_has_no_post_value)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_probe05.py", line 44, in test_undefined_source_addition_has_no_post_value
+    ok=self.probe.signed_add(language,254,3)
+       ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Native' object has no attribute 'signed_add'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.337s
+
+FAILED (errors=2)

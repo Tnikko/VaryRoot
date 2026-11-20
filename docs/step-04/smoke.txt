@@ -1,0 +1,8 @@
+test_contract_diagnostics_survive_real_handoff (test_source_seed.IsolatedSourceSeed.test_contract_diagnostics_survive_real_handoff) ... ok
+test_real_A_to_seed_pending (test_source_seed.IsolatedSourceSeed.test_real_A_to_seed_pending) ... ok
+test_only_source_material_admitted (test_source_seed.SourceRequestTests.test_only_source_material_admitted) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 6.822s
+
+OK

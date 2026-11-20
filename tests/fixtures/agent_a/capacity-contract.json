@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "capacity-contract",
+  "version": 1,
+  "reviewer": "synthetic-fixture-maintainer",
+  "provenance": "registered logical prefix for sample.data; eight initialized physical entries; two permitted logical entries",
+  "subject": "data",
+  "symbol": "sample",
+  "path": "sample.c",
+  "operand_type": "unsigned int",
+  "extent": {
+    "value": 8,
+    "unit": "bytes"
+  },
+  "approval": "approved"
+}

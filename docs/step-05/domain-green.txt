@@ -1,0 +1,6 @@
+test_zero_and_unseen_fault_mode (test_domain05.Domains.test_zero_and_unseen_fault_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.482s
+
+OK

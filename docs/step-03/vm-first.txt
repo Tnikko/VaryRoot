@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/tq/varyroot/varyroot/contract_replay.py", line 173, in <module>
+    for chain in replay(parser.parse_args().workspace):
+                 ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tq/varyroot/varyroot/contract_replay.py", line 159, in replay
+    chains = [ContractRun(root, route).execute() for route in ROUTES]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/tq/varyroot/varyroot/contract_replay.py", line 98, in execute
+    seed = self.stage("A", "seed", self.bundles, "A", "seed.json", "seed")
+  File "/home/tq/varyroot/varyroot/contract_replay.py", line 92, in stage
+    obj = validate_json(read_file(self.root / f"{worker}-{successful}" / "output" / output))
+  File "/home/tq/varyroot/varyroot/publication.py", line 83, in validate_json
+    raise ValueError("expected canonical JSON object")
+ValueError: expected canonical JSON object

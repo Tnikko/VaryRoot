@@ -1,0 +1,6 @@
+test_npd_uncovered_positive (test_multibatch07.Multibatch.test_npd_uncovered_positive) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 15.762s
+
+OK

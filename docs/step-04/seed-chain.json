@@ -1,0 +1,818 @@
+{
+  "workspace": "runs/step04-source-submission",
+  "runs": {
+    "development:offline-source": {
+      "state": "seed_pending",
+      "version": 1,
+      "ingress": {
+        "image": "sha256:4d8b8dd565b137c9654d1ae60f27403b775e1c0ea33d2753075aa93a5b9dcbf4",
+        "manifest_sha": "4c49ae623a5d6c1af07640dcc3430031557b9c55ad65a2aa953fc11c9104f803",
+        "request": "2eac759a4701f5c88de54a037579a51fa972c314231eb1f2cfad1e294c6bc5af",
+        "role_output_sha": "dab75f30dfc7b90de147c7af21c6e7b40a200509c2f6d8285220c571c79b0ef8"
+      },
+      "packet_sha": "46b6b47923e2ab649eb0377a76d1f363fbbc18d5f9cab87a01b8a4f4af6a72fd",
+      "target_pair": {
+        "after": "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0",
+        "basis": "unique registered sample/data read",
+        "before": "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+        "policy": "definition"
+      },
+      "mapping": [
+        {
+          "approval": "accepted_for_scope",
+          "config_ref": "config:bcfc31d8d68221a2bcca0c9b0676b6f9678883621b803ba556eac378c0d74614",
+          "operation": "read",
+          "original": "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+          "original_span": [
+            83,
+            90
+          ],
+          "removed_nodes": [],
+          "side": "before",
+          "skeleton": "target:56ae1294bf8591863e0ca3c67fdd7572cb2a3abc22ebb8a30db65188c38b90f0",
+          "skeleton_span": [
+            107,
+            114
+          ],
+          "snapshots": [
+            "src.66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818@1",
+            "src.322f11c2342e22c34fcbecac5a58b0a0f8087ee3afcdbd7bf7dcc0ac3717affd@1"
+          ],
+          "status": "exact_1to1",
+          "transform": "comment_prefix"
+        },
+        {
+          "approval": "accepted_for_scope",
+          "config_ref": "config:bcfc31d8d68221a2bcca0c9b0676b6f9678883621b803ba556eac378c0d74614",
+          "operation": "read",
+          "original": "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0",
+          "original_span": [
+            109,
+            116
+          ],
+          "removed_nodes": [],
+          "side": "after",
+          "skeleton": "target:78d0b6f27b7263d8b0ecca139ada3f3fcddf92a8aa08de022bff6656b3cad4a7",
+          "skeleton_span": [
+            133,
+            140
+          ],
+          "snapshots": [
+            "src.3800f3602f4a539faff8d630a0b58b31e0fa456e625fd136b165fa63e0f4a1db@1",
+            "src.c2fa3cf70e68176daede03e2e3f8f536b4e3cddf11669bd1569663d6c65889da@1"
+          ],
+          "status": "exact_1to1",
+          "transform": "comment_prefix"
+        }
+      ],
+      "approvals": [
+        {
+          "authority_ref": "capacity-contract@1",
+          "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+          "basis": {
+            "approval": "approved",
+            "unit": "bytes",
+            "value": 8
+          },
+          "id": "logical_prefix@1",
+          "independent_reviewer": "synthetic-fixture-maintainer",
+          "reason": "matched_independent_contract",
+          "review": "accepted_for_scope",
+          "scope": {
+            "domain_ref": "singleton@1",
+            "path": "fixed_input",
+            "subject": "data"
+          },
+          "status": "approved",
+          "subject": "data",
+          "targets": [
+            "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+            "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0"
+          ]
+        }
+      ],
+      "unqualified": {
+        "package_version": 1,
+        "evidence": {},
+        "blockers": [
+          "after_ok",
+          "before_ok",
+          "candidates_ok",
+          "contracts_ok",
+          "mapping_ok",
+          "versions_ok"
+        ]
+      },
+      "role_blockers": [
+        "A4_before_missing",
+        "A4_after_missing",
+        "A6_candidate_check_missing"
+      ],
+      "predictions": {
+        "spec.exit_or_contained@1": {
+          "after": {
+            "missing_facts": [],
+            "outcome": "quiet"
+          },
+          "before": {
+            "missing_facts": [],
+            "outcome": "report"
+          }
+        },
+        "spec.exit_or_start_inside@1": {
+          "after": {
+            "missing_facts": [],
+            "outcome": "quiet"
+          },
+          "before": {
+            "missing_facts": [],
+            "outcome": "report"
+          }
+        }
+      },
+      "events": [
+        {
+          "commit_seq": 13,
+          "run_id": "development:offline-source",
+          "kind": "created",
+          "detail": {
+            "accounts": {
+              "B.verify": 2,
+              "C.repair.Q0": 1,
+              "C.repair.Qstar": 1
+            },
+            "group": "development",
+            "repeat": 0,
+            "seed": "synthetic-access"
+          }
+        },
+        {
+          "commit_seq": 14,
+          "run_id": "development:offline-source",
+          "kind": "manifest",
+          "detail": {
+            "digest": "4c49ae623a5d6c1af07640dcc3430031557b9c55ad65a2aa953fc11c9104f803",
+            "role": "A",
+            "snapshot": "9bfc407ab3e3c8c764d56b12cc07eafe206ed9b7486168ca8ef6478b7d39bea8"
+          }
+        },
+        {
+          "commit_seq": 15,
+          "run_id": "development:offline-source",
+          "kind": "seed_package",
+          "detail": {
+            "digest": "6f829f767c08de796f6094f8cf319b8eb26137257fbbab1d36894cabee34116c",
+            "parent_decision": null,
+            "version": 1
+          }
+        },
+        {
+          "commit_seq": 16,
+          "run_id": "development:offline-source",
+          "kind": "seed_pending",
+          "detail": {
+            "batch": null,
+            "detail": {
+              "package_seq": 15,
+              "package_version": 1
+            },
+            "from_state": "draft",
+            "parent_version": 0
+          }
+        }
+      ],
+      "balances": {
+        "B.verify": 2,
+        "C.repair.Q0": 1,
+        "C.repair.Qstar": 1
+      }
+    },
+    "development:pending": {
+      "state": "seed_pending",
+      "version": 1,
+      "ingress": {
+        "image": "sha256:4d8b8dd565b137c9654d1ae60f27403b775e1c0ea33d2753075aa93a5b9dcbf4",
+        "manifest_sha": "97e43eb5dce23a01db28fdac7d8fa4cf7417ad9b9e19a50241cd091a4a64e6b9",
+        "request": "fd5094a03c3ce57cee1904f267b4cf85803ab9c7cb344931df1ed76e23e72d4b",
+        "role_output_sha": "f075529123d051120925d64e1ec9eeab1add12540ac894933e5479b4d628fcd2"
+      },
+      "packet_sha": "a5898295cb4caec8c1984d2601900d506896824dce28f9b5b7924747b4f24494",
+      "target_pair": {
+        "after": "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0",
+        "basis": "unique registered sample/data read",
+        "before": "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+        "policy": "definition"
+      },
+      "mapping": [
+        {
+          "approval": "accepted_for_scope",
+          "config_ref": "config:bcfc31d8d68221a2bcca0c9b0676b6f9678883621b803ba556eac378c0d74614",
+          "operation": "read",
+          "original": "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+          "original_span": [
+            83,
+            90
+          ],
+          "removed_nodes": [],
+          "side": "before",
+          "skeleton": "target:56ae1294bf8591863e0ca3c67fdd7572cb2a3abc22ebb8a30db65188c38b90f0",
+          "skeleton_span": [
+            107,
+            114
+          ],
+          "snapshots": [
+            "src.66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818@1",
+            "src.322f11c2342e22c34fcbecac5a58b0a0f8087ee3afcdbd7bf7dcc0ac3717affd@1"
+          ],
+          "status": "exact_1to1",
+          "transform": "comment_prefix"
+        },
+        {
+          "approval": "accepted_for_scope",
+          "config_ref": "config:bcfc31d8d68221a2bcca0c9b0676b6f9678883621b803ba556eac378c0d74614",
+          "operation": "read",
+          "original": "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0",
+          "original_span": [
+            109,
+            116
+          ],
+          "removed_nodes": [],
+          "side": "after",
+          "skeleton": "target:78d0b6f27b7263d8b0ecca139ada3f3fcddf92a8aa08de022bff6656b3cad4a7",
+          "skeleton_span": [
+            133,
+            140
+          ],
+          "snapshots": [
+            "src.3800f3602f4a539faff8d630a0b58b31e0fa456e625fd136b165fa63e0f4a1db@1",
+            "src.c2fa3cf70e68176daede03e2e3f8f536b4e3cddf11669bd1569663d6c65889da@1"
+          ],
+          "status": "exact_1to1",
+          "transform": "comment_prefix"
+        }
+      ],
+      "approvals": [
+        {
+          "authority_ref": "capacity-contract@1",
+          "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+          "basis": {
+            "approval": "pending",
+            "unit": "bytes",
+            "value": 8
+          },
+          "id": "logical_prefix@1",
+          "independent_reviewer": "synthetic-fixture-maintainer",
+          "reason": "pending_capacity_review",
+          "review": "pending",
+          "scope": {
+            "domain_ref": "singleton@1",
+            "path": "fixed_input",
+            "subject": "data"
+          },
+          "status": "pending",
+          "subject": "data",
+          "targets": [
+            "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+            "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0"
+          ]
+        }
+      ],
+      "unqualified": {
+        "package_version": 1,
+        "evidence": {},
+        "blockers": [
+          "after_ok",
+          "before_ok",
+          "candidates_ok",
+          "contracts_ok",
+          "mapping_ok",
+          "versions_ok"
+        ]
+      },
+      "role_blockers": [
+        "A4_before_missing",
+        "A4_after_missing",
+        "A6_candidate_check_missing",
+        "logical_prefix_pending",
+        "spec.exit_or_contained@1:conditional_or_inconclusive",
+        "spec.exit_or_start_inside@1:conditional_or_inconclusive"
+      ],
+      "predictions": {
+        "spec.exit_or_contained@1": {
+          "after": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          },
+          "before": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          }
+        },
+        "spec.exit_or_start_inside@1": {
+          "after": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          },
+          "before": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          }
+        }
+      },
+      "events": [
+        {
+          "commit_seq": 1,
+          "run_id": "development:pending",
+          "kind": "created",
+          "detail": {
+            "accounts": {
+              "B.verify": 2,
+              "C.repair.Q0": 1,
+              "C.repair.Qstar": 1
+            },
+            "group": "development",
+            "repeat": 0,
+            "seed": "synthetic-access"
+          }
+        },
+        {
+          "commit_seq": 2,
+          "run_id": "development:pending",
+          "kind": "manifest",
+          "detail": {
+            "digest": "97e43eb5dce23a01db28fdac7d8fa4cf7417ad9b9e19a50241cd091a4a64e6b9",
+            "role": "A",
+            "snapshot": "4d2a4b5e378667c2efe39ebe856930634e51efd8d5894bcb5dc949608fc26ece"
+          }
+        },
+        {
+          "commit_seq": 3,
+          "run_id": "development:pending",
+          "kind": "seed_package",
+          "detail": {
+            "digest": "69cfd63100b3a706eb8fb6be74c48ebe8f58ca05a1f415bbd4e84e7dfcaa1d6d",
+            "parent_decision": null,
+            "version": 1
+          }
+        },
+        {
+          "commit_seq": 4,
+          "run_id": "development:pending",
+          "kind": "seed_pending",
+          "detail": {
+            "batch": null,
+            "detail": {
+              "package_seq": 3,
+              "package_version": 1
+            },
+            "from_state": "draft",
+            "parent_version": 0
+          }
+        }
+      ],
+      "balances": {
+        "B.verify": 2,
+        "C.repair.Q0": 1,
+        "C.repair.Qstar": 1
+      }
+    },
+    "development:unknown-unit": {
+      "state": "seed_pending",
+      "version": 1,
+      "ingress": {
+        "image": "sha256:4d8b8dd565b137c9654d1ae60f27403b775e1c0ea33d2753075aa93a5b9dcbf4",
+        "manifest_sha": "768dffb00b16d6900f9a3e8546cc505dcff9cbe0f1ac510f997a739a968efa6e",
+        "request": "3e095309509bfc5dac54feb8724547f6888cf0c9128f4cb677c8765ed65908de",
+        "role_output_sha": "b37e1f233ddf5205a4f35f729ff779ff5994acb8ae2f4685fe66fba14c2d3591"
+      },
+      "packet_sha": "2c780780d2601661d845d741d5feb26028052ed50a49cc4a95ee2d77ba58052a",
+      "target_pair": {
+        "after": "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0",
+        "basis": "unique registered sample/data read",
+        "before": "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+        "policy": "definition"
+      },
+      "mapping": [
+        {
+          "approval": "accepted_for_scope",
+          "config_ref": "config:bcfc31d8d68221a2bcca0c9b0676b6f9678883621b803ba556eac378c0d74614",
+          "operation": "read",
+          "original": "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+          "original_span": [
+            83,
+            90
+          ],
+          "removed_nodes": [],
+          "side": "before",
+          "skeleton": "target:56ae1294bf8591863e0ca3c67fdd7572cb2a3abc22ebb8a30db65188c38b90f0",
+          "skeleton_span": [
+            107,
+            114
+          ],
+          "snapshots": [
+            "src.66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818@1",
+            "src.322f11c2342e22c34fcbecac5a58b0a0f8087ee3afcdbd7bf7dcc0ac3717affd@1"
+          ],
+          "status": "exact_1to1",
+          "transform": "comment_prefix"
+        },
+        {
+          "approval": "accepted_for_scope",
+          "config_ref": "config:bcfc31d8d68221a2bcca0c9b0676b6f9678883621b803ba556eac378c0d74614",
+          "operation": "read",
+          "original": "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0",
+          "original_span": [
+            109,
+            116
+          ],
+          "removed_nodes": [],
+          "side": "after",
+          "skeleton": "target:78d0b6f27b7263d8b0ecca139ada3f3fcddf92a8aa08de022bff6656b3cad4a7",
+          "skeleton_span": [
+            133,
+            140
+          ],
+          "snapshots": [
+            "src.3800f3602f4a539faff8d630a0b58b31e0fa456e625fd136b165fa63e0f4a1db@1",
+            "src.c2fa3cf70e68176daede03e2e3f8f536b4e3cddf11669bd1569663d6c65889da@1"
+          ],
+          "status": "exact_1to1",
+          "transform": "comment_prefix"
+        }
+      ],
+      "approvals": [
+        {
+          "authority_ref": "capacity-contract@1",
+          "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+          "basis": {
+            "approval": "approved",
+            "unit": null,
+            "value": 8
+          },
+          "id": "logical_prefix@1",
+          "independent_reviewer": "synthetic-fixture-maintainer",
+          "reason": "missing_logical_capacity_or_unit",
+          "review": "pending",
+          "scope": {
+            "domain_ref": "singleton@1",
+            "path": "fixed_input",
+            "subject": "data"
+          },
+          "status": "pending",
+          "subject": "data",
+          "targets": [
+            "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+            "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0"
+          ]
+        }
+      ],
+      "unqualified": {
+        "package_version": 1,
+        "evidence": {},
+        "blockers": [
+          "after_ok",
+          "before_ok",
+          "candidates_ok",
+          "contracts_ok",
+          "mapping_ok",
+          "versions_ok"
+        ]
+      },
+      "role_blockers": [
+        "A4_before_missing",
+        "A4_after_missing",
+        "A6_candidate_check_missing",
+        "logical_prefix_pending",
+        "spec.exit_or_contained@1:conditional_or_inconclusive",
+        "spec.exit_or_start_inside@1:conditional_or_inconclusive"
+      ],
+      "predictions": {
+        "spec.exit_or_contained@1": {
+          "after": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          },
+          "before": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          }
+        },
+        "spec.exit_or_start_inside@1": {
+          "after": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          },
+          "before": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          }
+        }
+      },
+      "events": [
+        {
+          "commit_seq": 5,
+          "run_id": "development:unknown-unit",
+          "kind": "created",
+          "detail": {
+            "accounts": {
+              "B.verify": 2,
+              "C.repair.Q0": 1,
+              "C.repair.Qstar": 1
+            },
+            "group": "development",
+            "repeat": 0,
+            "seed": "synthetic-access"
+          }
+        },
+        {
+          "commit_seq": 6,
+          "run_id": "development:unknown-unit",
+          "kind": "manifest",
+          "detail": {
+            "digest": "768dffb00b16d6900f9a3e8546cc505dcff9cbe0f1ac510f997a739a968efa6e",
+            "role": "A",
+            "snapshot": "02b5f005fd5f8dd1fce95277b2a1472c69349cf1bfc8a2358cf02bd489fea3ad"
+          }
+        },
+        {
+          "commit_seq": 7,
+          "run_id": "development:unknown-unit",
+          "kind": "seed_package",
+          "detail": {
+            "digest": "fca2a2cdd459ba17c92f850add4635159e6e6e55a2394134a21af25e11890fda",
+            "parent_decision": null,
+            "version": 1
+          }
+        },
+        {
+          "commit_seq": 8,
+          "run_id": "development:unknown-unit",
+          "kind": "seed_pending",
+          "detail": {
+            "batch": null,
+            "detail": {
+              "package_seq": 7,
+              "package_version": 1
+            },
+            "from_state": "draft",
+            "parent_version": 0
+          }
+        }
+      ],
+      "balances": {
+        "B.verify": 2,
+        "C.repair.Q0": 1,
+        "C.repair.Qstar": 1
+      }
+    },
+    "development:wrong-owner": {
+      "state": "seed_pending",
+      "version": 1,
+      "ingress": {
+        "image": "sha256:4d8b8dd565b137c9654d1ae60f27403b775e1c0ea33d2753075aa93a5b9dcbf4",
+        "manifest_sha": "94cdd1ead34b4b7cd2ef6956567ba16d30a7f2d420fac3d368517bbcb0c57cc1",
+        "request": "3b5e4e4e20f593027e0d9051b9716d95057526a059e31d61cf65e2c45d9907a6",
+        "role_output_sha": "65c0132d833e0f36e4bc3af00c2b30d7d903ef47b03d983ce794aa19a6ce1b08"
+      },
+      "packet_sha": "7c77c5ed043a27aad84a00d4f99e513a45c55a56477920d476a5837827c904ff",
+      "target_pair": {
+        "after": "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0",
+        "basis": "unique registered sample/data read",
+        "before": "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+        "policy": "definition"
+      },
+      "mapping": [
+        {
+          "approval": "accepted_for_scope",
+          "config_ref": "config:bcfc31d8d68221a2bcca0c9b0676b6f9678883621b803ba556eac378c0d74614",
+          "operation": "read",
+          "original": "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+          "original_span": [
+            83,
+            90
+          ],
+          "removed_nodes": [],
+          "side": "before",
+          "skeleton": "target:56ae1294bf8591863e0ca3c67fdd7572cb2a3abc22ebb8a30db65188c38b90f0",
+          "skeleton_span": [
+            107,
+            114
+          ],
+          "snapshots": [
+            "src.66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818@1",
+            "src.322f11c2342e22c34fcbecac5a58b0a0f8087ee3afcdbd7bf7dcc0ac3717affd@1"
+          ],
+          "status": "exact_1to1",
+          "transform": "comment_prefix"
+        },
+        {
+          "approval": "accepted_for_scope",
+          "config_ref": "config:bcfc31d8d68221a2bcca0c9b0676b6f9678883621b803ba556eac378c0d74614",
+          "operation": "read",
+          "original": "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0",
+          "original_span": [
+            109,
+            116
+          ],
+          "removed_nodes": [],
+          "side": "after",
+          "skeleton": "target:78d0b6f27b7263d8b0ecca139ada3f3fcddf92a8aa08de022bff6656b3cad4a7",
+          "skeleton_span": [
+            133,
+            140
+          ],
+          "snapshots": [
+            "src.3800f3602f4a539faff8d630a0b58b31e0fa456e625fd136b165fa63e0f4a1db@1",
+            "src.c2fa3cf70e68176daede03e2e3f8f536b4e3cddf11669bd1569663d6c65889da@1"
+          ],
+          "status": "exact_1to1",
+          "transform": "comment_prefix"
+        }
+      ],
+      "approvals": [
+        {
+          "authority_ref": "capacity-contract@1",
+          "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+          "basis": {
+            "approval": "approved",
+            "unit": "bytes",
+            "value": 8
+          },
+          "id": "logical_prefix@1",
+          "independent_reviewer": "synthetic-fixture-maintainer",
+          "reason": "wrong_capacity_object",
+          "review": "rejected",
+          "scope": {
+            "domain_ref": "singleton@1",
+            "path": "fixed_input",
+            "subject": "data"
+          },
+          "status": "rejected",
+          "subject": "other",
+          "targets": [
+            "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d",
+            "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0"
+          ]
+        }
+      ],
+      "unqualified": {
+        "package_version": 1,
+        "evidence": {},
+        "blockers": [
+          "after_ok",
+          "before_ok",
+          "candidates_ok",
+          "contracts_ok",
+          "mapping_ok",
+          "versions_ok"
+        ]
+      },
+      "role_blockers": [
+        "A4_before_missing",
+        "A4_after_missing",
+        "A6_candidate_check_missing",
+        "logical_prefix_rejected",
+        "spec.exit_or_contained@1:conditional_or_inconclusive",
+        "spec.exit_or_start_inside@1:conditional_or_inconclusive"
+      ],
+      "predictions": {
+        "spec.exit_or_contained@1": {
+          "after": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          },
+          "before": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          }
+        },
+        "spec.exit_or_start_inside@1": {
+          "after": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          },
+          "before": {
+            "missing_facts": [
+              {
+                "fact_id": "logical_prefix@1",
+                "reason": "unapproved_or_wrong_subject"
+              }
+            ],
+            "outcome": "uncovered"
+          }
+        }
+      },
+      "events": [
+        {
+          "commit_seq": 9,
+          "run_id": "development:wrong-owner",
+          "kind": "created",
+          "detail": {
+            "accounts": {
+              "B.verify": 2,
+              "C.repair.Q0": 1,
+              "C.repair.Qstar": 1
+            },
+            "group": "development",
+            "repeat": 0,
+            "seed": "synthetic-access"
+          }
+        },
+        {
+          "commit_seq": 10,
+          "run_id": "development:wrong-owner",
+          "kind": "manifest",
+          "detail": {
+            "digest": "94cdd1ead34b4b7cd2ef6956567ba16d30a7f2d420fac3d368517bbcb0c57cc1",
+            "role": "A",
+            "snapshot": "04577979f35f4445bb2adce8d752e5c8834164d2fe49fad11d3b3cb5181c9345"
+          }
+        },
+        {
+          "commit_seq": 11,
+          "run_id": "development:wrong-owner",
+          "kind": "seed_package",
+          "detail": {
+            "digest": "42b62d2471aace981eadbb14a94f96f433dcfcd12588edff6334ac5cfe739b18",
+            "parent_decision": null,
+            "version": 1
+          }
+        },
+        {
+          "commit_seq": 12,
+          "run_id": "development:wrong-owner",
+          "kind": "seed_pending",
+          "detail": {
+            "batch": null,
+            "detail": {
+              "package_seq": 11,
+              "package_version": 1
+            },
+            "from_state": "draft",
+            "parent_version": 0
+          }
+        }
+      ],
+      "balances": {
+        "B.verify": 2,
+        "C.repair.Q0": 1,
+        "C.repair.Qstar": 1
+      }
+    }
+  }
+}

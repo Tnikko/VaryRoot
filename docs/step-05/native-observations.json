@@ -1,0 +1,500 @@
+{
+  "image": "sha256:a4b61d7f93186bc33e94b683613d63493b5ad529d5704c560b5e8454fc0df862",
+  "vectors": {
+    "c": [
+      {
+        "event": "violation",
+        "offset": -1,
+        "width": 1,
+        "end": 0,
+        "logical": 8,
+        "physical": 8,
+        "live_object": true,
+        "raw": -1,
+        "conversion": "int64",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 0,
+        "value": 0
+      },
+      {
+        "event": "no_access",
+        "offset": 8,
+        "width": 0,
+        "end": 8,
+        "logical": 8,
+        "physical": 8,
+        "live_object": true,
+        "raw": 8,
+        "conversion": "int64",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 0,
+        "value": 0
+      },
+      {
+        "event": "used",
+        "offset": 6,
+        "width": 2,
+        "end": 8,
+        "logical": 8,
+        "physical": 8,
+        "live_object": true,
+        "raw": 6,
+        "conversion": "int64",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 1,
+        "value": 19,
+        "reference": {
+          "effects": [
+            1,
+            2
+          ],
+          "value": 19
+        }
+      },
+      {
+        "event": "violation",
+        "offset": 6,
+        "width": 3,
+        "end": 9,
+        "logical": 8,
+        "physical": 8,
+        "live_object": true,
+        "raw": 6,
+        "conversion": "int64",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 0,
+        "value": 0
+      },
+      {
+        "event": "used",
+        "offset": 1,
+        "width": 1,
+        "end": 2,
+        "logical": 8,
+        "physical": 8,
+        "live_object": true,
+        "raw": 257,
+        "conversion": "uint8",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 1,
+        "value": 4,
+        "reference": {
+          "effects": [
+            1,
+            2
+          ],
+          "value": 4
+        }
+      },
+      {
+        "event": "violation",
+        "offset": 254,
+        "width": 3,
+        "end": 257,
+        "logical": 255,
+        "physical": 255,
+        "live_object": true,
+        "raw": 254,
+        "conversion": "int64",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 0,
+        "value": 0
+      }
+    ],
+    "c_source_arithmetic": [
+      {
+        "completion": "completed",
+        "effective": 257,
+        "operands": [
+          254,
+          3
+        ]
+      },
+      {
+        "completion": "case_exec_failure",
+        "reason": "undefined_signed_source_addition",
+        "operands": [
+          2147483647,
+          1
+        ]
+      }
+    ],
+    "cpp": [
+      {
+        "event": "violation",
+        "offset": -1,
+        "width": 1,
+        "end": 0,
+        "logical": 8,
+        "physical": 8,
+        "live_object": true,
+        "raw": -1,
+        "conversion": "int64",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 0,
+        "value": 0
+      },
+      {
+        "event": "no_access",
+        "offset": 8,
+        "width": 0,
+        "end": 8,
+        "logical": 8,
+        "physical": 8,
+        "live_object": true,
+        "raw": 8,
+        "conversion": "int64",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 0,
+        "value": 0
+      },
+      {
+        "event": "used",
+        "offset": 6,
+        "width": 2,
+        "end": 8,
+        "logical": 8,
+        "physical": 8,
+        "live_object": true,
+        "raw": 6,
+        "conversion": "int64",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 1,
+        "value": 19,
+        "reference": {
+          "effects": [
+            1,
+            2
+          ],
+          "value": 19
+        }
+      },
+      {
+        "event": "violation",
+        "offset": 6,
+        "width": 3,
+        "end": 9,
+        "logical": 8,
+        "physical": 8,
+        "live_object": true,
+        "raw": 6,
+        "conversion": "int64",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 0,
+        "value": 0
+      },
+      {
+        "event": "used",
+        "offset": 1,
+        "width": 1,
+        "end": 2,
+        "logical": 8,
+        "physical": 8,
+        "live_object": true,
+        "raw": 257,
+        "conversion": "uint8",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 1,
+        "value": 4,
+        "reference": {
+          "effects": [
+            1,
+            2
+          ],
+          "value": 4
+        }
+      },
+      {
+        "event": "violation",
+        "offset": 254,
+        "width": 3,
+        "end": 257,
+        "logical": 255,
+        "physical": 255,
+        "live_object": true,
+        "raw": 254,
+        "conversion": "int64",
+        "effects": [
+          1,
+          2
+        ],
+        "accesses": 0,
+        "value": 0
+      }
+    ],
+    "cpp_source_arithmetic": [
+      {
+        "completion": "completed",
+        "effective": 257,
+        "operands": [
+          254,
+          3
+        ]
+      },
+      {
+        "completion": "case_exec_failure",
+        "reason": "undefined_signed_source_addition",
+        "operands": [
+          2147483647,
+          1
+        ]
+      }
+    ]
+  },
+  "registry": {
+    "npd_before": {
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "317ee87523c3c93400fea1e8d0746d94fe10af8bcb640001d8a54990b5f9208c",
+      "byte_span": [
+        88,
+        104
+      ],
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain_id": "pointer_modes@1",
+      "inputs": [
+        0,
+        1
+      ],
+      "normal_inputs": [
+        0
+      ],
+      "object_name": "p",
+      "source_sha256": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+    },
+    "npd_exit": {
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "e28898a050ad77cf7439a93000be58b8f23e9e878c595374601bf0d5f26b875b",
+      "byte_span": [
+        110,
+        126
+      ],
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain_id": "pointer_modes@1",
+      "inputs": [
+        0,
+        1
+      ],
+      "normal_inputs": [
+        0
+      ],
+      "object_name": "p",
+      "source_sha256": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+    },
+    "npd_modes": {
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "a4945cc2528f2170a03a98477477736dc9927e4eda08aee25d2acce3700bc25b",
+      "byte_span": [
+        143,
+        159
+      ],
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain_id": "three_modes@1",
+      "inputs": [
+        0,
+        1,
+        2
+      ],
+      "normal_inputs": [
+        0
+      ],
+      "object_name": "p",
+      "source_sha256": "98f4ee6e998aaa5148aa2a3e3ad3c73852fb6243ab4c196854b75925dde6f953"
+    },
+    "npd_rebind": {
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "e115c6dafcd6922620bc19bf1be6feeac628ad3eee4d78ea275b90ec6b3e76c7",
+      "byte_span": [
+        111,
+        127
+      ],
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain_id": "pointer_modes@1",
+      "inputs": [
+        0,
+        1
+      ],
+      "normal_inputs": [
+        0
+      ],
+      "object_name": "p",
+      "source_sha256": "a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd"
+    },
+    "oob_before": {
+      "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+      "binary_sha256": "a88efb75c6b18435932cadac4b10c519710c39ec1e57260c26a515d3a81741f4",
+      "byte_span": [
+        83,
+        90
+      ],
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 8
+        },
+        "id": "capacity-contract",
+        "subject": "data",
+        "version": 1
+      },
+      "domain_id": "singleton@1",
+      "inputs": [
+        0
+      ],
+      "normal_inputs": [
+        0
+      ],
+      "object_name": "data",
+      "source_sha256": "66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818"
+    },
+    "oob_exit": {
+      "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+      "binary_sha256": "f411f980c1acb524baa2f3f8e9aa183cf6af301b0d675e36ed7ca7ad77b98be0",
+      "byte_span": [
+        109,
+        116
+      ],
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 8
+        },
+        "id": "capacity-contract",
+        "subject": "data",
+        "version": 1
+      },
+      "domain_id": "singleton@1",
+      "inputs": [
+        0
+      ],
+      "normal_inputs": [
+        0
+      ],
+      "object_name": "data",
+      "source_sha256": "3800f3602f4a539faff8d630a0b58b31e0fa456e625fd136b165fa63e0f4a1db"
+    },
+    "oob_rebind": {
+      "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+      "binary_sha256": "d258a9924be55eb8fcc2239c4b331c9ccbccc282682a6337d0f532c330d8de93",
+      "byte_span": [
+        106,
+        113
+      ],
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 8
+        },
+        "id": "capacity-contract",
+        "subject": "data",
+        "version": 1
+      },
+      "domain_id": "singleton@1",
+      "inputs": [
+        0
+      ],
+      "normal_inputs": [
+        0
+      ],
+      "object_name": "data",
+      "source_sha256": "bf6e7db133b0f65006b01f5450c1973cf127f7463c97642d265f591b6325cf0b"
+    },
+    "zero": {
+      "authority_sha256": "034961dda2b4810452b1fa5a4d7177eed67ef4ecfec46e1c69bd3875c811ab81",
+      "binary_sha256": "5d801a2ff6d91d7ff2c212745bac16c1426b7a7efb425bf45dd254f7d2ac2253",
+      "byte_span": [
+        77,
+        101
+      ],
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 8
+        },
+        "id": "byte-buffer",
+        "subject": "buffer",
+        "version": 1
+      },
+      "domain_id": "singleton@1",
+      "inputs": [
+        0
+      ],
+      "normal_inputs": [
+        0
+      ],
+      "object_name": "buffer",
+      "source_sha256": "235d4c09ccbe541692de55eb167e8903b99bf9bd7623d09260781aebb40ca9dc"
+    }
+  }
+}

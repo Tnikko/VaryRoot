@@ -1,0 +1,210 @@
+{
+  "first": {
+    "budget": 2,
+    "policy": "paired-selector-v1",
+    "selected": [
+      "a",
+      "b"
+    ],
+    "stop_reason": "budget_exhausted",
+    "trace": [
+      {
+        "case_id": "a",
+        "reason": "random"
+      },
+      {
+        "case_id": "b",
+        "reason": "random"
+      }
+    ],
+    "audit": {
+      "image_modules": [
+        "selector_container.py"
+      ],
+      "input_files": [
+        "budget.json",
+        "input_manifest.json",
+        "policy.json",
+        "pool.json"
+      ],
+      "interfaces": [
+        "lo"
+      ],
+      "mounts": {
+        "/": [
+          "ro",
+          "relatime"
+        ],
+        "/input": [
+          "ro",
+          "relatime"
+        ],
+        "/output": [
+          "rw",
+          "relatime"
+        ]
+      },
+      "uid": 1000,
+      "image": "sha256:8d08413c4ea683b201c7257c760a6d71749d34d8bd6a288d422238d2c33b8cfa",
+      "manifest_sha256": "f915d262c3902ee227b8879dea026a5a28299a9bc9eea0604d62aa0843c4643d",
+      "selection_sha256": "60f505c4b052803381d6ae58cb53aa3832d6f7e2feb98104c59901066862cfdb",
+      "input_sha256": {
+        "pool.json": "0473ef2dc0d324ab659d3580c1134e9d812035905c4781fdd6d529b0c6860e13",
+        "budget.json": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+        "policy.json": "6920fc6c9df5659107a6cb5c86e5b02a74fb959a6e732f2b6a1a094d06f112da"
+      },
+      "attempt_dir": "/tmp/tmpj0ejirv0/selector-czcqyo2j/role"
+    }
+  },
+  "reordered": {
+    "budget": 2,
+    "policy": "paired-selector-v1",
+    "selected": [
+      "a",
+      "b"
+    ],
+    "stop_reason": "budget_exhausted",
+    "trace": [
+      {
+        "case_id": "a",
+        "reason": "random"
+      },
+      {
+        "case_id": "b",
+        "reason": "random"
+      }
+    ],
+    "audit": {
+      "image_modules": [
+        "selector_container.py"
+      ],
+      "input_files": [
+        "budget.json",
+        "input_manifest.json",
+        "policy.json",
+        "pool.json"
+      ],
+      "interfaces": [
+        "lo"
+      ],
+      "mounts": {
+        "/": [
+          "ro",
+          "relatime"
+        ],
+        "/input": [
+          "ro",
+          "relatime"
+        ],
+        "/output": [
+          "rw",
+          "relatime"
+        ]
+      },
+      "uid": 1000,
+      "image": "sha256:8d08413c4ea683b201c7257c760a6d71749d34d8bd6a288d422238d2c33b8cfa",
+      "manifest_sha256": "f915d262c3902ee227b8879dea026a5a28299a9bc9eea0604d62aa0843c4643d",
+      "selection_sha256": "60f505c4b052803381d6ae58cb53aa3832d6f7e2feb98104c59901066862cfdb",
+      "input_sha256": {
+        "pool.json": "0473ef2dc0d324ab659d3580c1134e9d812035905c4781fdd6d529b0c6860e13",
+        "budget.json": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+        "policy.json": "6920fc6c9df5659107a6cb5c86e5b02a74fb959a6e732f2b6a1a094d06f112da"
+      },
+      "attempt_dir": "/tmp/tmpj0ejirv0/selector-tjsf03cl/role"
+    }
+  },
+  "divergence": {
+    "budget": 2,
+    "policy": "paired-selector-v1",
+    "selected": [
+      "a",
+      "b"
+    ],
+    "stop_reason": "budget_exhausted",
+    "trace": [
+      {
+        "case_id": "a",
+        "new_domain": [],
+        "new_hard": [
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "reason": "hard",
+        "tied": [
+          "a"
+        ]
+      },
+      {
+        "case_id": "b",
+        "new_domain": [],
+        "new_hard": [],
+        "reason": "equivalent",
+        "tied": [
+          "b"
+        ]
+      }
+    ],
+    "audit": {
+      "image_modules": [
+        "selector_container.py"
+      ],
+      "input_files": [
+        "budget.json",
+        "input_manifest.json",
+        "policy.json",
+        "pool.json",
+        "predictions.json"
+      ],
+      "interfaces": [
+        "lo"
+      ],
+      "mounts": {
+        "/": [
+          "ro",
+          "relatime"
+        ],
+        "/input": [
+          "ro",
+          "relatime"
+        ],
+        "/output": [
+          "rw",
+          "relatime"
+        ]
+      },
+      "uid": 1000,
+      "image": "sha256:8d08413c4ea683b201c7257c760a6d71749d34d8bd6a288d422238d2c33b8cfa",
+      "manifest_sha256": "badbcc785889d3e3a552725a675b06f1347b7fed65cc7157ccec0375b8d8791a",
+      "selection_sha256": "2e336c098f43479c1d233fd86997de382fc3eae51a1d02ab1b91def80f996d7e",
+      "input_sha256": {
+        "pool.json": "0473ef2dc0d324ab659d3580c1134e9d812035905c4781fdd6d529b0c6860e13",
+        "budget.json": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+        "policy.json": "44d347ccbf5475221090fd5891dc3c5da9cb56721b2fdec7124766cf02ebe054",
+        "predictions.json": "4508ff40df24742403cdcf58ffc2751d1fcd617f550e8868d75d67edb89c9591"
+      },
+      "attempt_dir": "/tmp/tmpj0ejirv0/selector-eo1u7qk3/role"
+    }
+  },
+  "original_matrix": {
+    "a": {
+      "x": "report",
+      "y": "quiet"
+    },
+    "b": {
+      "x": "quiet",
+      "y": "quiet"
+    }
+  },
+  "substituted_matrix": {
+    "a": {
+      "x": "uncovered",
+      "y": "quiet"
+    },
+    "b": {
+      "x": "quiet",
+      "y": "report"
+    }
+  }
+}

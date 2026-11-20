@@ -1,0 +1,47 @@
+Python 3.13.16
+python -m unittest discover -s tests -p "test_*.py" -v
+test_ambiguous_identity_and_binding (test_artifacts.Artifacts.test_ambiguous_identity_and_binding) ... ok
+test_corrupt_records (test_artifacts.Artifacts.test_corrupt_records) ... ok
+test_file_roundtrip (test_artifacts.Artifacts.test_file_roundtrip) ... ok
+test_null_is_required_and_keep_identity_is_strict (test_handoff.HandoffTests.test_null_is_required_and_keep_identity_is_strict) ... ok
+test_revision_judgments_use_the_same_target_and_verdict (test_handoff.HandoffTests.test_revision_judgments_use_the_same_target_and_verdict) ... ok
+test_routes (test_handoff.HandoffTests.test_routes) ... ok
+test_unresolved_and_revision_mismatch (test_handoff.HandoffTests.test_unresolved_and_revision_mismatch) ... ok
+test_approval_and_object (test_inference.Inference.test_approval_and_object) ... ok
+test_direction_conflict_and_complete_set (test_inference.Inference.test_direction_conflict_and_complete_set) ... ok
+test_independent_proof_and_invalid_resolved_input (test_inference.Inference.test_independent_proof_and_invalid_resolved_input) ... ok
+test_interval_pairs (test_inference.Inference.test_interval_pairs) ... ok
+test_npd_pairs (test_inference.Inference.test_npd_pairs) ... ok
+test_paths_and_coverage (test_inference.Inference.test_paths_and_coverage) ... ok
+test_truth_tables (test_inference.Inference.test_truth_tables) ... ok
+test_false_and_zero_are_values (test_ir.Grammar.test_false_and_zero_are_values) ... ok
+test_type_failures (test_ir.Grammar.test_type_failures) ... ok
+test_all_acceptance_files (test_replay.Replay.test_all_acceptance_files) ... ok
+test_exit_codes (test_replay.Replay.test_exit_codes) ... ok
+test_legal_uncovered (test_replay.Replay.test_legal_uncovered) ... ok
+test_reorder_and_version (test_replay.Replay.test_reorder_and_version) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 4.751s
+
+OK
+python -m varyroot validate tests/fixtures/m1/manifest.json
+{"code": "ok", "records": 21}
+python -m varyroot explain tests/fixtures/m1/manifest.json t@1
+{"code": "report", "contract_ref": "k@1", "derivation": {"paths": [{"clauses": [{"applicability": true, "clause": "c.guard@1", "condition": false, "evaluations": [{"expression": {"var": "owner"}, "fact_refs": ["f.owner@1"], "value": "buffer#1"}, {"expression": {"var": "operand"}, "fact_refs": ["f.operand@1"], "value": "buffer#1"}, {"expression": {"args": [{"var": "owner"}, {"var": "operand"}], "op": "same_object"}, "value": true}, {"expression": {"var": "capacity"}, "fact_refs": ["f.capacity@1"], "value": 8}, {"expression": {"var": "offset"}, "fact_refs": ["f.offset@1"], "value": 6}, {"expression": {"var": "scale"}, "fact_refs": ["f.scale@1"], "value": 1}, {"expression": {"args": [{"var": "offset"}, {"var": "scale"}], "op": "to_bytes"}, "value": 6}, {"expression": {"var": "width"}, "fact_refs": ["f.width@1"], "value": 3}, {"expression": {"args": [{"var": "capacity"}, {"args": [{"var": "offset"}, {"var": "scale"}], "op": "to_bytes"}, {"var": "width"}], "op": "contains"}, "value": false}]}, {"applicability": true, "clause": "c.propagation@1", "condition": true, "evaluations": [{"expression": true, "value": true}, {"expression": {"var": "propagation"}, "fact_refs": ["f.propagation@1"], "value": true}]}, {"applicability": true, "clause": "c.sink@1", "condition": true, "evaluations": [{"expression": true, "value": true}, {"expression": {"var": "sink"}, "fact_refs": ["f.sink@1"], "value": true}]}, {"applicability": true, "clause": "c.source@1", "condition": true, "evaluations": [{"expression": true, "value": true}, {"expression": {"var": "source"}, "fact_refs": ["f.source@1"], "value": true}]}], "facts": ["f.capacity@1", "f.feasible@1", "f.offset@1", "f.operand@1", "f.owner@1", "f.propagation@1", "f.reaches@1", "f.scale@1", "f.sink@1", "f.source@1", "f.width@1"], "failed_guards": ["c.guard@1"], "feasible": true, "path_id": "fault", "proven": {"Guard": [], "Propagation": ["c.propagation@1"], "Sink": ["c.sink@1"], "Source": ["c.source@1"]}, "reaches": true, "subject": "buffer#1"}], "quiet": [], "report": ["fault"]}, "domain_ref": "d@1", "missing_facts": [], "outcome": "report", "spec_ref": "s@1", "target_ref": "t@1"}
+SHA-256
+85D3967323A8744D07307B469825E684D2F31A0D2586CC323DD0B0B441D87CD7  tests\fixtures_m1.py
+174799E6645D16B2D59A6BD363B8D4D469423FC1F4020DAE8DBB9D5974A20ED3  tests\fixtures\m1\manifest.json
+4A7BFC29319D25FDF8B190D59AF13B4C06786F93EE10DCE8A0092142297810B3  tests\fixtures\m1\records.json
+8EE2CED0C1CAEB6C97A15AE70F418DDA1BD2ABECF21DDA42F5A19FFB571BE8B4  tests\test_artifacts.py
+924C604CE1F1BBD829B3C8C0D2773489ACB964B5E1458C0531F7B46998A95D86  tests\test_handoff.py
+EFEBFF9EB9E226DB4A2DF044B03F3D78D73CABA5D1DB00ECDBD2E949327F266A  tests\test_inference.py
+5CB1E1CA0E323B9682D631C0A7373421C954D88684F16B9623B3EF30FA6039F5  tests\test_ir.py
+82972EAF036019015A924E45DDDBBE55B81C7A55EF75E3B5BA5182BE8E962641  tests\test_replay.py
+9F00B2FD351E9392CBF8BC2D9D223C81974FB38C15574C3105B8498277C8F856  varyroot\__init__.py
+2C9376A161A7400BED998C4935ED5E6BA7E501827D9A328C8866A60FBE08A742  varyroot\__main__.py
+C67531C77CDB717EE128663B64F0E43F23943C3F84D0F0D65872ABF07E113490  varyroot\artifacts.py
+136407F5491F3353381D42707B774696066E5E76999418090284370555B7304A  varyroot\checks.py
+3218860EE1F8F9391655ED0998C8B8A712C5F00D70F45948215F88DE0FC7B121  varyroot\handoff.py
+15996073265ED3FB4FCF46BA69A9D256C64FF4042D97D04222E3EE77CD145D6F  varyroot\inference.py
+15F75D190F68486AC3D58F371E85AA6D8A404D2A34E00694EB20DA105851B823  varyroot\ir.py

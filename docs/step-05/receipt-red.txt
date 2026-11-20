@@ -1,0 +1,18 @@
+test_receipt_survives_lost_stdout_and_late_failure (test_routes05.Routes.test_receipt_survives_lost_stdout_and_late_failure) ... FAIL
+
+======================================================================
+FAIL: test_receipt_survives_lost_stdout_and_late_failure (test_routes05.Routes.test_receipt_survives_lost_stdout_and_late_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_routes05.py", line 135, in test_receipt_survives_lost_stdout_and_late_failure
+    self.assertEqual(result["state"],"seed_accepted")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'seed_pending' != 'seed_accepted'
+- seed_pending
++ seed_accepted
+
+
+----------------------------------------------------------------------
+Ran 1 test in 3.773s
+
+FAILED (failures=1)

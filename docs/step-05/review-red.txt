@@ -1,0 +1,75 @@
+test_authored_contract_and_domain (test_review05.Review.test_authored_contract_and_domain) ... 
+  test_authored_contract_and_domain (test_review05.Review.test_authored_contract_and_domain) (change='authority') ... FAIL
+  test_authored_contract_and_domain (test_review05.Review.test_authored_contract_and_domain) (change='domain') ... FAIL
+  test_authored_contract_and_domain (test_review05.Review.test_authored_contract_and_domain) (change='mapping') ... FAIL
+test_compare_baseline_and_working_model (test_review05.Review.test_compare_baseline_and_working_model) ... ERROR
+test_fault_only_use_is_not_normal_witness (test_review05.Review.test_fault_only_use_is_not_normal_witness) ... ERROR
+test_pending_A2_rework (test_review05.Review.test_pending_A2_rework) ... ERROR
+
+======================================================================
+ERROR: test_compare_baseline_and_working_model (test_review05.Review.test_compare_baseline_and_working_model)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_review05.py", line 44, in test_compare_baseline_and_working_model
+    original,working,candidates=predictions(p)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 2)
+
+======================================================================
+ERROR: test_fault_only_use_is_not_normal_witness (test_review05.Review.test_fault_only_use_is_not_normal_witness)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_review05.py", line 23, in test_fault_only_use_is_not_normal_witness
+    self.assertEqual(classify([0,1],rows,normal_inputs=[0])["label"],"pending")
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: classify() got an unexpected keyword argument 'normal_inputs'
+
+======================================================================
+ERROR: test_pending_A2_rework (test_review05.Review.test_pending_A2_rework)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_review05.py", line 50, in test_pending_A2_rework
+    self.db.rework_seed("audit",1,1,branch="A2",reason="fix reviewed source",
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        changes={"before_sources":dict(old,revision=2)})
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tq/varyroot/varyroot/ledger.py", line 334, in rework_seed
+    run = self._current(c, run_id, expected_version, ['adjudicating', 'remodel'] if branch == 'A5' else ['adjudicating'])
+  File "/home/tq/varyroot/varyroot/ledger.py", line 203, in _current
+    _check(row['state'] in states, 'invalid operation in state ' + row['state'])
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tq/varyroot/varyroot/ledger.py", line 18, in _check
+    raise LedgerError(message)
+varyroot.ledger.LedgerError: invalid operation in state seed_pending
+
+======================================================================
+FAIL: test_authored_contract_and_domain (test_review05.Review.test_authored_contract_and_domain) (change='authority')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_review05.py", line 38, in test_authored_contract_and_domain
+    with self.subTest(change=change),self.assertRaises(ValueError):
+                                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_authored_contract_and_domain (test_review05.Review.test_authored_contract_and_domain) (change='domain')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_review05.py", line 38, in test_authored_contract_and_domain
+    with self.subTest(change=change),self.assertRaises(ValueError):
+                                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_authored_contract_and_domain (test_review05.Review.test_authored_contract_and_domain) (change='mapping')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_review05.py", line 38, in test_authored_contract_and_domain
+    with self.subTest(change=change),self.assertRaises(ValueError):
+                                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.203s
+
+FAILED (failures=3, errors=3)

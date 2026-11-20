@@ -1,0 +1,8 @@
+"path","col1","col2","col3","col4","col5","col6"
+"reviewed.c",5,23,5,35,"read",1
+"accesses.cpp",3,74,3,79,"read",1
+"accesses.cpp",6,21,6,26,"read",1
+"accesses.cpp",6,30,6,35,"read",1
+"accesses.cpp",7,27,7,32,"read",2
+"accesses.cpp",8,5,8,10,"write",1
+"accesses.cpp",9,5,9,10,"read_write",1

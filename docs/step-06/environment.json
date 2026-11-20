@@ -1,0 +1,9 @@
+{
+  "system": "Ubuntu 24.04.5 LTS",
+  "kernel": "7.0.0-42-generic",
+  "python": "Python 3.13.2",
+  "fs": "ext4",
+  "selector": "sha256:8d08413c4ea683b201c7257c760a6d71749d34d8bd6a288d422238d2c33b8cfa",
+  "verifier": "sha256:34eff3595848e3aae6a975f6d0f639668fbf6e017b7092bf9023279a24568fcb",
+  "workspace": "/home/tq/varyroot"
+}

@@ -1,0 +1,6 @@
+test_field_projection_and_target_binding (test_verifier_view.View.test_field_projection_and_target_binding) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK

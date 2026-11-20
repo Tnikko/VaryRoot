@@ -1,0 +1,19 @@
+test_restore_checks_contents_and_paths (test_freeze07.Archive.test_restore_checks_contents_and_paths) ... ok
+test_stale_manifest_and_mutated_bytes (test_freeze07.Archive.test_stale_manifest_and_mutated_bytes) ... ok
+test_b4_restores_batch_and_evidence (test_freeze07.PairTransaction.test_b4_restores_batch_and_evidence) ... ok
+test_conflict_notified_on_unmeasured_lane (test_freeze07.PairTransaction.test_conflict_notified_on_unmeasured_lane) ... ok
+test_decode_failure_keeps_bqrs_and_excludes_lane_from_scoring (test_freeze07.PairTransaction.test_decode_failure_keeps_bqrs_and_excludes_lane_from_scoring) ... ok
+test_false_score_and_false_completion_claim (test_freeze07.PairTransaction.test_false_score_and_false_completion_claim) ... ok
+test_independent_charges_exhaustion_and_stale_watermark (test_freeze07.PairTransaction.test_independent_charges_exhaustion_and_stale_watermark) ... ok
+test_missing_artifact_after_freeze_invalidates_retrieval (test_freeze07.PairTransaction.test_missing_artifact_after_freeze_invalidates_retrieval) ... ok
+test_missing_or_inconsistent_build_log_blocks_publication (test_freeze07.PairTransaction.test_missing_or_inconsistent_build_log_blocks_publication) ... ok
+test_paid_repair_requires_committed_parent_despite_resealing (test_freeze07.PairTransaction.test_paid_repair_requires_committed_parent_despite_resealing) ... ok
+test_shared_repair_reserves_both_lanes_once (test_freeze07.PairTransaction.test_shared_repair_reserves_both_lanes_once) ... ok
+test_shared_repair_rolls_back_on_second_lane_exhaustion (test_freeze07.PairTransaction.test_shared_repair_rolls_back_on_second_lane_exhaustion) ... ok
+test_sigkill_before_and_after_commit_exactly_one_freeze (test_freeze07.PairTransaction.test_sigkill_before_and_after_commit_exactly_one_freeze) ... ok
+test_single_incomplete_lane_preserved_as_partial (test_freeze07.PairTransaction.test_single_incomplete_lane_preserved_as_partial) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 49.508s
+
+OK

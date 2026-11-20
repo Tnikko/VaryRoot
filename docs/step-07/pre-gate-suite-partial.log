@@ -1,0 +1,14 @@
+test_drops_unused_pure_declaration_only (test_agent_a.AgentATest.test_drops_unused_pure_declaration_only) ... ok
+test_missing_capacity (test_agent_a.AgentATest.test_missing_capacity) ... ok
+test_original_and_exit (test_agent_a.AgentATest.test_original_and_exit) ... ok
+test_pending_width_blocks_only_full_interval (test_agent_a.AgentATest.test_pending_width_blocks_only_full_interval) ... ok
+test_proposal_cannot_approve_independent_authority (test_agent_a.AgentATest.test_proposal_cannot_approve_independent_authority) ... ok
+test_rebound_reaches_original_target (test_agent_a.AgentATest.test_rebound_reaches_original_target) ... ok
+test_swapped_reviewed_guard (test_agent_a.AgentATest.test_swapped_reviewed_guard) ... ok
+test_unapproved_and_rejected (test_agent_a.AgentATest.test_unapproved_and_rejected) ... ok
+test_ungranted_change (test_agent_a.AgentATest.test_ungranted_change) ... ok
+test_worker_reads_only_granted_names (test_agent_a.AgentATest.test_worker_reads_only_granted_names) ... ok
+test_wrong_owner_and_units (test_agent_a.AgentATest.test_wrong_owner_and_units) ... ok
+test_append_erratum_and_rework (test_agent_b06.BIntegration.test_append_erratum_and_rework) ... ok
+test_oob_keep (test_agent_b06.BIntegration.test_oob_keep) ... ERROR
+test_pair_revise_and_no_budget (test_agent_b06.BIntegration.test_pair_revise_and_no_budget) ... 

@@ -1,0 +1,503 @@
+[
+  {
+    "kind": "Snapshot",
+    "schema_version": 1,
+    "id": "src",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "files": {
+      "fixture.txt": "读取 x"
+    }
+  },
+  {
+    "kind": "TargetRef",
+    "schema_version": 1,
+    "id": "t",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "scope_kind": "original_source",
+    "snapshot_ref": "src@1",
+    "variant_id": "base",
+    "file": "fixture.txt",
+    "symbol": "f",
+    "expr_span": [
+      7,
+      8
+    ],
+    "file_digest": "7cc547b216ef4e79d6570090bb971dcd864f6c6a728918f48b4d0cc34459fa8d",
+    "operation": "read",
+    "subject": "buffer#1",
+    "mapping_ref": null,
+    "mapping_status": "origin"
+  },
+  {
+    "kind": "Domain",
+    "schema_version": 1,
+    "id": "d",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "paths": [
+      "fault"
+    ],
+    "coverage": "exhaustive",
+    "basis_refs": [
+      "src@1"
+    ]
+  },
+  {
+    "kind": "Contract",
+    "schema_version": 1,
+    "id": "k",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "approval_status": "approved",
+    "basis_refs": [
+      "src@1"
+    ],
+    "mode": "single_access"
+  },
+  {
+    "kind": "Clause",
+    "schema_version": 1,
+    "id": "c.source",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "clause_id": "source",
+    "spec_version": 1,
+    "field": "Source",
+    "bindings": {
+      "source": "bool"
+    },
+    "applicability": true,
+    "antecedent": {
+      "var": "source"
+    },
+    "consequent": "Source",
+    "direction": "iff",
+    "basis_refs": [
+      "src@1"
+    ]
+  },
+  {
+    "kind": "Clause",
+    "schema_version": 1,
+    "id": "c.propagation",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "clause_id": "propagation",
+    "spec_version": 1,
+    "field": "Propagation",
+    "bindings": {
+      "propagation": "bool"
+    },
+    "applicability": true,
+    "antecedent": {
+      "var": "propagation"
+    },
+    "consequent": "Propagation",
+    "direction": "iff",
+    "basis_refs": [
+      "src@1"
+    ]
+  },
+  {
+    "kind": "Clause",
+    "schema_version": 1,
+    "id": "c.sink",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "clause_id": "sink",
+    "spec_version": 1,
+    "field": "Sink",
+    "bindings": {
+      "sink": "bool"
+    },
+    "applicability": true,
+    "antecedent": {
+      "var": "sink"
+    },
+    "consequent": "Sink",
+    "direction": "iff",
+    "basis_refs": [
+      "src@1"
+    ]
+  },
+  {
+    "kind": "Clause",
+    "schema_version": 1,
+    "id": "c.guard",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "clause_id": "guard",
+    "spec_version": 1,
+    "field": "Guard",
+    "bindings": {
+      "guard": "bool",
+      "capacity": "bytes",
+      "offset": "elements",
+      "scale": "bytes_per_element",
+      "width": "bytes",
+      "owner": "object",
+      "operand": "object"
+    },
+    "applicability": {
+      "op": "same_object",
+      "args": [
+        {
+          "var": "owner"
+        },
+        {
+          "var": "operand"
+        }
+      ]
+    },
+    "antecedent": {
+      "op": "contains",
+      "args": [
+        {
+          "var": "capacity"
+        },
+        {
+          "op": "to_bytes",
+          "args": [
+            {
+              "var": "offset"
+            },
+            {
+              "var": "scale"
+            }
+          ]
+        },
+        {
+          "var": "width"
+        }
+      ]
+    },
+    "consequent": "Guard",
+    "direction": "iff",
+    "basis_refs": [
+      "src@1"
+    ]
+  },
+  {
+    "kind": "Spec",
+    "schema_version": 1,
+    "id": "s",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "clause_refs": [
+      "c.source@1",
+      "c.propagation@1",
+      "c.sink@1",
+      "c.guard@1"
+    ],
+    "complete_guard_refs": []
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.source",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "source",
+    "typed_operands": {
+      "type": "bool",
+      "value": true
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.propagation",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "propagation",
+    "typed_operands": {
+      "type": "bool",
+      "value": true
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.sink",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "sink",
+    "typed_operands": {
+      "type": "bool",
+      "value": true
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.guard",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "guard",
+    "typed_operands": {
+      "type": "bool",
+      "value": false
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.feasible",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "feasible",
+    "typed_operands": {
+      "type": "bool",
+      "value": true
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.reaches",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "reaches",
+    "typed_operands": {
+      "type": "bool",
+      "value": true
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.capacity",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "capacity",
+    "typed_operands": {
+      "type": "bytes",
+      "value": 8
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.offset",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "offset",
+    "typed_operands": {
+      "type": "elements",
+      "value": 6
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.scale",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "scale",
+    "typed_operands": {
+      "type": "bytes_per_element",
+      "value": 1
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.width",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "width",
+    "typed_operands": {
+      "type": "bytes",
+      "value": 3
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.owner",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "owner",
+    "typed_operands": {
+      "type": "object",
+      "value": "buffer#1"
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  },
+  {
+    "kind": "Fact",
+    "schema_version": 1,
+    "id": "f.operand",
+    "version": 1,
+    "producer": "fixture",
+    "run_ref": "synthetic",
+    "depends_on": [],
+    "subject": "buffer#1",
+    "relation": "operand",
+    "typed_operands": {
+      "type": "object",
+      "value": "buffer#1"
+    },
+    "path_scope": {
+      "path_id": "fault"
+    },
+    "source_kind": "source_extracted",
+    "source_ref": "src@1",
+    "approval_status": "approved",
+    "target_ref": "t@1",
+    "domain_ref": "d@1",
+    "contract_ref": "k@1"
+  }
+]

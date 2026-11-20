@@ -1,0 +1,21 @@
+test_verifier_view (unittest.loader._FailedTest.test_verifier_view) ... ERROR
+
+======================================================================
+ERROR: test_verifier_view (unittest.loader._FailedTest.test_verifier_view)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_verifier_view
+Traceback (most recent call last):
+  File "/home/tq/.local/opt/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/home/tq/.local/opt/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/home/tq/varyroot/tests/test_verifier_view.py", line 4, in <module>
+    from varyroot.verifier_view import project
+ModuleNotFoundError: No module named 'varyroot.verifier_view'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.005s
+
+FAILED (errors=1)

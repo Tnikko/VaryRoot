@@ -1,0 +1,602 @@
+[
+  {
+    "id": "CVE-2026-107493",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-107493.json"
+  },
+  {
+    "id": "CVE-2026-95691",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-95691.json"
+  },
+  {
+    "id": "CVE-2026-125394",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-125394.json"
+  },
+  {
+    "id": "CVE-2026-85033",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-85033.json"
+  },
+  {
+    "id": "CVE-2026-119378",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-119378.json"
+  },
+  {
+    "id": "CVE-2026-119372",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-119372.json"
+  },
+  {
+    "id": "CVE-2026-116540",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-116540.json"
+  },
+  {
+    "id": "CVE-2025-60476",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2025-60476.json"
+  },
+  {
+    "id": "CVE-2025-60491",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2025-60491.json"
+  },
+  {
+    "id": "CVE-2025-60490",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2025-60490.json"
+  },
+  {
+    "id": "CVE-2025-60478",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2025-60478.json"
+  },
+  {
+    "id": "CVE-2026-85748",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-85748.json"
+  },
+  {
+    "id": "CVE-2026-69150",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-69150.json"
+  },
+  {
+    "id": "CVE-2026-109280",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-109280.json"
+  },
+  {
+    "id": "CVE-2026-109271",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-109271.json"
+  },
+  {
+    "id": "CVE-2026-109268",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-109268.json"
+  },
+  {
+    "id": "CVE-2026-95834",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-95834.json"
+  },
+  {
+    "id": "CVE-2026-98122",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-98122.json"
+  },
+  {
+    "id": "CVE-2026-98083",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-98083.json"
+  },
+  {
+    "id": "CVE-2026-89469",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-89469.json"
+  },
+  {
+    "id": "CVE-2026-80681",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-80681.json"
+  },
+  {
+    "id": "CVE-2026-80654",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-80654.json"
+  },
+  {
+    "id": "CVE-2026-80650",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-80650.json"
+  },
+  {
+    "id": "CVE-2026-80642",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-80642.json"
+  },
+  {
+    "id": "CVE-2026-80601",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-80601.json"
+  },
+  {
+    "id": "CVE-2026-80600",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-80600.json"
+  },
+  {
+    "id": "CVE-2026-77358",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-77358.json"
+  },
+  {
+    "id": "CVE-2026-74744",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-74744.json"
+  },
+  {
+    "id": "CVE-2026-74743",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-74743.json"
+  },
+  {
+    "id": "CVE-2026-74730",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-74730.json"
+  },
+  {
+    "id": "CVE-2026-74705",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-74705.json"
+  },
+  {
+    "id": "CVE-2026-74677",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-74677.json"
+  },
+  {
+    "id": "CVE-2026-63381",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-63381.json"
+  },
+  {
+    "id": "CVE-2026-76957",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-76957.json"
+  },
+  {
+    "id": "CVE-2026-72283",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-72283.json"
+  },
+  {
+    "id": "CVE-2026-72235",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-72235.json"
+  },
+  {
+    "id": "CVE-2026-72234",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-72234.json"
+  },
+  {
+    "id": "CVE-2026-72233",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-72233.json"
+  },
+  {
+    "id": "CVE-2026-72140",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-72140.json"
+  },
+  {
+    "id": "CVE-2026-72112",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-72112.json"
+  },
+  {
+    "id": "CVE-2026-72093",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-72093.json"
+  },
+  {
+    "id": "CVE-2026-72070",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-72070.json"
+  },
+  {
+    "id": "CVE-2026-11893",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-11893.json"
+  },
+  {
+    "id": "CVE-2026-68428",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-68428.json"
+  },
+  {
+    "id": "CVE-2026-68424",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-68424.json"
+  },
+  {
+    "id": "CVE-2026-68423",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-68423.json"
+  },
+  {
+    "id": "CVE-2026-68357",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-68357.json"
+  },
+  {
+    "id": "CVE-2026-68341",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-68341.json"
+  },
+  {
+    "id": "CVE-2026-68302",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-68302.json"
+  },
+  {
+    "id": "CVE-2026-68263",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-68263.json"
+  },
+  {
+    "id": "CVE-2026-68147",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-68147.json"
+  },
+  {
+    "id": "CVE-2026-64601",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64601.json"
+  },
+  {
+    "id": "CVE-2026-67300",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-67300.json"
+  },
+  {
+    "id": "CVE-2026-67299",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-67299.json"
+  },
+  {
+    "id": "CVE-2026-64471",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64471.json"
+  },
+  {
+    "id": "CVE-2026-64470",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64470.json"
+  },
+  {
+    "id": "CVE-2026-64455",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64455.json"
+  },
+  {
+    "id": "CVE-2026-64453",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64453.json"
+  },
+  {
+    "id": "CVE-2026-64421",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64421.json"
+  },
+  {
+    "id": "CVE-2026-64401",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64401.json"
+  },
+  {
+    "id": "CVE-2026-64372",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64372.json"
+  },
+  {
+    "id": "CVE-2026-64342",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64342.json"
+  },
+  {
+    "id": "CVE-2026-64329",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64329.json"
+  },
+  {
+    "id": "CVE-2026-64311",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64311.json"
+  },
+  {
+    "id": "CVE-2026-64303",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64303.json"
+  },
+  {
+    "id": "CVE-2026-64266",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64266.json"
+  },
+  {
+    "id": "CVE-2026-64265",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64265.json"
+  },
+  {
+    "id": "CVE-2026-64261",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64261.json"
+  },
+  {
+    "id": "CVE-2026-64259",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64259.json"
+  },
+  {
+    "id": "CVE-2026-64251",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64251.json"
+  },
+  {
+    "id": "CVE-2026-64249",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64249.json"
+  },
+  {
+    "id": "CVE-2026-64246",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64246.json"
+  },
+  {
+    "id": "CVE-2026-64245",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64245.json"
+  },
+  {
+    "id": "CVE-2026-64239",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64239.json"
+  },
+  {
+    "id": "CVE-2026-64221",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64221.json"
+  },
+  {
+    "id": "CVE-2026-64122",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64122.json"
+  },
+  {
+    "id": "CVE-2026-64117",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64117.json"
+  },
+  {
+    "id": "CVE-2026-64113",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64113.json"
+  },
+  {
+    "id": "CVE-2026-64099",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64099.json"
+  },
+  {
+    "id": "CVE-2026-64071",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64071.json"
+  },
+  {
+    "id": "CVE-2026-64050",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64050.json"
+  },
+  {
+    "id": "CVE-2026-64033",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64033.json"
+  },
+  {
+    "id": "CVE-2026-64017",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64017.json"
+  },
+  {
+    "id": "CVE-2026-64011",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-64011.json"
+  },
+  {
+    "id": "CVE-2026-63930",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-63930.json"
+  },
+  {
+    "id": "CVE-2026-63927",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-63927.json"
+  },
+  {
+    "id": "CVE-2026-63906",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-63906.json"
+  },
+  {
+    "id": "CVE-2026-63826",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-63826.json"
+  },
+  {
+    "id": "CVE-2026-63800",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-63800.json"
+  },
+  {
+    "id": "CVE-2026-63797",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-63797.json"
+  },
+  {
+    "id": "CVE-2026-63795",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-63795.json"
+  },
+  {
+    "id": "CVE-2026-63793",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-63793.json"
+  },
+  {
+    "id": "CVE-2026-53388",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-53388.json"
+  },
+  {
+    "id": "CVE-2026-53384",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-53384.json"
+  },
+  {
+    "id": "CVE-2026-53359",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-53359.json"
+  },
+  {
+    "id": "CVE-2026-53290",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-53290.json"
+  },
+  {
+    "id": "CVE-2026-53275",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-53275.json"
+  },
+  {
+    "id": "CVE-2026-53234",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-53234.json"
+  },
+  {
+    "id": "CVE-2026-53212",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-53212.json"
+  },
+  {
+    "id": "CVE-2026-53175",
+    "cwe": "CWE-416",
+    "status": "candidate_source_and_patch_not_independently_audited",
+    "file": "CVE-2026-53175.json"
+  }
+]

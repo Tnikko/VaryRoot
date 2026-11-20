@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "subject": "data",
+  "capacity": {
+    "value": 8,
+    "unit": "bytes",
+    "approval": "approved"
+  },
+  "domain": "singleton",
+  "hypotheses": [
+    "exit_or_contained",
+    "exit_or_start_inside"
+  ],
+  "skeleton_transform": "comment_prefix"
+}

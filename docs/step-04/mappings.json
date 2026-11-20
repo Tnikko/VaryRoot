@@ -1,0 +1,474 @@
+{
+  "source_sha256": "d42fe295191f4919bac645fb5a299b01d925451677faa023fb1db3d2367637cb",
+  "parse_config": {
+    "adapter": "step04-clang-v1",
+    "compiler": "/usr/bin/clang-18",
+    "compiler_version": "Ubuntu clang version 18.1.3 (1ubuntu1)",
+    "target": "x86_64-pc-linux-gnu",
+    "language": "c++",
+    "standard": "c++17",
+    "flags": [
+      "--no-default-config",
+      "--target=x86_64-pc-linux-gnu",
+      "-x",
+      "c++",
+      "-std=c++17",
+      "-nostdinc",
+      "-fno-color-diagnostics",
+      "-Werror",
+      "-fdebug-compilation-dir=."
+    ],
+    "headers": [],
+    "defines": []
+  },
+  "vectors": {
+    "ordinary_single": {
+      "mapping_status": "exact_1to1",
+      "candidate_refs": [
+        "target:cdf12b7a4f99c6a2a804d00033f85e6f732445b2ee20cb4bc64630717f38d257"
+      ]
+    },
+    "same_line_coarse": {
+      "mapping_status": "ambiguous",
+      "candidate_refs": [
+        "target:cdf12b7a4f99c6a2a804d00033f85e6f732445b2ee20cb4bc64630717f38d257",
+        "target:fbcc95102eecf89f461a24db234868037bd5acc1a74c24dba4beadda39bc2171"
+      ]
+    },
+    "same_line_exact": [
+      {
+        "mapping_status": "exact_1to1",
+        "candidate_refs": [
+          "target:cdf12b7a4f99c6a2a804d00033f85e6f732445b2ee20cb4bc64630717f38d257"
+        ]
+      },
+      {
+        "mapping_status": "exact_1to1",
+        "candidate_refs": [
+          "target:fbcc95102eecf89f461a24db234868037bd5acc1a74c24dba4beadda39bc2171"
+        ]
+      }
+    ],
+    "repeated_macro_spelling": {
+      "mapping_status": "ambiguous",
+      "candidate_refs": [
+        "target:07017cee6380cee54fd22f66f66730d0ec6e64d741cfeb68fbab4996d5bf4f0d",
+        "target:596be8e14d0f1efabc00322ce9474c27c636be6f4282cafe02a0021d98ea89a7"
+      ]
+    },
+    "repeated_macro_occurrences": [
+      {
+        "byte_span": [
+          256,
+          262
+        ],
+        "line": 7,
+        "column": 27,
+        "ast_path": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "ast_kind": "ArraySubscriptExpr",
+        "enclosing_decl": {
+          "name": "accesses",
+          "signature": "unsigned int (unsigned int (&)[4])",
+          "definition_span": [
+            153,
+            357
+          ],
+          "symbol": "_Z8accessesRA4_j"
+        },
+        "context_policy": "definition",
+        "scope_kind": "original_source",
+        "snapshot_ref": "fixture@1",
+        "variant_id": "source",
+        "file": "accesses.cpp",
+        "file_digest": "d42fe295191f4919bac645fb5a299b01d925451677faa023fb1db3d2367637cb",
+        "parse_config_ref": "config:39e58fc6e3956b98f533aea241614ff3722fae7cf5d38e3f01e069ab7b0f1436",
+        "target_ref": "target:07017cee6380cee54fd22f66f66730d0ec6e64d741cfeb68fbab4996d5bf4f0d",
+        "operation": "read",
+        "value_type": "unsigned int",
+        "object_name": "buf",
+        "width_bytes": 4,
+        "access_ordinal": 2,
+        "origin_trace": {
+          "kind": "macro_expanded",
+          "spelling_span": [
+            256,
+            262
+          ],
+          "expansion_span": [
+            251,
+            255
+          ],
+          "macro": "PAIR",
+          "parameter": "x",
+          "replacement_use_span": [
+            59,
+            60
+          ]
+        },
+        "mapping_status": "origin",
+        "mapping_ref": null
+      },
+      {
+        "byte_span": [
+          256,
+          262
+        ],
+        "line": 7,
+        "column": 27,
+        "ast_path": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "ast_kind": "ArraySubscriptExpr",
+        "enclosing_decl": {
+          "name": "accesses",
+          "signature": "unsigned int (unsigned int (&)[4])",
+          "definition_span": [
+            153,
+            357
+          ],
+          "symbol": "_Z8accessesRA4_j"
+        },
+        "context_policy": "definition",
+        "scope_kind": "original_source",
+        "snapshot_ref": "fixture@1",
+        "variant_id": "source",
+        "file": "accesses.cpp",
+        "file_digest": "d42fe295191f4919bac645fb5a299b01d925451677faa023fb1db3d2367637cb",
+        "parse_config_ref": "config:39e58fc6e3956b98f533aea241614ff3722fae7cf5d38e3f01e069ab7b0f1436",
+        "target_ref": "target:596be8e14d0f1efabc00322ce9474c27c636be6f4282cafe02a0021d98ea89a7",
+        "operation": "read",
+        "value_type": "unsigned int",
+        "object_name": "buf",
+        "width_bytes": 4,
+        "access_ordinal": 3,
+        "origin_trace": {
+          "kind": "macro_expanded",
+          "spelling_span": [
+            256,
+            262
+          ],
+          "expansion_span": [
+            251,
+            255
+          ],
+          "macro": "PAIR",
+          "parameter": "x",
+          "replacement_use_span": [
+            65,
+            66
+          ]
+        },
+        "mapping_status": "origin",
+        "mapping_ref": null
+      }
+    ],
+    "inline_definition": [
+      {
+        "byte_span": [
+          142,
+          148
+        ],
+        "line": 3,
+        "column": 74,
+        "ast_path": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "ast_kind": "ArraySubscriptExpr",
+        "enclosing_decl": {
+          "name": "read0",
+          "signature": "unsigned int (const volatile unsigned int (&)[4])",
+          "definition_span": [
+            69,
+            151
+          ],
+          "symbol": "_ZL5read0RA4_VKj"
+        },
+        "context_policy": "definition",
+        "scope_kind": "original_source",
+        "snapshot_ref": "fixture@1",
+        "variant_id": "source",
+        "file": "accesses.cpp",
+        "file_digest": "d42fe295191f4919bac645fb5a299b01d925451677faa023fb1db3d2367637cb",
+        "parse_config_ref": "config:39e58fc6e3956b98f533aea241614ff3722fae7cf5d38e3f01e069ab7b0f1436",
+        "target_ref": "target:149f45c61c321f8c150beacea0ed69ab109c6cb6f091f752086401db3193dfbe",
+        "operation": "read",
+        "value_type": "const volatile unsigned int",
+        "object_name": "buf",
+        "width_bytes": 4,
+        "access_ordinal": 0,
+        "origin_trace": {
+          "kind": "source",
+          "spelling_span": [
+            142,
+            148
+          ]
+        },
+        "mapping_status": "origin",
+        "mapping_ref": null
+      }
+    ],
+    "source_calls": [
+      {
+        "byte_span": [
+          316,
+          326
+        ],
+        "line": 10,
+        "column": 12,
+        "ast_path": [
+          1,
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        "ast_kind": "CallExpr",
+        "enclosing_decl": {
+          "name": "accesses",
+          "signature": "unsigned int (unsigned int (&)[4])",
+          "definition_span": [
+            153,
+            357
+          ],
+          "symbol": "_Z8accessesRA4_j"
+        },
+        "context_policy": "definition",
+        "callee": "read0",
+        "callsite_ref": "call:38ce3b60a4da8c4a42da68aa4efd6dabcce0df7c8c975711a593e3d570288629"
+      },
+      {
+        "byte_span": [
+          329,
+          339
+        ],
+        "line": 10,
+        "column": 25,
+        "ast_path": [
+          1,
+          4,
+          0,
+          0,
+          0,
+          1
+        ],
+        "ast_kind": "CallExpr",
+        "enclosing_decl": {
+          "name": "accesses",
+          "signature": "unsigned int (unsigned int (&)[4])",
+          "definition_span": [
+            153,
+            357
+          ],
+          "symbol": "_Z8accessesRA4_j"
+        },
+        "context_policy": "definition",
+        "callee": "read0",
+        "callsite_ref": "call:e3544c880162b52afa665c402fa8f2b74e9208b8759e44e0effa135632984ce7"
+      }
+    ],
+    "operations": [
+      {
+        "operation": "read",
+        "ref": "target:149f45c61c321f8c150beacea0ed69ab109c6cb6f091f752086401db3193dfbe"
+      },
+      {
+        "operation": "read",
+        "ref": "target:cdf12b7a4f99c6a2a804d00033f85e6f732445b2ee20cb4bc64630717f38d257"
+      },
+      {
+        "operation": "read",
+        "ref": "target:fbcc95102eecf89f461a24db234868037bd5acc1a74c24dba4beadda39bc2171"
+      },
+      {
+        "operation": "read",
+        "ref": "target:07017cee6380cee54fd22f66f66730d0ec6e64d741cfeb68fbab4996d5bf4f0d"
+      },
+      {
+        "operation": "read",
+        "ref": "target:596be8e14d0f1efabc00322ce9474c27c636be6f4282cafe02a0021d98ea89a7"
+      },
+      {
+        "operation": "write",
+        "ref": "target:116a99b77111ee963d5ed3bef721b64babc98e1dbdcb918dde3e84e846b20068"
+      },
+      {
+        "operation": "read_write",
+        "ref": "target:358e2459b14ac7499406de8a848a054c2306f21380e63a3d3483f499bd446f62"
+      }
+    ],
+    "unmapped": {
+      "mapping_status": "unmapped",
+      "candidate_refs": []
+    },
+    "O0": {
+      "ir_sha256": "bbabe5cb6a83ea4e4570bccf148477a21113d2d99a8e5c1420e3603859d7d64d",
+      "inline_instances": [],
+      "macro_expansion_memory_instructions": [
+        {
+          "opcode": "load",
+          "line": 7,
+          "column": 22,
+          "definition_name": "accesses",
+          "inlined_at": []
+        },
+        {
+          "opcode": "load",
+          "line": 7,
+          "column": 22,
+          "definition_name": "accesses",
+          "inlined_at": []
+        },
+        {
+          "opcode": "load",
+          "line": 7,
+          "column": 22,
+          "definition_name": "accesses",
+          "inlined_at": []
+        },
+        {
+          "opcode": "load",
+          "line": 7,
+          "column": 22,
+          "definition_name": "accesses",
+          "inlined_at": []
+        }
+      ],
+      "macro_origin_candidates": [
+        "target:07017cee6380cee54fd22f66f66730d0ec6e64d741cfeb68fbab4996d5bf4f0d",
+        "target:596be8e14d0f1efabc00322ce9474c27c636be6f4282cafe02a0021d98ea89a7"
+      ],
+      "macro_mapping_status": "ambiguous"
+    },
+    "O2": {
+      "ir_sha256": "62a595301c30d86076c1540fca5b480c87cad2a063323bcb3ae7bcc0fff38c1a",
+      "inline_instances": [
+        {
+          "opcode": "load",
+          "line": 3,
+          "column": 74,
+          "definition_name": "read0",
+          "inlined_at": [
+            [
+              10,
+              12
+            ]
+          ],
+          "callsite_ref": "call:38ce3b60a4da8c4a42da68aa4efd6dabcce0df7c8c975711a593e3d570288629",
+          "definition_target_ref": "target:149f45c61c321f8c150beacea0ed69ab109c6cb6f091f752086401db3193dfbe"
+        },
+        {
+          "opcode": "load",
+          "line": 3,
+          "column": 74,
+          "definition_name": "read0",
+          "inlined_at": [
+            [
+              10,
+              25
+            ]
+          ],
+          "callsite_ref": "call:e3544c880162b52afa665c402fa8f2b74e9208b8759e44e0effa135632984ce7",
+          "definition_target_ref": "target:149f45c61c321f8c150beacea0ed69ab109c6cb6f091f752086401db3193dfbe"
+        }
+      ],
+      "macro_expansion_memory_instructions": [
+        {
+          "opcode": "load",
+          "line": 7,
+          "column": 22,
+          "definition_name": "accesses",
+          "inlined_at": []
+        }
+      ],
+      "macro_origin_candidates": [
+        "target:07017cee6380cee54fd22f66f66730d0ec6e64d741cfeb68fbab4996d5bf4f0d",
+        "target:596be8e14d0f1efabc00322ce9474c27c636be6f4282cafe02a0021d98ea89a7"
+      ],
+      "macro_mapping_status": "ambiguous"
+    },
+    "manifest_registered_source": {
+      "registration": {
+        "kind": "host_manifest",
+        "staging_path": "before.c",
+        "sha256": "0f73a57b2bb7efe2a1e633c10c186dd79ec9a5867c128b4a5694af61861d6d2c"
+      },
+      "targets": [
+        {
+          "byte_span": [
+            128,
+            141
+          ],
+          "line": 5,
+          "column": 25,
+          "ast_path": [
+            0,
+            2,
+            0,
+            0
+          ],
+          "ast_kind": "ArraySubscriptExpr",
+          "enclosing_decl": {
+            "name": "example",
+            "signature": "unsigned int (void)",
+            "definition_span": [
+              25,
+              144
+            ],
+            "symbol": "example"
+          },
+          "context_policy": "definition",
+          "scope_kind": "original_source",
+          "snapshot_ref": "reviewed@1",
+          "variant_id": "before",
+          "file": "reviewed.c",
+          "file_digest": "0f73a57b2bb7efe2a1e633c10c186dd79ec9a5867c128b4a5694af61861d6d2c",
+          "parse_config_ref": "config:bcfc31d8d68221a2bcca0c9b0676b6f9678883621b803ba556eac378c0d74614",
+          "target_ref": "target:dc2ad8ae2451998175a85c159ef0edf057040296242040976ea8c2fdfeafbfc8",
+          "operation": "read",
+          "value_type": "unsigned int",
+          "object_name": "values",
+          "width_bytes": 4,
+          "access_ordinal": 0,
+          "origin_trace": {
+            "kind": "source",
+            "spelling_span": [
+              128,
+              141
+            ]
+          },
+          "mapping_status": "origin",
+          "mapping_ref": null
+        }
+      ]
+    },
+    "utf8_columns": {
+      "byte_column": 25,
+      "character_column": 21,
+      "byte_span": [
+        128,
+        141
+      ],
+      "text": "values[index]"
+    }
+  }
+}

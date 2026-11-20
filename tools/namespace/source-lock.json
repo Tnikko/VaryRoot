@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "images": {
+    "varyroot-agent-a:step04": {
+      "archive": "agent-a-step04.tar.gz",
+      "image_id": "sha256:4d8b8dd565b137c9654d1ae60f27403b775e1c0ea33d2753075aa93a5b9dcbf4",
+      "tar_sha256": "8fe37352300728dfdda7e87688a02059a9deb9b98e7846eb92e52db6f803168c"
+    },
+    "varyroot-verifier:step05": {
+      "archive": "verifier-step05.tar.gz",
+      "image_id": "sha256:34eff3595848e3aae6a975f6d0f639668fbf6e017b7092bf9023279a24568fcb",
+      "tar_sha256": "14a9c34d9f4a67fe42054f51de90b1f2b49a62caae5e84f664e60da44ad452b0"
+    },
+    "varyroot-selector:step06": {
+      "archive": "selector-step06.tar.gz",
+      "image_id": "sha256:8d08413c4ea683b201c7257c760a6d71749d34d8bd6a288d422238d2c33b8cfa",
+      "tar_sha256": "13c87bb5ecc353236f50c32f7465b61de7bf6464a85a3c729ea094e1ec840981"
+    },
+    "varyroot-role:step03": {
+      "archive": "role-step03.tar.gz",
+      "image_id": "sha256:811031bac5d4779204853e1a402046464459e837159e49ad4129f521bb5a129b",
+      "tar_sha256": "e98e68287b758044961c34612c622bac31351fe48124caa7eb5080e5ecf4dc4f"
+    }
+  }
+}

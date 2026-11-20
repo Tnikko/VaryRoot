@@ -1,0 +1,82 @@
+{
+  "os": "Ubuntu 24.04.5 LTS",
+  "kernel": "7.0.0-42-generic",
+  "filesystem": "ext4   /dev/sda2",
+  "python": "3.13.2 (main, Mar 17 2025, 21:02:54) [Clang 20.1.0 ]",
+  "sqlite": "3.47.1",
+  "docker_server": "29.1.3",
+  "worker_python": "Python 3.13.18",
+  "worker_clang": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /opt/clang/bin",
+  "images": {
+    "python:3.13-slim": "sha256:48d884813cf44e927cf64c5529dd630dd3b18338c6dc727991eef9b71e934a20",
+    "varyroot-role:step03": "sha256:811031bac5d4779204853e1a402046464459e837159e49ad4129f521bb5a129b",
+    "varyroot-clang:step04": "sha256:33912e560e196c99ae878de5ce3d4ae014ba70dbf28c386795810d94840fd71e",
+    "varyroot-agent-a:step04": "sha256:4d8b8dd565b137c9654d1ae60f27403b775e1c0ea33d2753075aa93a5b9dcbf4"
+  },
+  "compiler": "Ubuntu clang version 18.1.3 (1ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin",
+  "triple": "x86_64-pc-linux-gnu",
+  "ubuntu_package": "clang-18\t1:18.1.3-1ubuntu1",
+  "sha256_clang_elf": "8ef402d453d1ba4902e4ee0f0f847f6cfa01400c95aa43c24e97818b9c0e3f45",
+  "toolchain_lock_sha256": "bdc7ea1328360e4a9558162b06ce668d9fbf7f17b3b570f9af869d66af09e36f",
+  "locked_files": 256,
+  "verified_worker_module_digests": {
+    "agent_a.py": "751cf97e519de4d0f0bb6015725ed66f0c9da7f719b0e1dbf7de012d912bad10",
+    "frontend.py": "9a93b1237d5c5cef08da45e3c7f14ac023add568b8b749505c2746eef0db9c91",
+    "__main__.py": "2c9376a161a7400bed998c4935ed5e6ba7e501827d9a328c8866a60fbe08a742",
+    "inference.py": "15996073265ed3fb4fcf46ba69a9d256c64ff4042d97d04222e3ee77cd145d6f",
+    "artifacts.py": "c67531c77cdb717ee128663b64f0e43f23943c3f84d0f0d65872abf07e113490",
+    "checks.py": "136407f5491f3353381d42707b774696066e5e76999418090284370555b7304a",
+    "handoff.py": "3218860ee1f8f9391655ed0998c8b8a712c5f00d70f45948215f88de0fc7b121",
+    "ir.py": "15f75d190f68486ac3d58f371e85aa6d8a404d2a34e00694eb20da105851b823"
+  },
+  "archive": "/home/tq/varyroot-offline/step04-agent-a-review.tar.gz",
+  "archive_sha256": "b5bb5e2fa91700ec6069ffec8f3fbcd65f995cf7b356958501dff2859d457de9",
+  "archive_bytes": 119932600,
+  "loaded_from_archive": "Loaded image: varyroot-agent-a:step04",
+  "parse_config": {
+    "adapter": "step04-clang-v1",
+    "compiler": "/usr/bin/clang-18",
+    "compiler_version": "Ubuntu clang version 18.1.3 (1ubuntu1)",
+    "target": "x86_64-pc-linux-gnu",
+    "language": "c++",
+    "standard": "c++17",
+    "flags": [
+      "--no-default-config",
+      "--target=x86_64-pc-linux-gnu",
+      "-x",
+      "c++",
+      "-std=c++17",
+      "-nostdinc",
+      "-fno-color-diagnostics",
+      "-Werror",
+      "-fdebug-compilation-dir=."
+    ],
+    "headers": [],
+    "defines": []
+  },
+  "clang_actions": {
+    "ast": [
+      "-fsyntax-only",
+      "-Xclang",
+      "-ast-dump=json"
+    ],
+    "ir": {
+      "O0": [
+        "-O0",
+        "-g",
+        "-S",
+        "-emit-llvm",
+        "-o",
+        "-"
+      ],
+      "O2": [
+        "-O2",
+        "-g",
+        "-S",
+        "-emit-llvm",
+        "-o",
+        "-"
+      ]
+    }
+  }
+}

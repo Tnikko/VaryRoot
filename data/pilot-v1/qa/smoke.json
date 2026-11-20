@@ -1,0 +1,139 @@
+{
+  "purpose": "fixture QA only",
+  "cases": 24,
+  "domain_executions": 5856,
+  "labels": {
+    "positive": 10,
+    "negative": 14
+  },
+  "selection_sha256": "8a625ee5df7b58e0fafd2d2a15451ed803e58ed7e44fcf3828613ddc08ca4364",
+  "arms": [
+    {
+      "family": "N",
+      "strategy": "disagreement",
+      "ids": [
+        "N03",
+        "N07",
+        "N04",
+        "N05"
+      ],
+      "fallback": [
+        "N04",
+        "N05"
+      ],
+      "observed_split_cases": 2,
+      "contradicted": [
+        "h0"
+      ]
+    },
+    {
+      "family": "N",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 11,
+      "ids": [
+        "N10",
+        "N11",
+        "N12",
+        "N06"
+      ],
+      "observed_split_cases": 0,
+      "contradicted": []
+    },
+    {
+      "family": "N",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 23,
+      "ids": [
+        "N07",
+        "N04",
+        "N03",
+        "N12"
+      ],
+      "observed_split_cases": 2,
+      "contradicted": [
+        "h0"
+      ]
+    },
+    {
+      "family": "N",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 47,
+      "ids": [
+        "N08",
+        "N04",
+        "N09",
+        "N07"
+      ],
+      "observed_split_cases": 1,
+      "contradicted": [
+        "h0"
+      ]
+    },
+    {
+      "family": "O",
+      "strategy": "disagreement",
+      "ids": [
+        "O04",
+        "O05",
+        "O07",
+        "O12"
+      ],
+      "fallback": [],
+      "observed_split_cases": 4,
+      "contradicted": [
+        "h0"
+      ]
+    },
+    {
+      "family": "O",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 11,
+      "ids": [
+        "O10",
+        "O11",
+        "O12",
+        "O06"
+      ],
+      "observed_split_cases": 1,
+      "contradicted": [
+        "h0"
+      ]
+    },
+    {
+      "family": "O",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 23,
+      "ids": [
+        "O07",
+        "O04",
+        "O03",
+        "O12"
+      ],
+      "observed_split_cases": 3,
+      "contradicted": [
+        "h0"
+      ]
+    },
+    {
+      "family": "O",
+      "strategy": "random",
+      "rng": "Python random.Random.sample",
+      "seed": 47,
+      "ids": [
+        "O08",
+        "O04",
+        "O09",
+        "O07"
+      ],
+      "observed_split_cases": 2,
+      "contradicted": [
+        "h0"
+      ]
+    }
+  ]
+}

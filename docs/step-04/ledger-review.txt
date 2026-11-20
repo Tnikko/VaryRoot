@@ -1,0 +1,10 @@
+test_actual_frontend_packet_in_rework (test_seed_ledger.SeedLedgerTests.test_actual_frontend_packet_in_rework) ... ok
+test_dependency_validation (test_seed_ledger.SeedLedgerTests.test_dependency_validation) ... ok
+test_fail_closed_across_restart (test_seed_ledger.SeedLedgerTests.test_fail_closed_across_restart) ... ok
+test_fixture_identity_cannot_open_production_gate (test_seed_ledger.SeedLedgerTests.test_fixture_identity_cannot_open_production_gate) ... ok
+test_rework (test_seed_ledger.SeedLedgerTests.test_rework) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.321s
+
+OK

@@ -1,0 +1,9 @@
+test_known_target_programs (test_probe05.NativeTests.test_known_target_programs) ... ok
+test_observed_transition_and_reference_bytes (test_probe05.NativeTests.test_observed_transition_and_reference_bytes) ... ok
+test_order_and_interception (test_probe05.NativeTests.test_order_and_interception) ... ok
+test_undefined_source_addition_has_no_post_value (test_probe05.NativeTests.test_undefined_source_addition_has_no_post_value) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.348s
+
+OK

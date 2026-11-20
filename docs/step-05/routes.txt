@@ -1,0 +1,9 @@
+test_arrays (test_routes05.Routes.test_arrays) ... ok
+test_budget_failure_retry_and_stale (test_routes05.Routes.test_budget_failure_retry_and_stale) ... ok
+test_receipt_survives_lost_stdout_and_late_failure (test_routes05.Routes.test_receipt_survives_lost_stdout_and_late_failure) ... ok
+test_remodel_and_filter (test_routes05.Routes.test_remodel_and_filter) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 23.572s
+
+OK

@@ -1,0 +1,29 @@
+test_arrays (test_routes05.Routes.test_arrays) ... ERROR
+test_retired_domain_cannot_attach (test_routes05.Routes.test_retired_domain_cannot_attach) ... ERROR
+
+======================================================================
+ERROR: test_arrays (test_routes05.Routes.test_arrays)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_routes05.py", line 54, in test_arrays
+    self.assertEqual({f["reason"] for f in res["missing_facts"]},{reason})
+                                           ~~~^^^^^^^^^^^^^^^^^
+KeyError: 'missing_facts'
+
+======================================================================
+ERROR: test_retired_domain_cannot_attach (test_routes05.Routes.test_retired_domain_cannot_attach)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tq/varyroot/tests/test_routes05.py", line 234, in test_retired_domain_cannot_attach
+    self.assertEqual(qualify(db,run)["state"],"seed_accepted")
+                     ~~~~~~~^^^^^^^^
+  File "/home/tq/varyroot/varyroot/qualification.py", line 186, in qualify
+    rid=reserve(db,run,p,side,files[side],image)
+  File "/home/tq/varyroot/varyroot/verify_request.py", line 36, in reserve
+    raise LedgerError("changed request for this identity")
+varyroot.ledger.LedgerError: changed request for this identity
+
+----------------------------------------------------------------------
+Ran 2 tests in 8.899s
+
+FAILED (errors=2)

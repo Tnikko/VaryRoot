@@ -1,0 +1,6 @@
+test_npd_seed (test_seed05.Qualification.test_npd_seed) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 6.732s
+
+OK

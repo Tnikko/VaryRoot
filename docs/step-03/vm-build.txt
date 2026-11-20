@@ -1,0 +1,32 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  49.66kB
+Step 1/8 : ARG BASE=python:3.13-slim
+Step 2/8 : FROM ${BASE}
+ ---> 48d884813cf4
+Step 3/8 : COPY varyroot /opt/role/varyroot
+ ---> c7fc04bcfaae
+Step 4/8 : ENV PYTHONPATH=/opt/role PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+ ---> Running in aff38045c1be
+ ---> Removed intermediate container aff38045c1be
+ ---> 280cbc5c25a3
+Step 5/8 : USER 65534:65534
+ ---> Running in 0e9e0cd3a56a
+ ---> Removed intermediate container 0e9e0cd3a56a
+ ---> cc5fd48f84b0
+Step 6/8 : WORKDIR /input
+ ---> Running in 6cd691142e8a
+ ---> Removed intermediate container 6cd691142e8a
+ ---> f3cfada1d233
+Step 7/8 : ENTRYPOINT []
+ ---> Running in 677c031d3b07
+ ---> Removed intermediate container 677c031d3b07
+ ---> f815a0cd946b
+Step 8/8 : CMD ["python", "-m", "varyroot"]
+ ---> Running in b9aa0b560a1c
+ ---> Removed intermediate container b9aa0b560a1c
+ ---> 811031bac5d4
+Successfully built 811031bac5d4
+Successfully tagged varyroot-role:step03

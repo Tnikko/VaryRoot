@@ -1,0 +1,23 @@
+{
+  "files": [
+    "contract.json",
+    "domain.json",
+    "input_manifest.json",
+    "target.json",
+    "unit.c"
+  ],
+  "modules": [
+    "__init__.py",
+    "probe.py",
+    "publication.py",
+    "verdict.py",
+    "verifier_worker.py"
+  ],
+  "network": [
+    "lo"
+  ],
+  "docker_socket": false,
+  "write_errno": 30,
+  "image": "sha256:a4b61d7f93186bc33e94b683613d63493b5ad529d5704c560b5e8454fc0df862",
+  "manifest_sha": "856d052411caf12331a3fdd07d0a8f0e90e4478d56d3ee6205481d9b4a9218cc"
+}

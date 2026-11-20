@@ -1,0 +1,21 @@
+{
+  "null_pointer_dereference": {
+    "count": 100,
+    "cwe_counts": {
+      "CWE-476": 100
+    }
+  },
+  "buffer_out_of_bounds": {
+    "count": 100,
+    "cwe_counts": {
+      "CWE-125": 50,
+      "CWE-787": 50
+    }
+  },
+  "use_after_free": {
+    "count": 100,
+    "cwe_counts": {
+      "CWE-416": 100
+    }
+  }
+}

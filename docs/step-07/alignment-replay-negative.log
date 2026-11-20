@@ -1,0 +1,10 @@
+test_container_checks_again_after_host_preflight (test_codeql_replay07.ReplayTests.test_container_checks_again_after_host_preflight) ... ok
+test_database_restore_stays_in_private_directory (test_codeql_replay07.ReplayTests.test_database_restore_stays_in_private_directory) ... ok
+test_isolated_mounts (test_codeql_replay07.ReplayTests.test_isolated_mounts) ... ok
+test_missing_dependency_even_with_fresh_manifest (test_codeql_replay07.ReplayTests.test_missing_dependency_even_with_fresh_manifest) ... ok
+test_tampering_stops_before_engine (test_codeql_replay07.ReplayTests.test_tampering_stops_before_engine) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.910s
+
+OK

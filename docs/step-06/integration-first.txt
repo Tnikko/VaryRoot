@@ -1,0 +1,8 @@
+test_append_erratum_and_rework (test_agent_b06.BIntegration.test_append_erratum_and_rework) ... ok
+test_oob_keep (test_agent_b06.BIntegration.test_oob_keep) ... ok
+test_pair_revise_and_no_budget (test_agent_b06.BIntegration.test_pair_revise_and_no_budget) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 45.553s
+
+OK

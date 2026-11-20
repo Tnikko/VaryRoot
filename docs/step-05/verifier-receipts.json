@@ -1,0 +1,2192 @@
+{
+  "c488cc7ca0cc4c4e89c6b37c41459fd7": {
+    "request": {
+      "request_id": "c488cc7ca0cc4c4e89c6b37c41459fd7",
+      "run_id": "rebind",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "02018fae099c81ae18beef6f77b7547b164b868443e3ab9121042a4c5aa60e73"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+      "binary_sha256": "a88efb75c6b18435932cadac4b10c519710c39ec1e57260c26a515d3a81741f4",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 8
+        },
+        "id": "capacity-contract",
+        "subject": "data",
+        "version": 1
+      },
+      "domain": {
+        "id": "singleton@1",
+        "inputs": [
+          0
+        ]
+      },
+      "inputs": {
+        "contract.json": "8480c27fdc7d47d3f4f50162af52ec98671d0c4c05a1ef3f5e6e951ba4d34879",
+        "domain.json": "e2879b4da580e525973b027fbd235500e79d727cfb497d5a6f6f4c23cca2cc55",
+        "target.json": "f63446ff726300bb7c67c506622d2ffcd456f3410ee703b24747904c6fcb7029",
+        "unit.c": "66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818"
+      },
+      "manifest_sha": "b9548d59a3b093a83dad4f6ddb3cfc7d7a45460141082031e5088ccde01903b1",
+      "observations": [
+        {
+          "accesses": 0,
+          "conversion": "widen_unsigned_index_then_scale",
+          "element_bytes": 4,
+          "element_index": 3,
+          "end": 16,
+          "event": "violation",
+          "generation": "static-object@1",
+          "index_type": "unsigned int",
+          "index_unit": "elements",
+          "initial_is_null": null,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 8,
+          "negative_offset": false,
+          "offset": 12,
+          "offset_type": "int64",
+          "offset_unit": "bytes",
+          "physical": 32,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 4,
+          "width_unit": "bytes"
+        }
+      ],
+      "request_id": "c488cc7ca0cc4c4e89c6b37c41459fd7",
+      "target": {
+        "byte_span": [
+          83,
+          90
+        ],
+        "file_digest": "66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818",
+        "object_name": "data",
+        "operation": "read",
+        "snapshot_ref": "src.66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818@1",
+        "target_ref": "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0
+        ],
+        "label": "positive",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [],
+        "violations": [
+          0
+        ]
+      }
+    }
+  },
+  "b72c7a9241d94ddd8c6d2db26c2f6258": {
+    "request": {
+      "request_id": "b72c7a9241d94ddd8c6d2db26c2f6258",
+      "run_id": "rebind",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "6adccb0817934ef91cfa1b93a181c9fe3b527df0bd27a2532a052741bdae437b"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+      "binary_sha256": "d258a9924be55eb8fcc2239c4b331c9ccbccc282682a6337d0f532c330d8de93",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 8
+        },
+        "id": "capacity-contract",
+        "subject": "data",
+        "version": 1
+      },
+      "domain": {
+        "id": "singleton@1",
+        "inputs": [
+          0
+        ]
+      },
+      "inputs": {
+        "contract.json": "8480c27fdc7d47d3f4f50162af52ec98671d0c4c05a1ef3f5e6e951ba4d34879",
+        "domain.json": "e2879b4da580e525973b027fbd235500e79d727cfb497d5a6f6f4c23cca2cc55",
+        "target.json": "0dac079326ff4c0eabec7b3d2e0703d76f85e03e74ae67d455f183c21b3dd769",
+        "unit.c": "bf6e7db133b0f65006b01f5450c1973cf127f7463c97642d265f591b6325cf0b"
+      },
+      "manifest_sha": "801e177332607ce26c5dbe8d02f909b200370dd87f7af571789467bd998e44c1",
+      "observations": [
+        {
+          "accesses": 1,
+          "conversion": "widen_unsigned_index_then_scale",
+          "element_bytes": 4,
+          "element_index": 1,
+          "end": 8,
+          "event": "used",
+          "generation": "static-object@1",
+          "index_type": "unsigned int",
+          "index_unit": "elements",
+          "initial_is_null": null,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 8,
+          "negative_offset": false,
+          "offset": 4,
+          "offset_type": "int64",
+          "offset_unit": "bytes",
+          "physical": 32,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4,
+          "width_unit": "bytes"
+        }
+      ],
+      "request_id": "b72c7a9241d94ddd8c6d2db26c2f6258",
+      "target": {
+        "byte_span": [
+          106,
+          113
+        ],
+        "file_digest": "bf6e7db133b0f65006b01f5450c1973cf127f7463c97642d265f591b6325cf0b",
+        "object_name": "data",
+        "operation": "read",
+        "snapshot_ref": "src.bf6e7db133b0f65006b01f5450c1973cf127f7463c97642d265f591b6325cf0b@1",
+        "target_ref": "target:42e7a9a5e4e992d2c3d289b82d0538fc06d1c5f825e96498fb5571f64457abfd"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0
+        ],
+        "label": "negative",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": []
+      }
+    }
+  },
+  "d39d861c09574dacb74cf01197db9831": {
+    "request": {
+      "request_id": "d39d861c09574dacb74cf01197db9831",
+      "run_id": "exit",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "02018fae099c81ae18beef6f77b7547b164b868443e3ab9121042a4c5aa60e73"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+      "binary_sha256": "a88efb75c6b18435932cadac4b10c519710c39ec1e57260c26a515d3a81741f4",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 8
+        },
+        "id": "capacity-contract",
+        "subject": "data",
+        "version": 1
+      },
+      "domain": {
+        "id": "singleton@1",
+        "inputs": [
+          0
+        ]
+      },
+      "inputs": {
+        "contract.json": "8480c27fdc7d47d3f4f50162af52ec98671d0c4c05a1ef3f5e6e951ba4d34879",
+        "domain.json": "e2879b4da580e525973b027fbd235500e79d727cfb497d5a6f6f4c23cca2cc55",
+        "target.json": "f63446ff726300bb7c67c506622d2ffcd456f3410ee703b24747904c6fcb7029",
+        "unit.c": "66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818"
+      },
+      "manifest_sha": "b99bd8e261b4ce4f2bcc7ec1a3d4086375e58f4695bd4035f6c83e164fee1b41",
+      "observations": [
+        {
+          "accesses": 0,
+          "conversion": "widen_unsigned_index_then_scale",
+          "element_bytes": 4,
+          "element_index": 3,
+          "end": 16,
+          "event": "violation",
+          "generation": "static-object@1",
+          "index_type": "unsigned int",
+          "index_unit": "elements",
+          "initial_is_null": null,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 8,
+          "negative_offset": false,
+          "offset": 12,
+          "offset_type": "int64",
+          "offset_unit": "bytes",
+          "physical": 32,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 4,
+          "width_unit": "bytes"
+        }
+      ],
+      "request_id": "d39d861c09574dacb74cf01197db9831",
+      "target": {
+        "byte_span": [
+          83,
+          90
+        ],
+        "file_digest": "66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818",
+        "object_name": "data",
+        "operation": "read",
+        "snapshot_ref": "src.66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818@1",
+        "target_ref": "target:e27a377ee38da0ad714ca42888e8ae64485a38cec0c14cb64933b692a7904d7d"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0
+        ],
+        "label": "positive",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [],
+        "violations": [
+          0
+        ]
+      }
+    }
+  },
+  "14d78e35aae045a3b74a690400d62b30": {
+    "request": {
+      "request_id": "14d78e35aae045a3b74a690400d62b30",
+      "run_id": "exit",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "962d95d9551416c8079ff1542d01551e80a630db67e1524df3712aedbd094b7c"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6",
+      "binary_sha256": "f411f980c1acb524baa2f3f8e9aa183cf6af301b0d675e36ed7ca7ad77b98be0",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 8
+        },
+        "id": "capacity-contract",
+        "subject": "data",
+        "version": 1
+      },
+      "domain": {
+        "id": "singleton@1",
+        "inputs": [
+          0
+        ]
+      },
+      "inputs": {
+        "contract.json": "8480c27fdc7d47d3f4f50162af52ec98671d0c4c05a1ef3f5e6e951ba4d34879",
+        "domain.json": "e2879b4da580e525973b027fbd235500e79d727cfb497d5a6f6f4c23cca2cc55",
+        "target.json": "a001805d8898f5392c849d05e48b27ca85a64f0efb21c1d04dcf0bc68dc1b085",
+        "unit.c": "3800f3602f4a539faff8d630a0b58b31e0fa456e625fd136b165fa63e0f4a1db"
+      },
+      "manifest_sha": "01d03c14d47935c374b59e9a9bde558d77b744e3383900c3f61bc23f4ebe002a",
+      "observations": [
+        {
+          "accesses": 0,
+          "event": "blocked",
+          "generation": null,
+          "initial_is_null": null,
+          "input_id": 0,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0
+        }
+      ],
+      "request_id": "14d78e35aae045a3b74a690400d62b30",
+      "target": {
+        "byte_span": [
+          109,
+          116
+        ],
+        "file_digest": "3800f3602f4a539faff8d630a0b58b31e0fa456e625fd136b165fa63e0f4a1db",
+        "object_name": "data",
+        "operation": "read",
+        "snapshot_ref": "src.3800f3602f4a539faff8d630a0b58b31e0fa456e625fd136b165fa63e0f4a1db@1",
+        "target_ref": "target:8e0024478109356ce0a49aaf5cd548be3a14c8bf8eb1fbd7d5742502e75d32b0"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0
+        ],
+        "label": "pending",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [],
+        "violations": []
+      }
+    }
+  },
+  "50be2e8503a34965b767c759eb9840d6": {
+    "request": {
+      "request_id": "50be2e8503a34965b767c759eb9840d6",
+      "run_id": "version-bound",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "23f62b49139045188bda36bea2bc05cdded5a1958ebd19ad77345bf4945379f1"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "317ee87523c3c93400fea1e8d0746d94fe10af8bcb640001d8a54990b5f9208c",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "95180f5e8457624503f182fdca2cf69e722b8e4faa346a7cc9b89dddf998e06b",
+        "unit.c": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "manifest_sha": "1b2dc93d307a5873351344ac3c45a70a9940be00e565eba1a276fcae880eb587",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "end": 4,
+          "event": "violation",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": false,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "50be2e8503a34965b767c759eb9840d6",
+      "target": {
+        "byte_span": [
+          88,
+          104
+        ],
+        "file_digest": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0@1",
+        "target_ref": "access.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "positive",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": [
+          1
+        ]
+      }
+    }
+  },
+  "aeba0bc5ddc14085ad944b94fa13b5d4": {
+    "request": {
+      "request_id": "aeba0bc5ddc14085ad944b94fa13b5d4",
+      "run_id": "version-bound",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "14fd7e27197d494af5acd55ab565b1fb504e61a4e9af298378df86730ed53608"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "e28898a050ad77cf7439a93000be58b8f23e9e878c595374601bf0d5f26b875b",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "d32973f8089d697144d8716d8a13d6bfdc1f4e9539e82e5427ed2870e714dc17",
+        "unit.c": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "manifest_sha": "e399b456999d9adbfbe9cb363f98b820225305990795f01371bff5513865bbc3",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "event": "blocked",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0
+        }
+      ],
+      "request_id": "aeba0bc5ddc14085ad944b94fa13b5d4",
+      "target": {
+        "byte_span": [
+          110,
+          126
+        ],
+        "file_digest": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7@1",
+        "target_ref": "access.a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "negative",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": []
+      }
+    }
+  },
+  "0fdd6f166901483197ed74d18ca9c3c3": {
+    "request": {
+      "request_id": "0fdd6f166901483197ed74d18ca9c3c3",
+      "run_id": "version-bound",
+      "account": "B.verify",
+      "state": "delivered",
+      "input_sha": "beee23b737957a1db62c4097cb323b7e8a0c72ceaceda7cfac0cf9f0e83685b3"
+    },
+    "output": {
+      "attempt_id": 2,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "e28898a050ad77cf7439a93000be58b8f23e9e878c595374601bf0d5f26b875b",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "c7eea6dcd3a9030ad7e99bac8def998f8421e928300b26e3158e1f9e3db67d55",
+        "target.json": "d32973f8089d697144d8716d8a13d6bfdc1f4e9539e82e5427ed2870e714dc17",
+        "unit.c": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "manifest_sha": "fb780e5c96adffd00511ef04c8381a5e974892304f2125a6f977b5b1938087d2",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "0fdd6f166901483197ed74d18ca9c3c3",
+      "target": {
+        "byte_span": [
+          110,
+          126
+        ],
+        "file_digest": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7@1",
+        "target_ref": "access.a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "verdict": {
+        "coverage_basis": "partial_sample",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "pending",
+        "missing": [
+          1
+        ],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": []
+      }
+    }
+  },
+  "d27b6abba5884cd688ee1cbf99356d1f": {
+    "request": {
+      "request_id": "d27b6abba5884cd688ee1cbf99356d1f",
+      "run_id": "version-bound",
+      "account": "B.verify",
+      "state": "delivered",
+      "input_sha": "66270e4435c06f405a7c64a71093b206aafe131fad6b6dffa9975d9c307117eb"
+    },
+    "output": {
+      "attempt_id": 1,
+      "completion": "case_exec_failure",
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "7a8ffaba684bea3f983fd131daafdc6c2204c6e214558b2fe7c9b5e8366cafa7",
+        "unit.c": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "manifest_sha": "705da20e8329aba7d4adb667b16f30a844540ab032206611e8e14d6efce62739",
+      "observations": [],
+      "reason": "invalid target or independent contract",
+      "request_id": "d27b6abba5884cd688ee1cbf99356d1f"
+    }
+  },
+  "be6b03cee27148afb1a9c7ba0383ea51": {
+    "request": {
+      "request_id": "be6b03cee27148afb1a9c7ba0383ea51",
+      "run_id": "version-bound",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "23f62b49139045188bda36bea2bc05cdded5a1958ebd19ad77345bf4945379f1"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "317ee87523c3c93400fea1e8d0746d94fe10af8bcb640001d8a54990b5f9208c",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "95180f5e8457624503f182fdca2cf69e722b8e4faa346a7cc9b89dddf998e06b",
+        "unit.c": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "manifest_sha": "d981243a1ea14875928bdbb34eeb82abd75b1bf7d271b42fd868edb7e6480e5c",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "end": 4,
+          "event": "violation",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": false,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "be6b03cee27148afb1a9c7ba0383ea51",
+      "target": {
+        "byte_span": [
+          88,
+          104
+        ],
+        "file_digest": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0@1",
+        "target_ref": "access.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "positive",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": [
+          1
+        ]
+      }
+    }
+  },
+  "6e2b19e758944a968d207d121899ef5e": {
+    "request": {
+      "request_id": "6e2b19e758944a968d207d121899ef5e",
+      "run_id": "lost-stdout",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "23f62b49139045188bda36bea2bc05cdded5a1958ebd19ad77345bf4945379f1"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "317ee87523c3c93400fea1e8d0746d94fe10af8bcb640001d8a54990b5f9208c",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "95180f5e8457624503f182fdca2cf69e722b8e4faa346a7cc9b89dddf998e06b",
+        "unit.c": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "manifest_sha": "718bf654e6275cc3344a724e90793b3350c73492959ef951e142187ff0bdc72e",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "end": 4,
+          "event": "violation",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": false,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "6e2b19e758944a968d207d121899ef5e",
+      "target": {
+        "byte_span": [
+          88,
+          104
+        ],
+        "file_digest": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0@1",
+        "target_ref": "access.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "positive",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": [
+          1
+        ]
+      }
+    }
+  },
+  "a4cbe25fefa94ba2ae237248efc4f725": {
+    "request": {
+      "request_id": "a4cbe25fefa94ba2ae237248efc4f725",
+      "run_id": "lost-stdout",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "14fd7e27197d494af5acd55ab565b1fb504e61a4e9af298378df86730ed53608"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "e28898a050ad77cf7439a93000be58b8f23e9e878c595374601bf0d5f26b875b",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "d32973f8089d697144d8716d8a13d6bfdc1f4e9539e82e5427ed2870e714dc17",
+        "unit.c": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "manifest_sha": "cc49c2e92cb2c89acd2524e5b21e1ca241369f96002b9efddd3e671d6004e25b",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "event": "blocked",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0
+        }
+      ],
+      "request_id": "a4cbe25fefa94ba2ae237248efc4f725",
+      "target": {
+        "byte_span": [
+          110,
+          126
+        ],
+        "file_digest": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7@1",
+        "target_ref": "access.a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "negative",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": []
+      }
+    }
+  },
+  "ba464995135c4a3495316faa653ab486": {
+    "request": {
+      "request_id": "ba464995135c4a3495316faa653ab486",
+      "run_id": "filtered",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "23f62b49139045188bda36bea2bc05cdded5a1958ebd19ad77345bf4945379f1"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "317ee87523c3c93400fea1e8d0746d94fe10af8bcb640001d8a54990b5f9208c",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "95180f5e8457624503f182fdca2cf69e722b8e4faa346a7cc9b89dddf998e06b",
+        "unit.c": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "manifest_sha": "28255c78b3e50e1d393383c0837e9b54efb3bf52e92473fee618499c9a3f689b",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "end": 4,
+          "event": "violation",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": false,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "ba464995135c4a3495316faa653ab486",
+      "target": {
+        "byte_span": [
+          88,
+          104
+        ],
+        "file_digest": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0@1",
+        "target_ref": "access.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "positive",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": [
+          1
+        ]
+      }
+    }
+  },
+  "91f2cfb424ec4c719a47360d8a250ec3": {
+    "request": {
+      "request_id": "91f2cfb424ec4c719a47360d8a250ec3",
+      "run_id": "filtered",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "175347efa13b89bbcfc0744eaae1a516fb096676f8bcba4849abd6825c32ca13"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "e115c6dafcd6922620bc19bf1be6feeac628ad3eee4d78ea275b90ec6b3e76c7",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "0cc328089b29903873722a5d09dc5d6f93072ad945625c6fe104bff550ec5662",
+        "unit.c": "a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd"
+      },
+      "manifest_sha": "2abe44184fe83756e6fab48fe8009343b54b04731b8c26da0f128da4dea52ebd",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 1,
+          "rebound": true,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "91f2cfb424ec4c719a47360d8a250ec3",
+      "target": {
+        "byte_span": [
+          111,
+          127
+        ],
+        "file_digest": "a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd@1",
+        "target_ref": "access.a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "negative",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": []
+      }
+    }
+  },
+  "c493c9d84cb5420380cae861a5f5bf4f": {
+    "request": {
+      "request_id": "c493c9d84cb5420380cae861a5f5bf4f",
+      "run_id": "bad-base",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "23f62b49139045188bda36bea2bc05cdded5a1958ebd19ad77345bf4945379f1"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "317ee87523c3c93400fea1e8d0746d94fe10af8bcb640001d8a54990b5f9208c",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "95180f5e8457624503f182fdca2cf69e722b8e4faa346a7cc9b89dddf998e06b",
+        "unit.c": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "manifest_sha": "e6114ad337bce1c8b4122452cc4986ccfae5e903df00387148ed28d2e3d1e8fc",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "end": 4,
+          "event": "violation",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": false,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "c493c9d84cb5420380cae861a5f5bf4f",
+      "target": {
+        "byte_span": [
+          88,
+          104
+        ],
+        "file_digest": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0@1",
+        "target_ref": "access.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "positive",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": [
+          1
+        ]
+      }
+    }
+  },
+  "51164ed6c1284f9b95068cb199ab7031": {
+    "request": {
+      "request_id": "51164ed6c1284f9b95068cb199ab7031",
+      "run_id": "bad-base",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "175347efa13b89bbcfc0744eaae1a516fb096676f8bcba4849abd6825c32ca13"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "e115c6dafcd6922620bc19bf1be6feeac628ad3eee4d78ea275b90ec6b3e76c7",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "0cc328089b29903873722a5d09dc5d6f93072ad945625c6fe104bff550ec5662",
+        "unit.c": "a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd"
+      },
+      "manifest_sha": "5094efa189bcb8b6ea7b97a18fc8985e90710ee2c53b7680b7e13c8ee63c13ba",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 1,
+          "rebound": true,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "51164ed6c1284f9b95068cb199ab7031",
+      "target": {
+        "byte_span": [
+          111,
+          127
+        ],
+        "file_digest": "a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd@1",
+        "target_ref": "access.a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "negative",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": []
+      }
+    }
+  },
+  "b760a1f4a44d4e40b781f21833598a10": {
+    "request": {
+      "request_id": "b760a1f4a44d4e40b781f21833598a10",
+      "run_id": "bad-peers",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "23f62b49139045188bda36bea2bc05cdded5a1958ebd19ad77345bf4945379f1"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "317ee87523c3c93400fea1e8d0746d94fe10af8bcb640001d8a54990b5f9208c",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "95180f5e8457624503f182fdca2cf69e722b8e4faa346a7cc9b89dddf998e06b",
+        "unit.c": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "manifest_sha": "2f9b30ac1059e00ca37a5b67dcc11ed8c825529fe8f1752422c4876429e0f6ee",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "end": 4,
+          "event": "violation",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": false,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "b760a1f4a44d4e40b781f21833598a10",
+      "target": {
+        "byte_span": [
+          88,
+          104
+        ],
+        "file_digest": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0@1",
+        "target_ref": "access.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "positive",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": [
+          1
+        ]
+      }
+    }
+  },
+  "a8ac9620625940cdb6f328e69e2dd724": {
+    "request": {
+      "request_id": "a8ac9620625940cdb6f328e69e2dd724",
+      "run_id": "bad-peers",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "175347efa13b89bbcfc0744eaae1a516fb096676f8bcba4849abd6825c32ca13"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "e115c6dafcd6922620bc19bf1be6feeac628ad3eee4d78ea275b90ec6b3e76c7",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "0cc328089b29903873722a5d09dc5d6f93072ad945625c6fe104bff550ec5662",
+        "unit.c": "a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd"
+      },
+      "manifest_sha": "503967528aa42a9aa1fe05b7b83204256fad33b581be25a524370ffbe79eb4bc",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 1,
+          "rebound": true,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "a8ac9620625940cdb6f328e69e2dd724",
+      "target": {
+        "byte_span": [
+          111,
+          127
+        ],
+        "file_digest": "a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd@1",
+        "target_ref": "access.a241fecc940fd324a8099a199e2c8e328b891cb7a850a077733db2e472ffa4fd"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "negative",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": []
+      }
+    }
+  },
+  "03449d55560b4d2db5a31f48843ce99d": {
+    "request": {
+      "request_id": "03449d55560b4d2db5a31f48843ce99d",
+      "run_id": "retired-domain",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "c3320f170a7943e30e75431dc55b2ec6cce91c754b831d43b0f0548b80f03ba2"
+    },
+    "output": {
+      "attempt_id": 1,
+      "completion": "case_exec_failure",
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "d11826c0904f836d0c0c582833f5378bafb4922c406b3e8cc5dcf97c69b929ff",
+        "target.json": "d32973f8089d697144d8716d8a13d6bfdc1f4e9539e82e5427ed2870e714dc17",
+        "unit.c": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "manifest_sha": "b7067dbe87f78a679f8572c89ed64619fd7a0c8383af99b9e7470883243a53dc",
+      "observations": [],
+      "reason": "unregistered contract or domain version",
+      "request_id": "03449d55560b4d2db5a31f48843ce99d"
+    }
+  },
+  "2a354982cd194a0db2d3c38777001533": {
+    "request": {
+      "request_id": "2a354982cd194a0db2d3c38777001533",
+      "run_id": "retired-domain",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "23f62b49139045188bda36bea2bc05cdded5a1958ebd19ad77345bf4945379f1"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "317ee87523c3c93400fea1e8d0746d94fe10af8bcb640001d8a54990b5f9208c",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "95180f5e8457624503f182fdca2cf69e722b8e4faa346a7cc9b89dddf998e06b",
+        "unit.c": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "manifest_sha": "ae377dd7a1a91d8f4b1642a56a1253e733d57a2e0523d3710a207b4ff50fca17",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "end": 4,
+          "event": "violation",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": false,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "2a354982cd194a0db2d3c38777001533",
+      "target": {
+        "byte_span": [
+          88,
+          104
+        ],
+        "file_digest": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0@1",
+        "target_ref": "access.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "positive",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": [
+          1
+        ]
+      }
+    }
+  },
+  "e3909de54b20457497ca8915240c8f88": {
+    "request": {
+      "request_id": "e3909de54b20457497ca8915240c8f88",
+      "run_id": "retired-domain",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "14fd7e27197d494af5acd55ab565b1fb504e61a4e9af298378df86730ed53608"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "e28898a050ad77cf7439a93000be58b8f23e9e878c595374601bf0d5f26b875b",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "d32973f8089d697144d8716d8a13d6bfdc1f4e9539e82e5427ed2870e714dc17",
+        "unit.c": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "manifest_sha": "472f1f38fbd2d9b79818db5a9b4b0016a7f71f6f099d13f0626aa212c3b02740",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "event": "blocked",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0
+        }
+      ],
+      "request_id": "e3909de54b20457497ca8915240c8f88",
+      "target": {
+        "byte_span": [
+          110,
+          126
+        ],
+        "file_digest": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7@1",
+        "target_ref": "access.a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "negative",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": []
+      }
+    }
+  },
+  "0e106d1493834f7ab101424d604e88d0": {
+    "request": {
+      "request_id": "0e106d1493834f7ab101424d604e88d0",
+      "run_id": "budget-diagnostics",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "23f62b49139045188bda36bea2bc05cdded5a1958ebd19ad77345bf4945379f1"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "317ee87523c3c93400fea1e8d0746d94fe10af8bcb640001d8a54990b5f9208c",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "95180f5e8457624503f182fdca2cf69e722b8e4faa346a7cc9b89dddf998e06b",
+        "unit.c": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "manifest_sha": "b8d6c6a2f2a7d2e5e91b23e5a82814f08104f1f95e9f9bf4bc2edf5dca0cbeb7",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "end": 4,
+          "event": "violation",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "live_object": false,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 4
+        }
+      ],
+      "request_id": "0e106d1493834f7ab101424d604e88d0",
+      "target": {
+        "byte_span": [
+          88,
+          104
+        ],
+        "file_digest": "28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0@1",
+        "target_ref": "access.28b239cc9a6b83f33a4e7d2055c77d82760f7f0435a6e688dd937c4795092aa0"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "positive",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": [
+          1
+        ]
+      }
+    }
+  },
+  "d0783369f3dc49109a038c9233414f11": {
+    "request": {
+      "request_id": "d0783369f3dc49109a038c9233414f11",
+      "run_id": "budget-diagnostics",
+      "account": "A.bootstrap",
+      "state": "ready",
+      "input_sha": "14fd7e27197d494af5acd55ab565b1fb504e61a4e9af298378df86730ed53608"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "e28898a050ad77cf7439a93000be58b8f23e9e878c595374601bf0d5f26b875b",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "pointer_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "eb817749c4018b779e9588c6f171c799af64aeeb47acd714b1e0c655f2bb1ca0",
+        "target.json": "d32973f8089d697144d8716d8a13d6bfdc1f4e9539e82e5427ed2870e714dc17",
+        "unit.c": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "manifest_sha": "9bb176e008d2742ce58aa8d78292608358f3a24081841929b537dedb18cf0844",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "event": "blocked",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0
+        }
+      ],
+      "request_id": "d0783369f3dc49109a038c9233414f11",
+      "target": {
+        "byte_span": [
+          110,
+          126
+        ],
+        "file_digest": "a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7@1",
+        "target_ref": "access.a86ca48c1d62ce8ef0741cc68d7948aa44dc2221fcd1e2155a58e49aa95af7d7"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0,
+          1
+        ],
+        "label": "negative",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": []
+      }
+    }
+  },
+  "778662aadb81475890c213342331e713": {
+    "request": {
+      "request_id": "778662aadb81475890c213342331e713",
+      "run_id": "budget-diagnostics",
+      "account": "B.verify",
+      "state": "ready",
+      "input_sha": "a359dfd49f39329427a58c6e0e730289a49d1bf3a4ff52093e0c540af2937535"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "034961dda2b4810452b1fa5a4d7177eed67ef4ecfec46e1c69bd3875c811ab81",
+      "binary_sha256": "5d801a2ff6d91d7ff2c212745bac16c1426b7a7efb425bf45dd254f7d2ac2253",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 8
+        },
+        "id": "byte-buffer",
+        "subject": "buffer",
+        "version": 1
+      },
+      "domain": {
+        "id": "singleton@1",
+        "inputs": [
+          0
+        ]
+      },
+      "inputs": {
+        "contract.json": "41b813d9f7d13d55e1d878b630531eea6053cdd02279ce6a2504de2676021c01",
+        "domain.json": "e2879b4da580e525973b027fbd235500e79d727cfb497d5a6f6f4c23cca2cc55",
+        "target.json": "3304b432b9f470008d1b52765d1b678fb5e9b35b7c15f779f1b9445b3c841365",
+        "unit.c": "235d4c09ccbe541692de55eb167e8903b99bf9bd7623d09260781aebb40ca9dc"
+      },
+      "manifest_sha": "072af62026f16513b47fa25fd31ecd8f7b97b384f2331a0d52f181d8fedd1dbe",
+      "observations": [
+        {
+          "accesses": 0,
+          "end": 8,
+          "event": "no_access",
+          "generation": "static-object@1",
+          "initial_is_null": null,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 8,
+          "offset": 8,
+          "physical": 8,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0,
+          "width": 0
+        }
+      ],
+      "request_id": "778662aadb81475890c213342331e713",
+      "target": {
+        "byte_span": [
+          77,
+          101
+        ],
+        "file_digest": "235d4c09ccbe541692de55eb167e8903b99bf9bd7623d09260781aebb40ca9dc",
+        "object_name": "buffer",
+        "operation": "read",
+        "snapshot_ref": "src.235d4c09ccbe541692de55eb167e8903b99bf9bd7623d09260781aebb40ca9dc@1",
+        "target_ref": "access.235d4c09ccbe541692de55eb167e8903b99bf9bd7623d09260781aebb40ca9dc"
+      },
+      "verdict": {
+        "coverage_basis": "exhaustive_finite_domain",
+        "declared": [
+          0
+        ],
+        "label": "pending",
+        "missing": [],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [],
+        "violations": []
+      }
+    }
+  },
+  "53f094f5e00e462aaadba8dc784e9162": {
+    "request": {
+      "request_id": "53f094f5e00e462aaadba8dc784e9162",
+      "run_id": "budget-diagnostics",
+      "account": "B.verify",
+      "state": "ready",
+      "input_sha": "cb883bb63a667903d3b2f9a29e3a583fbe8ba9380e94f70ce003a2a357dbeba6"
+    },
+    "output": {
+      "attempt_id": 1,
+      "authority_sha256": "ebf14ef5106fd488bfdd0818f35a764202c1e73b111a184b981968ae9c0c31af",
+      "binary_sha256": "a4945cc2528f2170a03a98477477736dc9927e4eda08aee25d2acce3700bc25b",
+      "completion": "completed",
+      "contract": {
+        "approval": "approved",
+        "extent": {
+          "unit": "bytes",
+          "value": 4
+        },
+        "id": "static-live-read",
+        "subject": "p",
+        "version": 1
+      },
+      "domain": {
+        "id": "three_modes@1",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      "inputs": {
+        "contract.json": "545c6fd6bdb7a36151e62902de28a1e3cc335f741af91619104916f3a8840760",
+        "domain.json": "79c38d3201654aae7e4db5bd15e3358cdd46b297599e24d1eb99bbc601fea82a",
+        "target.json": "cdf460c6c2c51ffad9c164492ef33cdb7f2392cbc96df1fd32fe9f67088ebc26",
+        "unit.c": "98f4ee6e998aaa5148aa2a3e3ad3c73852fb6243ab4c196854b75925dde6f953"
+      },
+      "manifest_sha": "9b91e28f34373f4f09ce54e2a6dbdb5b86e93ba88d3e9346cc75effe52d5dbd1",
+      "observations": [
+        {
+          "accesses": 1,
+          "end": 4,
+          "event": "used",
+          "generation": "static-object@1",
+          "initial_is_null": false,
+          "input_id": 0,
+          "live_object": true,
+          "logical": 4,
+          "offset": 0,
+          "physical": 4,
+          "rebindings": 0,
+          "rebound": false,
+          "reference_value": 0,
+          "value": 0,
+          "width": 4
+        },
+        {
+          "accesses": 0,
+          "event": "blocked",
+          "generation": null,
+          "initial_is_null": true,
+          "input_id": 1,
+          "rebindings": 0,
+          "rebound": false,
+          "value": 0
+        }
+      ],
+      "request_id": "53f094f5e00e462aaadba8dc784e9162",
+      "target": {
+        "byte_span": [
+          143,
+          159
+        ],
+        "file_digest": "98f4ee6e998aaa5148aa2a3e3ad3c73852fb6243ab4c196854b75925dde6f953",
+        "object_name": "p",
+        "operation": "read",
+        "snapshot_ref": "src.98f4ee6e998aaa5148aa2a3e3ad3c73852fb6243ab4c196854b75925dde6f953@1",
+        "target_ref": "access.98f4ee6e998aaa5148aa2a3e3ad3c73852fb6243ab4c196854b75925dde6f953"
+      },
+      "verdict": {
+        "coverage_basis": "partial_sample",
+        "declared": [
+          0,
+          1,
+          2
+        ],
+        "label": "pending",
+        "missing": [
+          2
+        ],
+        "normal_inputs": [
+          0
+        ],
+        "normal_witnesses": [
+          0
+        ],
+        "violations": []
+      }
+    }
+  }
+}

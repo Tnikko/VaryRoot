@@ -1,0 +1,12 @@
+/toolchains/
+/runs/
+/.tmp/
+/Bug-research/_nvd_cache/
+**/__pycache__/
+*.py[cod]
+*.sqlite3*
+*.so
+*.zip
+*.tar.gz
+api.txt
+*.key

@@ -1,0 +1,1299 @@
+[
+  {
+    "run": "test:test-case-01",
+    "scenario": "revise",
+    "image_id": "sha256:811031bac5d4779204853e1a402046464459e837159e49ad4129f521bb5a129b",
+    "decision": {
+      "action": "revise",
+      "baseline": "s@1",
+      "final": "s@2",
+      "revision_ref": "test.revision@1",
+      "handoff_sha": "5dd38bbee3fdae24d6ac323351b71eff395b0c9bb8c72f17fc54a8fa7dc3b2e5"
+    },
+    "terminal": {
+      "backend_gap": null,
+      "baseline_pass": true,
+      "final_pass": true,
+      "freeze_id": "test:test-case-01",
+      "label": "positive",
+      "observed": [
+        false,
+        true
+      ],
+      "predicted": [
+        "quiet",
+        "report"
+      ],
+      "rows": [
+        {
+          "actual": "no_alert",
+          "backend_gap": null,
+          "classification": "FN",
+          "default": null,
+          "lane": "Q0",
+          "passed": true,
+          "prediction": "quiet",
+          "target": "t@1",
+          "verdict": "positive"
+        },
+        {
+          "actual": "hit",
+          "backend_gap": null,
+          "classification": "TP",
+          "default": null,
+          "lane": "Qstar",
+          "passed": true,
+          "prediction": "report",
+          "target": "t@1",
+          "verdict": "positive"
+        }
+      ],
+      "state": "frozen"
+    },
+    "balances": {
+      "B.verify": 0,
+      "C.repair.Q0": 1,
+      "C.repair.Qstar": 1
+    },
+    "events": [
+      {
+        "commit_seq": 1,
+        "run_id": "test:test-case-01",
+        "kind": "created",
+        "detail": {
+          "accounts": {
+            "B.verify": 1,
+            "C.repair.Q0": 1,
+            "C.repair.Qstar": 1
+          },
+          "group": "contract",
+          "repeat": 0,
+          "seed": "test:interval"
+        }
+      },
+      {
+        "commit_seq": 2,
+        "run_id": "test:test-case-01",
+        "kind": "seed_pending",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "seed": "test:interval"
+          },
+          "from_state": "draft",
+          "parent_version": 0
+        }
+      },
+      {
+        "commit_seq": 3,
+        "run_id": "test:test-case-01",
+        "kind": "manifest",
+        "detail": {
+          "digest": "3e040c43b8098bd4ee14b9bdbdaa0a9cd3f2c05e40f8de372209ccc3d514f09e",
+          "role": "A",
+          "snapshot": "4b2bf2a774c06c6f39141d49e8b3206d1ff7fa934615a69b66176c40bc9f4d73"
+        }
+      },
+      {
+        "commit_seq": 4,
+        "run_id": "test:test-case-01",
+        "kind": "seed_accepted",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "fixture_gate": {
+              "contract": "k@1",
+              "domain": "d@1",
+              "seed": "test:interval",
+              "target": "t@1",
+              "versions": [
+                "initial",
+                "candidate"
+              ]
+            },
+            "seed_sha": "e2d7e0ef102952d13a342dc265fe77626c6e15aec1e410d7f499771cf8863132"
+          },
+          "from_state": "seed_pending",
+          "parent_version": 1
+        }
+      },
+      {
+        "commit_seq": 5,
+        "run_id": "test:test-case-01",
+        "kind": "manifest",
+        "detail": {
+          "digest": "48b266d26bb9d935e9f0120c5790bdb50b1d6bd10f848ed67041dc3d91a99937",
+          "role": "B",
+          "snapshot": "4b2bf2a774c06c6f39141d49e8b3206d1ff7fa934615a69b66176c40bc9f4d73"
+        }
+      },
+      {
+        "commit_seq": 6,
+        "run_id": "test:test-case-01",
+        "kind": "prediction",
+        "detail": {
+          "batch": "b1",
+          "context_snapshot": "4b2bf2a774c06c6f39141d49e8b3206d1ff7fa934615a69b66176c40bc9f4d73",
+          "payload_sha": "94906b5587f8ae3b364064f8812fc753d17259ff00ac042255ea557a342fe92b",
+          "pool_digest": "2d87d5c7e537a2a6bbe812a57ee85cf7c29f97d6a3940d171ac01aeefa3684a7",
+          "source_kind": "initial_registration",
+          "supersedes": null
+        }
+      },
+      {
+        "commit_seq": 7,
+        "run_id": "test:test-case-01",
+        "kind": "registered",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "batch": "b1",
+            "context_snapshot": "4b2bf2a774c06c6f39141d49e8b3206d1ff7fa934615a69b66176c40bc9f4d73",
+            "payload_sha": "94906b5587f8ae3b364064f8812fc753d17259ff00ac042255ea557a342fe92b",
+            "pool_digest": "2d87d5c7e537a2a6bbe812a57ee85cf7c29f97d6a3940d171ac01aeefa3684a7",
+            "source_kind": "initial_registration",
+            "supersedes": null
+          },
+          "from_state": "seed_accepted",
+          "parent_version": 2
+        }
+      },
+      {
+        "commit_seq": 8,
+        "run_id": "test:test-case-01",
+        "kind": "charged",
+        "detail": {
+          "account": "B.verify",
+          "input_sha": "3385dd3241741bedfc02ab4e7bbc781191578c548c8b243f327047c85ad9dc6e",
+          "intent": {
+            "case": "test-case-01",
+            "contract": "k@1",
+            "domain": "d@1",
+            "target": "t@1",
+            "verifier": "test:interval-v1"
+          },
+          "request_id": "9967da073cad446f8de57a0472c911c9"
+        }
+      },
+      {
+        "commit_seq": 9,
+        "run_id": "test:test-case-01",
+        "kind": "selected",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "request_ids": [
+              "9967da073cad446f8de57a0472c911c9"
+            ],
+            "retry_key": "select-b1"
+          },
+          "from_state": "registered",
+          "parent_version": 3
+        }
+      },
+      {
+        "commit_seq": 10,
+        "run_id": "test:test-case-01",
+        "kind": "request.running",
+        "detail": {
+          "request_id": "9967da073cad446f8de57a0472c911c9"
+        }
+      },
+      {
+        "commit_seq": 11,
+        "run_id": "test:test-case-01",
+        "kind": "manifest",
+        "detail": {
+          "digest": "b5806971085f7a9ad05838342ad4732eb19cb00d1352559dda68e5ed21275669",
+          "role": "verifier",
+          "snapshot": "4b2bf2a774c06c6f39141d49e8b3206d1ff7fa934615a69b66176c40bc9f4d73"
+        }
+      },
+      {
+        "commit_seq": 12,
+        "run_id": "test:test-case-01",
+        "kind": "request.publishing",
+        "detail": {
+          "request_id": "9967da073cad446f8de57a0472c911c9"
+        }
+      },
+      {
+        "commit_seq": 13,
+        "run_id": "test:test-case-01",
+        "kind": "request.ready",
+        "detail": {
+          "request_id": "9967da073cad446f8de57a0472c911c9"
+        }
+      },
+      {
+        "commit_seq": 14,
+        "run_id": "test:test-case-01",
+        "kind": "reveal",
+        "detail": {
+          "batch": "b1",
+          "digest": "495660a619b4acbac8c8ac3e57036071a792b203764fed6ead4987094b7e2d75",
+          "intent": {
+            "case": "test-case-01",
+            "contract": "k@1",
+            "domain": "d@1",
+            "target": "t@1",
+            "verifier": "test:interval-v1"
+          },
+          "request_id": "9967da073cad446f8de57a0472c911c9"
+        }
+      },
+      {
+        "commit_seq": 15,
+        "run_id": "test:test-case-01",
+        "kind": "adjudicating",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "evidence": {
+              "9967da073cad446f8de57a0472c911c9": "495660a619b4acbac8c8ac3e57036071a792b203764fed6ead4987094b7e2d75"
+            }
+          },
+          "from_state": "selected",
+          "parent_version": 4
+        }
+      },
+      {
+        "commit_seq": 16,
+        "run_id": "test:test-case-01",
+        "kind": "manifest",
+        "detail": {
+          "digest": "4aeaba445bcc275afb721d0ee10c1cacf7d3d38fc1ad6fbbba6644fafd738f34",
+          "role": "B",
+          "snapshot": "58561232840e3299ebca9836630f110aea25ed01044dd2160fc0496c03a3994d"
+        }
+      },
+      {
+        "commit_seq": 17,
+        "run_id": "test:test-case-01",
+        "kind": "spec_ready",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "action": "revise",
+            "baseline": "s@1",
+            "final": "s@2",
+            "handoff_sha": "5dd38bbee3fdae24d6ac323351b71eff395b0c9bb8c72f17fc54a8fa7dc3b2e5",
+            "revision_ref": "test.revision@1"
+          },
+          "from_state": "adjudicating",
+          "parent_version": 5
+        }
+      },
+      {
+        "commit_seq": 18,
+        "run_id": "test:test-case-01",
+        "kind": "regressing",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "database": "a72b92547c8d01485c6f9bb9158fce5a179784c6a1bfb38aa3bc2186db8cf0ed"
+          },
+          "from_state": "spec_ready",
+          "parent_version": 6
+        }
+      },
+      {
+        "commit_seq": 19,
+        "run_id": "test:test-case-01",
+        "kind": "manifest",
+        "detail": {
+          "digest": "0e09de403436ea710d87b360c49ddd2710b210363b0b7ce98c226d82ce754446",
+          "role": "C",
+          "snapshot": "58561232840e3299ebca9836630f110aea25ed01044dd2160fc0496c03a3994d"
+        }
+      },
+      {
+        "commit_seq": 20,
+        "run_id": "test:test-case-01",
+        "kind": "frozen",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "baseline_pass": true,
+            "final_pass": true,
+            "reason": "contract_gate_pass",
+            "result_sha": "0ae5a5e07f4f9a08664b25723ba1491c0a39eeb4375f20a94086840c447bb5da",
+            "test_freeze_id": "test:test-case-01"
+          },
+          "from_state": "regressing",
+          "parent_version": 7
+        }
+      }
+    ],
+    "predictions": {
+      "candidate": "report",
+      "initial": "quiet"
+    },
+    "artifacts": {
+      "initial/manifest.json": "c002798e582aa349a275a232fdc1aa7dbcf2c4fa5bfdb189a6e17ee0e2bb4edd",
+      "initial/records.json": "ecd949d36fef41ef45c4a79ea6f311322495a94847611dbad8c08b1e33a89e59",
+      "candidate/manifest.json": "f4b4058afb93049eb82730a72c41d63d20aec856b7780df774e385dc39544d5b",
+      "candidate/records.json": "ff08994512c9b7d03458228de3432390a3fae75daf396d2b17205babbb821291",
+      "case.json": "3385dd3241741bedfc02ab4e7bbc781191578c548c8b243f327047c85ad9dc6e",
+      "backend.json": "a72b92547c8d01485c6f9bb9158fce5a179784c6a1bfb38aa3bc2186db8cf0ed",
+      "seed.json": "e2d7e0ef102952d13a342dc265fe77626c6e15aec1e410d7f499771cf8863132",
+      "predictions.json": "94906b5587f8ae3b364064f8812fc753d17259ff00ac042255ea557a342fe92b",
+      "evidence.json": "495660a619b4acbac8c8ac3e57036071a792b203764fed6ead4987094b7e2d75",
+      "handoff.json": "5dd38bbee3fdae24d6ac323351b71eff395b0c9bb8c72f17fc54a8fa7dc3b2e5",
+      "result.json": "0ae5a5e07f4f9a08664b25723ba1491c0a39eeb4375f20a94086840c447bb5da"
+    }
+  },
+  {
+    "run": "test:test-case-02",
+    "scenario": "keep",
+    "image_id": "sha256:811031bac5d4779204853e1a402046464459e837159e49ad4129f521bb5a129b",
+    "decision": {
+      "action": "keep",
+      "baseline": "s@1",
+      "final": "s@1",
+      "revision_ref": null,
+      "handoff_sha": "b08aa501fc2de9458a2d8f7960acba9a239baf4a650c2ae1b86d8ca25282c4eb"
+    },
+    "terminal": {
+      "backend_gap": null,
+      "baseline_pass": true,
+      "final_pass": true,
+      "freeze_id": "test:test-case-02",
+      "label": "positive",
+      "observed": [
+        true,
+        true
+      ],
+      "predicted": [
+        "report",
+        "report"
+      ],
+      "rows": [
+        {
+          "actual": "hit",
+          "backend_gap": null,
+          "classification": "TP",
+          "default": null,
+          "lane": "Q0",
+          "passed": true,
+          "prediction": "report",
+          "target": "t@1",
+          "verdict": "positive"
+        },
+        {
+          "actual": "hit",
+          "backend_gap": null,
+          "classification": "TP",
+          "default": null,
+          "lane": "Qstar",
+          "passed": true,
+          "prediction": "report",
+          "target": "t@1",
+          "verdict": "positive"
+        }
+      ],
+      "state": "frozen"
+    },
+    "balances": {
+      "B.verify": 0,
+      "C.repair.Q0": 1,
+      "C.repair.Qstar": 1
+    },
+    "events": [
+      {
+        "commit_seq": 1,
+        "run_id": "test:test-case-02",
+        "kind": "created",
+        "detail": {
+          "accounts": {
+            "B.verify": 1,
+            "C.repair.Q0": 1,
+            "C.repair.Qstar": 1
+          },
+          "group": "contract",
+          "repeat": 0,
+          "seed": "test:interval"
+        }
+      },
+      {
+        "commit_seq": 2,
+        "run_id": "test:test-case-02",
+        "kind": "seed_pending",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "seed": "test:interval"
+          },
+          "from_state": "draft",
+          "parent_version": 0
+        }
+      },
+      {
+        "commit_seq": 3,
+        "run_id": "test:test-case-02",
+        "kind": "manifest",
+        "detail": {
+          "digest": "7c5f72b520a376ca276774bceb816cfaf6503063dfdf1d73b3ff5e78b94bf243",
+          "role": "A",
+          "snapshot": "c21f38208e6788a03b192b74fd6979cbc58e79ed371ef8a962df6af1103cf017"
+        }
+      },
+      {
+        "commit_seq": 4,
+        "run_id": "test:test-case-02",
+        "kind": "seed_accepted",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "fixture_gate": {
+              "contract": "k@1",
+              "domain": "d@1",
+              "seed": "test:interval",
+              "target": "t@1",
+              "versions": [
+                "initial",
+                "candidate"
+              ]
+            },
+            "seed_sha": "e2d7e0ef102952d13a342dc265fe77626c6e15aec1e410d7f499771cf8863132"
+          },
+          "from_state": "seed_pending",
+          "parent_version": 1
+        }
+      },
+      {
+        "commit_seq": 5,
+        "run_id": "test:test-case-02",
+        "kind": "manifest",
+        "detail": {
+          "digest": "1f14efe24939fe3df2d18d5590ed01497e0e54c396397fd1df01de84f3f7a095",
+          "role": "B",
+          "snapshot": "c21f38208e6788a03b192b74fd6979cbc58e79ed371ef8a962df6af1103cf017"
+        }
+      },
+      {
+        "commit_seq": 6,
+        "run_id": "test:test-case-02",
+        "kind": "prediction",
+        "detail": {
+          "batch": "b1",
+          "context_snapshot": "c21f38208e6788a03b192b74fd6979cbc58e79ed371ef8a962df6af1103cf017",
+          "payload_sha": "64ec4327592768528e6bd36c5971c92edecd4b91f61a3c4a90c0b89e9b29c698",
+          "pool_digest": "84c3c38c25a79c04e30eadec04750d9d8c0dd859c4554e950ab80b60fc2ee89f",
+          "source_kind": "initial_registration",
+          "supersedes": null
+        }
+      },
+      {
+        "commit_seq": 7,
+        "run_id": "test:test-case-02",
+        "kind": "registered",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "batch": "b1",
+            "context_snapshot": "c21f38208e6788a03b192b74fd6979cbc58e79ed371ef8a962df6af1103cf017",
+            "payload_sha": "64ec4327592768528e6bd36c5971c92edecd4b91f61a3c4a90c0b89e9b29c698",
+            "pool_digest": "84c3c38c25a79c04e30eadec04750d9d8c0dd859c4554e950ab80b60fc2ee89f",
+            "source_kind": "initial_registration",
+            "supersedes": null
+          },
+          "from_state": "seed_accepted",
+          "parent_version": 2
+        }
+      },
+      {
+        "commit_seq": 8,
+        "run_id": "test:test-case-02",
+        "kind": "charged",
+        "detail": {
+          "account": "B.verify",
+          "input_sha": "0dea3633c81565e9354ca5a70aa5c1910404e6217194d8391aadf8314309aff0",
+          "intent": {
+            "case": "test-case-02",
+            "contract": "k@1",
+            "domain": "d@1",
+            "target": "t@1",
+            "verifier": "test:interval-v1"
+          },
+          "request_id": "0f8e9a5be06b4b6ea4092934bbfd77cd"
+        }
+      },
+      {
+        "commit_seq": 9,
+        "run_id": "test:test-case-02",
+        "kind": "selected",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "request_ids": [
+              "0f8e9a5be06b4b6ea4092934bbfd77cd"
+            ],
+            "retry_key": "select-b1"
+          },
+          "from_state": "registered",
+          "parent_version": 3
+        }
+      },
+      {
+        "commit_seq": 10,
+        "run_id": "test:test-case-02",
+        "kind": "request.running",
+        "detail": {
+          "request_id": "0f8e9a5be06b4b6ea4092934bbfd77cd"
+        }
+      },
+      {
+        "commit_seq": 11,
+        "run_id": "test:test-case-02",
+        "kind": "manifest",
+        "detail": {
+          "digest": "412a0373aba3d99f8cfc8701bf40480c9f7ca104c78a124f7d8ebcb9a1af4407",
+          "role": "verifier",
+          "snapshot": "c21f38208e6788a03b192b74fd6979cbc58e79ed371ef8a962df6af1103cf017"
+        }
+      },
+      {
+        "commit_seq": 12,
+        "run_id": "test:test-case-02",
+        "kind": "request.publishing",
+        "detail": {
+          "request_id": "0f8e9a5be06b4b6ea4092934bbfd77cd"
+        }
+      },
+      {
+        "commit_seq": 13,
+        "run_id": "test:test-case-02",
+        "kind": "request.ready",
+        "detail": {
+          "request_id": "0f8e9a5be06b4b6ea4092934bbfd77cd"
+        }
+      },
+      {
+        "commit_seq": 14,
+        "run_id": "test:test-case-02",
+        "kind": "reveal",
+        "detail": {
+          "batch": "b1",
+          "digest": "42b3506e729e3323af5981e5e6e2cddc8119a13cc55d835cf0b86556b83d36b3",
+          "intent": {
+            "case": "test-case-02",
+            "contract": "k@1",
+            "domain": "d@1",
+            "target": "t@1",
+            "verifier": "test:interval-v1"
+          },
+          "request_id": "0f8e9a5be06b4b6ea4092934bbfd77cd"
+        }
+      },
+      {
+        "commit_seq": 15,
+        "run_id": "test:test-case-02",
+        "kind": "adjudicating",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "evidence": {
+              "0f8e9a5be06b4b6ea4092934bbfd77cd": "42b3506e729e3323af5981e5e6e2cddc8119a13cc55d835cf0b86556b83d36b3"
+            }
+          },
+          "from_state": "selected",
+          "parent_version": 4
+        }
+      },
+      {
+        "commit_seq": 16,
+        "run_id": "test:test-case-02",
+        "kind": "manifest",
+        "detail": {
+          "digest": "0543107c01c0a088a3e890c7b75a8f344e1ac235c316b49de0f1bf5954de01d1",
+          "role": "B",
+          "snapshot": "7136a8c97a96ca5faee1ec70e379ee1dbb0b49aee4f91bfc645cb3c022f22ff2"
+        }
+      },
+      {
+        "commit_seq": 17,
+        "run_id": "test:test-case-02",
+        "kind": "spec_ready",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "action": "keep",
+            "baseline": "s@1",
+            "final": "s@1",
+            "handoff_sha": "b08aa501fc2de9458a2d8f7960acba9a239baf4a650c2ae1b86d8ca25282c4eb",
+            "revision_ref": null
+          },
+          "from_state": "adjudicating",
+          "parent_version": 5
+        }
+      },
+      {
+        "commit_seq": 18,
+        "run_id": "test:test-case-02",
+        "kind": "regressing",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "database": "dae503c5ac8c1a2234abfdd6ec444e7ce0d73a219262cc4e9256cd95f2c6af46"
+          },
+          "from_state": "spec_ready",
+          "parent_version": 6
+        }
+      },
+      {
+        "commit_seq": 19,
+        "run_id": "test:test-case-02",
+        "kind": "manifest",
+        "detail": {
+          "digest": "5168b8d16aa379323d741c1796aefe44b2bce0270dd036372ca7072f3f8f8ed3",
+          "role": "C",
+          "snapshot": "7136a8c97a96ca5faee1ec70e379ee1dbb0b49aee4f91bfc645cb3c022f22ff2"
+        }
+      },
+      {
+        "commit_seq": 20,
+        "run_id": "test:test-case-02",
+        "kind": "frozen",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "baseline_pass": true,
+            "final_pass": true,
+            "reason": "contract_gate_pass",
+            "result_sha": "d8070362b05bf7702c1f3217fc9efae832a9c58f6d73379fc3cd88a7dd2d59bd",
+            "test_freeze_id": "test:test-case-02"
+          },
+          "from_state": "regressing",
+          "parent_version": 7
+        }
+      }
+    ],
+    "predictions": {
+      "candidate": "report",
+      "initial": "report"
+    },
+    "artifacts": {
+      "initial/manifest.json": "c002798e582aa349a275a232fdc1aa7dbcf2c4fa5bfdb189a6e17ee0e2bb4edd",
+      "initial/records.json": "b7b16110ccb785e5e29c41830e04e6d3e10c1a72d107d04f1bd2fe4ff1172e9c",
+      "candidate/manifest.json": "c002798e582aa349a275a232fdc1aa7dbcf2c4fa5bfdb189a6e17ee0e2bb4edd",
+      "candidate/records.json": "b7b16110ccb785e5e29c41830e04e6d3e10c1a72d107d04f1bd2fe4ff1172e9c",
+      "case.json": "0dea3633c81565e9354ca5a70aa5c1910404e6217194d8391aadf8314309aff0",
+      "backend.json": "dae503c5ac8c1a2234abfdd6ec444e7ce0d73a219262cc4e9256cd95f2c6af46",
+      "seed.json": "e2d7e0ef102952d13a342dc265fe77626c6e15aec1e410d7f499771cf8863132",
+      "predictions.json": "64ec4327592768528e6bd36c5971c92edecd4b91f61a3c4a90c0b89e9b29c698",
+      "evidence.json": "42b3506e729e3323af5981e5e6e2cddc8119a13cc55d835cf0b86556b83d36b3",
+      "handoff.json": "b08aa501fc2de9458a2d8f7960acba9a239baf4a650c2ae1b86d8ca25282c4eb",
+      "result.json": "d8070362b05bf7702c1f3217fc9efae832a9c58f6d73379fc3cd88a7dd2d59bd"
+    }
+  },
+  {
+    "run": "test:test-case-03",
+    "scenario": "unresolved",
+    "image_id": "sha256:811031bac5d4779204853e1a402046464459e837159e49ad4129f521bb5a129b",
+    "decision": {
+      "action": "unresolved",
+      "baseline": "s@1",
+      "final": null,
+      "revision_ref": null,
+      "handoff_sha": "f4a73896545af695fc79aaeff7ed16c9345411e9d68a01c47471e1a7000d188d"
+    },
+    "terminal": {
+      "state": "unresolved",
+      "freeze_id": null
+    },
+    "balances": {
+      "B.verify": 0,
+      "C.repair.Q0": 1,
+      "C.repair.Qstar": 1
+    },
+    "events": [
+      {
+        "commit_seq": 1,
+        "run_id": "test:test-case-03",
+        "kind": "created",
+        "detail": {
+          "accounts": {
+            "B.verify": 1,
+            "C.repair.Q0": 1,
+            "C.repair.Qstar": 1
+          },
+          "group": "contract",
+          "repeat": 0,
+          "seed": "test:interval"
+        }
+      },
+      {
+        "commit_seq": 2,
+        "run_id": "test:test-case-03",
+        "kind": "seed_pending",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "seed": "test:interval"
+          },
+          "from_state": "draft",
+          "parent_version": 0
+        }
+      },
+      {
+        "commit_seq": 3,
+        "run_id": "test:test-case-03",
+        "kind": "manifest",
+        "detail": {
+          "digest": "9fdb4734d12061bf78810bbf4e3f8581d0e5bd26dbccb1e6f5db7d22d67bc644",
+          "role": "A",
+          "snapshot": "4bab34430b28aedea73bacbdde475f2dd4319d43c1030b765c32efc85d2e85a9"
+        }
+      },
+      {
+        "commit_seq": 4,
+        "run_id": "test:test-case-03",
+        "kind": "seed_accepted",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "fixture_gate": {
+              "contract": "k@1",
+              "domain": "d@1",
+              "seed": "test:interval",
+              "target": "t@1",
+              "versions": [
+                "initial",
+                "candidate"
+              ]
+            },
+            "seed_sha": "e2d7e0ef102952d13a342dc265fe77626c6e15aec1e410d7f499771cf8863132"
+          },
+          "from_state": "seed_pending",
+          "parent_version": 1
+        }
+      },
+      {
+        "commit_seq": 5,
+        "run_id": "test:test-case-03",
+        "kind": "manifest",
+        "detail": {
+          "digest": "44719872bf3b4cdff4f4d5b5496ea4932f00e461aa2ebde01c5296bbec211ced",
+          "role": "B",
+          "snapshot": "4bab34430b28aedea73bacbdde475f2dd4319d43c1030b765c32efc85d2e85a9"
+        }
+      },
+      {
+        "commit_seq": 6,
+        "run_id": "test:test-case-03",
+        "kind": "prediction",
+        "detail": {
+          "batch": "b1",
+          "context_snapshot": "4bab34430b28aedea73bacbdde475f2dd4319d43c1030b765c32efc85d2e85a9",
+          "payload_sha": "252a61b2e286a1490fb4ce008691aa3bdb538c43629fc3dae9442f2b897da107",
+          "pool_digest": "2f86f42fef6eea191d50c8742e5c4d4dfb8b6f0da4f3a2d5d5b97b0d0513e146",
+          "source_kind": "initial_registration",
+          "supersedes": null
+        }
+      },
+      {
+        "commit_seq": 7,
+        "run_id": "test:test-case-03",
+        "kind": "registered",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "batch": "b1",
+            "context_snapshot": "4bab34430b28aedea73bacbdde475f2dd4319d43c1030b765c32efc85d2e85a9",
+            "payload_sha": "252a61b2e286a1490fb4ce008691aa3bdb538c43629fc3dae9442f2b897da107",
+            "pool_digest": "2f86f42fef6eea191d50c8742e5c4d4dfb8b6f0da4f3a2d5d5b97b0d0513e146",
+            "source_kind": "initial_registration",
+            "supersedes": null
+          },
+          "from_state": "seed_accepted",
+          "parent_version": 2
+        }
+      },
+      {
+        "commit_seq": 8,
+        "run_id": "test:test-case-03",
+        "kind": "charged",
+        "detail": {
+          "account": "B.verify",
+          "input_sha": "576e52563d4a94eeb8b1027de675a7ec23ef1f76a1e2adcfb5f2b3e8b72d46ba",
+          "intent": {
+            "case": "test-case-03",
+            "contract": "k@1",
+            "domain": "d@1",
+            "target": "t@1",
+            "verifier": "test:interval-v1"
+          },
+          "request_id": "06bd5a9525434d3b8ba9ee0bd13a63f5"
+        }
+      },
+      {
+        "commit_seq": 9,
+        "run_id": "test:test-case-03",
+        "kind": "selected",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "request_ids": [
+              "06bd5a9525434d3b8ba9ee0bd13a63f5"
+            ],
+            "retry_key": "select-b1"
+          },
+          "from_state": "registered",
+          "parent_version": 3
+        }
+      },
+      {
+        "commit_seq": 10,
+        "run_id": "test:test-case-03",
+        "kind": "request.running",
+        "detail": {
+          "request_id": "06bd5a9525434d3b8ba9ee0bd13a63f5"
+        }
+      },
+      {
+        "commit_seq": 11,
+        "run_id": "test:test-case-03",
+        "kind": "manifest",
+        "detail": {
+          "digest": "40f8733153afa74880300c74291d426e092e2d4830fb287c727bc12f31c76d89",
+          "role": "verifier",
+          "snapshot": "4bab34430b28aedea73bacbdde475f2dd4319d43c1030b765c32efc85d2e85a9"
+        }
+      },
+      {
+        "commit_seq": 12,
+        "run_id": "test:test-case-03",
+        "kind": "request.publishing",
+        "detail": {
+          "request_id": "06bd5a9525434d3b8ba9ee0bd13a63f5"
+        }
+      },
+      {
+        "commit_seq": 13,
+        "run_id": "test:test-case-03",
+        "kind": "request.ready",
+        "detail": {
+          "request_id": "06bd5a9525434d3b8ba9ee0bd13a63f5"
+        }
+      },
+      {
+        "commit_seq": 14,
+        "run_id": "test:test-case-03",
+        "kind": "reveal",
+        "detail": {
+          "batch": "b1",
+          "digest": "ed075b0ca8b24de8f0c45c18e399057917e7788e27c160e6a1beb8ef8bf08b2b",
+          "intent": {
+            "case": "test-case-03",
+            "contract": "k@1",
+            "domain": "d@1",
+            "target": "t@1",
+            "verifier": "test:interval-v1"
+          },
+          "request_id": "06bd5a9525434d3b8ba9ee0bd13a63f5"
+        }
+      },
+      {
+        "commit_seq": 15,
+        "run_id": "test:test-case-03",
+        "kind": "adjudicating",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "evidence": {
+              "06bd5a9525434d3b8ba9ee0bd13a63f5": "ed075b0ca8b24de8f0c45c18e399057917e7788e27c160e6a1beb8ef8bf08b2b"
+            }
+          },
+          "from_state": "selected",
+          "parent_version": 4
+        }
+      },
+      {
+        "commit_seq": 16,
+        "run_id": "test:test-case-03",
+        "kind": "manifest",
+        "detail": {
+          "digest": "34be85417b07e4fe9707bf637eb0d5caa0231e6084f4671b7a9e58e9b0cff072",
+          "role": "B",
+          "snapshot": "44e9076d15e085fe81bb3aa8ad13f5f41b6a54fffe30043d5affa247ad213d0a"
+        }
+      },
+      {
+        "commit_seq": 17,
+        "run_id": "test:test-case-03",
+        "kind": "unresolved",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "action": "unresolved",
+            "baseline": "s@1",
+            "final": null,
+            "handoff_sha": "f4a73896545af695fc79aaeff7ed16c9345411e9d68a01c47471e1a7000d188d",
+            "reason": "pending_evidence",
+            "revision_ref": null
+          },
+          "from_state": "adjudicating",
+          "parent_version": 5
+        }
+      }
+    ],
+    "predictions": {
+      "candidate": "quiet",
+      "initial": "quiet"
+    },
+    "artifacts": {
+      "initial/manifest.json": "c002798e582aa349a275a232fdc1aa7dbcf2c4fa5bfdb189a6e17ee0e2bb4edd",
+      "initial/records.json": "6575130fee52d7b473eb6b646f5185d872b17e607dc221e1d824eeeaa5f377ba",
+      "candidate/manifest.json": "f4b4058afb93049eb82730a72c41d63d20aec856b7780df774e385dc39544d5b",
+      "candidate/records.json": "5c769d784a81f518c6290cb557aae4fc79aa9058ed191c4f461660d5519f2421",
+      "case.json": "576e52563d4a94eeb8b1027de675a7ec23ef1f76a1e2adcfb5f2b3e8b72d46ba",
+      "backend.json": "a72b92547c8d01485c6f9bb9158fce5a179784c6a1bfb38aa3bc2186db8cf0ed",
+      "seed.json": "e2d7e0ef102952d13a342dc265fe77626c6e15aec1e410d7f499771cf8863132",
+      "predictions.json": "252a61b2e286a1490fb4ce008691aa3bdb538c43629fc3dae9442f2b897da107",
+      "evidence.json": "ed075b0ca8b24de8f0c45c18e399057917e7788e27c160e6a1beb8ef8bf08b2b",
+      "handoff.json": "f4a73896545af695fc79aaeff7ed16c9345411e9d68a01c47471e1a7000d188d"
+    }
+  },
+  {
+    "run": "test:test-case-04",
+    "scenario": "gap",
+    "image_id": "sha256:811031bac5d4779204853e1a402046464459e837159e49ad4129f521bb5a129b",
+    "decision": {
+      "action": "revise",
+      "baseline": "s@1",
+      "final": "s@2",
+      "revision_ref": "test.revision@1",
+      "handoff_sha": "e8b26bf96fb5793a486158e754566f76b875a3f8d869f8cc6610e33a12dab81a"
+    },
+    "terminal": {
+      "backend_gap": "width_unavailable",
+      "baseline_pass": true,
+      "final_pass": false,
+      "freeze_id": null,
+      "label": "positive",
+      "observed": [
+        false,
+        false
+      ],
+      "predicted": [
+        "quiet",
+        "report"
+      ],
+      "rows": [
+        {
+          "actual": "no_alert",
+          "backend_gap": null,
+          "classification": "FN",
+          "default": null,
+          "lane": "Q0",
+          "passed": true,
+          "prediction": "quiet",
+          "target": "t@1",
+          "verdict": "positive"
+        },
+        {
+          "actual": "no_alert",
+          "backend_gap": "width_unavailable",
+          "classification": "FN",
+          "default": null,
+          "lane": "Qstar",
+          "passed": false,
+          "prediction": "report",
+          "target": "t@1",
+          "verdict": "positive"
+        }
+      ],
+      "state": "partial"
+    },
+    "balances": {
+      "B.verify": 0,
+      "C.repair.Q0": 1,
+      "C.repair.Qstar": 1
+    },
+    "events": [
+      {
+        "commit_seq": 1,
+        "run_id": "test:test-case-04",
+        "kind": "created",
+        "detail": {
+          "accounts": {
+            "B.verify": 1,
+            "C.repair.Q0": 1,
+            "C.repair.Qstar": 1
+          },
+          "group": "contract",
+          "repeat": 0,
+          "seed": "test:interval"
+        }
+      },
+      {
+        "commit_seq": 2,
+        "run_id": "test:test-case-04",
+        "kind": "seed_pending",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "seed": "test:interval"
+          },
+          "from_state": "draft",
+          "parent_version": 0
+        }
+      },
+      {
+        "commit_seq": 3,
+        "run_id": "test:test-case-04",
+        "kind": "manifest",
+        "detail": {
+          "digest": "5ea16b4e2dc9106adb59542d3ebc020205836a850375348d31713acb71f62e83",
+          "role": "A",
+          "snapshot": "d3422af9474a88f214320c1fa76238feab19729e0e809ecbc695b32394bd037d"
+        }
+      },
+      {
+        "commit_seq": 4,
+        "run_id": "test:test-case-04",
+        "kind": "seed_accepted",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "fixture_gate": {
+              "contract": "k@1",
+              "domain": "d@1",
+              "seed": "test:interval",
+              "target": "t@1",
+              "versions": [
+                "initial",
+                "candidate"
+              ]
+            },
+            "seed_sha": "e2d7e0ef102952d13a342dc265fe77626c6e15aec1e410d7f499771cf8863132"
+          },
+          "from_state": "seed_pending",
+          "parent_version": 1
+        }
+      },
+      {
+        "commit_seq": 5,
+        "run_id": "test:test-case-04",
+        "kind": "manifest",
+        "detail": {
+          "digest": "6cb63b17e275b5a4098cb744b6634ee546c3322ac4bc52415be55af1a9e92ef8",
+          "role": "B",
+          "snapshot": "d3422af9474a88f214320c1fa76238feab19729e0e809ecbc695b32394bd037d"
+        }
+      },
+      {
+        "commit_seq": 6,
+        "run_id": "test:test-case-04",
+        "kind": "prediction",
+        "detail": {
+          "batch": "b1",
+          "context_snapshot": "d3422af9474a88f214320c1fa76238feab19729e0e809ecbc695b32394bd037d",
+          "payload_sha": "94906b5587f8ae3b364064f8812fc753d17259ff00ac042255ea557a342fe92b",
+          "pool_digest": "f7bf2f609e0cc971669a7d9d7e04bfcddb7f27f95382b71573e7698328f4e30b",
+          "source_kind": "initial_registration",
+          "supersedes": null
+        }
+      },
+      {
+        "commit_seq": 7,
+        "run_id": "test:test-case-04",
+        "kind": "registered",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "batch": "b1",
+            "context_snapshot": "d3422af9474a88f214320c1fa76238feab19729e0e809ecbc695b32394bd037d",
+            "payload_sha": "94906b5587f8ae3b364064f8812fc753d17259ff00ac042255ea557a342fe92b",
+            "pool_digest": "f7bf2f609e0cc971669a7d9d7e04bfcddb7f27f95382b71573e7698328f4e30b",
+            "source_kind": "initial_registration",
+            "supersedes": null
+          },
+          "from_state": "seed_accepted",
+          "parent_version": 2
+        }
+      },
+      {
+        "commit_seq": 8,
+        "run_id": "test:test-case-04",
+        "kind": "charged",
+        "detail": {
+          "account": "B.verify",
+          "input_sha": "804d2d6ea192eef4c58246ceb804dca0bbb471985a1467cd2f7822db74205427",
+          "intent": {
+            "case": "test-case-04",
+            "contract": "k@1",
+            "domain": "d@1",
+            "target": "t@1",
+            "verifier": "test:interval-v1"
+          },
+          "request_id": "4f6b2dd6d5314cd8802b948e91250246"
+        }
+      },
+      {
+        "commit_seq": 9,
+        "run_id": "test:test-case-04",
+        "kind": "selected",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "request_ids": [
+              "4f6b2dd6d5314cd8802b948e91250246"
+            ],
+            "retry_key": "select-b1"
+          },
+          "from_state": "registered",
+          "parent_version": 3
+        }
+      },
+      {
+        "commit_seq": 10,
+        "run_id": "test:test-case-04",
+        "kind": "request.running",
+        "detail": {
+          "request_id": "4f6b2dd6d5314cd8802b948e91250246"
+        }
+      },
+      {
+        "commit_seq": 11,
+        "run_id": "test:test-case-04",
+        "kind": "manifest",
+        "detail": {
+          "digest": "c062e07d5dea791d6cbee9ed288196167680777e1d56811984aad82e24741d15",
+          "role": "verifier",
+          "snapshot": "d3422af9474a88f214320c1fa76238feab19729e0e809ecbc695b32394bd037d"
+        }
+      },
+      {
+        "commit_seq": 12,
+        "run_id": "test:test-case-04",
+        "kind": "request.publishing",
+        "detail": {
+          "request_id": "4f6b2dd6d5314cd8802b948e91250246"
+        }
+      },
+      {
+        "commit_seq": 13,
+        "run_id": "test:test-case-04",
+        "kind": "request.ready",
+        "detail": {
+          "request_id": "4f6b2dd6d5314cd8802b948e91250246"
+        }
+      },
+      {
+        "commit_seq": 14,
+        "run_id": "test:test-case-04",
+        "kind": "reveal",
+        "detail": {
+          "batch": "b1",
+          "digest": "1d20f0acbbb4aab54039a4fb3f9a55b800a5ea88c927a2b1653f634fcb37292a",
+          "intent": {
+            "case": "test-case-04",
+            "contract": "k@1",
+            "domain": "d@1",
+            "target": "t@1",
+            "verifier": "test:interval-v1"
+          },
+          "request_id": "4f6b2dd6d5314cd8802b948e91250246"
+        }
+      },
+      {
+        "commit_seq": 15,
+        "run_id": "test:test-case-04",
+        "kind": "adjudicating",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "evidence": {
+              "4f6b2dd6d5314cd8802b948e91250246": "1d20f0acbbb4aab54039a4fb3f9a55b800a5ea88c927a2b1653f634fcb37292a"
+            }
+          },
+          "from_state": "selected",
+          "parent_version": 4
+        }
+      },
+      {
+        "commit_seq": 16,
+        "run_id": "test:test-case-04",
+        "kind": "manifest",
+        "detail": {
+          "digest": "3ea64cf7b96f3892422e35af7b11d64f473018879849d6a8ae41fc1f54f4002d",
+          "role": "B",
+          "snapshot": "c017a51250d83f998c59681525f22e92a6c64ae95d3407c89f20b4a027e40963"
+        }
+      },
+      {
+        "commit_seq": 17,
+        "run_id": "test:test-case-04",
+        "kind": "spec_ready",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "action": "revise",
+            "baseline": "s@1",
+            "final": "s@2",
+            "handoff_sha": "e8b26bf96fb5793a486158e754566f76b875a3f8d869f8cc6610e33a12dab81a",
+            "revision_ref": "test.revision@1"
+          },
+          "from_state": "adjudicating",
+          "parent_version": 5
+        }
+      },
+      {
+        "commit_seq": 18,
+        "run_id": "test:test-case-04",
+        "kind": "regressing",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "database": "5caf9788ebf76dae3dfbb39e44ca6b9a5039db4bd34d5993cf0f3d3d445e45c8"
+          },
+          "from_state": "spec_ready",
+          "parent_version": 6
+        }
+      },
+      {
+        "commit_seq": 19,
+        "run_id": "test:test-case-04",
+        "kind": "manifest",
+        "detail": {
+          "digest": "0850e8dcba041042e6be41369db6988ea663fc0d4a3c6b707b9bc5bc7a984d2b",
+          "role": "C",
+          "snapshot": "c017a51250d83f998c59681525f22e92a6c64ae95d3407c89f20b4a027e40963"
+        }
+      },
+      {
+        "commit_seq": 20,
+        "run_id": "test:test-case-04",
+        "kind": "partial",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "gap": "width_unavailable",
+            "reason": "backend_gap"
+          },
+          "from_state": "regressing",
+          "parent_version": 7
+        }
+      }
+    ],
+    "predictions": {
+      "candidate": "report",
+      "initial": "quiet"
+    },
+    "artifacts": {
+      "initial/manifest.json": "c002798e582aa349a275a232fdc1aa7dbcf2c4fa5bfdb189a6e17ee0e2bb4edd",
+      "initial/records.json": "ecd949d36fef41ef45c4a79ea6f311322495a94847611dbad8c08b1e33a89e59",
+      "candidate/manifest.json": "f4b4058afb93049eb82730a72c41d63d20aec856b7780df774e385dc39544d5b",
+      "candidate/records.json": "ff08994512c9b7d03458228de3432390a3fae75daf396d2b17205babbb821291",
+      "case.json": "804d2d6ea192eef4c58246ceb804dca0bbb471985a1467cd2f7822db74205427",
+      "backend.json": "5caf9788ebf76dae3dfbb39e44ca6b9a5039db4bd34d5993cf0f3d3d445e45c8",
+      "seed.json": "e2d7e0ef102952d13a342dc265fe77626c6e15aec1e410d7f499771cf8863132",
+      "predictions.json": "94906b5587f8ae3b364064f8812fc753d17259ff00ac042255ea557a342fe92b",
+      "evidence.json": "1d20f0acbbb4aab54039a4fb3f9a55b800a5ea88c927a2b1653f634fcb37292a",
+      "handoff.json": "e8b26bf96fb5793a486158e754566f76b875a3f8d869f8cc6610e33a12dab81a",
+      "result.json": "1d3203451d06aee2dd9f318322bd2c44308661fd47fe4deb17b45374507d21da"
+    }
+  }
+]

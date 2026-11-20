@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "seed": "synthetic-access",
+  "files": [
+    {
+      "ref": "before@1",
+      "path": "before.c",
+      "kind": "source",
+      "size": 94,
+      "sha256": "66b8fda465c632f9798fa306d774e386a0387908ea5b29c071627c5365621818"
+    },
+    {
+      "ref": "after@1",
+      "path": "after.c",
+      "kind": "source",
+      "size": 120,
+      "sha256": "3800f3602f4a539faff8d630a0b58b31e0fa456e625fd136b165fa63e0f4a1db"
+    },
+    {
+      "ref": "before_skeleton@1",
+      "path": "before_skeleton.c",
+      "kind": "source",
+      "size": 118,
+      "sha256": "322f11c2342e22c34fcbecac5a58b0a0f8087ee3afcdbd7bf7dcc0ac3717affd"
+    },
+    {
+      "ref": "after_skeleton@1",
+      "path": "after_skeleton.c",
+      "kind": "source",
+      "size": 144,
+      "sha256": "c2fa3cf70e68176daede03e2e3f8f536b4e3cddf11669bd1569663d6c65889da"
+    },
+    {
+      "ref": "proposal@1",
+      "path": "proposal.json",
+      "kind": "seed",
+      "size": 274,
+      "sha256": "763672a50999dd8b1dc17ca62733c3277889dbb75a2fc95f9bfd1791e92de8c1"
+    },
+    {
+      "ref": "capacity-contract@1",
+      "path": "capacity-contract.json",
+      "kind": "contract",
+      "size": 425,
+      "sha256": "49992728c6924ac9241283813d3a76c9e780f78438c793bb976f146ec3c489a6"
+    }
+  ]
+}

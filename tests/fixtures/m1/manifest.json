@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "files": [
+    "records.json"
+  ],
+  "spec_ref": "s@1",
+  "target_refs": [
+    "t@1"
+  ],
+  "domain_ref": "d@1",
+  "contract_ref": "k@1",
+  "fact_refs": [
+    "f.source@1",
+    "f.propagation@1",
+    "f.sink@1",
+    "f.guard@1",
+    "f.feasible@1",
+    "f.reaches@1",
+    "f.capacity@1",
+    "f.offset@1",
+    "f.scale@1",
+    "f.width@1",
+    "f.owner@1",
+    "f.operand@1"
+  ]
+}

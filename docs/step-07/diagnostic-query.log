@@ -1,0 +1,10 @@
+Resolving data extensions.
+Finished resolving data extensions.
+Loading data extensions.
+Finished loading data extensions.
+WARNING: Not caching stages during query-loading, since max heap size is only 1482 MB.
+Compiling query plan for /home/tq/varyroot/runs/c07-oob1/inspect/debug.ql.
+[1/1 comp 12.2s] Compiled /home/tq/varyroot/runs/c07-oob1/inspect/debug.ql.
+Starting evaluation of varyroot/registered-tests/debug.ql.
+[1/1 eval 191ms] Evaluation done; writing results to /home/tq/varyroot/runs/c07-oob1/debug.bqrs.
+Shutting down query evaluator.

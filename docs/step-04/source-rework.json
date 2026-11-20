@@ -1,0 +1,604 @@
+{
+  "A2": {
+    "initial_package": "b8c0b97005a69c796f490b8c2065b94390ba5883a2f05daeab45a96ca4745d44",
+    "child_package": "3c91daf0dec05113d0c23f95039a511802657a74439567022750483d3b481a30",
+    "changed": [
+      "before_basis",
+      "before_facts",
+      "before_mapping",
+      "before_sources",
+      "facts",
+      "hypothesis_set",
+      "mapping",
+      "skeleton"
+    ],
+    "gate": {
+      "package_version": 2,
+      "evidence": {
+        "contracts_ok": "test:contracts_ok:429606786eab49d49e6a0a60aa778d33e1990cdc11796f684e44afa3edea19ba",
+        "after_ok": "test:after_ok:5c5a23182770a10b2613e567d55fafadf76559a3b66b1c697879276081f6a998"
+      },
+      "blockers": [
+        "before_ok",
+        "candidates_ok",
+        "mapping_ok",
+        "versions_ok"
+      ]
+    },
+    "balances": {
+      "B.verify": 1,
+      "C.repair.Q0": 1,
+      "C.repair.Qstar": 1
+    },
+    "watermark": 12,
+    "baseline": "8977cca7b019eea5b0f9b11b7c38dbaa9358b056b505b08c86d97760cc99b534",
+    "events": [
+      {
+        "commit_seq": 1,
+        "run_id": "test:A2",
+        "kind": "created",
+        "detail": {
+          "accounts": {
+            "B.verify": 2,
+            "C.repair.Q0": 1,
+            "C.repair.Qstar": 1
+          },
+          "group": "ledger-fixture",
+          "repeat": 0,
+          "seed": "test:ledger-proof"
+        }
+      },
+      {
+        "commit_seq": 2,
+        "run_id": "test:A2",
+        "kind": "seed_package",
+        "detail": {
+          "digest": "ece4c973e5c13d36337aed029f34b1f6aee8524a1245ea54cbd84c3d23fa6871",
+          "parent_decision": null,
+          "version": 1
+        }
+      },
+      {
+        "commit_seq": 3,
+        "run_id": "test:A2",
+        "kind": "seed_pending",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "package_seq": 2,
+            "package_version": 1
+          },
+          "from_state": "draft",
+          "parent_version": 0
+        }
+      },
+      {
+        "commit_seq": 4,
+        "run_id": "test:A2",
+        "kind": "seed_accepted",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "blockers": [],
+            "evidence": {
+              "after_ok": "test:after_ok:5c5a23182770a10b2613e567d55fafadf76559a3b66b1c697879276081f6a998",
+              "before_ok": "test:before_ok:9ac4fd6300ea114ce5486f1b65baa3625452b79fc759bbfc7f0e3647f1aa3403",
+              "candidates_ok": "test:candidates_ok:ffa13fa749c8b755809d53e4553155167d0500da0572339224d4a21bc68862d7",
+              "contracts_ok": "test:contracts_ok:429606786eab49d49e6a0a60aa778d33e1990cdc11796f684e44afa3edea19ba",
+              "mapping_ok": "test:mapping_ok:adf068e80f31d5f36b9740d0ebf8b1c64f1b61f3ac4f17016b2e7d54f81e241c",
+              "versions_ok": "test:versions_ok:000643348df76b2daf058be4fe23af30ba228fbc9426d9ae13a44bf3a112ce41"
+            },
+            "package_version": 1
+          },
+          "from_state": "seed_pending",
+          "parent_version": 1
+        }
+      },
+      {
+        "commit_seq": 5,
+        "run_id": "test:A2",
+        "kind": "prediction",
+        "detail": {
+          "batch": "b1",
+          "context_snapshot": "0e6c5309f6efb97bc31afdc7678c7b2224928832ad95688e094c686c63f561bf",
+          "payload_sha": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+          "pool_digest": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+          "source_kind": "initial_registration",
+          "supersedes": null
+        }
+      },
+      {
+        "commit_seq": 6,
+        "run_id": "test:A2",
+        "kind": "registered",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "batch": "b1",
+            "context_snapshot": "0e6c5309f6efb97bc31afdc7678c7b2224928832ad95688e094c686c63f561bf",
+            "payload_sha": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+            "pool_digest": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+            "source_kind": "initial_registration",
+            "supersedes": null
+          },
+          "from_state": "seed_accepted",
+          "parent_version": 2
+        }
+      },
+      {
+        "commit_seq": 7,
+        "run_id": "test:A2",
+        "kind": "charged",
+        "detail": {
+          "account": "B.verify",
+          "input_sha": "aaf2320646108059a87ab5017a86aee454f5378ed95003dbb2e12f4ca5266e0e",
+          "intent": {
+            "case": "document",
+            "contract": "text",
+            "domain": "short",
+            "target": "title",
+            "verifier": "fixture"
+          },
+          "request_id": "8455cdb0edc0404193116cd7f74efa21"
+        }
+      },
+      {
+        "commit_seq": 8,
+        "run_id": "test:A2",
+        "kind": "selected",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "request_ids": [
+              "8455cdb0edc0404193116cd7f74efa21"
+            ],
+            "retry_key": "select"
+          },
+          "from_state": "registered",
+          "parent_version": 3
+        }
+      },
+      {
+        "commit_seq": 9,
+        "run_id": "test:A2",
+        "kind": "request.running",
+        "detail": {
+          "request_id": "8455cdb0edc0404193116cd7f74efa21"
+        }
+      },
+      {
+        "commit_seq": 10,
+        "run_id": "test:A2",
+        "kind": "request.publishing",
+        "detail": {
+          "request_id": "8455cdb0edc0404193116cd7f74efa21"
+        }
+      },
+      {
+        "commit_seq": 11,
+        "run_id": "test:A2",
+        "kind": "request.ready",
+        "detail": {
+          "request_id": "8455cdb0edc0404193116cd7f74efa21"
+        }
+      },
+      {
+        "commit_seq": 12,
+        "run_id": "test:A2",
+        "kind": "reveal",
+        "detail": {
+          "batch": "b1",
+          "digest": "de2591acb740ab69307c2ef1cb4d892042fdd42efa90920123bb2d0ef28c1c71",
+          "intent": {
+            "case": "document",
+            "contract": "text",
+            "domain": "short",
+            "target": "title",
+            "verifier": "fixture"
+          },
+          "request_id": "8455cdb0edc0404193116cd7f74efa21"
+        }
+      },
+      {
+        "commit_seq": 13,
+        "run_id": "test:A2",
+        "kind": "adjudicating",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "evidence": {
+              "8455cdb0edc0404193116cd7f74efa21": "de2591acb740ab69307c2ef1cb4d892042fdd42efa90920123bb2d0ef28c1c71"
+            }
+          },
+          "from_state": "selected",
+          "parent_version": 4
+        }
+      },
+      {
+        "commit_seq": 14,
+        "run_id": "test:A2",
+        "kind": "seed_rework_decision",
+        "detail": {
+          "balances": {
+            "B.verify": 1,
+            "C.repair.Q0": 1,
+            "C.repair.Qstar": 1
+          },
+          "batch": "b1",
+          "branch": "A2",
+          "changes": [
+            "before_sources"
+          ],
+          "invalidated": [
+            "before_basis",
+            "before_facts",
+            "before_mapping",
+            "before_sources",
+            "facts",
+            "hypothesis_set",
+            "mapping",
+            "skeleton"
+          ],
+          "parent_version": 1,
+          "reason": "fixture recheck",
+          "snapshot_digest": "53b38ed3a27cefc897232da4ffb5f121f0d9ea8dc7b50902bd50afcde6f4aa9f",
+          "watermark": 12
+        }
+      },
+      {
+        "commit_seq": 15,
+        "run_id": "test:A2",
+        "kind": "seed_package",
+        "detail": {
+          "digest": "90c36469d3e932fd3bbef66373010d60aee0c24485ed9f6d33dda2ab934c79b4",
+          "parent_decision": 14,
+          "version": 2
+        }
+      },
+      {
+        "commit_seq": 16,
+        "run_id": "test:A2",
+        "kind": "seed_pending",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "package_seq": 15,
+            "package_version": 2
+          },
+          "from_state": "adjudicating",
+          "parent_version": 5
+        }
+      }
+    ]
+  },
+  "A5": {
+    "initial_package": "bfd1e1d26398efce735d546ad64710f461aa3d178440f3cc3fe2b8b21b4d2f3c",
+    "child_package": "62544437d1811f1c8ae9bd617a063c8ae2404ae344ef0f12939571efe1ae3320",
+    "changed": [
+      "active_model:rework:2",
+      "hypothesis_set:rework:2"
+    ],
+    "gate": {
+      "package_version": 2,
+      "evidence": {
+        "mapping_ok": "test:mapping_ok:9f5c18ddc6324337098f763ee3d000640d75e00424022913e7150de40198c27f",
+        "contracts_ok": "test:contracts_ok:89f868b2f281934e6b74dd67031f356b23766f196973fecddef45e8bf9ac247a",
+        "before_ok": "test:before_ok:a8d1315788231b06de67ba22fee7ddcd49b08575bfdeadfbabd830ac45f80269",
+        "after_ok": "test:after_ok:88fefec95a58ba6ece8ecf8775b7e6e9cf7de364673ba8b172b2ca661bff0acd"
+      },
+      "blockers": [
+        "candidates_ok",
+        "versions_ok"
+      ]
+    },
+    "balances": {
+      "B.verify": 1,
+      "C.repair.Q0": 1,
+      "C.repair.Qstar": 1
+    },
+    "watermark": 28,
+    "baseline": "336b983b0125d4e58c94b6874cfc60a50ebe64a3b877d06921c7eb4abe083e4d",
+    "events": [
+      {
+        "commit_seq": 17,
+        "run_id": "test:A5",
+        "kind": "created",
+        "detail": {
+          "accounts": {
+            "B.verify": 2,
+            "C.repair.Q0": 1,
+            "C.repair.Qstar": 1
+          },
+          "group": "ledger-fixture",
+          "repeat": 0,
+          "seed": "test:ledger-proof"
+        }
+      },
+      {
+        "commit_seq": 18,
+        "run_id": "test:A5",
+        "kind": "seed_package",
+        "detail": {
+          "digest": "3ea56f3f6559ed4842333c52dd90dc19fb94ad26fcc4581e70eab96d51c325f1",
+          "parent_decision": null,
+          "version": 1
+        }
+      },
+      {
+        "commit_seq": 19,
+        "run_id": "test:A5",
+        "kind": "seed_pending",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "package_seq": 18,
+            "package_version": 1
+          },
+          "from_state": "draft",
+          "parent_version": 0
+        }
+      },
+      {
+        "commit_seq": 20,
+        "run_id": "test:A5",
+        "kind": "seed_accepted",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "blockers": [],
+            "evidence": {
+              "after_ok": "test:after_ok:88fefec95a58ba6ece8ecf8775b7e6e9cf7de364673ba8b172b2ca661bff0acd",
+              "before_ok": "test:before_ok:a8d1315788231b06de67ba22fee7ddcd49b08575bfdeadfbabd830ac45f80269",
+              "candidates_ok": "test:candidates_ok:e349906975df65fa1bdd723b30bf74b389d3a0f033be4fa7b8f76f26e4a32340",
+              "contracts_ok": "test:contracts_ok:89f868b2f281934e6b74dd67031f356b23766f196973fecddef45e8bf9ac247a",
+              "mapping_ok": "test:mapping_ok:9f5c18ddc6324337098f763ee3d000640d75e00424022913e7150de40198c27f",
+              "versions_ok": "test:versions_ok:cd1a2946f82b686b8ce280770d736579a8b930edbadf4fdc4257d6f0de32efc8"
+            },
+            "package_version": 1
+          },
+          "from_state": "seed_pending",
+          "parent_version": 1
+        }
+      },
+      {
+        "commit_seq": 21,
+        "run_id": "test:A5",
+        "kind": "prediction",
+        "detail": {
+          "batch": "b1",
+          "context_snapshot": "2725758d2c7d4a954b07c82468008992a57b978845b93b0318b9fbb65d825756",
+          "payload_sha": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+          "pool_digest": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+          "source_kind": "initial_registration",
+          "supersedes": null
+        }
+      },
+      {
+        "commit_seq": 22,
+        "run_id": "test:A5",
+        "kind": "registered",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "batch": "b1",
+            "context_snapshot": "2725758d2c7d4a954b07c82468008992a57b978845b93b0318b9fbb65d825756",
+            "payload_sha": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+            "pool_digest": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+            "source_kind": "initial_registration",
+            "supersedes": null
+          },
+          "from_state": "seed_accepted",
+          "parent_version": 2
+        }
+      },
+      {
+        "commit_seq": 23,
+        "run_id": "test:A5",
+        "kind": "charged",
+        "detail": {
+          "account": "B.verify",
+          "input_sha": "aaf2320646108059a87ab5017a86aee454f5378ed95003dbb2e12f4ca5266e0e",
+          "intent": {
+            "case": "document",
+            "contract": "text",
+            "domain": "short",
+            "target": "title",
+            "verifier": "fixture"
+          },
+          "request_id": "7f074df09b9c4416bef75b518ac0addb"
+        }
+      },
+      {
+        "commit_seq": 24,
+        "run_id": "test:A5",
+        "kind": "selected",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "request_ids": [
+              "7f074df09b9c4416bef75b518ac0addb"
+            ],
+            "retry_key": "select"
+          },
+          "from_state": "registered",
+          "parent_version": 3
+        }
+      },
+      {
+        "commit_seq": 25,
+        "run_id": "test:A5",
+        "kind": "request.running",
+        "detail": {
+          "request_id": "7f074df09b9c4416bef75b518ac0addb"
+        }
+      },
+      {
+        "commit_seq": 26,
+        "run_id": "test:A5",
+        "kind": "request.publishing",
+        "detail": {
+          "request_id": "7f074df09b9c4416bef75b518ac0addb"
+        }
+      },
+      {
+        "commit_seq": 27,
+        "run_id": "test:A5",
+        "kind": "request.ready",
+        "detail": {
+          "request_id": "7f074df09b9c4416bef75b518ac0addb"
+        }
+      },
+      {
+        "commit_seq": 28,
+        "run_id": "test:A5",
+        "kind": "reveal",
+        "detail": {
+          "batch": "b1",
+          "digest": "de2591acb740ab69307c2ef1cb4d892042fdd42efa90920123bb2d0ef28c1c71",
+          "intent": {
+            "case": "document",
+            "contract": "text",
+            "domain": "short",
+            "target": "title",
+            "verifier": "fixture"
+          },
+          "request_id": "7f074df09b9c4416bef75b518ac0addb"
+        }
+      },
+      {
+        "commit_seq": 29,
+        "run_id": "test:A5",
+        "kind": "adjudicating",
+        "detail": {
+          "batch": "b1",
+          "detail": {
+            "evidence": {
+              "7f074df09b9c4416bef75b518ac0addb": "de2591acb740ab69307c2ef1cb4d892042fdd42efa90920123bb2d0ef28c1c71"
+            }
+          },
+          "from_state": "selected",
+          "parent_version": 4
+        }
+      },
+      {
+        "commit_seq": 30,
+        "run_id": "test:A5",
+        "kind": "seed_rework_decision",
+        "detail": {
+          "balances": {
+            "B.verify": 1,
+            "C.repair.Q0": 1,
+            "C.repair.Qstar": 1
+          },
+          "batch": "b1",
+          "branch": "A5",
+          "changes": [
+            "active_model",
+            "hypothesis_set"
+          ],
+          "invalidated": [
+            "active_model:rework:2",
+            "hypothesis_set:rework:2"
+          ],
+          "parent_version": 1,
+          "reason": "fixture recheck",
+          "snapshot_digest": "25aa95f1fb5545f510badbc84f78026209aaac4609e5662946162715796e81e6",
+          "watermark": 28
+        }
+      },
+      {
+        "commit_seq": 31,
+        "run_id": "test:A5",
+        "kind": "seed_package",
+        "detail": {
+          "digest": "74063995dcf1534639ffa42c30a896b2595c36f191b494e17431c4fe7ede22fa",
+          "parent_decision": 30,
+          "version": 2
+        }
+      },
+      {
+        "commit_seq": 32,
+        "run_id": "test:A5",
+        "kind": "seed_pending",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "package_seq": 31,
+            "package_version": 2
+          },
+          "from_state": "adjudicating",
+          "parent_version": 5
+        }
+      },
+      {
+        "commit_seq": 33,
+        "run_id": "test:A5",
+        "kind": "seed_accepted",
+        "detail": {
+          "batch": null,
+          "detail": {
+            "blockers": [],
+            "evidence": {
+              "after_ok": "test:after_ok:88fefec95a58ba6ece8ecf8775b7e6e9cf7de364673ba8b172b2ca661bff0acd",
+              "before_ok": "test:before_ok:a8d1315788231b06de67ba22fee7ddcd49b08575bfdeadfbabd830ac45f80269",
+              "candidates_ok": "test:candidates_ok:4a794d6b545c987dc62f83be6b6d3317b277d7ab56c78d2f39fa33d701e4f0ac",
+              "contracts_ok": "test:contracts_ok:89f868b2f281934e6b74dd67031f356b23766f196973fecddef45e8bf9ac247a",
+              "mapping_ok": "test:mapping_ok:9f5c18ddc6324337098f763ee3d000640d75e00424022913e7150de40198c27f",
+              "versions_ok": "test:versions_ok:f36ce3786ac2f2117f7c4132a90678426df977470e593ef4555cccf377ec8d7a"
+            },
+            "package_version": 2
+          },
+          "from_state": "seed_pending",
+          "parent_version": 6
+        }
+      },
+      {
+        "commit_seq": 34,
+        "run_id": "test:A5",
+        "kind": "prediction",
+        "detail": {
+          "balances": {
+            "B.verify": 1,
+            "C.repair.Q0": 1,
+            "C.repair.Qstar": 1
+          },
+          "batch": "b2",
+          "context_snapshot": "25aa95f1fb5545f510badbc84f78026209aaac4609e5662946162715796e81e6",
+          "package_version": 2,
+          "parent_decision": 30,
+          "payload_sha": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+          "pool_digest": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+          "source_kind": "post_remodel",
+          "supersedes": null,
+          "watermark": 28
+        }
+      },
+      {
+        "commit_seq": 35,
+        "run_id": "test:A5",
+        "kind": "registered",
+        "detail": {
+          "batch": "b2",
+          "detail": {
+            "balances": {
+              "B.verify": 1,
+              "C.repair.Q0": 1,
+              "C.repair.Qstar": 1
+            },
+            "batch": "b2",
+            "context_snapshot": "25aa95f1fb5545f510badbc84f78026209aaac4609e5662946162715796e81e6",
+            "package_version": 2,
+            "parent_decision": 30,
+            "payload_sha": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+            "pool_digest": "9f2301c5fded216b164fe7d4ffc6dd2a491856a31b141c95e15036ce13b3703a",
+            "source_kind": "post_remodel",
+            "supersedes": null,
+            "watermark": 28
+          },
+          "from_state": "seed_accepted",
+          "parent_version": 7
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+{"id":"static-live-read","version":1,"subject":"p","approval":"approved","extent":{"unit":"bytes","value":4},"provenance":"Only the address of the registered static unsigned object live satisfies read_required. The checked helper records an intent for every invocation."}

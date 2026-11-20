@@ -1,0 +1,41 @@
+{
+  "build_command": "sh build.sh",
+  "cli_commit": "d7b185e374bfe18c0484dac07a521a810eb9c4fb",
+  "cli_path": "toolchains/codeql-2.27.2/codeql/codeql",
+  "cli_version": "2.27.2",
+  "compiler": "13.3.0",
+  "cpp_all": "12.2.0",
+  "cpu_count": 4,
+  "databases": {
+    "gap": "3a7f2f06342f34d800dc102ac0cc79841e929ad2b89407ee805a808c060dbfa9",
+    "keep": "3a7f2f06342f34d800dc102ac0cc79841e929ad2b89407ee805a808c060dbfa9",
+    "revise": "5bbeb85c84299497397b24abe8eb016ae35a21c4661563f262f5bbf9295daa04",
+    "uncovered": "c2b86f954ceacbe2e194ce81cd1b6a1ce1518d6560e365299beaf55c469ff993"
+  },
+  "extractor": "codeql/cpp",
+  "memtotal": "MemTotal:        8078724 kB",
+  "offline_packs": {
+    "codeql/controlflow/2.0.43/qlpack.yml": "88038e8eb205082d1bed976fb92cfe8f4bc75f67bb41cf4da76c957299ee237e",
+    "codeql/cpp-all/12.2.0/qlpack.yml": "f74d800bdfbb0b8dedf6ac8e7f15f386734e90bf0e06c923a64692a17ecd4b30",
+    "codeql/dataflow/2.1.15/qlpack.yml": "9da95c04be494406c46e7253edb5e3e479f4d1a59bdf9274c3a583fd2c3ad404",
+    "codeql/mad/1.0.59/qlpack.yml": "3b8f446ee34716c05fd7f68b2d9c90a47aa9d6b67b1ef138460536a44c5f5c96",
+    "codeql/quantum/0.0.37/qlpack.yml": "7b14eec90bb8bc911263421a23cb79405ebf1e9e9765e3dba0749b15a4b5f97b",
+    "codeql/rangeanalysis/1.0.59/qlpack.yml": "9dc1ac19b3ad3233f9997b6bc8641bdc43a8bf1b53998e1d4466407ca26e4fa3",
+    "codeql/regex/1.0.59/qlpack.yml": "617796a9e1612ac03898c15c7d47c57de34835d2e437e30dd5e7d02b2642a539",
+    "codeql/ssa/2.0.35/qlpack.yml": "ee279b7a7bb768c324f42146c61a087363d4e52ad873999b76e75caa87ce526b",
+    "codeql/tutorial/1.0.59/qlpack.yml": "c64fbfc1bd10f234f1abf96a94ebf334675c955f7ba7db2ce9a5acfdc31a2b80",
+    "codeql/typeflow/1.0.59/qlpack.yml": "6a4791fb2c6d9eb0b061e83f34e42de063afc376c76d49662ea5c385ba68f811",
+    "codeql/typetracking/2.0.43/qlpack.yml": "119dbf979b6c496d19f6b36c2f413768183649a3f0261cd4d35e21e5e1a16f1a",
+    "codeql/util/2.0.46/qlpack.yml": "5a60bdaa07836842c1885b2b781552a8abd2fce511d60a50e75ce98e58b145fb",
+    "codeql/xml/1.0.59/qlpack.yml": "bc4378fdc4405830f165a08dbc9cfe51438350395e14f3de517bee0f488435d8"
+  },
+  "os_release": "Ubuntu 24.04.5 LTS",
+  "pack_cache": "packages",
+  "packages_root": "toolchains/codeql-2.27.2/packages",
+  "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+  "python": "Python 3.13.2",
+  "ram": 2304,
+  "runtime_image": "sha256:48d884813cf44e927cf64c5529dd630dd3b18338c6dc727991eef9b71e934a20",
+  "threads": 1,
+  "tool_tree_sha256": "535c01387600d61572088e6cb407d7a5add88b8f4493042a7dde6eac1ca57b23"
+}
