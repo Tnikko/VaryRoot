@@ -73,6 +73,17 @@ class ClangReceiptTest(unittest.TestCase):
         self.assertEqual(receipt["target_binding"], "unproven")
 
     @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
+    def test_whitespace_hunk_does_not_create_second_semantic_region(self):
+        before = ("int parse(int n, int *data) {\n"
+                  "  int pad = 0;\n  pad += 1;\n  pad += 2;\n"
+                  "  if (n > 0) { }\n  return data[0];\n}\n")
+        after = before.replace("  int pad = 0;", "    int pad = 0;").replace(
+            "if (n > 0)", "if (n > 1)")
+        receipt = self._receipt(before, after, 6, "data[0]")
+        self.assertEqual(len(receipt["edit_groups"]), 1, receipt)
+        self.assertEqual(classify(receipt)["status"], "admitted", receipt)
+
+    @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
     def test_goto_and_exclusive_label_form_one_region(self):
         with tempfile.TemporaryDirectory() as folder:
             trees = []

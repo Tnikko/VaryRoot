@@ -122,9 +122,17 @@ def _node_source(node, source):
 
 def _after_line(before, after, before_line):
     matcher = difflib.SequenceMatcher(None, before.splitlines(), after.splitlines(), autojunk=False)
-    for tag, old_start, old_end, new_start, _ in matcher.get_opcodes():
+    for tag, old_start, old_end, new_start, new_end in matcher.get_opcodes():
         if old_start <= before_line - 1 < old_end:
-            return new_start + before_line - old_start if tag == "equal" else None
+            if tag == "equal":
+                return new_start + before_line - old_start
+            old_lines, new_lines = before.splitlines(), after.splitlines()
+            if tag == "replace" and old_end - old_start == new_end - new_start and all(
+                    re.sub(r"\s+", "", old_lines[old_start + n]) ==
+                    re.sub(r"\s+", "", new_lines[new_start + n])
+                    for n in range(old_end - old_start)):
+                return new_start + before_line - old_start
+            return None
     return None
 
 
@@ -135,6 +143,26 @@ def _changed_regions(before, after):
              "after_lines": list(range(k + 1, l + 1)),
              "before_text": "\n".join(old[i:j]), "after_text": "\n".join(new[k:l])}
             for tag, i, j, k, l in matcher.get_opcodes() if tag != "equal"]
+
+
+def _ast_shape(value):
+    """Erase source coordinates and Clang IDs, retaining semantic AST fields."""
+    if isinstance(value, dict):
+        return {key: _ast_shape(item) for key, item in value.items()
+                if key not in ("id", "loc", "range")}
+    if isinstance(value, list):
+        return [_ast_shape(item) for item in value]
+    return value
+
+
+def _whitespace_only_region(region, nodes, before, after):
+    if re.sub(r"\s+", "", region["before_text"]) != re.sub(r"\s+", "", region["after_text"]):
+        return False
+    old_nodes = [_ast_shape(node) for node in nodes[0]
+                 if _node_line(node, before) in region["before_lines"]]
+    new_nodes = [_ast_shape(node) for node in nodes[1]
+                 if _node_line(node, after) in region["after_lines"]]
+    return old_nodes == new_nodes
 
 
 def _matches_target(source, tree, line, expression):
@@ -170,8 +198,9 @@ def make_receipt(before, after, before_ast, after_ast, target_lines, target_expr
         raise ValueError("target_lines_required")
     if before_ast is None or after_ast is None:
         return {"producer": "clang_ast", "compile_ok": False}
-    regions = _changed_regions(before, after)
     nodes = ((list(_walk(before_ast)), list(_walk(after_ast))))
+    regions = [region for region in _changed_regions(before, after)
+               if not _whitespace_only_region(region, nodes, before, after)]
     for region in regions:
         selected = [node for tree, lines, source in zip(nodes, (region["before_lines"], region["after_lines"]), (before, after))
                     for node in tree if _node_line(node, source) in lines]

@@ -13,6 +13,7 @@ from varyroot.b_interval_ir import (make_interval_pair, extract_interval_facts,
                                     predict_interval, accept_interval_packet,
                                     make_interval_inspector)
 from varyroot.b_static_retry import run
+from varyroot.b_prompt import strip_source_comments
 
 
 class IntervalIRTest(unittest.TestCase):
@@ -38,8 +39,6 @@ class IntervalIRTest(unittest.TestCase):
              ("quiet", "quiet")),
             ("neither", before.replace("if (len >= 8)", "if (1)"),
              ("report", "report")),
-            ("or_does_not_protect", before.replace("if (len >= 8)", "if (len >= 8 || len < 0)"),
-             ("report", "report")),
         )
         config = {"target_expression": "memcpy(dst, cursor, 8)", "target_call": "memcpy", "total_expr": "len",
                   "remaining_expr": "end - cursor", "pointer_expr": "cursor", "width": 8}
@@ -62,6 +61,14 @@ class IntervalIRTest(unittest.TestCase):
                     receipt = make_receipt(before, source, trees["before"], ast, 6,
                                            config["target_expression"], contract_calls=("memcpy",))
                     self.assertEqual(classify(receipt)["status"], "admitted", receipt)
+            ambiguous = before.replace("if (len >= 8)", "if (len >= 8 || len < 0)")
+            path = Path(folder) / "ambiguous.c"
+            path.write_text(ambiguous)
+            argv = ["clang-18", "-c", str(path), "-o", str(path) + ".o"]
+            ast, _ = clang_ast(argv, folder, "parse")
+            cfg, _ = clang_cfg(argv, folder, "parse")
+            with self.assertRaisesRegex(ValueError, "upper_interval_bound_unproven"):
+                extract_interval_facts(ambiguous, ast, cfg, 6, config)
 
     @unittest.skipUnless((Path(os.environ.get("VARYROOT_RUNS", "/home/tq/varyroot/runs")) /
                           "step4f-oob-feasibility/source/parent/src/dissectors/ec_vnc.c").exists(),
@@ -103,6 +110,47 @@ class IntervalIRTest(unittest.TestCase):
                                        {k: v for k, v in config.items() if k != "contract_basis_sha256"},
                                        hashlib.sha256(source.encode()).hexdigest(), "dissector_vnc")
 
+    @unittest.skipUnless((Path(os.environ.get("VARYROOT_RUNS", "/home/tq/varyroot/runs")) /
+                          "step4f-oob-feasibility/source/parent/src/dissectors/ec_vnc.c").exists(),
+                         "archived Ettercap source unavailable")
+    def test_archived_ettercap_reasoning_view_compiles_and_admits_guard_edit(self):
+        root = Path(os.environ.get("VARYROOT_RUNS", "/home/tq/varyroot/runs")) / "step4f-oob-feasibility"
+        config = {"target_expression": "memcpy(buffer, ptr, 16)", "target_call": "memcpy",
+                  "total_expr": "PACKET->DATA.len", "remaining_expr": "end - ptr",
+                  "pointer_expr": "ptr", "width": 16}
+        sources = {side: (root / f"source/{side}/src/dissectors/ec_vnc.c").read_text()
+                   for side in ("parent", "fixed")}
+        with tempfile.TemporaryDirectory() as folder:
+            serial = 0
+            def compile_source(source):
+                nonlocal serial
+                serial += 1
+                path = Path(folder) / f"candidate-{serial}.c"
+                path.write_text(source)
+                argv = ["clang-18", "-Dlib_ettercap_EXPORTS",
+                        "-I" + str(root / "build/parent-final/include"),
+                        "-I" + str(root / "source/parent/include"),
+                        "-I" + str(root / "qlinclude"), "-c", str(path), "-o", str(path) + ".o"]
+                ast, status = clang_ast(argv, folder, "dissector_vnc")
+                self.assertEqual(status["exit_code"], 0, status)
+                cfg, status = clang_cfg(argv, folder, "dissector_vnc")
+                self.assertEqual(status["exit_code"], 0, status)
+                return ast, cfg
+            parent_ast, _ = compile_source(sources["parent"])
+            fixed_ast, _ = compile_source(sources["fixed"])
+            inspector = make_interval_inspector(make_interval_pair("real_view", "logical_payload"),
+                config, {"before": (sources["parent"], parent_ast, 184),
+                         "after": (sources["fixed"], fixed_ast, 187)}, compile_source)
+            candidate_lines = strip_source_comments(sources["parent"]).splitlines(keepends=True)
+            self.assertIn("PACKET->DATA.len >= 16", candidate_lines[182])
+            candidate_lines[182] = candidate_lines[182].replace(
+                "PACKET->DATA.len >= 16", "PACKET->DATA.len >= 17")
+            candidate = "".join(candidate_lines)
+            inspected = inspector(candidate, "before")
+            self.assertEqual(classify(inspected["clang_receipt"])["status"], "admitted",
+                             inspected["clang_receipt"])
+            self.assertEqual(inspected["predictions"], ["quiet", "report"])
+
     @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
     def test_generic_inspector_wires_clang_and_ir_into_static_retry(self):
         before = ("#include <string.h>\nvoid parse(char *dst, char *base, int len) {\n"
@@ -139,6 +187,38 @@ class IntervalIRTest(unittest.TestCase):
                          inspector)
             self.assertEqual((result["admitted"], result["hard_divergent"],
                               result["backend_gap"]), (1, 1, 0))
+
+    @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
+    def test_inspector_uses_the_same_comment_free_view_as_the_model(self):
+        before = ("#include <string.h>\n/* long source note */\n"
+                  "int parse(char *dst, char *base, int len) {\n"
+                  "  char *cursor=base; char *end=base+len; cursor+=2;\n"
+                  "  if (len >= 8) {\n    memcpy(dst,cursor,8);\n  }\n}\n")
+        after = before.replace("len >= 8", "end-cursor >= 8")
+        candidate = strip_source_comments(before).replace("len >= 8", "len >= 9")
+        config = {"target_expression": "memcpy(dst,cursor,8)", "target_call": "memcpy",
+                  "total_expr": "len", "remaining_expr": "end-cursor",
+                  "pointer_expr": "cursor", "width": 8}
+        with tempfile.TemporaryDirectory() as folder:
+            serial = 0
+            def compile_source(source):
+                nonlocal serial
+                serial += 1
+                path = Path(folder) / f"variant-{serial}.c"
+                path.write_text(source)
+                argv = ["clang-18", "-c", str(path), "-o", str(path) + ".o"]
+                ast, _ = clang_ast(argv, folder, "parse")
+                cfg, _ = clang_cfg(argv, folder, "parse")
+                return ast, cfg
+            before_ast, _ = compile_source(before)
+            after_ast, _ = compile_source(after)
+            inspector = make_interval_inspector(make_interval_pair("view", "logical_span"),
+                config, {"before": (before, before_ast, 6),
+                         "after": (after, after_ast, 6)}, compile_source)
+            inspected = inspector(candidate, "before")
+            self.assertEqual(classify(inspected["clang_receipt"])["status"], "admitted",
+                             inspected["clang_receipt"])
+            self.assertEqual(inspected["predictions"], ["quiet", "report"])
 
 
 if __name__ == "__main__":

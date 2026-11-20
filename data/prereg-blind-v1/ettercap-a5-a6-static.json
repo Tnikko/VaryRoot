@@ -14,8 +14,8 @@
       "a5_origin": "patch_guard_differential",
       "a6_status": "accepted_for_symbolic_scope",
       "facts": {
-        "capacity": 16,
-        "fact_origin": "clang_ast_symbolic_boundary",
+        "capacity": 20,
+        "fact_origin": "clang_ast_minimal_satisfying_interval",
         "guard_sources": [
           "FROM_SERVER",
           "!session_get(&s, ident, DISSECT_IDENT_LEN) == -E_NOTFOUND",
@@ -23,7 +23,7 @@
           "end - ptr >= 16"
         ],
         "offset": 4,
-        "reaches": false,
+        "reaches": true,
         "remaining_guard": true,
         "total_guard": false,
         "width": 16
@@ -43,7 +43,7 @@
       "a6_status": "accepted_for_symbolic_scope",
       "facts": {
         "capacity": 16,
-        "fact_origin": "clang_ast_symbolic_boundary",
+        "fact_origin": "clang_ast_minimal_satisfying_interval",
         "guard_sources": [
           "FROM_SERVER",
           "!session_get(&s, ident, DISSECT_IDENT_LEN) == -E_NOTFOUND",
@@ -67,5 +67,5 @@
       ]
     }
   },
-  "scope": "local symbolic boundary path, capacity equals target width"
+  "scope": "local symbolic path, minimal capacity satisfying proven direct bounds"
 }

@@ -51,6 +51,7 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
                    "intent": None, "source": None, "source_sha256": None,
                    "status": "rejected", "reason": "invalid_proposal_schema",
                    "touched_roles": [], "predictions": None,
+                   "clang_receipt": None, "static_facts": None,
                    "hard_divergent": False, "coverage_divergent": False}
             if isinstance(proposal, dict):
                 for key in ("parent", "factor", "intent", "source"):
@@ -60,17 +61,26 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
                      all(isinstance(proposal[key], str) and proposal[key] for key in proposal))
             if valid:
                 row["source_sha256"] = source_sha256(proposal["source"])
+                try:
+                    views = {row["source_sha256"],
+                             source_sha256(strip_source_comments(proposal["source"]))}
+                except ValueError:
+                    views = None
                 if index >= policy["max_proposals_per_round"]:
                     row.update(status="rejected", reason="proposal_limit_exceeded")
                 elif proposal["parent"] not in ("before", "after"):
                     row.update(status="rejected", reason="invalid_parent")
-                elif row["source_sha256"] in excluded:
+                elif views is None:
+                    row.update(status="undetermined", reason="source_projection_unavailable")
+                elif views & excluded:
                     row.update(status="rejected", reason="historical_excluded")
-                elif row["source_sha256"] in seen:
+                elif views & seen:
                     row.update(status="rejected", reason="duplicate_or_unchanged_source")
                 else:
-                    seen.add(row["source_sha256"])
+                    seen.update(views)
                     static = inspect(proposal["source"], proposal["parent"])
+                    row["clang_receipt"] = static["clang_receipt"]
+                    row["static_facts"] = static.get("facts")
                     row.update(classify(static["clang_receipt"]))
                     pair = static.get("predictions")
                     if row["status"] == "admitted":
@@ -112,4 +122,5 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
             "divergence_target": target, "hypothesis_pair_sha256": pair_digest,
             "coverage_evidence_ref": policy.get("coverage_evidence_ref") if target == "coverage" else None,
             "unresolved": not ready,
-            "backend_gap": sum(row["reason"] == "static_prediction_unavailable" for row in rows)}
+            "backend_gap": sum(row["reason"] in ("static_prediction_unavailable",
+                                                      "source_projection_unavailable") for row in rows)}

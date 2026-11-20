@@ -2,7 +2,7 @@ import json
 import hashlib
 import unittest
 
-from varyroot.b_prompt import render_messages, hypothesis_pair
+from varyroot.b_prompt import render_messages, hypothesis_pair, strip_source_comments
 from varyroot.b_factor_gate import classify
 from varyroot.b_static_retry import run, source_sha256
 
@@ -26,6 +26,10 @@ class BGenerationCoreTest(unittest.TestCase):
                                              spec("and"), spec("or"))[1]["content"])
         self.assertNotIn("https://audit.invalid", json.dumps(payload))
         self.assertIn('"/* value */"', payload["before"])
+
+    def test_comment_projection_drops_trailing_padding(self):
+        source = "int x; // a long advisory\n/* another advisory */\nint y;  \n"
+        self.assertEqual(strip_source_comments(source), "int x;\n\nint y;\n")
 
     def test_prompt_uses_only_reasoning_view(self):
         messages = render_messages("int before(void) { return 0; }",
@@ -202,6 +206,56 @@ class BGenerationCoreTest(unittest.TestCase):
                           result["rejection_reasons"]["historical_excluded"]), (1, 1, 1))
         self.assertEqual(result["rows"][0]["reason"], "historical_excluded")
         self.assertTrue(result["unresolved"])
+
+    def test_comment_only_changes_cannot_evade_exclusion_or_deduplication(self):
+        original = "int parse(void) { return 1; }\n"
+        annotated = "int parse(void) { /* comment */ return 1; }\n"
+        self.assertNotEqual(source_sha256(original), source_sha256(annotated))
+        proposals = [{"parent": "before", "factor": "guard", "intent": "comment", "source": annotated}]
+        def no_inspection(source, parent):
+            self.fail("comment-only excluded proposal reached inspector")
+        policy = {"max_retries": 0, "min_divergent": 1, "model": "fixture-model",
+                  "max_tokens": 128, "max_proposals_per_round": 2,
+                  "excluded_source_sha256": [source_sha256(original)]}
+        excluded = run("before", "after", CONTRACT, spec("and"), spec("or"), policy,
+                       lambda request: {"proposals": proposals}, no_inspection)
+        self.assertEqual(excluded["rows"][0]["reason"], "historical_excluded")
+        deduped = run(original, "after", CONTRACT, spec("and"), spec("or"),
+                      {k: v for k, v in policy.items() if k != "excluded_source_sha256"},
+                      lambda request: {"proposals": proposals}, no_inspection)
+        self.assertEqual(deduped["rows"][0]["reason"], "duplicate_or_unchanged_source")
+
+    def test_comment_variants_deduplicate_across_rounds(self):
+        proposals = iter(("int f(void) { /* first */ return 1; }\n",
+                          "int f(void) { /* second */ return 1; }\n"))
+        inspections = []
+        def inspect(source, parent):
+            inspections.append(source)
+            return {"clang_receipt": {"producer": "clang_ast", "compile_ok": True,
+                    "target_binding": "exact_1to1", "edit_groups": [{"roles": ["guard"]}]},
+                    "predictions": ["report", "quiet"]}
+        result = run("before", "after", CONTRACT, spec("and"), spec("or"),
+                     {"max_retries": 1, "min_divergent": 2, "model": "fixture-model",
+                      "max_tokens": 128, "max_proposals_per_round": 1},
+                     lambda request: {"proposals": [{"parent": "before", "factor": "guard",
+                                                       "intent": "variant", "source": next(proposals)}]},
+                     inspect)
+        self.assertEqual(len(inspections), 1)
+        self.assertEqual(result["rows"][1]["reason"], "duplicate_or_unchanged_source")
+
+    def test_static_receipt_and_facts_are_kept_for_freezing(self):
+        receipt = {"producer": "clang_ast", "compile_ok": True,
+                   "target_binding": "exact_1to1", "edit_groups": [{"roles": ["guard"]}]}
+        result = run("before", "after", CONTRACT, spec("and"), spec("or"),
+                     {"max_retries": 0, "min_divergent": 1, "model": "fixture-model",
+                      "max_tokens": 128, "max_proposals_per_round": 1},
+                     lambda request: {"proposals": [{"parent": "before", "factor": "guard",
+                                                       "intent": "local", "source": "candidate"}]},
+                     lambda source, parent: {"clang_receipt": receipt,
+                                             "facts": {"check_seen": True},
+                                             "predictions": ["report", "quiet"]})
+        self.assertEqual(result["rows"][0]["clang_receipt"], receipt)
+        self.assertEqual(result["rows"][0]["static_facts"], {"check_seen": True})
 
 
 if __name__ == "__main__":

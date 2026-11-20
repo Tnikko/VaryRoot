@@ -46,7 +46,31 @@ def strip_source_comments(source):
         index += 1
     if state == "block":
         raise ValueError("unterminated_source_comment")
-    return "".join(out)
+    # Removed comments can leave thousands of padding spaces in a long TU.
+    # Compact code whitespace outside literals, preserving indentation and
+    # every newline so model, hashes and Clang use the same line anchors.
+    def compact(line):
+        prefix = len(line) - len(line.lstrip(" \t"))
+        result, cursor, quote = [line[:prefix]], prefix, None
+        while cursor < len(line):
+            char = line[cursor]
+            if quote is None and char in " \t":
+                while cursor < len(line) and line[cursor] in " \t":
+                    cursor += 1
+                if cursor < len(line):
+                    result.append(" ")
+                continue
+            result.append(char)
+            if quote is not None and char == "\\" and cursor + 1 < len(line):
+                cursor += 1
+                result.append(line[cursor])
+            elif quote is None and char in ('"', "'"):
+                quote = char
+            elif char == quote:
+                quote = None
+            cursor += 1
+        return "".join(result).rstrip(" \t")
+    return "\n".join(compact(line) for line in "".join(out).split("\n"))
 
 
 def _term(value):
