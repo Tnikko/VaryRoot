@@ -8,6 +8,7 @@ from varyroot.b_static_retry import run
 
 def spec(op):
     return {"clauses": [{"id": "private", "field": "Guard", "direction": "iff",
+                         "bindings": {"reaches": "bool"},
                          "applicability": True,
                          "antecedent": {"op": op, "args": [{"var": "reaches"}, True]},
                          "source_lock": {"url": "https://audit.invalid"}}]}
@@ -27,7 +28,8 @@ class BGenerationCoreTest(unittest.TestCase):
         serialized = json.dumps(messages)
         for audit in ("source_lock", "https://audit.invalid", '"id": "private"'):
             self.assertNotIn(audit, serialized)
-        self.assertEqual(payload["hypotheses"]["difference"]["first_only"][0]["antecedent"]["op"], "and")
+        self.assertEqual(payload["hypotheses"]["difference"]["Guard"]["first_only"][0]["antecedent"]["op"], "and")
+        self.assertEqual(payload["hypotheses"]["first"]["Guard"][0]["bindings"], {"reaches": "bool"})
 
     def test_gate_keeps_uncertain_goto_out_of_admitted(self):
         base = {"producer": "clang_ast", "compile_ok": True,
@@ -45,19 +47,68 @@ class BGenerationCoreTest(unittest.TestCase):
         def invoke(request):
             requests.append(request)
             return {"proposals": [{"parent": "before", "factor": "guard",
-                                   "intent": "local", "source": "variant"}]}
+                                   "intent": "local", "source": "variant" + str(len(requests))}]}
         def inspect(source, parent):
             return {"clang_receipt": {"producer": "clang_ast", "compile_ok": True,
                     "target_binding": "exact_1to1", "edit_groups": [{"roles": ["guard"]}]},
                     "predictions": ("report", "quiet") if len(requests) == 2 else ("quiet", "quiet")}
         result = run("before", "after", CONTRACT, spec("and"), spec("or"),
                      {"max_retries": 1, "min_hard_divergent": 1,
-                      "model": "fixture-model", "max_tokens": 1024}, invoke, inspect)
+                      "model": "fixture-model", "max_tokens": 1024,
+                      "max_proposals_per_round": 4}, invoke, inspect)
         self.assertEqual((result["raw"], result["admitted"], result["hard_divergent"],
                           result["retry_rounds"]), (2, 2, 1, 1))
         self.assertEqual(json.loads(requests[1]["messages"][1]["content"])["static_feedback"],
-                         [{"index": 0, "reason": "same_or_uncovered_prediction"}])
+                         [{"index": 0, "intent": "local", "reason": "same_static_prediction",
+                           "touched_roles": ["guard"], "predictions": ["quiet", "quiet"]}])
         self.assertNotIn('\\"label\\":', json.dumps(requests))
+
+    def test_deduplicates_across_rounds_and_preserves_source_fields(self):
+        responses = [
+            {"proposals": [{"parent": "before", "factor": "guard", "intent": "a", "source": "before"},
+                           {"parent": "else", "factor": "guard", "intent": "b", "source": "new"},
+                           {"parent": "after", "factor": "guard", "intent": "c", "source": "unique\r\n"}]},
+            {"proposals": [{"parent": "after", "factor": "guard", "intent": "d", "source": "unique\n"}]},
+        ]
+        calls = []
+        def invoke(request):
+            calls.append(request)
+            return responses[len(calls)-1]
+        def inspect(source, parent):
+            return {"clang_receipt": {"producer": "clang_ast", "compile_ok": True,
+                    "target_binding": "exact_1to1", "edit_groups": [{"roles": ["guard"]}]},
+                    "predictions": ["report", "uncovered"]}
+        policy = {"max_retries": 1, "min_divergent": 2, "divergence_target": "coverage",
+                  "coverage_eligible": True, "model": "fixture-model", "max_tokens": 1024,
+                  "max_proposals_per_round": 4}
+        result = run("before", "after", CONTRACT, spec("and"), spec("or"), policy, invoke, inspect)
+        self.assertEqual((result["raw"], result["admitted"], result["confounded"],
+                          result["coverage_divergent"], result["hard_divergent"]), (4, 1, 3, 1, 0))
+        self.assertTrue(result["unresolved"])
+        self.assertEqual(result["rows"][2]["source"], "unique\r\n")
+        self.assertEqual(result["rows"][2]["source_sha256"], result["rows"][3]["source_sha256"])
+        self.assertEqual(result["rows"][3]["reason"], "duplicate_or_unchanged_source")
+        with self.assertRaisesRegex(ValueError, "unregistered_divergence_target"):
+            run("before", "after", CONTRACT, spec("and"), spec("or"),
+                dict(policy, coverage_eligible=False), invoke, inspect)
+
+    def test_four_role_projection_and_contract_families(self):
+        first, second = spec("and"), spec("or")
+        for role in ("Source", "Propagation", "Sink"):
+            first["clauses"].append({"field": role, "bindings": {}, "direction": "sufficient",
+                                     "applicability": True, "antecedent": True})
+            second["clauses"].append(dict(first["clauses"][-1]))
+        second["clauses"][-1]["antecedent"] = False
+        npd = {"object": "returned pointer", "operation": "read", "nullability": "may be null",
+               "success": "status success"}
+        oob = {"object": "payload", "operation": "copy", "capacity": "logical bytes",
+               "unit": "bytes"}
+        for contract in (npd, oob):
+            payload = json.loads(render_messages("before", "after", contract, first, second)[1]["content"])
+            self.assertEqual(set(payload["hypotheses"]["first"]),
+                             {"Source", "Propagation", "Guard", "Sink"})
+            self.assertTrue(payload["hypotheses"]["difference"]["Sink"]["second_only"])
+            self.assertIn("at most 6", payload["instructions"])
 
 
 if __name__ == "__main__":
