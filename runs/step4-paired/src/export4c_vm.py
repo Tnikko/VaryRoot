@@ -21,12 +21,22 @@ def write(path, obj):
 def main():
     db = Ledger(DB)
     pub = Publication(db)
-    with sqlite3.connect('file:' + str(DB / 'ledger.sqlite3') + '?mode=ro', uri=True) as source:
-        with sqlite3.connect(OUT / 'ledger-final.sqlite3') as target:
-            source.backup(target)
-    with sqlite3.connect(OUT / 'ledger-final.sqlite3') as check:
+    source = sqlite3.connect('file:' + str(DB / 'ledger.sqlite3') + '?mode=ro', uri=True)
+    target = sqlite3.connect(OUT / 'ledger-final.sqlite3')
+    try:
+        source.backup(target)
+    finally:
+        target.close()
+        source.close()
+    check = sqlite3.connect(OUT / 'ledger-final.sqlite3')
+    try:
         if check.execute('PRAGMA integrity_check').fetchone()[0] != 'ok':
             raise ValueError('exported ledger integrity failure')
+    finally:
+        check.close()
+    if any((OUT / ('ledger-final.sqlite3' + suffix)).exists()
+           for suffix in ('-wal', '-shm')):
+        raise ValueError('SQLite backup still has live sidecars')
     for pool in POOLS:
         for group in ('random', 'divergence'):
             run = 'openldap-step4-clean.' + pool + '.' + group
@@ -49,6 +59,8 @@ def main():
     manifest = []
     for path in sorted(OUT.rglob('*')):
         if path.is_file() and path.name != 'SHA256SUMS':
+            if path.name.endswith(('-wal', '-shm')):
+                raise ValueError('transient SQLite sidecar in export')
             raw = path.read_bytes()
             if any(token in raw for token in (b'Authorization: Bearer',
                                               b'DEEPSEEK_API_KEY=', b'api.txt')):
