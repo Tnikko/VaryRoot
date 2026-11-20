@@ -185,17 +185,36 @@ def collect(db, run, state, snap, package, events):
     return records, models, baseline, pool, positions, excluded, diagnostics, latest["policy"]
 
 
+EXPECTED = {"positive": "report", "negative": "quiet"}
+
+
+def explanation_evidence(models, positions):
+    result = {}
+    for model in sorted(models):
+        contradictions, gaps = [], []
+        for position in positions:
+            outcome = position["results"][model]["outcome"]
+            expected = EXPECTED[position["label"]]
+            if outcome == expected:
+                continue
+            evidence = {key: position[key] for key in ("case_id", "target_ref", "label") if key in position}
+            evidence.update(prediction=outcome, expected=expected)
+            (gaps if outcome == "uncovered" else contradictions).append(evidence)
+        status = ("refuted" if contradictions else "compatible_coverage_gap" if gaps else "aligned")
+        result[model] = dict(status=status, hard_contradictions=contradictions, coverage_gaps=gaps)
+    return result
+
+
 def choose(models, baseline, pool, positions, excluded, budget):
-    expected = {"positive": "report", "negative": "quiet"}
     rows = [{k: p["results"][k]["outcome"] for k in models} for p in positions]
     invalid = [k for k in models if any(row[k] not in ("report", "quiet", "uncovered") for row in rows)]
     if invalid:
         return "B4", None, [dict(reason="invalid_or_conflicting_derivation", models=invalid)]
-    compatible = [k for k in models if all(row[k] in ("uncovered", expected[p["label"]])
-                  for p, row in zip(positions, rows))]
+    evidence = explanation_evidence(models, positions)
+    compatible = [k for k in models if not evidence[k]["hard_contradictions"]]
     if not compatible:
         return "A5", None, [dict(reason="all_explanations_refuted", models=models)]
-    aligned = [k for k in compatible if all(row[k] == expected[p["label"]] for p, row in zip(positions, rows))]
+    aligned = [k for k in compatible if not evidence[k]["coverage_gaps"]]
     supported = {p["case_id"] for p in positions if p["stage"] == "B"}
     remaining = []
     for case, (_, predictions) in pool.items():
@@ -206,6 +225,8 @@ def choose(models, baseline, pool, positions, excluded, budget):
             remaining.append(dict(case_id=case, reason="material_disagreement", outcomes=values))
     if not supported or not aligned:
         remaining.append(dict(reason="missing_determinate_control" if not supported else "incomplete_coverage"))
+    if len(aligned) > 1:
+        remaining.append(dict(reason="non_unique_alignment", aligned_explanations=sorted(aligned)))
     # Equal predictions throughout the finite pool need positive and negative
     # development controls when no selected position distinguished the models.
     if len(compatible) > 1 and len(aligned) > 1 and not any(
@@ -215,13 +236,14 @@ def choose(models, baseline, pool, positions, excluded, budget):
             remaining.append(dict(reason="equivalence_controls_incomplete", observed_labels=sorted(labels)))
     if remaining:
         return ("seek_evidence" if budget and set(pool)-supported else "unresolved"), None, remaining
-    final = baseline if baseline in aligned else aligned[0]
+    final, = aligned
     return ("keep" if final == baseline else "revise"), final, []
 
 
-def package_handoff(run, snap, records, baseline, final, action, positions, remaining, pool):
+def package_handoff(run, snap, records, baseline, final, action, positions, remaining, pool,
+                    *, record_version=1):
     def add(kind, name, **fields):
-        record = dict(kind=kind, id="B6." + name, schema_version=1, version=1, run_ref=run,
+        record = dict(kind=kind, id="B6." + name, schema_version=1, version=record_version, run_ref=run,
                       producer="calibration_decision", depends_on=[], **fields)
         merge(records, [record])
         return ref(record)
@@ -287,7 +309,9 @@ def package_handoff(run, snap, records, baseline, final, action, positions, rema
         check(changed, "revision needs a changed determinate judgment")
     next_state = "unresolved" if action == "unresolved" else "spec_ready"
     decision = add("Decision", "decision", prediction_refs=preds, verdict_refs=verdicts, parent_spec_ref=baseline,
-                   action=action, reason=reason, remaining_disagreements=remaining, next_state=next_state)
+                   action=action, reason=reason, remaining_disagreements=remaining, next_state=next_state,
+                   alignment_policy="unique_fully_aligned@1",
+                   explanation_evidence=explanation_evidence(positions[0]["results"], positions))
     revision = None
     if action == "revise":
         old, new = (set(records[s]["clause_refs"]) for s in (baseline,final))

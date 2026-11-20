@@ -16,6 +16,38 @@ from varyroot.verify_request import image_id, input_hash
 
 
 class DecisionGate(unittest.TestCase):
+    def test_choose_refuses_tied_keep(self):
+        models = ["base", "path", "loop"]
+        outcomes = dict(zip(models, ({"outcome": value} for value in ("quiet", "quiet", "uncovered"))))
+        positions = [dict(case_id="local-exit", stage="B", label="negative", results=outcomes)]
+        pool = {"local-exit": ({}, outcomes)}
+
+        action, final, reasons = choose(models, "base", pool, positions, [], 0)
+
+        self.assertEqual((action, final), ("unresolved", None))
+        self.assertIn({"reason": "non_unique_alignment", "aligned_explanations": ["base", "path"]}, reasons)
+
+    def test_choose_refuses_tied_revise(self):
+        models = ["base", "path", "loop"]
+        outcomes = dict(zip(models, ({"outcome": value} for value in ("quiet", "report", "report"))))
+        positions = [dict(case_id="hard", stage="B", label="positive", results=outcomes)]
+        pool = {"hard": ({}, outcomes)}
+
+        action, final, reasons = choose(models, "base", pool, positions, [], 0)
+
+        self.assertEqual((action, final), ("unresolved", None))
+        self.assertIn({"reason": "non_unique_alignment", "aligned_explanations": ["loop", "path"]}, reasons)
+
+    def test_unique_keep_and_revise_require_evidence(self):
+        models = ["base", "path"]
+        outcomes = {"base": {"outcome": "quiet"}, "path": {"outcome": "report"}}
+        pool = {"hard": ({}, outcomes)}
+        for label, expected in (("positive", ("revise", "path")), ("negative", ("keep", "base"))):
+            with self.subTest(label=label):
+                positions = [dict(case_id="hard", stage="B", label=label, results=outcomes)]
+                self.assertEqual(choose(models, "base", pool, positions, [], 0)[:2], expected)
+        self.assertEqual(choose(models, "base", pool, [], [], 0)[:2], ("unresolved", None))
+
     def test_exhaustion_and_uncovered_keep_the_disagreement_open(self):
         models = ["base","peer"]
         known = {"base":{"outcome":"quiet"}, "peer":{"outcome":"quiet"}}

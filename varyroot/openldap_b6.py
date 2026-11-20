@@ -25,15 +25,23 @@ def _static_observations(raw):
             for index, cell in enumerate((1, 2))]
 
 
-def collect_openldap(project, db, run):
+def collect_openldap(project, db, run, *, historical_handoff=None, historical_batch=None):
     state = db.run(run)
-    _assert(state['state'] == 'adjudicating', 'B6 needs an adjudicating arm')
+    _assert(state['state'] == 'adjudicating' or historical_handoff is not None,
+            'B6 needs an adjudicating arm')
     seed = db.seed_package(RUN)
     child = db.seed_package(run)
     _assert(seed['version'] == child['version'] == 1
             and child['packet'].get('parent_seed_digest') == seed['packet_sha'],
             'B6 seed ancestry differs')
     snap = db.snapshot(run)
+    if historical_handoff is not None:
+        _assert(historical_handoff['run'] == run
+                and historical_handoff['state'] == state['state']
+                and historical_handoff['snapshot'] == snap['digest']
+                and historical_handoff['watermark'] == snap['watermark'],
+                'historical B6 snapshot or reveal watermark differs')
+        state['batch'] = historical_batch
     _, payload = registration(db, run, state['batch'])
     _assert(payload['replay']['adapter'] == 'openldap-four-mode-candidate@1',
             'B6 adapter mismatch')
@@ -156,26 +164,29 @@ def collect_openldap(project, db, run):
     return state, snap, seed, records, sorted(models), baseline, pool, positions, excluded
 
 
-def finalize_openldap(project, db, run, *, commit=True):
+def finalize_openldap(project, db, run, *, commit=True, recompute=False):
     state = db.run(run)
+    previous = None
+    historical_batch = None
     if state['state'] in ('spec_ready', 'unresolved'):
-        event = next(e for e in reversed(db.events(run)) if e['kind'] == state['state'])
-        return read_object(db, event['detail']['detail']['handoff_sha'])
+        events = db.events(run)
+        event = next(e for e in reversed(events) if e['kind'] == state['state'])
+        previous_sha = event['detail']['detail']['handoff_sha']
+        previous = read_object(db, previous_sha)
+        if not recompute:
+            return previous
+        boundary, = (e['detail'] for e in events if e['kind'] == 'adjudicating'
+                     and e['commit_seq'] < event['commit_seq']
+                     and e['detail']['parent_version'] + 1 == event['detail']['parent_version'])
+        historical_batch = boundary['batch']
+        _assert(historical_batch, 'historical B6 lacks a registered batch')
+    _assert(not recompute or (not commit and previous is not None),
+            'historical correction requires a sealed handoff and read-only mode')
     state, snap, seed, records, models, baseline, pool, positions, excluded = \
-        collect_openldap(project, db, run)
+        collect_openldap(project, db, run, historical_handoff=previous,
+                         historical_batch=historical_batch)
     action, final, remaining = choose(models, baseline, pool, positions, excluded,
                                        db.balances(run)['B.verify'])
-    if action == 'revise':
-        expected = {'positive': 'report', 'negative': 'quiet'}
-        aligned = [name for name in models if all(
-            item['results'][name]['outcome'] == expected[item['label']]
-            for item in positions)]
-        if len(aligned) != 1:
-            # A refuted S0 does not license choosing an arbitrary surviving
-            # replacement when the frozen pool never separates the others.
-            action, final = 'unresolved', None
-            remaining.append({'reason': 'non_unique_revision',
-                              'aligned_explanations': aligned})
     if action == 'seek_evidence':
         action = 'unresolved'
         remaining.append({'reason': 'locked_selection_batch_complete',
@@ -184,7 +195,12 @@ def finalize_openldap(project, db, run, *, commit=True):
         return {'run': run, 'action': action, 'remaining': remaining,
                 'state': state['state']}
     result = package_handoff(run, snap, records, baseline, final, action,
-                             positions, remaining, pool)
+                             positions, remaining, pool,
+                             record_version=2 if recompute else 1)
+    if recompute:
+        result['correction'] = dict(handoff_sha256=previous_sha, decision_ref=previous['decision_ref'],
+                                    action=previous['action'], snapshot=snap['digest'],
+                                    watermark=snap['watermark'], publication_event=event['commit_seq'])
     result.update(run=run, group=snap['group'], snapshot=snap['digest'],
                   watermark=snap['watermark'], package_version=seed['version'],
                   positions=[{'case_id': p['case_id'], 'stage': p['stage'],
