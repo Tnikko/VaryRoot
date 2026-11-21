@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "ast_sha256": "26e1084efa7fa2e76a6ce5732583871f32f7cc44f87553d5a7818217db6b02fb",
+      "ast_sha256": "578f03b5cb1e0b677a2e7d253e6304a835a02f3a98ce49fe7e515d2c36ce0fe6",
       "origins": [
         "step4f:source/parent/src/dissectors/ec_vnc.c:comment_stripped_view",
         "v2:ettercap:row:2:comment_free",
@@ -22,7 +22,7 @@
       "token_sha256": "82688e69d761a73e767bdab91217b414c11d883a3bec3da3c77e1b9109ffb4b1"
     },
     {
-      "ast_sha256": "c3854f1ec949cb1c9d4bea4c3c7aa5e4d9d990c8d7fd890d04613adc521f4eb4",
+      "ast_sha256": "82e40c9ea18247df6b941e6e44fa1fa0a3dbd706f6271ed0150ea069fd39daa8",
       "origins": [
         "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d3p4.c"
       ],
@@ -31,7 +31,7 @@
       "token_sha256": "7233c5b16a848c590ce3c8ddc48a01b3f2c5f7c54c9c9fe0255180778393790e"
     },
     {
-      "ast_sha256": "49fbefab2207f6bc169590ce9a2cd0603b22c6de721d1a62f5f322e9aa2aa676",
+      "ast_sha256": "578f03b5cb1e0b677a2e7d253e6304a835a02f3a98ce49fe7e515d2c36ce0fe6",
       "origins": [
         "step4f:source/parent/src/dissectors/ec_vnc.c"
       ],
@@ -109,7 +109,7 @@
       "token_sha256": "437b7f38b652ca0e0faad447062151e8f11a9a7ae84004bcf99cffd5f0ecbc1e"
     },
     {
-      "ast_sha256": "969faa26dfcbec689801fc4a996e85f0388090b9a13d42d82f6cc50a0c613404",
+      "ast_sha256": "82e40c9ea18247df6b941e6e44fa1fa0a3dbd706f6271ed0150ea069fd39daa8",
       "origins": [
         "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d1p1.c"
       ],
@@ -147,7 +147,7 @@
       "token_sha256": "03bb5ce09dcf0640ae527c12f70aa94c70e0b0ed171ee448a8f5b88c86c003cc"
     },
     {
-      "ast_sha256": "7ea895e13539a3574764f955eba05e00bb60253e15fa3e225ad0bb418c8c3a2c",
+      "ast_sha256": "ca785ee7fad73eef3c15166e4ce5b5b299bf5a04ba0d0ed34bd45303c4b6fa73",
       "origins": [
         "v2:ettercap:row:0:comment_free",
         "v2:ettercap:row:0:raw"
@@ -213,6 +213,15 @@
       "token_sha256": "b2938b662be27dd95e7e79c8adffa62c9e0e1d059cc0bbfe92d2bfa7ff5cd903"
     },
     {
+      "ast_sha256": "b263bfeb11ca12258498cf1f670052928166570d7d8d12d3d91f5e7e55b572a9",
+      "origins": [
+        "step3:offline-1:step4-paired/catalog/offline-1/offline-1.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "6158a75a0ba207abc9b446825f06aedea9d732b723b5b2f5b9b22fef7226e16b",
+      "token_sha256": "60b4ec5acd332175cd9fb983417149b8a5c84cdb57ebe20b16cee7565855820f"
+    },
+    {
       "ast_sha256": "f33957252b0b3e475228b3a86b26cc0c28fe38d12338846eb95defda6bd3c556",
       "origins": [
         "step4d:buildability/catalog/d3p5/d3p5.c",
@@ -224,7 +233,7 @@
       "token_sha256": "b02fd4494bc77fdd1daa0e0e7cb9a931662e00ea95b5533a56bf8ade64e894ff"
     },
     {
-      "ast_sha256": "3a8ad568f3f6835cf40d12bf614006144c9433ba3ac2fd1e1b6775f8db54531c",
+      "ast_sha256": "82e40c9ea18247df6b941e6e44fa1fa0a3dbd706f6271ed0150ea069fd39daa8",
       "origins": [
         "step4d:goto-test/admission-catalog/4e0b09b03eda44d9bf1ce03fed78a866/candidate-gotoexit.c"
       ],
@@ -264,7 +273,7 @@
       "token_sha256": "91cb5b8875c74758954cea9c14f0a5a2f89f71ba129cf465c521c050f17b47a6"
     },
     {
-      "ast_sha256": "e56ba6513cc3c52ba8fd3cb05209072ca795001d41ab5fc75db88082889130c0",
+      "ast_sha256": "b0a5483fdbbdeb12f0514ccb9759fdbff8b0eba5d986f1837b23043fe1935fa6",
       "origins": [
         "step4d:model-02.response.json:proposal:3"
       ],
@@ -326,7 +335,7 @@
       "token_sha256": "a88ac9809525f50bee3c6f1153367ed76b30ce2e7f008c89a0a84ce4fed7b462"
     },
     {
-      "ast_sha256": "ddd66218cb064bef063191d8beba1be7d019b6b31573fb37e024b9fa8eb528b4",
+      "ast_sha256": "99512ff6a006284b3bc961bba85f2825bce315cc2501e558f21f07512f534789",
       "origins": [
         "step4f:source/fixed/src/dissectors/ec_vnc.c"
       ],
@@ -335,7 +344,7 @@
       "token_sha256": "31667948965713867f7d42786e67e83e09f8cbf2540b2248f9ea8cc361d15b87"
     },
     {
-      "ast_sha256": "a6d753da1033c8083ef2ebe96e105070e502f82b3d246ab22f14f6362029e1e0",
+      "ast_sha256": "1313564d66de530ff609c4af997a2503caa5b5eaa81ab2b317429d752a62f6e7",
       "origins": [
         "v2:ettercap:row:3:comment_free",
         "v2:ettercap:row:3:raw"
@@ -355,7 +364,7 @@
       "token_sha256": "e75eecdb245cf7edee05267ded200b6230c76d2ca117ba71436e11de3d58c3a4"
     },
     {
-      "ast_sha256": "99845622d80ce8f9d15873218a1507c5d1b0445a4009d9a2c32a0f807d0fa98e",
+      "ast_sha256": "938e81ae3664c744974e68fd2f706fc8aca6d42fe5e5704b7b939b44b033f3cc",
       "origins": [
         "step4d:model-01.response.json:proposal:3"
       ],
@@ -364,7 +373,7 @@
       "token_sha256": "fb7df3031f20fadb5251f8c64326121bafab7f89f67e49184c49901751bfc694"
     },
     {
-      "ast_sha256": "fa2f05fc87226492a9a2a224ad2465b7c1d707bdf700d50b0528942e69780d9b",
+      "ast_sha256": "82e40c9ea18247df6b941e6e44fa1fa0a3dbd706f6271ed0150ea069fd39daa8",
       "origins": [
         "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d2p4.c"
       ],
@@ -403,7 +412,7 @@
       "token_sha256": "ba3e6352aebbb00f9c9f1a86948f54ec9af862f4418f2fbae893f8a28979d5f8"
     },
     {
-      "ast_sha256": "6d0bcf219e920387f6988a445828f1fdb3f02611294362815cb27bf0448db569",
+      "ast_sha256": "99512ff6a006284b3bc961bba85f2825bce315cc2501e558f21f07512f534789",
       "origins": [
         "step4f:source/fixed/src/dissectors/ec_vnc.c:comment_stripped_view"
       ],
@@ -471,7 +480,7 @@
       "token_sha256": "74c98db506be5b961985ca28ddc528a1159ebf9836fcb5f06075b395e303f141"
     },
     {
-      "ast_sha256": "804c8fb3e580f9f456ed79cab2f232435389227f32df9973cf0d90f29ce816d2",
+      "ast_sha256": "de4c2cce39a731b8b3abff8123a62ea8964c2d540597a1900d7cad80fb902415",
       "origins": [
         "v2:ettercap:row:1:comment_free",
         "v2:ettercap:row:1:raw"
@@ -490,12 +499,12 @@
       "token_sha256": "f00ed698f8c1b22b3a1ea021fa7fd13ed87fb99560641bb1e6cb4335bef00dea"
     }
   ],
-  "normalization": "Clang 18 raw token sequence without comments/whitespace; function AST without IDs, locations and ParenExpr",
+  "normalization": "Clang 18 raw token sequence without comments/whitespace; function AST without coordinates, address IDs and ParenExpr",
   "schema_version": 2,
   "source_table_sha256": "53239394dce7ddcb02cfde5423fd18539b6b95a06321dde074909157432ec2b6",
   "sources": {
-    "ast_available": 44,
-    "input_entries": 49,
-    "resolved": 49
+    "ast_available": 45,
+    "input_entries": 50,
+    "resolved": 50
   }
 }

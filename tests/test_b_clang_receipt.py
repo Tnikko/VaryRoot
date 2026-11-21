@@ -24,6 +24,40 @@ cleanup:
 
 class ClangReceiptTest(unittest.TestCase):
     @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
+    def test_file_macro_path_does_not_change_ast_hash(self):
+        source = ("typedef unsigned char u_char;\n"
+                  "int parse(u_char n) { const char *file = __FILE__; "
+                  "if (n > 1) return file[0]; return 0; }\n")
+        hashes = []
+        with tempfile.TemporaryDirectory() as folder:
+            for name, variant in (("short.c", source),
+                                  ("a-much-longer-filename.c", source.replace("n > 1", "(n > 1)"))):
+                path = Path(folder) / name
+                path.write_text(variant)
+                ast, status = clang_ast(["clang-18", "-c", str(path), "-o", str(path) + ".o"],
+                                        folder, "parse")
+                self.assertEqual(status["exit_code"], 0, status)
+                hashes.append(ast_semantic_sha256(ast))
+        self.assertEqual(hashes[0], hashes[1])
+
+    @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
+    def test_typedef_ast_hash_is_stable_across_processes_and_parentheses(self):
+        sources = (
+            "typedef unsigned char u_char;\nint parse(u_char n) { if (n > 1) return 1; return 0; }\n",
+            "typedef unsigned char u_char;\nint parse(u_char n) { if ((n > 1)) return 1; return 0; }\n",
+        )
+        hashes = []
+        with tempfile.TemporaryDirectory() as folder:
+            for index, source in enumerate((sources[0], sources[0], sources[1])):
+                path = Path(folder) / f"typedef-{index}.c"
+                path.write_text(source)
+                ast, status = clang_ast(["clang-18", "-c", str(path), "-o", str(path) + ".o"],
+                                        folder, "parse")
+                self.assertEqual(status["exit_code"], 0, status)
+                hashes.append(ast_semantic_sha256(ast))
+        self.assertEqual(hashes, [hashes[0]] * 3)
+
+    @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
     def test_clang_fingerprints_merge_spacing_comments_and_redundant_parentheses(self):
         sources = [
             "int parse(int n) { if ((n > 1)) return 1; return 0; }\n",

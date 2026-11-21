@@ -150,9 +150,22 @@ def _ast_shape(value):
     if isinstance(value, dict):
         if value.get("kind") == "ParenExpr" and len(value.get("inner", [])) == 1:
             return _ast_shape(value["inner"][0])
-        return {key: _ast_shape(item) for key, item in value.items()
-                if key not in ("id", "loc", "range", "referencedMemberDecl",
-                               "parentDeclContextId", "previousDecl")}
+        begin = value.get("range", {}).get("begin", {})
+        spelling, expansion = begin.get("spellingLoc", {}), begin.get("expansionLoc", {})
+        file_macro = (value.get("kind") == "StringLiteral" and
+                      spelling.get("file") == "<scratch space>" and
+                      isinstance(expansion.get("file"), str) and
+                      value.get("value") == json.dumps(expansion["file"]))
+        shaped = {key: _ast_shape(item) for key, item in value.items()
+                  if key not in ("id", "loc", "range", "referencedMemberDecl",
+                                 "parentDeclContextId", "previousDecl") and not
+                  (key.endswith(("Id", "Decl")) and isinstance(item, str) and
+                   re.fullmatch(r"0x[0-9a-f]+", item))}
+        if file_macro:
+            shaped["value"] = "<source-file>"
+            shaped["type"]["qualType"] = re.sub(r"\[\d+\]$", "[source-file]",
+                                                shaped["type"]["qualType"])
+        return shaped
     if isinstance(value, list):
         return [_ast_shape(item) for item in value]
     return value
