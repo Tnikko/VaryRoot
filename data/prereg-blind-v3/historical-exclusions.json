@@ -1,0 +1,353 @@
+{
+  "entries": [
+    {
+      "origins": [
+        "step4f:source/parent/src/dissectors/ec_vnc.c:comment_stripped_view",
+        "v2:ettercap:row:2:comment_free",
+        "v2:ettercap:row:2:raw"
+      ],
+      "source_sha256": "03eecd97a817d7cebcce744405c33aae91e9f81c0cc3f55c57b78129d7663c41"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:7:comment_free",
+        "v2:openldap:row:7:raw"
+      ],
+      "source_sha256": "04694f67a8aeb822d88b372fe2e689973cbfee6f612b563c22ab926eb355b074"
+    },
+    {
+      "origins": [
+        "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d3p4.c"
+      ],
+      "source_sha256": "0ab2354a2369bf17a58169eb71c541387fce623e44247d07cc53f98276696599"
+    },
+    {
+      "origins": [
+        "step4f:source/parent/src/dissectors/ec_vnc.c"
+      ],
+      "source_sha256": "10e8719dff9a18d1bebbbda1fac9afe9f67f6f0851c5ee8f862d2bb00942b435"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:15:comment_free",
+        "v2:openldap:row:15:raw"
+      ],
+      "source_sha256": "13ec29f96e5bb06decde5b66d29ce2178fcf668bbe35f40aa9b68c2041e92203"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:2:comment_free",
+        "v2:openldap:row:2:raw"
+      ],
+      "source_sha256": "1ce90f1305d3c3c682af73af5a771122c38b8f8ae6e56a04b5ccf155bad01689"
+    },
+    {
+      "origins": [
+        "step4d:model-02.response.json:proposal:4"
+      ],
+      "source_sha256": "24a345b32c410f443a1a65e8c25f96e7cc1e70d46a39adf1d2034757bc2d0fcf"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:13:comment_free",
+        "v2:openldap:row:13:raw"
+      ],
+      "source_sha256": "2d757d1e57489961fca1966a98d88f62ede2475f55ae31a356364e24ce56706f"
+    },
+    {
+      "origins": [
+        "step4d:model-01.response.json:proposal:0"
+      ],
+      "source_sha256": "312a510d41cbd8962d15a7252954a762102a7b1eb81d5904c7f51f2598ec4319"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d1p6/d1p6.c",
+        "step4d:model-01.response.json:proposal:5",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/7bca8d3ede0046bba71e22a41d01ac49/candidate-d1p6.c"
+      ],
+      "source_sha256": "347773a36903d2fe88d1e732b45c44fc2467f5f9c30b537e2b88be58c3d7befc"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:6:comment_free",
+        "v2:openldap:row:6:raw"
+      ],
+      "source_sha256": "3710626b54fb8c773d8326c453fc0b5af0bec5192ad0c3b964b7d48343121bd5"
+    },
+    {
+      "origins": [
+        "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d1p1.c"
+      ],
+      "source_sha256": "3855f99ca5ffca8e12cb9e8ccacf7bb1e22f35a1cb625647d506cc043d48d2d7"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:3:comment_free",
+        "v2:openldap:row:3:raw"
+      ],
+      "source_sha256": "3b20f8b533aa847afe927598347ef5cc8cd455601d2ca61d0168601d898c5939"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:1:comment_free",
+        "v2:openldap:row:1:raw"
+      ],
+      "source_sha256": "42d9aa7c28279cea755105717c252a6f3e054936a715e9df555c752f711e2185"
+    },
+    {
+      "origins": [
+        "step4f:codeql/unrelated/source/oob_unrelated_parser.c"
+      ],
+      "source_sha256": "46082568cd08014e012b8c59de164f8e8d8f12b2c586dfeed9d33ae527d15771"
+    },
+    {
+      "origins": [
+        "v2:ettercap:row:0:comment_free",
+        "v2:ettercap:row:0:raw"
+      ],
+      "source_sha256": "4992be39eb9dacc9965a7b6d08c1910068a5b341d31ac2b95dacf88e8dbeda3e"
+    },
+    {
+      "origins": [
+        "step4d:model-03.response.json:proposal:0",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p1.c"
+      ],
+      "source_sha256": "547fbe61d9ef9c516bcd6b6fe18515d9141006068a27f90963b4d893c7780b6e"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:0:comment_free",
+        "v2:openldap:row:0:raw"
+      ],
+      "source_sha256": "5693d726e5b344c64b04d5002f4fabe6558691df20a153171e7834593577d7ba"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d2p1/d2p1.c",
+        "step4d:codeql-full-trial-v2/build/src/5be11201b44b540d1a486b7b92198b1f0610ac622983560b2e9ea3d134dc0b82.c",
+        "step4d:codeql-trial/d2p1.c",
+        "step4d:model-02.response.json:proposal:0",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p1.c"
+      ],
+      "source_sha256": "5be11201b44b540d1a486b7b92198b1f0610ac622983560b2e9ea3d134dc0b82"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d2p3/d2p3.c",
+        "step4d:model-02.response.json:proposal:2",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p3.c"
+      ],
+      "source_sha256": "5e51e1f3f81dde33db45dfdd5e712cced4c37f81259e41c7c06fc6996ca0ddc8"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:11:comment_free",
+        "v2:openldap:row:11:raw",
+        "v2:openldap:row:5:comment_free",
+        "v2:openldap:row:5:raw"
+      ],
+      "source_sha256": "5f8c547cd64f9ecbc04fe0c5c4c49c6e64f52bc35768dcef46f71ee8f5f2b876"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d3p5/d3p5.c",
+        "step4d:model-03.response.json:proposal:4",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p5.c"
+      ],
+      "source_sha256": "64dc4c14fae63753b901b8656370c63fc62ce4931c4b8d26c7bdf970cb7b0255"
+    },
+    {
+      "origins": [
+        "step4d:goto-test/admission-catalog/4e0b09b03eda44d9bf1ce03fed78a866/candidate-gotoexit.c"
+      ],
+      "source_sha256": "672842e2a0c97077e13d37fb82e3168c0902da218b9d1cbef96fe047cde73a2d"
+    },
+    {
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/6e272b5bdf807550bb1270a73e032bdcda661f0670616cd76eb71722363fd6e0.c"
+      ],
+      "source_sha256": "6e272b5bdf807550bb1270a73e032bdcda661f0670616cd76eb71722363fd6e0"
+    },
+    {
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/6e272b5bdf807550bb1270a73e032bdcda661f0670616cd76eb71722363fd6e0.c:comment_stripped_view"
+      ],
+      "source_sha256": "75cb5b49205d629cfe960ed782062aeb533faca625c22bd1ff4f5f68a7b26a12"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d1p5/d1p5.c",
+        "step4d:model-01.response.json:proposal:4",
+        "step4d:model-03.response.json:proposal:1",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/7bca8d3ede0046bba71e22a41d01ac49/candidate-d1p5.c",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p2.c"
+      ],
+      "source_sha256": "797b2f2ea0cee8e5a4d2351e4dc7e5debae42a6c47a871906273c9fa63b2be97"
+    },
+    {
+      "origins": [
+        "step4d:model-02.response.json:proposal:3"
+      ],
+      "source_sha256": "85ece26ba06a02d74a57db84c44979482f214b91304bffc1884ed2c28401e5c9"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d2p6/d2p6.c",
+        "step4d:model-02.response.json:proposal:5",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p6.c"
+      ],
+      "source_sha256": "8a071223fb2cbcce77f2dc668f25b309f216af1d41ac60b133cab45e2cc049a4"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:14:comment_free",
+        "v2:openldap:row:14:raw"
+      ],
+      "source_sha256": "8ca53a19a6e805a012541c70542a5edad37be36a0ebfe121cc649cae41eca19a"
+    },
+    {
+      "origins": [
+        "step4d:model-02.response.json:proposal:1",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p2.c"
+      ],
+      "source_sha256": "8dbf54b313caeeb4e30338131219b0f2696c118fcdeb90263d84bbb8880cdaac"
+    },
+    {
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/90a0753679d24e80d7e55749c17fa6febe3b07b834e60c66a15a5df2afb88353.c"
+      ],
+      "source_sha256": "90a0753679d24e80d7e55749c17fa6febe3b07b834e60c66a15a5df2afb88353"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d3p4/d3p4.c",
+        "step4d:codeql-full-trial-v2/build/src/9689198976dcbef3abe69b8ff9b007c5c481b63e09a104bd813e986c0568baa1.c",
+        "step4d:codeql-trial/d3p4.c",
+        "step4d:model-03.response.json:proposal:3",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p4.c"
+      ],
+      "source_sha256": "9689198976dcbef3abe69b8ff9b007c5c481b63e09a104bd813e986c0568baa1"
+    },
+    {
+      "origins": [
+        "step4f:source/fixed/src/dissectors/ec_vnc.c"
+      ],
+      "source_sha256": "9a4ca6686b51bd703ee2581f261c34f8b894fdeec3bb9adba4dc70fbd7d11721"
+    },
+    {
+      "origins": [
+        "v2:ettercap:row:3:comment_free",
+        "v2:ettercap:row:3:raw"
+      ],
+      "source_sha256": "9dca1a185526af31ab61381905587cce108c5ee8af8dc2566dea3e1657f35be5"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:4:comment_free",
+        "v2:openldap:row:4:raw"
+      ],
+      "source_sha256": "9fd12c70077ebce8280810ecdfe9d913be72f0c59570a9056a87b9e9d29c9ac4"
+    },
+    {
+      "origins": [
+        "step4d:model-01.response.json:proposal:3"
+      ],
+      "source_sha256": "b4181386099d7aef4ea9683da72c761e25a5f3bfc8452782604710e1714327f3"
+    },
+    {
+      "origins": [
+        "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d2p4.c"
+      ],
+      "source_sha256": "b53a4949fac6c44617a53f61686b97385bf97830bca1d5aafe82dea42bde312d"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:17:comment_free",
+        "v2:openldap:row:17:raw"
+      ],
+      "source_sha256": "c1bc2941b712a2c25e80d86eaf699effdba640fb6720df66e92917cab9ca1236"
+    },
+    {
+      "origins": [
+        "step4d:buildability/catalog/d3p3/d3p3.c",
+        "step4d:model-03.response.json:proposal:2",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p3.c"
+      ],
+      "source_sha256": "c330055252cd78006c74afc427ad220d28d008804de2d7574c5da4eb9f5edbd2"
+    },
+    {
+      "origins": [
+        "step4d:model-01.response.json:proposal:2"
+      ],
+      "source_sha256": "c498746278b4cd7cae8f64bb8bc936ade3f977edff19a8ee07bd7e8b272a32a7"
+    },
+    {
+      "origins": [
+        "step4f:source/fixed/src/dissectors/ec_vnc.c:comment_stripped_view"
+      ],
+      "source_sha256": "c4b4a5b10c784aa75c52faf385a8183bac760d302e185b6a47e048cff0634e44"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:12:comment_free",
+        "v2:openldap:row:12:raw"
+      ],
+      "source_sha256": "cd80801b716647f7c1b082875e710809204c5380d882cd6ffc167006abcecf44"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:16:comment_free",
+        "v2:openldap:row:16:raw"
+      ],
+      "source_sha256": "d51325d0d0212a67922986dc6b8af209990a63aab14b91f445b5e9f9e3721f94"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:8:comment_free",
+        "v2:openldap:row:8:raw"
+      ],
+      "source_sha256": "de1b48a7ebea46520a8eaec883f1bff4eecc1c022862eba2689344a7bd6b214c"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:9:comment_free",
+        "v2:openldap:row:9:raw"
+      ],
+      "source_sha256": "df2fb4a140b2a61790c4a3092e175322daaf24820ac2f35d702b097d09a70831"
+    },
+    {
+      "origins": [
+        "v2:openldap:row:10:comment_free",
+        "v2:openldap:row:10:raw"
+      ],
+      "source_sha256": "ece65a9fe00752fb371dc8e382cb46d1aff7387a37848a3944a2e25d60bf2e3a"
+    },
+    {
+      "origins": [
+        "step4d:model-01.response.json:proposal:1"
+      ],
+      "source_sha256": "f5a9c0c3a943896058cf0c3d8a7828b416d614404fa75b87090609f8bf18ad83"
+    },
+    {
+      "origins": [
+        "v2:ettercap:row:1:comment_free",
+        "v2:ettercap:row:1:raw"
+      ],
+      "source_sha256": "f7d6ab6ef4fd70229b01a6fb9537fb982aa47a417bd127df9cc750edfdf0ef81"
+    },
+    {
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/90a0753679d24e80d7e55749c17fa6febe3b07b834e60c66a15a5df2afb88353.c:comment_stripped_view"
+      ],
+      "source_sha256": "fd14d44243f3270d6c12370857b62ce79391f8aa4846658b5129ec7be198231b"
+    }
+  ],
+  "normalization": "varyroot.b_static_retry.source_sha256 plus comment-free view",
+  "schema_version": 1,
+  "sources": {
+    "unique_source_hashes": 49,
+    "v2_non_source_rows": 2,
+    "v2_source_rows": 22
+  }
+}

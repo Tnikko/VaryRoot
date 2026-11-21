@@ -1,10 +1,24 @@
 import json
 import hashlib
+import copy
 import unittest
 
 from varyroot.b_prompt import render_messages, hypothesis_pair, strip_source_comments
 from varyroot.b_factor_gate import classify
-from varyroot.b_static_retry import run, source_sha256
+from varyroot.b_static_retry import run as core_run, source_sha256
+
+
+def run(before, after, contract, first, second, policy, invoke, inspect):
+    """Keep earlier behavioral fixtures while exercising the new patch protocol."""
+    def patched(request):
+        response = copy.deepcopy(invoke(request))
+        for proposal in response.get("proposals", []) if isinstance(response, dict) else []:
+            if isinstance(proposal, dict) and "source" in proposal:
+                proposal["old_code"] = strip_source_comments(
+                    before if proposal.get("parent") == "before" else after)
+                proposal["new_code"] = proposal.pop("source")
+        return response
+    return core_run(before, after, contract, first, second, policy, patched, inspect)
 
 
 def spec(op):
@@ -36,7 +50,7 @@ class BGenerationCoreTest(unittest.TestCase):
                                    "int after(void) { return 1; }", CONTRACT,
                                    spec("and"), spec("or"))
         payload = json.loads(messages[1]["content"])
-        self.assertEqual(set(payload), {"before", "after", "contract", "hypotheses", "instructions"})
+        self.assertEqual(set(payload), {"before", "after", "contract", "hypotheses", "fact_semantics", "instructions"})
         serialized = json.dumps(messages)
         for audit in ("source_lock", "https://audit.invalid", '"id": "private"'):
             self.assertNotIn(audit, serialized)

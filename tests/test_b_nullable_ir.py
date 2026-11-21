@@ -12,6 +12,7 @@ from varyroot.b_nullable_ir import (extract_nullable_facts, predict_nullable,
                                     make_nullable_pair, make_nullable_inspector)
 from varyroot.b_factor_gate import classify
 from varyroot.b_prompt import strip_source_comments
+from varyroot.b_static_retry import apply_local_patch
 
 
 @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
@@ -105,8 +106,9 @@ class NullableIRTest(unittest.TestCase):
             inspector = make_nullable_inspector(make_nullable_pair("real_static", "slot"), config,
                 {"before": (sources["before"], before_ast, target_lines["before"]),
                  "after": (sources["after"], after_ast, target_lines["after"])}, compile_source)
-            candidate = strip_source_comments(sources["before"]).replace(
+            candidate, reason = apply_local_patch(strip_source_comments(sources["before"]),
                 "    for(i = 0;", "    if (bvals != NULL) { }\n    for(i = 0;")
+            self.assertIsNone(reason)
             inspected = inspector(candidate, "before")
             self.assertEqual(classify(inspected["clang_receipt"])["status"], "admitted",
                              inspected["clang_receipt"])

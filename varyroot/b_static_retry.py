@@ -14,6 +14,15 @@ def source_sha256(source):
     return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
 
 
+def apply_local_patch(parent_view, old_code, new_code):
+    """Apply one exact replacement to the same reasoning view the model saw."""
+    if old_code == new_code:
+        return None, "duplicate_or_unchanged_source"
+    if not old_code or parent_view.count(old_code) != 1:
+        return None, "patch_target_not_unique"
+    return parent_view.replace(old_code, new_code, 1), None
+
+
 def run(before, after, contract, first, second, policy, invoke, inspect):
     """Inspect proposals using trusted Clang evidence and pure IR predictions."""
     retries = policy["max_retries"]
@@ -36,6 +45,8 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
             not isinstance(policy.get("coverage_evidence_ref"), str) or
             not policy["coverage_evidence_ref"].strip()):
         raise ValueError("unregistered_divergence_target")
+    parent_views = {"before": strip_source_comments(before),
+                    "after": strip_source_comments(after)}
     seen = {source_sha256(value) for source in (before, after)
             for value in (source, strip_source_comments(source))}
     rows, feedback, response_failures = [], [], 0
@@ -48,52 +59,61 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
         round_feedback = []
         for index, proposal in enumerate(proposals):
             row = {"round": attempt, "index": index, "parent": None, "factor": None,
-                   "intent": None, "source": None, "source_sha256": None,
+                   "intent": None, "old_code": None, "new_code": None,
+                   "source": None, "source_sha256": None,
                    "status": "rejected", "reason": "invalid_proposal_schema",
                    "touched_roles": [], "predictions": None,
                    "clang_receipt": None, "static_facts": None,
                    "hard_divergent": False, "coverage_divergent": False}
             if isinstance(proposal, dict):
-                for key in ("parent", "factor", "intent", "source"):
+                for key in ("parent", "factor", "intent", "old_code", "new_code"):
                     row[key] = proposal.get(key)
             valid = (isinstance(proposal, dict) and
-                     set(proposal) == {"parent", "factor", "intent", "source"} and
-                     all(isinstance(proposal[key], str) and proposal[key] for key in proposal))
+                     set(proposal) == {"parent", "factor", "intent", "old_code", "new_code"} and
+                     all(isinstance(proposal[key], str) for key in proposal) and
+                     all(proposal[key] for key in ("parent", "factor", "intent", "old_code")))
             if valid:
-                row["source_sha256"] = source_sha256(proposal["source"])
-                try:
-                    views = {row["source_sha256"],
-                             source_sha256(strip_source_comments(proposal["source"]))}
-                except ValueError:
-                    views = None
                 if index >= policy["max_proposals_per_round"]:
                     row.update(status="rejected", reason="proposal_limit_exceeded")
                 elif proposal["parent"] not in ("before", "after"):
                     row.update(status="rejected", reason="invalid_parent")
-                elif views is None:
-                    row.update(status="undetermined", reason="source_projection_unavailable")
-                elif views & excluded:
-                    row.update(status="rejected", reason="historical_excluded")
-                elif views & seen:
-                    row.update(status="rejected", reason="duplicate_or_unchanged_source")
                 else:
-                    seen.update(views)
-                    static = inspect(proposal["source"], proposal["parent"])
-                    row["clang_receipt"] = static["clang_receipt"]
-                    row["static_facts"] = static.get("facts")
-                    row.update(classify(static["clang_receipt"]))
-                    pair = static.get("predictions")
-                    if row["status"] == "admitted":
-                        if not (isinstance(pair, (tuple, list)) and len(pair) == 2 and
-                                all(p in ("report", "quiet", "uncovered") for p in pair)):
-                            row.update(status="undetermined", reason="static_prediction_unavailable")
+                    reconstructed, rejection = apply_local_patch(
+                        parent_views[proposal["parent"]], proposal["old_code"], proposal["new_code"])
+                    if rejection:
+                        row.update(status="rejected", reason=rejection)
+                    else:
+                        row["source"] = reconstructed
+                        row["source_sha256"] = source_sha256(reconstructed)
+                        try:
+                            views = {row["source_sha256"],
+                                     source_sha256(strip_source_comments(reconstructed))}
+                        except ValueError:
+                            views = None
+                        if views is None:
+                            row.update(status="undetermined", reason="source_projection_unavailable")
+                        elif views & excluded:
+                            row.update(status="rejected", reason="historical_excluded")
+                        elif views & seen:
+                            row.update(status="rejected", reason="duplicate_or_unchanged_source")
                         else:
-                            row["predictions"] = list(pair)
-                            row["hard_divergent"] = tuple(pair) in (("report", "quiet"), ("quiet", "report"))
-                            row["coverage_divergent"] = ("uncovered" in pair and
-                                                          any(p in ("report", "quiet") for p in pair))
-                            if not row["hard_divergent"] and not row["coverage_divergent"]:
-                                row["reason"] = "same_static_prediction"
+                            seen.update(views)
+                            static = inspect(reconstructed, proposal["parent"])
+                            row["clang_receipt"] = static["clang_receipt"]
+                            row["static_facts"] = static.get("facts")
+                            row.update(classify(static["clang_receipt"]))
+                            pair = static.get("predictions")
+                            if row["status"] == "admitted":
+                                if not (isinstance(pair, (tuple, list)) and len(pair) == 2 and
+                                        all(p in ("report", "quiet", "uncovered") for p in pair)):
+                                    row.update(status="undetermined", reason="static_prediction_unavailable")
+                                else:
+                                    row["predictions"] = list(pair)
+                                    row["hard_divergent"] = tuple(pair) in (("report", "quiet"), ("quiet", "report"))
+                                    row["coverage_divergent"] = ("uncovered" in pair and
+                                                                  any(p in ("report", "quiet") for p in pair))
+                                    if not row["hard_divergent"] and not row["coverage_divergent"]:
+                                        row["reason"] = "same_static_prediction"
             rows.append(row)
             round_feedback.append({"index": index, "intent": str(row["intent"] or "")[:160],
                                    "reason": row["reason"], "touched_roles": row["touched_roles"],
@@ -111,7 +131,7 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
                                      for row in rows)
                          for reason in ("invalid_proposal_schema", "proposal_limit_exceeded",
                                         "invalid_parent", "duplicate_or_unchanged_source",
-                                        "historical_excluded")}
+                                        "historical_excluded", "patch_target_not_unique")}
     return {"rows": rows, "raw": len(rows), **counts,
             "protocol_rejected": counts["rejected"],
             "rejection_reasons": rejection_reasons,

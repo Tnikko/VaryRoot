@@ -12,7 +12,7 @@ from varyroot.b_factor_gate import classify
 from varyroot.b_interval_ir import (make_interval_pair, extract_interval_facts,
                                     predict_interval, accept_interval_packet,
                                     make_interval_inspector)
-from varyroot.b_static_retry import run
+from varyroot.b_static_retry import run, apply_local_patch
 from varyroot.b_prompt import strip_source_comments
 
 
@@ -141,11 +141,14 @@ class IntervalIRTest(unittest.TestCase):
             inspector = make_interval_inspector(make_interval_pair("real_view", "logical_payload"),
                 config, {"before": (sources["parent"], parent_ast, 184),
                          "after": (sources["fixed"], fixed_ast, 187)}, compile_source)
-            candidate_lines = strip_source_comments(sources["parent"]).splitlines(keepends=True)
+            parent_view = strip_source_comments(sources["parent"])
+            candidate_lines = parent_view.splitlines(keepends=True)
             self.assertIn("PACKET->DATA.len >= 16", candidate_lines[182])
-            candidate_lines[182] = candidate_lines[182].replace(
+            old_code = "".join(candidate_lines[181:184])
+            new_code = old_code.replace(
                 "PACKET->DATA.len >= 16", "PACKET->DATA.len >= 17")
-            candidate = "".join(candidate_lines)
+            candidate, reason = apply_local_patch(parent_view, old_code, new_code)
+            self.assertIsNone(reason)
             inspected = inspector(candidate, "before")
             self.assertEqual(classify(inspected["clang_receipt"])["status"], "admitted",
                              inspected["clang_receipt"])
@@ -183,7 +186,8 @@ class IntervalIRTest(unittest.TestCase):
                           "max_retries": 0, "max_proposals_per_round": 1,
                           "min_divergent": 1, "min_admitted": 1},
                          lambda request: {"proposals": [{"parent": "before", "factor": "guard",
-                                                         "intent": "static", "source": variant}]},
+                                                         "intent": "static", "old_code": "if (len >= 8)",
+                                                         "new_code": "if (len >= 8 && cursor < end)"}]},
                          inspector)
             self.assertEqual((result["admitted"], result["hard_divergent"],
                               result["backend_gap"]), (1, 1, 0))

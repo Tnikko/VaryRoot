@@ -1,0 +1,236 @@
+{
+  "difference": {
+    "Guard": {
+      "first_only": [
+        {
+          "antecedent": {
+            "args": [
+              {
+                "var": "check_seen"
+              },
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "var": "operand"
+                      }
+                    ],
+                    "op": "is_null"
+                  }
+                ],
+                "op": "not"
+              }
+            ],
+            "op": "or"
+          },
+          "applicability": true,
+          "bindings": {
+            "check_seen": "bool",
+            "operand": "pointer"
+          },
+          "direction": "iff"
+        }
+      ],
+      "second_only": [
+        {
+          "antecedent": {
+            "args": [
+              {
+                "var": "blocked"
+              },
+              {
+                "args": [
+                  {
+                    "args": [
+                      {
+                        "var": "operand"
+                      }
+                    ],
+                    "op": "is_null"
+                  }
+                ],
+                "op": "not"
+              }
+            ],
+            "op": "or"
+          },
+          "applicability": true,
+          "bindings": {
+            "blocked": "bool",
+            "operand": "pointer"
+          },
+          "direction": "iff"
+        }
+      ]
+    },
+    "Propagation": {
+      "first_only": [],
+      "second_only": []
+    },
+    "Sink": {
+      "first_only": [],
+      "second_only": []
+    },
+    "Source": {
+      "first_only": [],
+      "second_only": []
+    }
+  },
+  "first": {
+    "Guard": [
+      {
+        "antecedent": {
+          "args": [
+            {
+              "var": "check_seen"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "operand"
+                    }
+                  ],
+                  "op": "is_null"
+                }
+              ],
+              "op": "not"
+            }
+          ],
+          "op": "or"
+        },
+        "applicability": true,
+        "bindings": {
+          "check_seen": "bool",
+          "operand": "pointer"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Propagation": [
+      {
+        "antecedent": {
+          "args": [
+            {
+              "var": "call_output_slot"
+            },
+            {
+              "var": "sink_base"
+            }
+          ],
+          "op": "same_object"
+        },
+        "applicability": true,
+        "bindings": {
+          "call_output_slot": "object",
+          "sink_base": "object"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Sink": [
+      {
+        "antecedent": {
+          "var": "sink"
+        },
+        "applicability": true,
+        "bindings": {
+          "sink": "bool"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Source": [
+      {
+        "antecedent": {
+          "var": "source"
+        },
+        "applicability": true,
+        "bindings": {
+          "source": "bool"
+        },
+        "direction": "iff"
+      }
+    ]
+  },
+  "second": {
+    "Guard": [
+      {
+        "antecedent": {
+          "args": [
+            {
+              "var": "blocked"
+            },
+            {
+              "args": [
+                {
+                  "args": [
+                    {
+                      "var": "operand"
+                    }
+                  ],
+                  "op": "is_null"
+                }
+              ],
+              "op": "not"
+            }
+          ],
+          "op": "or"
+        },
+        "applicability": true,
+        "bindings": {
+          "blocked": "bool",
+          "operand": "pointer"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Propagation": [
+      {
+        "antecedent": {
+          "args": [
+            {
+              "var": "call_output_slot"
+            },
+            {
+              "var": "sink_base"
+            }
+          ],
+          "op": "same_object"
+        },
+        "applicability": true,
+        "bindings": {
+          "call_output_slot": "object",
+          "sink_base": "object"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Sink": [
+      {
+        "antecedent": {
+          "var": "sink"
+        },
+        "applicability": true,
+        "bindings": {
+          "sink": "bool"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Source": [
+      {
+        "antecedent": {
+          "var": "source"
+        },
+        "applicability": true,
+        "bindings": {
+          "source": "bool"
+        },
+        "direction": "iff"
+      }
+    ]
+  }
+}

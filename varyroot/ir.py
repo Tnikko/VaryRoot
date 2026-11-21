@@ -13,6 +13,27 @@ SIGNATURES = {
 TYPES = {"bool", "object", "pointer", "elements", "bytes_per_element", "bytes"}
 ROLES = {"Source", "Propagation", "Guard", "Sink"}
 
+# Meanings of analysis facts, never names of variables to declare in C/C++.
+FACT_SEMANTICS = {
+    "source": "Analysis fact: the declared source condition holds on this path.",
+    "sink": "Analysis fact: the target memory operation is the declared sink.",
+    "source_object": "Analysis identity of the source object.",
+    "sink_object": "Analysis identity of the object used by the sink.",
+    "call_output_slot": "Analysis identity of the output slot reached by a call.",
+    "sink_base": "Analysis identity of the base object used by the sink.",
+    "check_seen": "Analysis fact: a relevant check is evaluated before the target; it may or may not block the unsafe path.",
+    "blocked": "Analysis fact: the unsafe path is prevented from reaching the target.",
+    "loop_direct": "Analysis fact: a loop condition directly enforces the declared guard before target evaluation.",
+    "total_guard": "Analysis fact: a guard constrains total logical extent, without necessarily constraining the remaining extent.",
+    "remaining_guard": "Analysis fact: a guard constrains logical extent remaining from the current position.",
+    "reaches": "Analysis fact: this declared path reaches the target operation.",
+    "feasible": "Analysis fact: this declared path is feasible within its stated domain.",
+    "operand": "Analysis value of the pointer operand on the declared path, including null.",
+    "capacity": "Analysis quantity: logical capacity in bytes.",
+    "offset": "Analysis quantity: current byte offset from the logical base.",
+    "width": "Analysis quantity: bytes read or written by the target operation.",
+}
+
 
 def check(ok, field, reason):
     require(ok, field, reason, "invalid_ir")

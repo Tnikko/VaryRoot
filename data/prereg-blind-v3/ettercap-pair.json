@@ -1,0 +1,258 @@
+{
+  "difference": {
+    "Guard": {
+      "first_only": [
+        {
+          "antecedent": {
+            "args": [
+              {
+                "var": "total_guard"
+              },
+              {
+                "var": "remaining_guard"
+              },
+              {
+                "args": [
+                  {
+                    "var": "capacity"
+                  },
+                  {
+                    "var": "offset"
+                  },
+                  {
+                    "var": "width"
+                  }
+                ],
+                "op": "contains"
+              }
+            ],
+            "op": "or"
+          },
+          "applicability": true,
+          "bindings": {
+            "capacity": "bytes",
+            "offset": "bytes",
+            "remaining_guard": "bool",
+            "total_guard": "bool",
+            "width": "bytes"
+          },
+          "direction": "iff"
+        }
+      ],
+      "second_only": [
+        {
+          "antecedent": {
+            "args": [
+              {
+                "var": "remaining_guard"
+              },
+              {
+                "args": [
+                  {
+                    "var": "capacity"
+                  },
+                  {
+                    "var": "offset"
+                  },
+                  {
+                    "var": "width"
+                  }
+                ],
+                "op": "contains"
+              }
+            ],
+            "op": "or"
+          },
+          "applicability": true,
+          "bindings": {
+            "capacity": "bytes",
+            "offset": "bytes",
+            "remaining_guard": "bool",
+            "total_guard": "bool",
+            "width": "bytes"
+          },
+          "direction": "iff"
+        }
+      ]
+    },
+    "Propagation": {
+      "first_only": [],
+      "second_only": []
+    },
+    "Sink": {
+      "first_only": [],
+      "second_only": []
+    },
+    "Source": {
+      "first_only": [],
+      "second_only": []
+    }
+  },
+  "first": {
+    "Guard": [
+      {
+        "antecedent": {
+          "args": [
+            {
+              "var": "total_guard"
+            },
+            {
+              "var": "remaining_guard"
+            },
+            {
+              "args": [
+                {
+                  "var": "capacity"
+                },
+                {
+                  "var": "offset"
+                },
+                {
+                  "var": "width"
+                }
+              ],
+              "op": "contains"
+            }
+          ],
+          "op": "or"
+        },
+        "applicability": true,
+        "bindings": {
+          "capacity": "bytes",
+          "offset": "bytes",
+          "remaining_guard": "bool",
+          "total_guard": "bool",
+          "width": "bytes"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Propagation": [
+      {
+        "antecedent": {
+          "args": [
+            {
+              "var": "source_object"
+            },
+            {
+              "var": "sink_object"
+            }
+          ],
+          "op": "same_object"
+        },
+        "applicability": true,
+        "bindings": {
+          "sink_object": "object",
+          "source_object": "object"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Sink": [
+      {
+        "antecedent": {
+          "var": "sink"
+        },
+        "applicability": true,
+        "bindings": {
+          "sink": "bool"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Source": [
+      {
+        "antecedent": {
+          "var": "source"
+        },
+        "applicability": true,
+        "bindings": {
+          "source": "bool"
+        },
+        "direction": "iff"
+      }
+    ]
+  },
+  "second": {
+    "Guard": [
+      {
+        "antecedent": {
+          "args": [
+            {
+              "var": "remaining_guard"
+            },
+            {
+              "args": [
+                {
+                  "var": "capacity"
+                },
+                {
+                  "var": "offset"
+                },
+                {
+                  "var": "width"
+                }
+              ],
+              "op": "contains"
+            }
+          ],
+          "op": "or"
+        },
+        "applicability": true,
+        "bindings": {
+          "capacity": "bytes",
+          "offset": "bytes",
+          "remaining_guard": "bool",
+          "total_guard": "bool",
+          "width": "bytes"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Propagation": [
+      {
+        "antecedent": {
+          "args": [
+            {
+              "var": "source_object"
+            },
+            {
+              "var": "sink_object"
+            }
+          ],
+          "op": "same_object"
+        },
+        "applicability": true,
+        "bindings": {
+          "sink_object": "object",
+          "source_object": "object"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Sink": [
+      {
+        "antecedent": {
+          "var": "sink"
+        },
+        "applicability": true,
+        "bindings": {
+          "sink": "bool"
+        },
+        "direction": "iff"
+      }
+    ],
+    "Source": [
+      {
+        "antecedent": {
+          "var": "source"
+        },
+        "applicability": true,
+        "bindings": {
+          "source": "bool"
+        },
+        "direction": "iff"
+      }
+    ]
+  }
+}

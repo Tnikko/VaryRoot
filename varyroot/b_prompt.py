@@ -2,6 +2,7 @@
 
 import json
 import re
+from .ir import FACT_SEMANTICS
 
 
 _AUDIT = re.compile(r"source_lock|sha256|https?://|[0-9a-f]{64}", re.I)
@@ -128,17 +129,28 @@ def render_messages(before, after, contract, first, second, feedback=None, max_p
         raise ValueError("audit_or_invalid_contract_view")
     if feedback is not None and not isinstance(feedback, list):
         raise ValueError("invalid_feedback")
+    pair = hypothesis_pair(first, second)
+    symbols = {name for side in ("first", "second") for role in _ROLES
+               for clause in pair[side][role] for name in clause["bindings"]}
+    missing = symbols - FACT_SEMANTICS.keys()
+    if missing:
+        raise ValueError("unknown_fact_semantics:" + ",".join(sorted(missing)))
     task = {
         "before": strip_source_comments(before), "after": strip_source_comments(after),
         "contract": semantics,
-        "hypotheses": hypothesis_pair(first, second),
+        "hypotheses": pair,
+        "fact_semantics": {name: FACT_SEMANTICS[name] for name in sorted(symbols)},
         "instructions": (
-            "Propose local single-factor source variants that distinguish the two hypotheses. "
+            "IR symbols are program-analysis facts, not C/C++ variables. Do not declare placeholder "
+            "variables named after IR symbols. Distinguish hypotheses by one local guard or control-flow "
+            "change, such as a nonblocking check, an early exit, an equivalent comparison, or a bound. "
             "Keep the target operation, object, contract call, and unrelated program state fixed. "
-            f"Return at most {max_proposals} proposals in one JSON object. "
-            "Each proposal has parent, factor, "
-            "intent, and complete source. Give no safety label or expected oracle result."
-            " The parent value must be before or after."
+            f"Return one JSON object with a proposals array of at most {max_proposals} items. "
+            "Each proposal must be one JSON object with exactly five fields: parent, factor, intent, "
+            "old_code, new_code. All five values must be strings, never arrays or nested objects. "
+            "parent must be before or after. old_code must be an exact substring occurring once in that "
+            "parent's displayed code; new_code replaces only that substring. Do not return the entire "
+            "translation unit, extra fields, markdown, safety labels, or expected oracle results."
         ),
     }
     if feedback:
