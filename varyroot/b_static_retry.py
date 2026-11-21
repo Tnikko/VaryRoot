@@ -5,6 +5,7 @@ import json
 import re
 
 from .b_factor_gate import classify
+from .b_clang_receipt import clang_token_sha256
 from .b_prompt import build_request, hypothesis_pair, strip_source_comments
 
 
@@ -23,7 +24,16 @@ def apply_local_patch(parent_view, old_code, new_code):
     return parent_view.replace(old_code, new_code, 1), None
 
 
-def run(before, after, contract, first, second, policy, invoke, inspect):
+def _fingerprint(source, producer):
+    value = producer(source)
+    if not isinstance(value, dict) or not re.fullmatch(r"[0-9a-f]{64}", value.get("token_sha256", "")) or \
+            value.get("ast_sha256") is not None and not re.fullmatch(r"[0-9a-f]{64}", value["ast_sha256"]):
+        raise ValueError("invalid_semantic_fingerprint")
+    return value
+
+
+def run(before, after, contract, first, second, policy, invoke, inspect,
+        *, semantic_fingerprint=None):
     """Inspect proposals using trusted Clang evidence and pure IR predictions."""
     retries = policy["max_retries"]
     minimum = policy.get("min_divergent", policy.get("min_hard_divergent"))
@@ -33,12 +43,18 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
     if (type(retries) is not int or retries < 0 or type(minimum) is not int or minimum < 1 or
             type(min_admitted) is not int or min_admitted < 0 or type(mixed) is not bool):
         raise ValueError("invalid_generation_budget")
-    excluded = policy.get("excluded_source_sha256", [])
-    if (not isinstance(excluded, (list, tuple, set)) or
-            any(not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value)
-                for value in excluded)):
-        raise ValueError("invalid_historical_exclusions")
-    excluded = set(excluded)
+    excluded = {}
+    for key in ("source_sha256", "token_sha256", "ast_sha256"):
+        values = policy.get("excluded_" + key, [])
+        if (not isinstance(values, (list, tuple, set)) or
+                any(not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value)
+                    for value in values)):
+            raise ValueError("invalid_historical_exclusions")
+        excluded[key] = set(values)
+    if excluded["ast_sha256"] and semantic_fingerprint is None:
+        raise ValueError("ast_fingerprint_producer_required")
+    semantic_fingerprint = semantic_fingerprint or (lambda source: {
+        "token_sha256": clang_token_sha256(source), "ast_sha256": None})
     pair_digest = hashlib.sha256(json.dumps(hypothesis_pair(first, second), sort_keys=True).encode()).hexdigest()
     if target not in ("hard", "coverage") or target == "coverage" and (
             policy.get("coverage_pair_sha256") != pair_digest or
@@ -47,8 +63,14 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
         raise ValueError("unregistered_divergence_target")
     parent_views = {"before": strip_source_comments(before),
                     "after": strip_source_comments(after)}
-    seen = {source_sha256(value) for source in (before, after)
-            for value in (source, strip_source_comments(source))}
+    seen = {"source_sha256": {source_sha256(value) for source in (before, after)
+            for value in (source, strip_source_comments(source))}}
+    seen["token_sha256"], seen["ast_sha256"] = set(), set()
+    for source in parent_views.values():
+        fingerprint = _fingerprint(source, semantic_fingerprint)
+        for key in ("token_sha256", "ast_sha256"):
+            if fingerprint.get(key):
+                seen[key].add(fingerprint[key])
     rows, feedback, response_failures = [], [], 0
     for attempt in range(retries + 1):
         response = invoke(build_request(policy, before, after, contract, first, second, feedback))
@@ -61,10 +83,12 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
             row = {"round": attempt, "index": index, "parent": None, "factor": None,
                    "intent": None, "old_code": None, "new_code": None,
                    "source": None, "source_sha256": None,
+                   "token_sha256": None, "ast_sha256": None,
                    "status": "rejected", "reason": "invalid_proposal_schema",
                    "touched_roles": [], "predictions": None,
                    "clang_receipt": None, "static_facts": None,
-                   "hard_divergent": False, "coverage_divergent": False}
+                   "hard_divergent": False, "coverage_divergent": False,
+                   "backend_gap": False}
             if isinstance(proposal, dict):
                 for key in ("parent", "factor", "intent", "old_code", "new_code"):
                     row[key] = proposal.get(key)
@@ -86,18 +110,30 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
                         row["source"] = reconstructed
                         row["source_sha256"] = source_sha256(reconstructed)
                         try:
+                            fingerprint = _fingerprint(reconstructed, semantic_fingerprint)
+                        except (ValueError, OSError):
+                            fingerprint = None
+                        if fingerprint is None:
+                            row.update(status="undetermined", reason="source_projection_unavailable",
+                                       backend_gap=True)
+                        else:
+                            row.update(fingerprint)
                             views = {row["source_sha256"],
                                      source_sha256(strip_source_comments(reconstructed))}
-                        except ValueError:
-                            views = None
-                        if views is None:
-                            row.update(status="undetermined", reason="source_projection_unavailable")
-                        elif views & excluded:
+                        if fingerprint is not None and (views & excluded["source_sha256"] or
+                                fingerprint["token_sha256"] in excluded["token_sha256"] or
+                                fingerprint.get("ast_sha256") in excluded["ast_sha256"]):
                             row.update(status="rejected", reason="historical_excluded")
-                        elif views & seen:
+                        elif fingerprint is not None and (views & seen["source_sha256"] or
+                                fingerprint["token_sha256"] in seen["token_sha256"] or
+                                fingerprint.get("ast_sha256") is not None and
+                                fingerprint["ast_sha256"] in seen["ast_sha256"]):
                             row.update(status="rejected", reason="duplicate_or_unchanged_source")
-                        else:
-                            seen.update(views)
+                        elif fingerprint is not None:
+                            seen["source_sha256"].update(views)
+                            seen["token_sha256"].add(fingerprint["token_sha256"])
+                            if fingerprint.get("ast_sha256"):
+                                seen["ast_sha256"].add(fingerprint["ast_sha256"])
                             static = inspect(reconstructed, proposal["parent"])
                             row["clang_receipt"] = static["clang_receipt"]
                             row["static_facts"] = static.get("facts")
@@ -106,7 +142,9 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
                             if row["status"] == "admitted":
                                 if not (isinstance(pair, (tuple, list)) and len(pair) == 2 and
                                         all(p in ("report", "quiet", "uncovered") for p in pair)):
-                                    row.update(status="undetermined", reason="static_prediction_unavailable")
+                                    row.update(status="undetermined", reason=static.get(
+                                        "static_error", "static_prediction_unavailable"),
+                                        backend_gap=True)
                                 else:
                                     row["predictions"] = list(pair)
                                     row["hard_divergent"] = tuple(pair) in (("report", "quiet"), ("quiet", "report"))
@@ -142,5 +180,5 @@ def run(before, after, contract, first, second, policy, invoke, inspect):
             "divergence_target": target, "hypothesis_pair_sha256": pair_digest,
             "coverage_evidence_ref": policy.get("coverage_evidence_ref") if target == "coverage" else None,
             "unresolved": not ready,
-            "backend_gap": sum(row["reason"] in ("static_prediction_unavailable",
-                                                      "source_projection_unavailable") for row in rows)}
+            "backend_gap": sum(row["backend_gap"] or row["status"] == "undetermined" and
+                               row["reason"] == "unclassified_ast_change" for row in rows)}

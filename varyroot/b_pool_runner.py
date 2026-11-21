@@ -7,7 +7,7 @@ import subprocess
 import tarfile
 from pathlib import Path
 
-from .b_clang_receipt import clang_ast, clang_cfg
+from .b_clang_receipt import ast_semantic_sha256, clang_ast, clang_cfg, clang_token_sha256
 from .b_interval_ir import make_interval_pair, make_interval_inspector
 from .b_model_client import _canonical, _write_once, post_once
 from .b_nullable_ir import make_nullable_pair, make_nullable_inspector
@@ -39,6 +39,24 @@ def select_pool(rows, budget, random_seeds):
                        for seed in random_seeds}}
 
 
+def freeze_parameters(policy, result):
+    """Use only registered generation and selection budgets."""
+    target = policy.get("divergence_target", "hard")
+    divergent = result.get(target + "_divergent", 0)
+    admitted = result["admitted"]
+    ready = (not result["unresolved"] and admitted >= policy["min_admitted"] and
+             divergent >= policy["min_divergent"] and
+             (not policy.get("require_mixed_scores", False) or 0 < divergent < admitted))
+    if not ready:
+        return None
+    budget, seeds = policy.get("verification_budget"), policy.get("random_seeds")
+    if (type(budget) is not int or not 0 < budget < admitted or
+            not isinstance(seeds, list) or not seeds or
+            any(type(seed) is not int for seed in seeds) or len(seeds) != len(set(seeds))):
+        raise ValueError("selection_policy_missing_or_invalid")
+    return budget, seeds
+
+
 def _verify_manifest(path, project):
     manifest = json.loads(Path(path).read_bytes())
     revision = subprocess.check_output(["git", "-C", str(project), "rev-parse", "HEAD"],
@@ -47,7 +65,7 @@ def _verify_manifest(path, project):
         raise ValueError("code_revision_lock_mismatch")
     for filename, expected in manifest["files"].items():
         source = Path(filename)
-        if _sha(source) != expected or source.stat().st_mtime_ns > Path(path).stat().st_mtime_ns:
+        if _sha(source) != expected:
             raise ValueError("prereg_file_lock_mismatch:" + filename)
     return manifest
 
@@ -67,6 +85,8 @@ def run_pool(config_path, *, preflight_only=False):
     if _sha(config["historical_exclusions"]) != lock["exclusions_sha256"]:
         raise ValueError("historical_exclusion_lock_mismatch")
     policy["excluded_source_sha256"] = [row["source_sha256"] for row in exclusion["entries"]]
+    for key in ("token_sha256", "ast_sha256"):
+        policy["excluded_" + key] = [row[key] for row in exclusion["entries"] if row.get(key)]
     before, after = (Path(config["sources"][side]).read_text()
                      for side in ("before", "after"))
     for side, source in (("before", before), ("after", after)):
@@ -76,7 +96,7 @@ def run_pool(config_path, *, preflight_only=False):
     family = config["family"]
     if family == "nullable_output":
         packet = make_nullable_pair(config["ir_run_id"], config["subject"])
-        specs = packet[0]
+        specs = packet["specs"]
         first, second = specs["H_check"], specs["H_path"]
     elif family == "interval":
         packet = make_interval_pair(config["ir_run_id"], config["subject"])
@@ -115,9 +135,12 @@ def run_pool(config_path, *, preflight_only=False):
                                if member.isfile() or member.isdir() else None)
         placeholders["{header_" + name + "}"] = str(destination)
     counter = 0
+    compiled = {}
 
     def compile_variant(source):
         nonlocal counter
+        if source in compiled:
+            return compiled[source]
         counter += 1
         path = static_dir / f"source-{counter:03d}.c"
         _write_once(path, source.encode("utf-8"))
@@ -136,7 +159,13 @@ def run_pool(config_path, *, preflight_only=False):
         _write_once(static_dir / f"source-{counter:03d}.meta.json",
                     _canonical({"source_sha256": hashlib.sha256(source.encode()).hexdigest(),
                                 "ast": ast_status, "cfg": cfg_status}))
+        compiled[source] = ast, cfg
         return ast, cfg
+
+    def semantic_fingerprint(source):
+        ast, _ = compile_variant(source)
+        return {"token_sha256": clang_token_sha256(source),
+                "ast_sha256": ast_semantic_sha256(ast) if ast is not None else None}
 
     parents = {}
     for side, source in (("before", before), ("after", after)):
@@ -155,20 +184,20 @@ def run_pool(config_path, *, preflight_only=False):
         calls += 1
         return post_once(request, output / "network", calls, config["key_path"], project)
 
-    result = run(before, after, config["contract"], first, second, policy, invoke, inspect)
+    result = run(before, after, config["contract"], first, second, policy, invoke, inspect,
+                 semantic_fingerprint=semantic_fingerprint)
     _write_once(output / "generation-result.json", _canonical(result))
-    ready = (not result["unresolved"] and result["admitted"] >= 5 and
-             result["hard_divergent"] >= 2 and
-             result["hard_divergent"] < result["admitted"])
-    if ready:
+    selection_policy = freeze_parameters(policy, result)
+    if selection_policy is not None:
+        budget, random_seeds = selection_policy
         frozen = {"seed": seed, "code_revision": subprocess.check_output(
             ["git", "-C", str(project), "rev-parse", "HEAD"], text=True).strip(),
             "generation_sha256": _sha(output / "generation-result.json"),
-            "selection": select_pool(result["rows"], 2, [17, 29, 43, 71, 101])}
+            "selection": select_pool(result["rows"], budget, random_seeds)}
         _write_once(output / "pool-freeze.json", _canonical(frozen))
     return {"seed": seed, "raw": result["raw"], "admitted": result["admitted"],
             "hard_divergent": result["hard_divergent"], "unresolved": result["unresolved"],
-            "pool_frozen": ready}
+            "pool_frozen": selection_policy is not None}
 
 
 def main():

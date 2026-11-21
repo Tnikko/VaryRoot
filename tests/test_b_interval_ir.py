@@ -224,6 +224,37 @@ class IntervalIRTest(unittest.TestCase):
                              inspected["clang_receipt"])
             self.assertEqual(inspected["predictions"], ["quiet", "report"])
 
+    @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
+    def test_inspector_preserves_unevaluated_bound_reason(self):
+        before = ("#include <string.h>\nint parse(char *dst,char *base,int len){\n"
+                  "char *cursor=base,*end=base+len;cursor+=2;\n"
+                  "if(end-cursor>=8){\nmemcpy(dst,cursor,8);\n}\nreturn 0;\n}\n")
+        after = before.replace("end-cursor>=8", "len>=8")
+        candidate = before.replace("end-cursor>=8", "end-cursor>=sizeof(*dst)")
+        config = {"target_expression": "memcpy(dst,cursor,8)", "target_call": "memcpy",
+                  "total_expr": "len", "remaining_expr": "end-cursor",
+                  "pointer_expr": "cursor", "width": 8}
+        with tempfile.TemporaryDirectory() as folder:
+            count = 0
+            def compile_source(source):
+                nonlocal count
+                count += 1
+                path = Path(folder) / f"case-{count}.c"
+                path.write_text(source)
+                argv = ["clang-18", "-c", str(path), "-o", str(path) + ".o"]
+                ast, _ = clang_ast(argv, folder, "parse")
+                cfg, _ = clang_cfg(argv, folder, "parse")
+                return ast, cfg
+            before_ast, _ = compile_source(before)
+            after_ast, _ = compile_source(after)
+            inspector = make_interval_inspector(make_interval_pair("bound", "span"), config,
+                {"before": (before, before_ast, 5), "after": (after, after_ast, 5)},
+                compile_source)
+            result = inspector(candidate, "before")
+            self.assertEqual(classify(result["clang_receipt"])["status"], "admitted")
+            self.assertEqual(result["static_error"], "unevaluated_interval_bound")
+            self.assertIsNone(result["predictions"])
+
 
 if __name__ == "__main__":
     unittest.main()

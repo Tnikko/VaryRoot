@@ -148,11 +148,82 @@ def _changed_regions(before, after):
 def _ast_shape(value):
     """Erase source coordinates and Clang IDs, retaining semantic AST fields."""
     if isinstance(value, dict):
+        if value.get("kind") == "ParenExpr" and len(value.get("inner", [])) == 1:
+            return _ast_shape(value["inner"][0])
         return {key: _ast_shape(item) for key, item in value.items()
-                if key not in ("id", "loc", "range")}
+                if key not in ("id", "loc", "range", "referencedMemberDecl",
+                               "parentDeclContextId", "previousDecl")}
     if isinstance(value, list):
         return [_ast_shape(item) for item in value]
     return value
+
+
+def ast_semantic_sha256(ast):
+    """Hash a single Clang function AST without locations or redundant parens."""
+    if not isinstance(ast, dict) or ast.get("kind") != "FunctionDecl":
+        raise ValueError("function_ast_required")
+    payload = json.dumps(_ast_shape(ast), sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def clang_token_sha256(source):
+    """Hash Clang raw tokens after excluding comments and whitespace."""
+    process = subprocess.run(["clang-18", "-x", "c", "-Xclang", "-dump-raw-tokens",
+                              "-fsyntax-only", "-"], input=source, text=True,
+                             capture_output=True, timeout=120)
+    tokens = []
+    pattern = re.compile(r"(?m)^(\w+) '(.*?)'\s*(?:\[StartOfLine\]\s*)?Loc=<", re.S)
+    for match in pattern.finditer(process.stderr):
+        kind, spelling = match.groups()
+        if kind == "comment" or kind == "unknown" and not spelling.strip():
+            continue
+        tokens.append((kind, spelling))
+    if process.returncode or not tokens:
+        raise ValueError("clang_token_dump_unavailable")
+    return hashlib.sha256(json.dumps(tokens, ensure_ascii=False,
+                                   separators=(",", ":")).encode("utf-8")).hexdigest()
+
+
+def _node_state_effect(node, source, contract_calls=()):
+    kind = node.get("kind")
+    if kind == "CompoundAssignOperator" or kind == "BinaryOperator" and node.get("opcode") in \
+            {"=", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>="}:
+        return True
+    if kind == "UnaryOperator" and node.get("opcode") in ("++", "--"):
+        return True
+    if kind == "VarDecl" and node.get("init") is not None:
+        return True
+    if kind == "CallExpr":
+        return not any(re.search(r"\b" + re.escape(name) + r"\s*\(",
+                                 _node_source(node, source) or "") for name in contract_calls)
+    return False
+
+
+def _loop_condition_only(nodes, region, before, after):
+    """Prove that a changed loop header affects only its condition subtree."""
+    loops = [[node for node in tree if node.get("kind") in ("ForStmt", "WhileStmt")]
+             for tree in nodes]
+    if len(loops[0]) != len(loops[1]):
+        return None
+    for old, new in zip(*loops):
+        if old["kind"] != new["kind"]:
+            continue
+        index = 2 if old["kind"] == "ForStmt" else 0
+        old_parts, new_parts = old.get("inner", []), new.get("inner", [])
+        if len(old_parts) != len(new_parts) or len(old_parts) <= index:
+            continue
+        old_condition, new_condition = old_parts[index], new_parts[index]
+        if not isinstance(old_condition, dict) or not isinstance(new_condition, dict):
+            continue
+        if (_node_line(old_condition, before) not in region["before_lines"] or
+                _node_line(new_condition, after) not in region["after_lines"] or
+                _ast_shape(old_condition) == _ast_shape(new_condition)):
+            continue
+        if all(_ast_shape(a) == _ast_shape(b) for j, (a, b) in
+               enumerate(zip(old_parts, new_parts)) if j != index):
+            return not (any(_node_state_effect(child, before) for child in _walk(old_condition)) or
+                        any(_node_state_effect(child, after) for child in _walk(new_condition)))
+    return None
 
 
 def _whitespace_only_region(region, nodes, before, after):
@@ -202,34 +273,30 @@ def make_receipt(before, after, before_ast, after_ast, target_lines, target_expr
     regions = [region for region in _changed_regions(before, after)
                if not _whitespace_only_region(region, nodes, before, after)]
     for region in regions:
-        selected = [node for tree, lines, source in zip(nodes, (region["before_lines"], region["after_lines"]), (before, after))
-                    for node in tree if _node_line(node, source) in lines]
-        after_selected = [node for node in nodes[1] if _node_line(node, after) in region["after_lines"]]
+        selected_by_side = [[node for node in tree if _node_line(node, source) in lines]
+                            for tree, lines, source in zip(nodes,
+                                (region["before_lines"], region["after_lines"]), (before, after))]
+        selected = selected_by_side[0] + selected_by_side[1]
+        after_selected = selected_by_side[1]
         kinds = {node.get("kind") for node in selected}
         text = region["before_text"] + "\n" + region["after_text"]
         roles = set()
+        loop_condition = _loop_condition_only(nodes, region, before, after)
         if any(line in lines for line, lines in zip(target_lines, (region["before_lines"], region["after_lines"]))):
             roles.add("target")
         if any(name in text for name in contract_calls) and "CallExpr" in kinds:
             roles.add("contract_call")
         if re.search(r"\b(goto|return|break|continue)\b|^\s*[A-Za-z_]\w*\s*:", text, re.M) and kinds & {"GotoStmt", "LabelStmt", "ReturnStmt", "BreakStmt", "ContinueStmt"}:
             roles.add("control_flow")
-        if re.search(r"\b(if|else)\b", text) and "IfStmt" in kinds:
+        if loop_condition is True or re.search(r"\b(if|else)\b", text) and "IfStmt" in kinds:
             roles.add("guard")
-        if re.search(r"\b(for|while|do)\b|\+\+|--", text) and kinds & {"ForStmt", "WhileStmt", "DoStmt", "UnaryOperator"}:
-            roles.add("loop_state")
-        side_effect = any(
-            node.get("kind") == "CompoundAssignOperator" or
-            node.get("kind") == "BinaryOperator" and node.get("opcode") in
-                {"=", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>="} or
-            node.get("kind") == "VarDecl" and node.get("init") is not None or
-            node.get("kind") == "CallExpr" and not any(
-                re.search(r"\b" + re.escape(name) + r"\s*\(", _node_source(node, after) or "")
-                for name in contract_calls)
-            for node in after_selected)
-        if side_effect:
+        if loop_condition is False:
             roles.add("unrelated")
-        if not roles:
+        if loop_condition is None and re.search(r"\b(for|while|do)\b|\+\+|--", text) and kinds & {"ForStmt", "WhileStmt", "DoStmt", "UnaryOperator"}:
+            roles.add("loop_state")
+        side_effect = loop_condition is None and any(
+            _node_state_effect(node, after, contract_calls) for node in after_selected)
+        if side_effect:
             roles.add("unrelated")
         region["roles"] = sorted(roles)
         region["contains_goto"] = "GotoStmt" in kinds and bool(re.search(r"\bgoto\b", text))

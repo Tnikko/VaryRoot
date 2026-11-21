@@ -3,9 +3,8 @@
 import re
 
 from . import inference, ir
-from .b_clang_receipt import _node_line, _node_source, _walk, make_receipt
-from .b_factor_gate import classify
-from .b_prompt import strip_source_comments
+from .b_clang_receipt import _node_line, _node_source, _walk
+from .b_inspector import make_inspector
 
 
 def _norm(value):
@@ -129,16 +128,19 @@ def make_nullable_pair(run_id, subject):
                        "clauses": clauses,
                        "clause_refs": [inference.ref(row) for row in clauses],
                        "complete_guard_refs": []}
-    return specs, {"id": f"{run_id}.target", "version": 1, "subject": subject}, \
-        {"id": f"{run_id}.contract", "version": 1, "subject": subject,
-         "approval_status": "approved"}, \
-        {"id": f"{run_id}.domain", "version": 1, "paths": ["null_output"],
-         "coverage": "equivalence_proof", "basis_refs": [f"{run_id}.contract@1"]}
+    return {"specs": specs,
+            "target": {"id": f"{run_id}.target", "version": 1, "subject": subject},
+            "contract": {"id": f"{run_id}.contract", "version": 1, "subject": subject,
+                         "approval_status": "approved"},
+            "domain": {"id": f"{run_id}.domain", "version": 1, "paths": ["null_output"],
+                       "coverage": "equivalence_proof", "basis_refs": [f"{run_id}.contract@1"]}}
 
 
 def predict_nullable(values, packet=None):
     """Run existing pure IR inference on the declared null-output local path."""
-    specs, target, contract, domain = packet or make_nullable_pair("nullable_static", "output_slot")
+    packet = packet or make_nullable_pair("nullable_static", "output_slot")
+    specs, target, contract, domain = (packet[key] for key in
+                                       ("specs", "target", "contract", "domain"))
     typed = {"source": ("bool", True), "call_output_slot": ("object", "slot@1"),
              "sink_base": ("object", "slot@1"), "sink": ("bool", True),
              "operand": ("pointer", None), "feasible": ("bool", True),
@@ -159,34 +161,6 @@ def predict_nullable(values, packet=None):
 
 def make_nullable_inspector(packet, config, parents, compile_variant):
     """Connect a declared nullable seed to shared static admission and IR."""
-    if set(parents) != {"before", "after"} or not config.get("target_call"):
-        raise ValueError("parent_sources_required")
-    views = {}
-    for parent, (base_source, base_ast, base_line) in parents.items():
-        view = strip_source_comments(base_source)
-        if view != base_source:
-            base_ast, _ = compile_variant(view)
-            if base_ast is None:
-                raise ValueError("parent_reasoning_view_uncompilable")
-        views[parent] = (view, base_ast, base_line)
-
-    def inspect(source, parent):
-        base_source, base_ast, base_line = views[parent]
-        candidate_ast, candidate_cfg = compile_variant(source)
-        if candidate_ast is None:
-            return {"clang_receipt": {"producer": "clang_ast", "compile_ok": False}}
-        receipt = make_receipt(base_source, source, base_ast, candidate_ast,
-                               base_line, config["target_expression"],
-                               contract_calls=(config["target_call"],), cfg=candidate_cfg)
-        if classify(receipt)["status"] != "admitted":
-            return {"clang_receipt": receipt}
-        try:
-            facts = extract_nullable_facts(source, candidate_ast, candidate_cfg,
-                                           receipt["target_lines"][1], config)
-            predictions = predict_nullable(facts, packet)
-        except (KeyError, TypeError, ValueError):
-            predictions = None
-        return {"clang_receipt": receipt, "facts": facts if predictions is not None else None,
-                "predictions": predictions}
-
-    return inspect
+    return make_inspector(packet, config, parents, compile_variant,
+                          extract_nullable_facts,
+                          lambda model, facts: predict_nullable(facts, model))

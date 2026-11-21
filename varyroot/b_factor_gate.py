@@ -31,8 +31,6 @@ def classify(receipt):
     if roles & PROTECTED:
         return {"status": "confounded", "reason": "protected_semantics_changed",
                 "touched_roles": sorted(roles & PROTECTED)}
-    if not roles <= ALLOWED:
-        return {"status": "undetermined", "reason": "unsupported_change"}
     if group.get("contains_goto"):
         cfg = receipt.get("cfg")
         if not isinstance(cfg, dict) or cfg.get("producer") != "clang_cfg":

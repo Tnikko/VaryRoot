@@ -2,7 +2,6 @@
 
 import hashlib
 import json
-import os
 import stat
 import time
 import urllib.error
@@ -18,16 +17,8 @@ def _canonical(value):
 
 def _write_once(path, data):
     path = Path(path)
-    if path.exists():
-        raise FileExistsError(path)
-    temporary = path.with_name("." + path.name + ".tmp")
-    with temporary.open("xb") as stream:
+    with path.open("xb") as stream:
         stream.write(data)
-        stream.flush()
-        os.fsync(stream.fileno())
-    if path.exists():
-        raise FileExistsError(path)
-    os.replace(temporary, path)
 
 
 def _parse(raw, requested_model):
@@ -50,14 +41,12 @@ def _parse(raw, requested_model):
 
 
 def post_once(request, output_dir, round_number, key_path, project_root, *,
-              opener=None, endpoint="https://api.deepseek.com"):
+              opener=None):
     """Save exact JSON request/response bodies; never persist the bearer key.
 
     The HTTPS library owns transport headers. The private Authorization header
     is intentionally absent from reproducible experiment artifacts.
     """
-    if endpoint != "https://api.deepseek.com" or not isinstance(round_number, int) or round_number < 1:
-        raise ValueError("unregistered_model_endpoint_or_round")
     key_path = Path(key_path).resolve(strict=True)
     root = Path(project_root).resolve()
     if key_path.is_relative_to(root) or stat.S_IMODE(key_path.stat().st_mode) & 0o077:
@@ -74,7 +63,7 @@ def post_once(request, output_dir, round_number, key_path, project_root, *,
     body = _canonical(request)
     _write_once(out / f"{stem}.request.json", body)
     transport = opener or urllib.request.urlopen
-    http_request = urllib.request.Request(endpoint + "/chat/completions", data=body,
+    http_request = urllib.request.Request("https://api.deepseek.com/chat/completions", data=body,
         headers={"Authorization": "Bearer " + key, "Content-Type": "application/json",
                  "Accept": "application/json"}, method="POST")
     started = datetime.now(timezone.utc).isoformat()

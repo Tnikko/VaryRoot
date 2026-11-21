@@ -78,6 +78,27 @@ class IntervalGuardVariantsTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, reason):
                     extract_interval_facts(source, ast, cfg, 6, config)
 
+    def test_declared_interval_with_unevaluated_sizeof_bound_is_not_a_definite_no_guard(self):
+        config = {"target_expression": "memcpy(dst, cursor, 8)", "target_call": "memcpy",
+                  "total_expr": "len", "remaining_expr": "end - cursor",
+                  "pointer_expr": "cursor", "width": 8}
+        source = ("#include <string.h>\n"
+                  "int parse(char *dst, char *base, int len) {\n"
+                  "  char *cursor = base; char *end = base + len;\n"
+                  "  cursor += 2;\n"
+                  "  if (end - cursor >= sizeof(*dst)) {\n"
+                  "    memcpy(dst, cursor, 8);\n  }\n  return 0;\n}\n")
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "sizeof.c"
+            path.write_text(source)
+            argv = ["clang-18", "-c", str(path), "-o", str(path) + ".o"]
+            ast, status = clang_ast(argv, folder, "parse")
+            self.assertEqual(status["exit_code"], 0, status)
+            cfg, status = clang_cfg(argv, folder, "parse")
+            self.assertEqual(status["exit_code"], 0, status)
+            with self.assertRaisesRegex(ValueError, "unevaluated_interval_bound"):
+                extract_interval_facts(source, ast, cfg, 6, config)
+
 
 if __name__ == "__main__":
     unittest.main()

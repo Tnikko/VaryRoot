@@ -3,7 +3,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from varyroot.b_clang_receipt import clang_ast, clang_cfg, make_receipt
+from varyroot.b_clang_receipt import (ast_semantic_sha256, clang_ast, clang_cfg,
+                                      clang_token_sha256, make_receipt)
 from varyroot.b_factor_gate import classify
 
 
@@ -22,6 +23,30 @@ cleanup:
 
 
 class ClangReceiptTest(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
+    def test_clang_fingerprints_merge_spacing_comments_and_redundant_parentheses(self):
+        sources = [
+            "int parse(int n) { if ((n > 1)) return 1; return 0; }\n",
+            "int parse(int n){/* advisory */if((n>1))return 1;return 0;}\n",
+            "int parse(int n){/* advisory */if(n>1)return 1;return 0;}\n",
+            "int parse(int n){if(n>=1)return 1;return 0;}\n",
+        ]
+        with tempfile.TemporaryDirectory() as folder:
+            token_hashes, ast_hashes = [], []
+            for index, source in enumerate(sources):
+                path = Path(folder) / f"fingerprint-{index}.c"
+                path.write_text(source)
+                ast, status = clang_ast(["clang-18", "-c", str(path), "-o", str(path) + ".o"],
+                                        folder, "parse")
+                self.assertEqual(status["exit_code"], 0, status)
+                ast_hashes.append(ast_semantic_sha256(ast))
+                token_hashes.append(clang_token_sha256(source))
+            self.assertEqual(token_hashes[0], token_hashes[1])
+            self.assertNotEqual(token_hashes[0], token_hashes[2])
+            self.assertEqual(ast_hashes[0], ast_hashes[1])
+            self.assertEqual(ast_hashes[0], ast_hashes[2])
+            self.assertNotEqual(ast_hashes[0], ast_hashes[3])
+
     def _receipt(self, before, after, before_line, expression, contract_calls=()):
         with tempfile.TemporaryDirectory() as folder:
             trees = []
@@ -63,6 +88,32 @@ class ClangReceiptTest(unittest.TestCase):
         receipt = self._receipt(before, after, 3, "data[0]")
         self.assertEqual(receipt["target_lines"], [3, 4])
         self.assertEqual(receipt["target_binding"], "exact_1to1")
+
+    @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
+    def test_loop_condition_edit_is_a_guard_without_state_effects(self):
+        before = ("int parse(int rc, int *bvals, int *fallback) {\n"
+                  "  for (int i = 0; (rc == 0) && bvals; i++) {\n"
+                  "    return bvals[i];\n  }\n  return 0;\n}\n")
+        for condition in ("(rc == 0) && (bvals != 0)", "(rc == 0) && !bvals"):
+            with self.subTest(condition=condition):
+                after = before.replace("(rc == 0) && bvals", condition)
+                receipt = self._receipt(before, after, 3, "bvals[i]")
+                self.assertEqual(receipt["edit_groups"][0]["roles"], ["guard"])
+                self.assertEqual(classify(receipt)["status"], "admitted")
+        changed_state = before.replace("(rc == 0) && bvals", "(rc == 0) && (bvals = fallback)")
+        receipt = self._receipt(before, changed_state, 3, "bvals[i]")
+        self.assertIn("unrelated", receipt["edit_groups"][0]["roles"])
+        self.assertEqual(classify(receipt)["status"], "confounded")
+
+    @unittest.skipUnless(shutil.which("clang-18"), "Clang 18 unavailable")
+    def test_unclassified_ast_change_is_undetermined(self):
+        before = ("int parse(int x, int *data) {\n"
+                  "  x + 1;\n  return data[0];\n}\n")
+        after = before.replace("x + 1", "x + 2")
+        receipt = self._receipt(before, after, 3, "data[0]")
+        self.assertEqual(receipt["edit_groups"][0]["roles"], [])
+        self.assertEqual(classify(receipt), {"status": "undetermined",
+                                             "reason": "unclassified_ast_change"})
 
     def test_target_line_without_matching_ast_expression_is_unproven(self):
         source = "int parse(int x) {\n  return x;\n}\n"

@@ -9,9 +9,8 @@ import re
 
 from . import ir, inference
 from .artifacts import Bundle, validate_bundle
-from .b_clang_receipt import _node_line, _node_source, _walk, make_receipt
-from .b_factor_gate import classify
-from .b_prompt import strip_source_comments
+from .b_clang_receipt import _node_line, _node_source, _walk
+from .b_inspector import make_inspector
 
 
 def _var(name):
@@ -188,9 +187,15 @@ def _lower_bound(node, source, positive, config):
             return {"remaining": width + (opcode == "<")}
         raise ValueError("upper_interval_bound_unproven")
     for role, expression in (("total", total), ("remaining", remaining)):
-        if left_text == expression and (value := _integer(right)) is not None:
+        if left_text == expression:
+            value = _integer(right)
+            if value is None:
+                raise ValueError("unevaluated_interval_bound")
             bound_op = opcode
-        elif right_text == expression and (value := _integer(left)) is not None:
+        elif right_text == expression:
+            value = _integer(left)
+            if value is None:
+                raise ValueError("unevaluated_interval_bound")
             bound_op = {"<": ">", "<=": ">=", ">": "<", ">=": "<="}[opcode]
         else:
             continue
@@ -201,6 +206,10 @@ def _lower_bound(node, source, positive, config):
     if end and ((left_text == pointer and right_text == end and opcode == "<") or
                 (left_text == end and right_text == pointer and opcode == ">")):
         return {}
+    if left_text == pointer or right_text == pointer:
+        other = right if left_text == pointer else left
+        if _integer(other) is None:
+            raise ValueError("unevaluated_interval_bound")
     if width and (str(width) in (left_text + right_text)) and \
             (pointer in (left_text + right_text) or total in (left_text + right_text)):
         raise ValueError("complex_interval_guard_unproven")
@@ -374,37 +383,9 @@ def accept_interval_packet(pair, source, ast, cfg, target_line, config, source_s
 
 def make_interval_inspector(pair, config, parents, compile_variant):
     """Connect a declared interval seed to the shared pre-oracle retry engine."""
-    if set(parents) != {"before", "after"} or not config.get("target_call"):
-        raise ValueError("parent_sources_required")
+    def predictions(model, facts):
+        outcomes = predict_interval(model, facts)
+        return [outcomes["H_total"], outcomes["H_remaining"]]
 
-    views = {}
-    for parent, (base_source, base_ast, base_line) in parents.items():
-        view = strip_source_comments(base_source)
-        if view != base_source:
-            base_ast, _ = compile_variant(view)
-            if base_ast is None:
-                raise ValueError("parent_reasoning_view_uncompilable")
-        views[parent] = (view, base_ast, base_line)
-
-    def inspect(source, parent):
-        base_source, base_ast, base_line = views[parent]
-        candidate_ast, candidate_cfg = compile_variant(source)
-        if candidate_ast is None:
-            return {"clang_receipt": {"producer": "clang_ast", "compile_ok": False}}
-        receipt = make_receipt(base_source, source, base_ast, candidate_ast,
-                               base_line, config["target_expression"],
-                               contract_calls=(config["target_call"],),
-                               cfg=candidate_cfg)
-        if classify(receipt)["status"] != "admitted":
-            return {"clang_receipt": receipt}
-        try:
-            values = extract_interval_facts(source, candidate_ast, candidate_cfg,
-                                            receipt["target_lines"][1], config)
-            outcomes = predict_interval(pair, values)
-            prediction = [outcomes["H_total"], outcomes["H_remaining"]]
-        except (KeyError, TypeError, ValueError):
-            prediction = None
-        return {"clang_receipt": receipt, "facts": values if prediction is not None else None,
-                "predictions": prediction}
-
-    return inspect
+    return make_inspector(pair, config, parents, compile_variant,
+                          extract_interval_facts, predictions)

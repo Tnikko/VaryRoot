@@ -7,12 +7,20 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from varyroot.b_pool_runner import select_pool, run_pool
+from varyroot.b_pool_runner import freeze_parameters, select_pool, run_pool
 from varyroot.b_interval_ir import make_interval_pair
 from varyroot.b_prompt import build_request, hypothesis_pair
 
 
 class PoolRunnerTest(unittest.TestCase):
+    def test_freeze_parameters_come_from_locked_policy(self):
+        policy = {"min_admitted": 3, "min_divergent": 1,
+                  "require_mixed_scores": True, "divergence_target": "hard",
+                  "verification_budget": 1, "random_seeds": [7, 19]}
+        result = {"unresolved": False, "admitted": 3, "hard_divergent": 1}
+        self.assertEqual(freeze_parameters(policy, result), (1, [7, 19]))
+        self.assertIsNone(freeze_parameters(policy, dict(result, admitted=1)))
+
     def test_selection_is_deterministic_and_budgeted(self):
         rows = [
             {"status": "admitted", "source_sha256": f"{n:064x}",
@@ -85,6 +93,10 @@ class PoolRunnerTest(unittest.TestCase):
                 preflight = run_pool(config_path, preflight_only=True)
                 self.assertEqual(preflight["seed"], "fixture")
                 self.assertFalse((root / "out").exists())
+                call.assert_not_called()
+            config_path.touch()
+            with patch("varyroot.b_pool_runner.post_once") as call:
+                self.assertEqual(run_pool(config_path, preflight_only=True)["seed"], "fixture")
                 call.assert_not_called()
             clone = root / "unlisted-config.json"
             clone.write_bytes(config_path.read_bytes())

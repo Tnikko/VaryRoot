@@ -1,0 +1,501 @@
+{
+  "entries": [
+    {
+      "ast_sha256": "26e1084efa7fa2e76a6ce5732583871f32f7cc44f87553d5a7818217db6b02fb",
+      "origins": [
+        "step4f:source/parent/src/dissectors/ec_vnc.c:comment_stripped_view",
+        "v2:ettercap:row:2:comment_free",
+        "v2:ettercap:row:2:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "03eecd97a817d7cebcce744405c33aae91e9f81c0cc3f55c57b78129d7663c41",
+      "token_sha256": "0b4a8ec98e89044582edacb9a68616106ea84463a3e17502ea9ce307f655e088"
+    },
+    {
+      "ast_sha256": "a76789f78c29aab03c1968f2f215ac497673ea03907162e6c9ce0cdaa55e3a5b",
+      "origins": [
+        "v2:openldap:row:7:comment_free",
+        "v2:openldap:row:7:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "04694f67a8aeb822d88b372fe2e689973cbfee6f612b563c22ab926eb355b074",
+      "token_sha256": "82688e69d761a73e767bdab91217b414c11d883a3bec3da3c77e1b9109ffb4b1"
+    },
+    {
+      "ast_sha256": "c3854f1ec949cb1c9d4bea4c3c7aa5e4d9d990c8d7fd890d04613adc521f4eb4",
+      "origins": [
+        "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d3p4.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "0ab2354a2369bf17a58169eb71c541387fce623e44247d07cc53f98276696599",
+      "token_sha256": "7233c5b16a848c590ce3c8ddc48a01b3f2c5f7c54c9c9fe0255180778393790e"
+    },
+    {
+      "ast_sha256": "49fbefab2207f6bc169590ce9a2cd0603b22c6de721d1a62f5f322e9aa2aa676",
+      "origins": [
+        "step4f:source/parent/src/dissectors/ec_vnc.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "10e8719dff9a18d1bebbbda1fac9afe9f67f6f0851c5ee8f862d2bb00942b435",
+      "token_sha256": "0b4a8ec98e89044582edacb9a68616106ea84463a3e17502ea9ce307f655e088"
+    },
+    {
+      "ast_sha256": "bbb46b74326aa574a6d34399c19de41a7afdad931c743c255526e39ac916415b",
+      "origins": [
+        "v2:openldap:row:15:comment_free",
+        "v2:openldap:row:15:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "13ec29f96e5bb06decde5b66d29ce2178fcf668bbe35f40aa9b68c2041e92203",
+      "token_sha256": "205c35e8f945e97bbbb4317501d12a857bb02571075c7e752e3d61a2a09a57f9"
+    },
+    {
+      "ast_sha256": "301e94285593a70c12bc7dcc39746fc2ced0555eeac507e297da57f319f997fc",
+      "origins": [
+        "v2:openldap:row:2:comment_free",
+        "v2:openldap:row:2:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "1ce90f1305d3c3c682af73af5a771122c38b8f8ae6e56a04b5ccf155bad01689",
+      "token_sha256": "6db93da89dd2d65b127307d8decddc280a0ac2382bbad6f701d9d31ab2fb055b"
+    },
+    {
+      "ast_sha256": "47f596d7d1a5764b39631bdbe5025ce51099a5f08524db2b36c05d5095273ca5",
+      "origins": [
+        "step4d:model-02.response.json:proposal:4"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "24a345b32c410f443a1a65e8c25f96e7cc1e70d46a39adf1d2034757bc2d0fcf",
+      "token_sha256": "a7b56e405912f7058512dbe75e510ff50af9798f5962d0030b47fae27405e7d5"
+    },
+    {
+      "ast_sha256": "0346214db30d4c08b22bdf5f8836f469f2b421c2dac8ee0e288088a43f59765f",
+      "origins": [
+        "v2:openldap:row:13:comment_free",
+        "v2:openldap:row:13:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "2d757d1e57489961fca1966a98d88f62ede2475f55ae31a356364e24ce56706f",
+      "token_sha256": "0f4eb1e79b59874eabed6fea983de7ec54be8ad8c4d1ba7903dca597539b05f3"
+    },
+    {
+      "ast_sha256": "863b8c6d9a6a900500adfe18276a31e0becb53a02467c2984860864c10d06eb8",
+      "origins": [
+        "step4d:model-01.response.json:proposal:0"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "312a510d41cbd8962d15a7252954a762102a7b1eb81d5904c7f51f2598ec4319",
+      "token_sha256": "8f2126e62f998f4c831a9e2d3eb6e7d2851a1125045f819ff34f83a33c721a9c"
+    },
+    {
+      "ast_sha256": "c0451fc7cbc303b6d966a56d3f6b5c574b7f51486d4af2c0ddd414b02f2e5747",
+      "origins": [
+        "step4d:buildability/catalog/d1p6/d1p6.c",
+        "step4d:model-01.response.json:proposal:5",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/7bca8d3ede0046bba71e22a41d01ac49/candidate-d1p6.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "347773a36903d2fe88d1e732b45c44fc2467f5f9c30b537e2b88be58c3d7befc",
+      "token_sha256": "fb7be16997cbafe87db20f13634fb604e4e6d85f6e179f3896129a8c86bd35d9"
+    },
+    {
+      "ast_sha256": "93b212270d4a19e6203901b3da3c055a5d7306a740e58b71e7d91b449a60c8b1",
+      "origins": [
+        "v2:openldap:row:6:comment_free",
+        "v2:openldap:row:6:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "3710626b54fb8c773d8326c453fc0b5af0bec5192ad0c3b964b7d48343121bd5",
+      "token_sha256": "437b7f38b652ca0e0faad447062151e8f11a9a7ae84004bcf99cffd5f0ecbc1e"
+    },
+    {
+      "ast_sha256": "969faa26dfcbec689801fc4a996e85f0388090b9a13d42d82f6cc50a0c613404",
+      "origins": [
+        "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d1p1.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "3855f99ca5ffca8e12cb9e8ccacf7bb1e22f35a1cb625647d506cc043d48d2d7",
+      "token_sha256": "7233c5b16a848c590ce3c8ddc48a01b3f2c5f7c54c9c9fe0255180778393790e"
+    },
+    {
+      "ast_sha256": "66ce459342fef0c7cb85a9155520331d33ae1ebb99ceca4d44c1e3d7877c1809",
+      "origins": [
+        "v2:openldap:row:3:comment_free",
+        "v2:openldap:row:3:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "3b20f8b533aa847afe927598347ef5cc8cd455601d2ca61d0168601d898c5939",
+      "token_sha256": "9ea8df63d2aa7fbf8f02976cef01813cbee0ab9b1af1e50417564c8d66225404"
+    },
+    {
+      "ast_sha256": "820c3148da9fdc860e52b51fa0b4553e9460eaf7ea2457f2f44f70ceac98dc27",
+      "origins": [
+        "v2:openldap:row:1:comment_free",
+        "v2:openldap:row:1:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "42d9aa7c28279cea755105717c252a6f3e054936a715e9df555c752f711e2185",
+      "token_sha256": "b0be1971feb88767bd9b68d43f64bf1234a0b67b33ec2cd862c0c90bded3ea88"
+    },
+    {
+      "ast_sha256": null,
+      "origins": [
+        "step4f:codeql/unrelated/source/oob_unrelated_parser.c"
+      ],
+      "semantic_status": "token_only_no_named_target_function",
+      "source_sha256": "46082568cd08014e012b8c59de164f8e8d8f12b2c586dfeed9d33ae527d15771",
+      "token_sha256": "03bb5ce09dcf0640ae527c12f70aa94c70e0b0ed171ee448a8f5b88c86c003cc"
+    },
+    {
+      "ast_sha256": "7ea895e13539a3574764f955eba05e00bb60253e15fa3e225ad0bb418c8c3a2c",
+      "origins": [
+        "v2:ettercap:row:0:comment_free",
+        "v2:ettercap:row:0:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "4992be39eb9dacc9965a7b6d08c1910068a5b341d31ac2b95dacf88e8dbeda3e",
+      "token_sha256": "0b4a8ec98e89044582edacb9a68616106ea84463a3e17502ea9ce307f655e088"
+    },
+    {
+      "ast_sha256": "1375c1c5d4ee042a70fc4b0f311b9757b97287079efc869a7d8c09f6043e9250",
+      "origins": [
+        "step4d:model-03.response.json:proposal:0",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p1.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "547fbe61d9ef9c516bcd6b6fe18515d9141006068a27f90963b4d893c7780b6e",
+      "token_sha256": "6fa3faedfc340c7c784ac7bed7daccdfcf6e953b5941aae38601c39f64185615"
+    },
+    {
+      "ast_sha256": "c164e8f1539a3a0d0c0a9c1bfdd1368be796956e77284bcdf5d11eb54d8d0189",
+      "origins": [
+        "v2:openldap:row:0:comment_free",
+        "v2:openldap:row:0:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "5693d726e5b344c64b04d5002f4fabe6558691df20a153171e7834593577d7ba",
+      "token_sha256": "76f2a96f8b7cfdd6adea1b180580e1f009edc46ad333fe8e49d66685aa3ff95c"
+    },
+    {
+      "ast_sha256": "1375c1c5d4ee042a70fc4b0f311b9757b97287079efc869a7d8c09f6043e9250",
+      "origins": [
+        "step4d:buildability/catalog/d2p1/d2p1.c",
+        "step4d:codeql-full-trial-v2/build/src/5be11201b44b540d1a486b7b92198b1f0610ac622983560b2e9ea3d134dc0b82.c",
+        "step4d:codeql-trial/d2p1.c",
+        "step4d:model-02.response.json:proposal:0",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p1.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "5be11201b44b540d1a486b7b92198b1f0610ac622983560b2e9ea3d134dc0b82",
+      "token_sha256": "6fa3faedfc340c7c784ac7bed7daccdfcf6e953b5941aae38601c39f64185615"
+    },
+    {
+      "ast_sha256": "bac4ff511c81b7293ec8e38b4a3ef347de1e546e89777ac1f760832574577624",
+      "origins": [
+        "step4d:buildability/catalog/d2p3/d2p3.c",
+        "step4d:model-02.response.json:proposal:2",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p3.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "5e51e1f3f81dde33db45dfdd5e712cced4c37f81259e41c7c06fc6996ca0ddc8",
+      "token_sha256": "f9e40af105f82c26a11897fe6b7e3b536f47b1f57fd57c69f807a4ac18c69c2b"
+    },
+    {
+      "ast_sha256": "d7594e8b139208b418938124db13ea28bd0a8f3673b1b2cd260a30e8ab0bd633",
+      "origins": [
+        "v2:openldap:row:11:comment_free",
+        "v2:openldap:row:11:raw",
+        "v2:openldap:row:5:comment_free",
+        "v2:openldap:row:5:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "5f8c547cd64f9ecbc04fe0c5c4c49c6e64f52bc35768dcef46f71ee8f5f2b876",
+      "token_sha256": "b2938b662be27dd95e7e79c8adffa62c9e0e1d059cc0bbfe92d2bfa7ff5cd903"
+    },
+    {
+      "ast_sha256": "f33957252b0b3e475228b3a86b26cc0c28fe38d12338846eb95defda6bd3c556",
+      "origins": [
+        "step4d:buildability/catalog/d3p5/d3p5.c",
+        "step4d:model-03.response.json:proposal:4",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p5.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "64dc4c14fae63753b901b8656370c63fc62ce4931c4b8d26c7bdf970cb7b0255",
+      "token_sha256": "b02fd4494bc77fdd1daa0e0e7cb9a931662e00ea95b5533a56bf8ade64e894ff"
+    },
+    {
+      "ast_sha256": "3a8ad568f3f6835cf40d12bf614006144c9433ba3ac2fd1e1b6775f8db54531c",
+      "origins": [
+        "step4d:goto-test/admission-catalog/4e0b09b03eda44d9bf1ce03fed78a866/candidate-gotoexit.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "672842e2a0c97077e13d37fb82e3168c0902da218b9d1cbef96fe047cde73a2d",
+      "token_sha256": "7233c5b16a848c590ce3c8ddc48a01b3f2c5f7c54c9c9fe0255180778393790e"
+    },
+    {
+      "ast_sha256": null,
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/6e272b5bdf807550bb1270a73e032bdcda661f0670616cd76eb71722363fd6e0.c"
+      ],
+      "semantic_status": "token_only_no_named_target_function",
+      "source_sha256": "6e272b5bdf807550bb1270a73e032bdcda661f0670616cd76eb71722363fd6e0",
+      "token_sha256": "f34acf9bfa80b7859a87172f549a775010df3a1a209cc5614f4ff21d51e271b3"
+    },
+    {
+      "ast_sha256": null,
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/6e272b5bdf807550bb1270a73e032bdcda661f0670616cd76eb71722363fd6e0.c:comment_stripped_view"
+      ],
+      "semantic_status": "token_only_no_named_target_function",
+      "source_sha256": "75cb5b49205d629cfe960ed782062aeb533faca625c22bd1ff4f5f68a7b26a12",
+      "token_sha256": "f34acf9bfa80b7859a87172f549a775010df3a1a209cc5614f4ff21d51e271b3"
+    },
+    {
+      "ast_sha256": "9a9fe70ed58845ad5ad80b4e4bc0d511b9fa27cc9c3f9f46bf4a1579b099dee0",
+      "origins": [
+        "step4d:buildability/catalog/d1p5/d1p5.c",
+        "step4d:model-01.response.json:proposal:4",
+        "step4d:model-03.response.json:proposal:1",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/7bca8d3ede0046bba71e22a41d01ac49/candidate-d1p5.c",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p2.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "797b2f2ea0cee8e5a4d2351e4dc7e5debae42a6c47a871906273c9fa63b2be97",
+      "token_sha256": "91cb5b8875c74758954cea9c14f0a5a2f89f71ba129cf465c521c050f17b47a6"
+    },
+    {
+      "ast_sha256": "e56ba6513cc3c52ba8fd3cb05209072ca795001d41ab5fc75db88082889130c0",
+      "origins": [
+        "step4d:model-02.response.json:proposal:3"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "85ece26ba06a02d74a57db84c44979482f214b91304bffc1884ed2c28401e5c9",
+      "token_sha256": "3bc6593c42a169e77004db6f1676cb16bcd9175acb4fd9a6885a7af6628952c7"
+    },
+    {
+      "ast_sha256": "4400587b5fdf0ecf9c836fecd145a0e88deb66c5aa440d5346803bd42986e535",
+      "origins": [
+        "step4d:buildability/catalog/d2p6/d2p6.c",
+        "step4d:model-02.response.json:proposal:5",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p6.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "8a071223fb2cbcce77f2dc668f25b309f216af1d41ac60b133cab45e2cc049a4",
+      "token_sha256": "6b802f1de533f389d95ac0d239d3f3276706b85bc3c8d25acf3aec0f918a3223"
+    },
+    {
+      "ast_sha256": "da7246f4f55bab0f740f64d97ca41af81239580484a22c31b22f66ce093fa92b",
+      "origins": [
+        "v2:openldap:row:14:comment_free",
+        "v2:openldap:row:14:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "8ca53a19a6e805a012541c70542a5edad37be36a0ebfe121cc649cae41eca19a",
+      "token_sha256": "f468e93ffcc9ff272fd94a228559799c8211371f075e585e18d2083bd9833993"
+    },
+    {
+      "ast_sha256": "ffe89c08b53fcd50d5a9f2aa847ce7dbb04db87bcc8c1bbcaf4be2ee8ea11248",
+      "origins": [
+        "step4d:model-02.response.json:proposal:1",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/63245709c7f34e8ab75e4bf2271441ea/candidate-d2p2.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "8dbf54b313caeeb4e30338131219b0f2696c118fcdeb90263d84bbb8880cdaac",
+      "token_sha256": "a1e10973e6a557eb8bf2265df940e986115827fe67d9afd131b08203ca9ef146"
+    },
+    {
+      "ast_sha256": null,
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/90a0753679d24e80d7e55749c17fa6febe3b07b834e60c66a15a5df2afb88353.c"
+      ],
+      "semantic_status": "token_only_no_named_target_function",
+      "source_sha256": "90a0753679d24e80d7e55749c17fa6febe3b07b834e60c66a15a5df2afb88353",
+      "token_sha256": "f00ed698f8c1b22b3a1ea021fa7fd13ed87fb99560641bb1e6cb4335bef00dea"
+    },
+    {
+      "ast_sha256": "40b95262fb0c99fee75c67600f9fee0864f54c98d70a6d0f386facb14bf301b4",
+      "origins": [
+        "step4d:buildability/catalog/d3p4/d3p4.c",
+        "step4d:codeql-full-trial-v2/build/src/9689198976dcbef3abe69b8ff9b007c5c481b63e09a104bd813e986c0568baa1.c",
+        "step4d:codeql-trial/d3p4.c",
+        "step4d:model-03.response.json:proposal:3",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p4.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "9689198976dcbef3abe69b8ff9b007c5c481b63e09a104bd813e986c0568baa1",
+      "token_sha256": "a88ac9809525f50bee3c6f1153367ed76b30ce2e7f008c89a0a84ce4fed7b462"
+    },
+    {
+      "ast_sha256": "ddd66218cb064bef063191d8beba1be7d019b6b31573fb37e024b9fa8eb528b4",
+      "origins": [
+        "step4f:source/fixed/src/dissectors/ec_vnc.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "9a4ca6686b51bd703ee2581f261c34f8b894fdeec3bb9adba4dc70fbd7d11721",
+      "token_sha256": "31667948965713867f7d42786e67e83e09f8cbf2540b2248f9ea8cc361d15b87"
+    },
+    {
+      "ast_sha256": "a6d753da1033c8083ef2ebe96e105070e502f82b3d246ab22f14f6362029e1e0",
+      "origins": [
+        "v2:ettercap:row:3:comment_free",
+        "v2:ettercap:row:3:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "9dca1a185526af31ab61381905587cce108c5ee8af8dc2566dea3e1657f35be5",
+      "token_sha256": "31667948965713867f7d42786e67e83e09f8cbf2540b2248f9ea8cc361d15b87"
+    },
+    {
+      "ast_sha256": "94a020fe912dd046e5c08d6ed87c640c516196f19ff13ed3c6eb77a896ad5777",
+      "origins": [
+        "v2:openldap:row:4:comment_free",
+        "v2:openldap:row:4:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "9fd12c70077ebce8280810ecdfe9d913be72f0c59570a9056a87b9e9d29c9ac4",
+      "token_sha256": "e75eecdb245cf7edee05267ded200b6230c76d2ca117ba71436e11de3d58c3a4"
+    },
+    {
+      "ast_sha256": "99845622d80ce8f9d15873218a1507c5d1b0445a4009d9a2c32a0f807d0fa98e",
+      "origins": [
+        "step4d:model-01.response.json:proposal:3"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "b4181386099d7aef4ea9683da72c761e25a5f3bfc8452782604710e1714327f3",
+      "token_sha256": "fb7df3031f20fadb5251f8c64326121bafab7f89f67e49184c49901751bfc694"
+    },
+    {
+      "ast_sha256": "fa2f05fc87226492a9a2a224ad2465b7c1d707bdf700d50b0528942e69780d9b",
+      "origins": [
+        "step4d:goto-real-model-audit/admission-catalog/8e99a81b9c014dce9ab9d46568e2d97d/candidate-d2p4.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "b53a4949fac6c44617a53f61686b97385bf97830bca1d5aafe82dea42bde312d",
+      "token_sha256": "7233c5b16a848c590ce3c8ddc48a01b3f2c5f7c54c9c9fe0255180778393790e"
+    },
+    {
+      "ast_sha256": "24d8570533cdfadec883cdc0f4f82925dfc5edb3f736f7eef2e1894eac90448f",
+      "origins": [
+        "v2:openldap:row:17:comment_free",
+        "v2:openldap:row:17:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "c1bc2941b712a2c25e80d86eaf699effdba640fb6720df66e92917cab9ca1236",
+      "token_sha256": "605806907d7d739975b7d9134ed9e898aa34d04cfe32d3790ff0321f225f5eff"
+    },
+    {
+      "ast_sha256": "0cb09622aae1c311d7562993cf919545b13e3a462dab0913c7de04ed3d247d3c",
+      "origins": [
+        "step4d:buildability/catalog/d3p3/d3p3.c",
+        "step4d:model-03.response.json:proposal:2",
+        "step4d:model-client/runs/step3-model-intake/out/admission-catalog/832d566d47784b94a814b388cfed7dc1/candidate-d3p3.c"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "c330055252cd78006c74afc427ad220d28d008804de2d7574c5da4eb9f5edbd2",
+      "token_sha256": "a83480c363367db21e55621d3ad6d5eeb0ba5358f24ecfd27702a960cced23aa"
+    },
+    {
+      "ast_sha256": "542bb70927ec43ba072bfc89f3eb1b50950bfe81187b014a9df0038a24313ece",
+      "origins": [
+        "step4d:model-01.response.json:proposal:2"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "c498746278b4cd7cae8f64bb8bc936ade3f977edff19a8ee07bd7e8b272a32a7",
+      "token_sha256": "ba3e6352aebbb00f9c9f1a86948f54ec9af862f4418f2fbae893f8a28979d5f8"
+    },
+    {
+      "ast_sha256": "6d0bcf219e920387f6988a445828f1fdb3f02611294362815cb27bf0448db569",
+      "origins": [
+        "step4f:source/fixed/src/dissectors/ec_vnc.c:comment_stripped_view"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "c4b4a5b10c784aa75c52faf385a8183bac760d302e185b6a47e048cff0634e44",
+      "token_sha256": "31667948965713867f7d42786e67e83e09f8cbf2540b2248f9ea8cc361d15b87"
+    },
+    {
+      "ast_sha256": "0cf1a3598895c8c3e689ecaf2ed1e49f8b1beea314d878d7023b20afb7f49583",
+      "origins": [
+        "v2:openldap:row:12:comment_free",
+        "v2:openldap:row:12:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "cd80801b716647f7c1b082875e710809204c5380d882cd6ffc167006abcecf44",
+      "token_sha256": "2ad26aada177d6a44ffc2350aad20c033aacb41a99993c9e85c6e32514bcb9a3"
+    },
+    {
+      "ast_sha256": "500bb5c9bfc8b5113a8375898a04d3be0e5a6a78419058e9c15f87bf8f80ba21",
+      "origins": [
+        "v2:openldap:row:16:comment_free",
+        "v2:openldap:row:16:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "d51325d0d0212a67922986dc6b8af209990a63aab14b91f445b5e9f9e3721f94",
+      "token_sha256": "2ccc80e9cbdd888689054708a6a8d8dd74e9468d25d4b0a6ba4396a7cbb23835"
+    },
+    {
+      "ast_sha256": "0c825c4fd4a6ac21cfd51a7f46bb2cd0771f42ce76f8317c9c51843937e83d18",
+      "origins": [
+        "v2:openldap:row:8:comment_free",
+        "v2:openldap:row:8:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "de1b48a7ebea46520a8eaec883f1bff4eecc1c022862eba2689344a7bd6b214c",
+      "token_sha256": "8917bd0dd1d523bf9470d2ebb38ce62b9066dd864f18d77f8fd3fcb155d42799"
+    },
+    {
+      "ast_sha256": "4f2df7a04cd555fa9aa88ebcc25aee15fdb476064ef363ae0536393065b29662",
+      "origins": [
+        "v2:openldap:row:9:comment_free",
+        "v2:openldap:row:9:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "df2fb4a140b2a61790c4a3092e175322daaf24820ac2f35d702b097d09a70831",
+      "token_sha256": "2a42f12cffe1a5ed339b686e9fe769b1a7d89345061164b57e9d3542b87decb0"
+    },
+    {
+      "ast_sha256": "94a020fe912dd046e5c08d6ed87c640c516196f19ff13ed3c6eb77a896ad5777",
+      "origins": [
+        "v2:openldap:row:10:comment_free",
+        "v2:openldap:row:10:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "ece65a9fe00752fb371dc8e382cb46d1aff7387a37848a3944a2e25d60bf2e3a",
+      "token_sha256": "e75eecdb245cf7edee05267ded200b6230c76d2ca117ba71436e11de3d58c3a4"
+    },
+    {
+      "ast_sha256": "f5ea02cec273cc632b10fe31ba125f09d08ab68268820bb3a599476e6e9b0fe5",
+      "origins": [
+        "step4d:model-01.response.json:proposal:1"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "f5a9c0c3a943896058cf0c3d8a7828b416d614404fa75b87090609f8bf18ad83",
+      "token_sha256": "74c98db506be5b961985ca28ddc528a1159ebf9836fcb5f06075b395e303f141"
+    },
+    {
+      "ast_sha256": "804c8fb3e580f9f456ed79cab2f232435389227f32df9973cf0d90f29ce816d2",
+      "origins": [
+        "v2:ettercap:row:1:comment_free",
+        "v2:ettercap:row:1:raw"
+      ],
+      "semantic_status": "token_and_ast",
+      "source_sha256": "f7d6ab6ef4fd70229b01a6fb9537fb982aa47a417bd127df9cc750edfdf0ef81",
+      "token_sha256": "31667948965713867f7d42786e67e83e09f8cbf2540b2248f9ea8cc361d15b87"
+    },
+    {
+      "ast_sha256": null,
+      "origins": [
+        "step4d:codeql-full-trial-v2/build/src/90a0753679d24e80d7e55749c17fa6febe3b07b834e60c66a15a5df2afb88353.c:comment_stripped_view"
+      ],
+      "semantic_status": "token_only_no_named_target_function",
+      "source_sha256": "fd14d44243f3270d6c12370857b62ce79391f8aa4846658b5129ec7be198231b",
+      "token_sha256": "f00ed698f8c1b22b3a1ea021fa7fd13ed87fb99560641bb1e6cb4335bef00dea"
+    }
+  ],
+  "normalization": "Clang 18 raw token sequence without comments/whitespace; function AST without IDs, locations and ParenExpr",
+  "schema_version": 2,
+  "source_table_sha256": "53239394dce7ddcb02cfde5423fd18539b6b95a06321dde074909157432ec2b6",
+  "sources": {
+    "ast_available": 44,
+    "input_entries": 49,
+    "resolved": 49
+  }
+}
