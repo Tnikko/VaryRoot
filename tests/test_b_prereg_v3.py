@@ -11,6 +11,8 @@ class V3PreregTest(unittest.TestCase):
         exclusions = (root / "historical-exclusions.json").read_bytes()
         self.assertEqual(hashlib.sha256(exclusions).hexdigest(), lock["exclusions_sha256"])
         self.assertEqual(lock["v2_dynamic_verifications"], 0)
+        self.assertEqual(lock["ettercap_contract_basis_sha256"],
+                         "15b24d1d64e4ea08d08619e4caee2e75945d1f808aa5a183360b96f2d5a815b9")
         for seed, symbols in (("openldap", {"check_seen", "blocked", "operand"}),
                               ("ettercap", {"total_guard", "remaining_guard", "capacity", "offset", "width"})):
             policy = lock["policy"][seed]

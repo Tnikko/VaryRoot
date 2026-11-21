@@ -1,4 +1,5 @@
 {
+  "ettercap_contract_basis_sha256": "15b24d1d64e4ea08d08619e4caee2e75945d1f808aa5a183360b96f2d5a815b9",
   "exclusions_sha256": "53239394dce7ddcb02cfde5423fd18539b6b95a06321dde074909157432ec2b6",
   "hypotheses": {
     "ettercap": {
